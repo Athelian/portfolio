@@ -1,0 +1,33 @@
+webpackHotUpdate("main",{
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/resolve-url-loader/index.js?!./node_modules/sass-loader/dist/cjs.js?!./src/App.sass":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--5-oneOf-6-1!./node_modules/postcss-loader/src??postcss!./node_modules/resolve-url-loader??ref--5-oneOf-6-3!./node_modules/sass-loader/dist/cjs.js??ref--5-oneOf-6-4!./src/App.sass ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Images_bg_jpeg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Images/bg.jpeg */ "./src/Images/bg.jpeg");
+// Imports
+
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(true);
+___CSS_LOADER_EXPORT___.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Allura&display=swap);"]);
+var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_Images_bg_jpeg__WEBPACK_IMPORTED_MODULE_2__["default"]);
+// Module
+___CSS_LOADER_EXPORT___.push([module.i, ".Portfolio-Site {\n  margin: 0 auto;\n  position: relative;\n}\n.Portfolio-Site > * {\n  display: flex;\n  justify-content: center;\n  margin: auto;\n}\n\nheader {\n  margin-bottom: 2rem;\n}\nheader h1 {\n  font-size: 48px;\n}\nheader h1 div {\n  display: flex;\n  align-items: center;\n}\nheader img.ui.image {\n  border: 2px solid black;\n  border-radius: 50%;\n  height: 48px;\n  display: inline;\n  margin-left: 1rem;\n}\n\n.Portfolio-Site div.ui.card {\n  margin: 1rem;\n}\n\n.section--pink {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-size: cover;\n}\n\n.section__header {\n  width: 7rem;\n  position: fixed;\n  top: 5rem;\n  left: calc(50% - 23rem);\n}", "",{"version":3,"sources":["webpack://src/App.sass"],"names":[],"mappings":"AAEA;EACE,cAAA;EACA,kBAAA;AAAF;AAEE;EACE,aAAA;EACA,uBAAA;EACA,YAAA;AAAJ;;AAEA;EACE,mBAAA;AACF;AAGE;EACE,eAAA;AADJ;AAEI;EACE,aAAA;EACA,mBAAA;AAAN;AAEE;EACE,uBAAA;EACA,kBAAA;EACA,YAAA;EACA,eAAA;EACA,iBAAA;AAAJ;;AAIE;EACE,YAAA;AADJ;;AAIE;EACE,mDAAA;EACA,sBAAA;AADJ;;AAGA;EACI,WAAA;EACA,eAAA;EACA,SAAA;EACA,uBAAA;AAAJ","sourcesContent":["@import url(\"https://fonts.googleapis.com/css2?family=Allura&display=swap\")\n\n.Portfolio-Site\n  margin: 0 auto\n  position: relative\n\n  > *\n    display: flex\n    justify-content: center\n    margin: auto\n\nheader\n  margin-bottom: 2rem\n\n  header-image\n\n  h1\n    font-size: 48px\n    div\n      display: flex\n      align-items: center\n\n  img.ui.image\n    border: 2px solid black\n    border-radius: 50%\n    height: 48px\n    display: inline\n    margin-left: 1rem\n\n\n.Portfolio-Site \n  div.ui.card\n    margin: 1rem\n\n.section\n  &--pink\n    background: url(\"Images/bg.jpeg\")\n    background-size: cover\n\n.section__header\n    width: 7rem\n    position: fixed\n    top: 5rem\n    left: calc(50% - 23rem)"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
+
+
+/***/ })
+
+})
+//# sourceMappingURL=main.aacaaba832da324a6545.hot-update.js.map
