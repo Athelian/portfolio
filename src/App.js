@@ -16,44 +16,39 @@ function App() {
           Austin-Forbes
         </h1>
       </header>
+      <div>
+        <h3 className="introduction">
+          Since beginning my journey as a freelance designer nearly 10 years
+          ago, I've done remote work for agencies, consulted for startups, and
+          collaborated with talente
+        </h3>
+      </div>
       <section className="section section--pink">
         <img className="section__header" src={about} />
         <Card.Group centered>
           <Card
-            header="Rick Sanchez"
-            meta="Scientist"
-            description={[
-              "Rick is a genius scientist whose alcoholism and reckless,",
-              " nihilistic behavior are a source of concern for his family.",
-              "Rick is a genius scientist whose alcoholism and reckless,",
-              " nihilistic behavior are a source of concern for his family.",
-              "Rick is a genius scientist whose alcoholism and reckless,",
-              " nihilistic behavior are a source of concern for his family.",
-              "Rick is a genius scientist whose alcoholism and reckless,",
-              " nihilistic behavior are a source of concern for his family.",
-              "Rick is a genius scientist whose alcoholism and reckless,",
-              " nihilistic behavior are a source of concern for his family.",
-              "Rick is a genius scientist whose alcoholism and reckless,",
-              " nihilistic behavior are a source of concern for his family.",
-            ].join("")}
-          />
-          <Card
-            header="Rick Sanchez"
-            meta="Scientist"
-            description={[
-              "Rick is a genius scientist whose alcoholism and reckless,",
-              " nihilistic behavior are a source of concern for his family.",
-              "Rick is a genius scientist whose alcoholism and reckless,",
-              " nihilistic behavior are a source of concern for his family.",
-              "Rick is a genius scientist whose alcoholism and reckless,",
-              " nihilistic behavior are a source of concern for his family.",
-              "Rick is a genius scientist whose alcoholism and reckless,",
-              " nihilistic behavior are a source of concern for his family.",
-              "Rick is a genius scientist whose alcoholism and reckless,",
-              " nihilistic behavior are a source of concern for his family.",
-              "Rick is a genius scientist whose alcoholism and reckless,",
-              " nihilistic behavior are a source of concern for his family.",
-            ].join("")}
+            image={
+              <Card.Content>
+                <Card.Header>
+                  Learner
+                  <Card.Header />
+                </Card.Header>
+                <Card.Meta>Life</Card.Meta>
+                <Icon color="purple" name="book" size="huge" />
+              </Card.Content>
+            }
+            description={
+              <List bulleted>
+                <List.Item>
+                  Eliot was born to David Forbes and Mary Austin at a modest
+                  property in London in 1993.
+                </List.Item>
+                <List.Item>
+                  He then studied at a highschool in Cambridge, before
+                  completing a master's degree
+                </List.Item>
+              </List>
+            }
           />
           <Card
             image={
@@ -73,7 +68,32 @@ function App() {
                   property in London in 1993.
                 </List.Item>
                 <List.Item>
-                  He then studied at a highschool in Cambridge, before completing a master's degree 
+                  He then studied at a highschool in Cambridge, before
+                  completing a master's degree
+                </List.Item>
+              </List>
+            }
+          />
+          <Card
+            image={
+              <Card.Content>
+                <Card.Header>
+                  Learner
+                  <Card.Header />
+                </Card.Header>
+                <Card.Meta>Life</Card.Meta>
+                <Icon color="purple" name="book" size="huge" />
+              </Card.Content>
+            }
+            description={
+              <List bulleted>
+                <List.Item>
+                  Eliot was born to David Forbes and Mary Austin at a modest
+                  property in London in 1993.
+                </List.Item>
+                <List.Item>
+                  He then studied at a highschool in Cambridge, before
+                  completing a master's degree
                 </List.Item>
               </List>
             }
