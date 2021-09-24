@@ -1,4 +1,4 @@
-import { Image, Card, Icon, List } from "semantic-ui-react";
+import { Image, Card, Icon, List, Popup } from "semantic-ui-react";
 import bitmoji from "Images/bitmoji.png";
 import "semantic-ui-css/semantic.min.css";
 import "./App.sass";
@@ -18,9 +18,7 @@ function App() {
       </header>
       <div>
         <h3 className="introduction">
-          Since beginning my journey as a freelance designer nearly 10 years
-          ago, I've done remote work for agencies, consulted for startups, and
-          collaborated with talente
+          I am a fullstack engineer with a focus on <Popup content={<h4>(M)ongo (E)xpress (R)eact (N)ode</h4>} trigger={<span>MERN</span>}/> stacks
         </h3>
       </div>
       <section className="section section--pink">
