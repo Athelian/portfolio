@@ -1,10 +1,14 @@
-import { Image, Card, Icon, List, Popup } from "semantic-ui-react";
+import { Image, Card, Icon, List, Popup, Divider } from "semantic-ui-react";
 import bitmoji from "Images/bitmoji.png";
 import "semantic-ui-css/semantic.min.css";
 import "./App.sass";
 import about from "Images/About.png";
+import LibertyMap from "Components/LibertyMap";
+import { useRef } from "react";
+import useIntersection from "Utility/useIntersection";
 
 function App() {
+  
   return (
     <div className="Portfolio-Site">
       <header>
@@ -18,8 +22,16 @@ function App() {
       </header>
       <div>
         <h3 className="introduction">
-          I am a fullstack engineer with a focus on <Popup content={<h4>(M)ongo (E)xpress (R)eact (N)ode</h4>} trigger={<span>MERN</span>}/> stacks
+          I am a fullstack engineer with a focus on
+          <Popup
+            content={<h4>(M)ongo (E)xpress (R)eact (N)ode</h4>}
+            trigger={<span>MERN</span>}
+          />
+          stacks
         </h3>
+      </div>
+      <div>
+        <img src="https://static.vecteezy.com/system/resources/previews/000/330/830/non_2x/vector-optimization-code-icon.jpg" />
       </div>
       <section className="section section--pink">
         <img className="section__header" src={about} />
@@ -97,6 +109,9 @@ function App() {
             }
           />
         </Card.Group>
+      </section>
+      <section className="section section--white">
+          <LibertyMap />
       </section>
     </div>
   );
