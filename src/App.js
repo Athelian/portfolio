@@ -1,11 +1,8 @@
-import { Image, Card, Icon, List, Popup, Divider } from "semantic-ui-react";
+import about from "Images/About.png";
 import bitmoji from "Images/bitmoji.png";
 import "semantic-ui-css/semantic.min.css";
+import { Card, Icon, Image, List, Popup } from "semantic-ui-react";
 import "./App.sass";
-import about from "Images/About.png";
-import LibertyMap from "Components/LibertyMap";
-import { useRef } from "react";
-import useIntersection from "Utility/useIntersection";
 
 function App() {
   
@@ -111,7 +108,6 @@ function App() {
         </Card.Group>
       </section>
       <section className="section section--white">
-          <LibertyMap />
       </section>
     </div>
   );
