@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 
 export default function useIntersection(element, rootMargin) {
   const [isVisible, setIsVisible] = useState(false);
+  const [isAbove, setIsAbove] = useState(true);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(entry.isIntersecting);
-          observer.unobserve(element.current);
-        }
+        const isAbove = entry.boundingClientRect.y < entry.rootBounds.y;
+        setIsVisible(entry.isIntersecting);
+        setIsAbove(isAbove)
       },
       { rootMargin }
     );
@@ -19,5 +19,5 @@ export default function useIntersection(element, rootMargin) {
     return () => observer.unobserve(element.current);
   }, []);
 
-  return isVisible;
+  return [isVisible, isAbove];
 }
