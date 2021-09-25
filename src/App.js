@@ -27,9 +27,20 @@ function App() {
         </h3>
       </div>
       <div>
+        {/* <div id="heart"></div> */}
         <div className="scene">
           <div className="sphere">
             <div className="hemisphere">
+              <div className="face face__heart">
+                <div className="heart heart--1"></div>
+                <div className="heart heart--2"></div>
+                <div className="heart heart--3"></div>
+                {/* <div className="heart heart--4"></div> */}
+                {/* <div className="heart heart--1"></div>
+                <div className="heart heart--1"></div>
+                <div className="heart heart--1"></div> */}
+              </div>
+              {/* <div className="face"></div>
               <div className="face"></div>
               <div className="face"></div>
               <div className="face"></div>
@@ -37,11 +48,10 @@ function App() {
               <div className="face"></div>
               <div className="face"></div>
               <div className="face"></div>
-              <div className="face"></div>
-              <div className="face"></div>
-              <div className="face"></div>
+              <div className="face"></div> */}
             </div>
             <div className="hemisphere">
+              {/* <div className="face"></div>
               <div className="face"></div>
               <div className="face"></div>
               <div className="face"></div>
@@ -50,8 +60,7 @@ function App() {
               <div className="face"></div>
               <div className="face"></div>
               <div className="face"></div>
-              <div className="face"></div>
-              <div className="face"></div>
+              <div className="face"></div> */}
             </div>
           </div>
         </div>
