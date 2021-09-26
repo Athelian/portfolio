@@ -11,7 +11,7 @@ function App() {
         <h1>
           <div>
             Eliot
-            <Image src={bitmoji} circular />
+            <Image alt="bitmoji" circular src={bitmoji} />
           </div>
           Austin-Forbes
         </h1>
@@ -31,42 +31,143 @@ function App() {
         <div className="scene">
           <div className="sphere">
             <div className="hemisphere">
-              <div className="face face__heart">
-                <div className="heart heart--1"></div>
-                <div className="heart heart--2"></div>
-                <div className="heart heart--3"></div>
-                {/* <div className="heart heart--4"></div> */}
-                {/* <div className="heart heart--1"></div>
-                <div className="heart heart--1"></div>
-                <div className="heart heart--1"></div> */}
+              <div className="face face__africa">
+                <div className="land land__africa land__africa--1">
+                  <div></div>
+                  <div></div>
+                </div>
+                <div className="land land__africa land__africa--2">
+                  <div></div>
+                  <div></div>
+                </div>
+                <div className="land land__africa land__africa--3">
+                  <div></div>
+                  <div></div>
+                </div>
+                <div className="land land__africa land__africa--4">
+                  <div></div>
+                  <div></div>
+                </div>
+                <div className="land land__africa land__africa--5">
+                  <div></div>
+                  <div></div>
+                </div>
+                {/* <div className="land land--2" />
+                <div className="land land--3" /> */}
               </div>
-              {/* <div className="face"></div>
-              <div className="face"></div>
-              <div className="face"></div>
-              <div className="face"></div>
-              <div className="face"></div>
-              <div className="face"></div>
-              <div className="face"></div>
-              <div className="face"></div>
-              <div className="face"></div> */}
+              {/* <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div>
+              <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div>
+              <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div>
+              <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div>
+              <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div>
+              <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div>
+              <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div>
+              <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div>
+              <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div>
+              <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div> */}
             </div>
             <div className="hemisphere">
-              {/* <div className="face"></div>
-              <div className="face"></div>
-              <div className="face"></div>
-              <div className="face"></div>
-              <div className="face"></div>
-              <div className="face"></div>
-              <div className="face"></div>
-              <div className="face"></div>
-              <div className="face"></div>
-              <div className="face"></div> */}
+              {/* <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div> */}
+              {/* <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div> */}
+              {/* <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div>
+              <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div>
+              <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div>
+              <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div>
+              <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div>
+              <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div>
+              <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div>
+              <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div>
+              <div className="face face__land">
+                <div className="land land--1" />
+                <div className="land land--2" />
+                <div className="land land--3" />
+              </div> */}
             </div>
           </div>
         </div>
       </div>
       <section className="section section--pink">
-        <img className="section__header" src={about} />
+        <img alt="section header" className="section__header" src={about} />
         <Card.Group centered>
           <Card
             image={
