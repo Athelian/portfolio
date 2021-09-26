@@ -32,29 +32,46 @@ function App() {
           <div className="sphere">
             <div className="hemisphere">
               <div className="face face__africa">
-                <div className="land land__africa land__africa--1">
-                  <div></div>
-                  <div></div>
-                </div>
-                <div className="land land__africa land__africa--2">
-                  <div></div>
-                  <div></div>
-                </div>
-                <div className="land land__africa land__africa--3">
-                  <div></div>
-                  <div></div>
-                </div>
-                <div className="land land__africa land__africa--4">
-                  <div></div>
-                  <div></div>
-                </div>
-                <div className="land land__africa land__africa--5">
-                  <div></div>
-                  <div></div>
-                </div>
-                {/* <div className="land land--2" />
-                <div className="land land--3" /> */}
+                {Array(100)
+                  .fill("")
+                  .map((v, i) => {
+                    return (
+                      <div
+                        className={`land land__africa land__africa--${i}`}
+                        key={i}
+                        style={
+                             {
+                                width: `calc(100% - ${i * 0.1}%`,
+                                height: `calc(100% - ${i * 0.1}%`,
+                                transform: `translate(-50%, -50%) translateZ(calc(-2.4vmin + ${
+                                  i * 0.01 * 2.4
+                                }vmin))`,
+                                backfaceVisibility:
+                                  i < 20 ? "hidden" : "visible",
+                              }
+                        }
+                      >
+                        <div
+                          style={
+                            i < 40
+                              ? { backgroundColor: "rgb(91, 161, 214)" }
+                              : {}
+                          }
+                        ></div>
+                        <div
+                          style={
+                            i < 40
+                              ? { backgroundColor: "rgb(91, 161, 214)" }
+                              : {}
+                          }
+                        ></div>
+                      </div>
+                    );
+                  })}
               </div>
+
+              {/* <div className="land land--2" />
+                <div className="land land--3" /> */}
               {/* <div className="face face__land">
                 <div className="land land--1" />
                 <div className="land land--2" />

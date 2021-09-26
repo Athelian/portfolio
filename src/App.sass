@@ -26,7 +26,7 @@ body
 .sphere 
   transform-style: preserve-3d
   position: absolute
-  animation: rotate 0s infinite linear
+  animation: rotate 5s infinite linear
   transform: rotateY(192deg) rotateZ(0deg)
   width: 100%
   height: 100%
@@ -70,13 +70,15 @@ body
   left: 10vmin
 
 .land
-  backface-visibility: hidden
+  // backface-visibility: hidden
   width: 50%
   height: 50%
   position: absolute
   left: 50%
   top: 50%
   transform: translate(-50%,-50%)
+
+// 83deg rotate x top half
 
 .land__africa
   div:nth-child(1)
@@ -92,7 +94,6 @@ body
     top: 50%
     transform: translate(-80%, -59%) rotate(1deg)
     background-color: rgb(91, 214, 171)
-    background
 
   div:nth-child(2)
     width: 82%
@@ -109,7 +110,7 @@ body
 
 $ring-2-Z: -13.4vmin // Up and down
 $ring-2-Y: -17.6vmin // Depth into the sphere  
-$ring-2-X: 100deg // Slant from sphere
+$ring-2-X: 107deg // Slant from sphere
 
 .face__africa
   transform: translateZ($ring-2-Z) rotateZ(10deg) translateY($ring-2-Y) rotateX($ring-2-X)
@@ -117,22 +118,23 @@ $ring-2-X: 100deg // Slant from sphere
     width: 100%
     height: 100%
     transform: translate(-50%, -50%) translateZ(-2.4vmin)
-  .land__africa--2
-    width: 80%
-    height: 80%
-    transform: translate(-50%, -50%) translateZ(-1.8vmin)
-  .land__africa--3
-    width: 60%
-    height: 60%
-    transform: translate(-50%, -50%) translateZ(-1.2vmin)
-  .land__africa--4
-    width: 40%
-    height: 40%
-    transform: translate(-50%, -50%) translateZ(-0.6vmin)
-  .land__africa--5
-    width: 20%
-    height: 20%
-    transform: translate(-50%, -50%) translateZ(0vmin)
+
+  // .land__africa--2
+  //   width: 80%
+  //   height: 80%
+  //   transform: translate(-50%, -50%) translateZ(-1.8vmin)
+  // .land__africa--3
+  //   width: 60%
+  //   height: 60%
+  //   transform: translate(-50%, -50%) translateZ(-1.2vmin)
+  // .land__africa--4
+  //   width: 40%
+  //   height: 40%
+  //   transform: translate(-50%, -50%) translateZ(-0.6vmin)
+  // .land__africa--5
+  //   width: 20%
+  //   height: 20%
+  //   transform: translate(-50%, -50%) translateZ(0vmin)
 
 
 
@@ -178,6 +180,12 @@ $ring-2-X: 100deg // Slant from sphere
   0%
     transform: rotateZ(-23.5deg) rotateX(0deg) rotateY(0deg)
     transform: rotateX(0deg) rotateY(0deg)
+
+  76%
+    transform: rotateX(0deg) rotateY(272deg)
+  
+  77%
+    transform: rotateX(0deg) rotateY(276deg)
 
   100%
     transform: rotateZ(-23.5deg) rotateX(0deg) rotateY(360deg)
