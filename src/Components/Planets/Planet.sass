@@ -1,0 +1,119 @@
+.planet 
+  perspective: 200vmin
+  transform-style: preserve-3d
+  width: 40vmin
+  height: 40vmin
+  top: 5vmin
+  left: 5vmin
+
+.sphere 
+  transform-style: preserve-3d
+  position: absolute
+  animation: rotate 0s infinite linear
+  transform: rotateY(192deg) rotateZ(0deg)
+  width: 100%
+  height: 100%
+  transform-origin: 50% 50%
+  top: 0
+  left: 0
+
+.planet::before 
+  content: ''
+  position: absolute
+  width: 100%
+  height: 100%
+  top: 0%
+  left: 0%
+  background: rgb(91, 161, 214)
+  // background: radial-gradient(circle farthest-corner at 3% 0%, #c5d4f1 10%, rgb(91, 161, 214) 60%)
+  // background: #01030180
+  border-radius: 50%
+  transform: translateZ(1vmin)
+
+.hemisphere 
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  transform-style: preserve-3d
+  transform-origin: 50% 50%
+  transform: rotateX(90deg)
+
+.hemisphere:nth-child(2) 
+  transform: rotateX(-90deg)
+
+.face 
+  position: absolute
+  width: 20vmin
+  height: 20vmin
+  transform-style: preserve-3d
+  transform-origin: 50% 0
+  top: 50%
+  left: 10vmin
+
+.land
+  width: 50%
+  height: 50%
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translate(-50%,-50%)
+
+@for $i from 1 through 50
+  .land:nth-child(#{$i})
+    width: calc(100% - #{$i}% * 0.2)
+    height: calc(100% - #{$i}% * 0.2)
+    transform: translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.02 * 2.4))
+    div
+      @if $i < 20 
+        background-color: rgb(91, 161, 214)
+      @else 
+        background-color: rgb(91, 214, 171)
+
+@keyframes rotate
+  0%
+    transform: rotateZ(-23.5deg) rotateX(0deg) rotateY(0deg)
+    transform: rotateX(0deg) rotateY(0deg)
+  100%
+    transform: rotateZ(-23.5deg) rotateX(0deg) rotateY(360deg)
+    transform: rotateX(0deg) rotateY(360deg)
+
+
+
+
+
+
+
+
+
+
+// .face:nth-child(2) 
+//   transform: translateZ(-20.8vmin) rotateZ(80deg) translateY(-3.4vmin) rotateX(143deg)
+
+// .face:nth-child(3) 
+//   transform: translateZ(-20.8vmin) rotateZ(30deg) translateY(-3.4vmin) rotateX(143deg)
+
+// .face:nth-child(4) 
+//   transform: translateZ(-20.8vmin) rotateZ(40deg) translateY(-3.4vmin) rotateX(143deg)
+
+// .face:nth-child(5) 
+//   transform: translateZ(-20.8vmin) rotateZ(50deg) translateY(-3.4vmin) rotateX(143deg)
+
+// .face:nth-child(6) 
+//   transform: translateZ($ring-2-Z) rotateZ(36deg) translateY($ring-2-Y) rotateX($ring-2-X)
+
+// .face:nth-child(7) 
+//   transform: translateZ($ring-2-Z) rotateZ(108deg) translateY($ring-2-Y) rotateX($ring-2-X)
+
+// .face:nth-child(8) 
+//   transform: translateZ($ring-2-Z) rotateZ(180deg) translateY($ring-2-Y) rotateX($ring-2-X)
+
+// .face:nth-child(9) 
+//   transform: translateZ($ring-2-Z) rotateZ(252deg) translateY($ring-2-Y) rotateX($ring-2-X)
+
+// .face:nth-child(10) 
+//   transform: translateZ($ring-2-Z) rotateZ(-36deg) translateY($ring-2-Y) rotateX($ring-2-X)
+
+// .face:nth-child(11) 
+//   transform: translateZ($ring-2-Z) rotateZ(36deg) translateY($ring-2-Y) rotateX($ring-2-X)

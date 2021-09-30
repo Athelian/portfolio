@@ -14,193 +14,9 @@ body
 .Portfolio-Site:first-child
   margin-top: 2rem
 
-//
-.scene 
-  perspective: 200vmin
-  transform-style: preserve-3d
-  width: 40vmin
-  height: 40vmin
-  top: 5vmin
-  left: 5vmin
-
-.sphere 
-  transform-style: preserve-3d
-  position: absolute
-  animation: rotate 5s infinite linear
-  transform: rotateY(192deg) rotateZ(0deg)
-  width: 100%
-  height: 100%
-  transform-origin: 50% 50%
-  top: 0
-  left: 0
-
-.scene::before 
-  content: ''
-  position: absolute
-  width: 100%
-  height: 100%
-  top: 0%
-  left: 0%
-  background: rgb(91, 161, 214)
-  // background: radial-gradient(circle farthest-corner at 3% 0%, #c5d4f1 10%, rgb(91, 161, 214) 60%)
-  // background: #01030180
-  border-radius: 50%
-  transform: translateZ(1vmin)
-
-.hemisphere 
-  position: absolute
-  top: 0
-  left: 0
-  width: 100%
-  height: 100%
-  transform-style: preserve-3d
-  transform-origin: 50% 50%
-  transform: rotateX(90deg)
-
-.hemisphere:nth-child(2) 
-  transform: rotateX(-90deg)
-
-.face 
-  position: absolute
-  width: 20vmin
-  height: 20vmin
-  transform-style: preserve-3d
-  transform-origin: 50% 0
-  top: 50%
-  left: 10vmin
-
-.land
-  // backface-visibility: hidden
-  width: 50%
-  height: 50%
-  position: absolute
-  left: 50%
-  top: 50%
-  transform: translate(-50%,-50%)
-
-// 83deg rotate x top half
-
-.land__africa
-  div:nth-child(1)
-    width: 51%
-    height: 79%
-    position: absolute
-    border-top-left-radius: 70% 78%
-    border-top-right-radius: 23% 73%
-    border-bottom-right-radius: 24%
-    border-bottom-left-radius: 9%
-    background-color: #f3e4db
-    left: 50%
-    top: 50%
-    transform: translate(-80%, -59%) rotate(1deg)
-    background-color: rgb(91, 214, 171)
-
-  div:nth-child(2)
-    width: 82%
-    height: 44%
-    position: absolute
-    border-bottom-right-radius: 31% 60%
-    border-bottom-left-radius: 26% 59%
-    border-top-right-radius: 39% 35%
-    background-color: #f3e4db
-    left: 50%
-    top: 50%
-    transform: translate(-45%, 8%) rotate(6deg)
-    background-color: rgb(91, 214, 171)
-
-$ring-2-Z: -13.4vmin // Up and down
-$ring-2-Y: -17.6vmin // Depth into the sphere  
-$ring-2-X: 107deg // Slant from sphere
-
-.face__africa
-  transform: translateZ($ring-2-Z) rotateZ(10deg) translateY($ring-2-Y) rotateX($ring-2-X)
-  .land__africa--1
-    width: 100%
-    height: 100%
-    transform: translate(-50%, -50%) translateZ(-2.4vmin)
-
-  // .land__africa--2
-  //   width: 80%
-  //   height: 80%
-  //   transform: translate(-50%, -50%) translateZ(-1.8vmin)
-  // .land__africa--3
-  //   width: 60%
-  //   height: 60%
-  //   transform: translate(-50%, -50%) translateZ(-1.2vmin)
-  // .land__africa--4
-  //   width: 40%
-  //   height: 40%
-  //   transform: translate(-50%, -50%) translateZ(-0.6vmin)
-  // .land__africa--5
-  //   width: 20%
-  //   height: 20%
-  //   transform: translate(-50%, -50%) translateZ(0vmin)
-
-
-
-
-
-
-// .face:nth-child(2) 
-//   transform: translateZ(-20.8vmin) rotateZ(80deg) translateY(-3.4vmin) rotateX(143deg)
-
-// .face:nth-child(3) 
-//   transform: translateZ(-20.8vmin) rotateZ(30deg) translateY(-3.4vmin) rotateX(143deg)
-
-// .face:nth-child(4) 
-//   transform: translateZ(-20.8vmin) rotateZ(40deg) translateY(-3.4vmin) rotateX(143deg)
-
-// .face:nth-child(5) 
-//   transform: translateZ(-20.8vmin) rotateZ(50deg) translateY(-3.4vmin) rotateX(143deg)
-
-// .face:nth-child(6) 
-//   transform: translateZ($ring-2-Z) rotateZ(36deg) translateY($ring-2-Y) rotateX($ring-2-X)
-
-// .face:nth-child(7) 
-//   transform: translateZ($ring-2-Z) rotateZ(108deg) translateY($ring-2-Y) rotateX($ring-2-X)
-
-// .face:nth-child(8) 
-//   transform: translateZ($ring-2-Z) rotateZ(180deg) translateY($ring-2-Y) rotateX($ring-2-X)
-
-// .face:nth-child(9) 
-//   transform: translateZ($ring-2-Z) rotateZ(252deg) translateY($ring-2-Y) rotateX($ring-2-X)
-
-// .face:nth-child(10) 
-//   transform: translateZ($ring-2-Z) rotateZ(-36deg) translateY($ring-2-Y) rotateX($ring-2-X)
-
-// .face:nth-child(11) 
-//   transform: translateZ($ring-2-Z) rotateZ(36deg) translateY($ring-2-Y) rotateX($ring-2-X)
-
-
-@keyframes rotate 
-  // 0% 
-    // transform: rotateZ(25deg) rotateX(20deg) rotateY(0deg)
-  
-  // 50% 
-  0%
-    transform: rotateZ(-23.5deg) rotateX(0deg) rotateY(0deg)
-    transform: rotateX(0deg) rotateY(0deg)
-
-  76%
-    transform: rotateX(0deg) rotateY(272deg)
-  
-  77%
-    transform: rotateX(0deg) rotateY(276deg)
-
-  100%
-    transform: rotateZ(-23.5deg) rotateX(0deg) rotateY(360deg)
-    transform: rotateX(0deg) rotateY(360deg)
-  
-  // 100% 
-    // transform: rotateZ(25deg) rotateX(20deg) rotateY(360deg)
-  
-
-
 body 
-  // background: #555
   overflow: hidden
 
-//
 header
   margin: 3rem 0
   color: #d463bc
@@ -221,17 +37,16 @@ header
   text-align: center
   max-width: 60rem
   width: 50%
-
-.Portfolio-Site 
-  div.ui.card
-    padding: 2rem
-    border-radius: 40px
-    > .content
-      align-items: center
-      display: flex
-      flex-direction: column
-      i
-        margin-top: 1rem
+ 
+div.ui.card
+  padding: 2rem
+  border-radius: 40px
+  > .content
+    align-items: center
+    display: flex
+    flex-direction: column
+    i
+      margin-top: 1rem
 
 .section
   padding: 3rem
@@ -250,11 +65,6 @@ header
     top: -4rem
     left: 10%
     margin-left: 3rem
-
-.liberty__map
-  svg
-    height: auto
-    max-width: 600px
 
 @media all and (min-width: 1470px) 
   .section__header
