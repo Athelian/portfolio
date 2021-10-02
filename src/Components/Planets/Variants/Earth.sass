@@ -45,11 +45,37 @@
       @else
         transform: rotateY(-1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
 
-// translateZ Up and down
-// translateY Depth into the sphere  
-// rotateX    Slant from sphere
-
 .face__africa:nth-child(1)
   transform: translateZ(-15.4vmin) rotateZ(9deg) translateY(-17.6vmin) rotateX(106deg) rotateZ(359deg) rotate(6deg)
 .face__africa:nth-child(2)
   transform: translateZ(-9.4vmin) rotateZ(10deg) translateY(-24.2vmin) rotateX(78deg) translateX(-4vmin) rotate(-9deg)
+
+.face__south_america
+  .land__south_america
+    div
+      width: 50%
+      height: 50%
+      position: absolute
+      border-top-left-radius: 50% 50%
+      border-top-right-radius: 50% 50%
+      border-bottom-right-radius: 50%
+      border-bottom-left-radius: 50%
+      left: 50%
+      top: 50%
+      transform: translate(-80%, -59%)
+
+@for $i from 1 through 25
+  .face__south_america
+    .land__south_america:nth-child(#{$i})
+      @if $i == 5 or $i == 6 or $i == 7 or $i == 8 or $i == 9 or $i == 10
+        transform: rotateY(0deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
+      @if $i % 2 == 0
+        transform: rotateY(1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
+      @else
+        transform: rotateY(-1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
+
+.face__south_america
+  transform: translateZ(-16.4vmin) rotateZ(108deg) translateY(-16.6vmin) rotateX(106deg) rotate(6deg)
+
+
+  
