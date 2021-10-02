@@ -6,7 +6,7 @@ const Earth =
     .fill("")
     .map((v, i) => (
       <div className="face face__africa" key={i}>
-        {Array(50)
+        {Array(25)
           .fill("")
           .map((v, i) => (
             <div className="land land__africa" key={i}>

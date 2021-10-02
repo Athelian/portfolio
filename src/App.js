@@ -1,5 +1,5 @@
 import Earth from "Components/Planets/Variants/Earth";
-import about from "Images/About.png";
+import about from "Images/about.png";
 import bitmoji from "Images/bitmoji.png";
 import "semantic-ui-css/semantic.min.css";
 import { Card, Icon, Image, List, Popup } from "semantic-ui-react";
