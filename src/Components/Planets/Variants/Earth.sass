@@ -1,4 +1,4 @@
-.face__africa:nth-child(1)
+.face__africa
   .land__africa
     div
       width: 100%
@@ -12,20 +12,6 @@
       // left: 50%
       // top: 50%
       // transform: translate(50%, 50%) rotate(1deg)
-
-.face__africa:nth-child(2)
-  .land__africa
-    div
-      width: 101%
-      height: 54%
-      position: absolute
-      border-bottom-right-radius: 31% 60%
-      border-bottom-left-radius: 11vmin 8vmin
-      border-top-right-radius: 33% 31%
-      border-top-left-radius: 5% 0%
-      left: 50%
-      top: 50%
-      transform: translate(-45%, 8%) rotate(14deg)
 
 @for $i from 1 through 25
   .face__africa:nth-child(1)
@@ -46,11 +32,26 @@
       @else
         transform: rotateY(-1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
 
+  .face__africa:nth-child(3)
+    .land__africa:nth-child(#{$i})
+      @if $i == 5 or $i == 6 or $i == 7 or $i == 8 or $i == 9 or $i == 10
+        transform: rotateY(0deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
+      @if $i % 2 == 0
+        transform: rotateY(1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
+      @else
+        transform: rotateY(-1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
+      .land__land
+        background-color: #bdf6f4
+
 .face__africa:nth-child(1)
   transform: translateZ(-15.4vmin) rotateZ(9deg) translateY(-15.6vmin) rotateX(106deg) rotateZ(359deg) rotate(6deg)
 .face__africa:nth-child(2)
-  transform: translateZ(-9.4vmin) rotateZ(10deg) translateY(-24.2vmin) rotateX(78deg) translateX(-4vmin) rotate(-9deg)
-
+  transform: translateZ(-9.4vmin) rotateZ(6deg) translateY(-19.2vmin) rotateX(90deg) translateX(-3vmin) rotate(-9deg) rotateY(-4deg)
+.face__africa:nth-child(3)
+  transform: translateZ(-20.8vmin) rotateZ(106deg) translateY(-5.4vmin) rotateX(138deg) translateX(0.5vmin)
+  .land__africa
+    .land__land
+      background-color: blue
 .face__south_america
   .land__south_america
     div
@@ -77,6 +78,3 @@
 
 .face__south_america
   transform: translateZ(-16.4vmin) rotateZ(108deg) translateY(-16.6vmin) rotateX(106deg) rotate(6deg)
-
-
-  

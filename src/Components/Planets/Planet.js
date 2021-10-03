@@ -34,6 +34,7 @@ const Planet = ({ variant }) => {
       Math.atan2(Math.abs(fromBoxCenter.y), fromBoxCenter.x) * (180 / Math.PI);
     setStartAngle(newStartAngle);
     setIsActive(true);
+    setHoverActive(false)
   };
 
   const mouseUpHandler = useCallback(
@@ -41,26 +42,27 @@ const Planet = ({ variant }) => {
       e.stopPropagation();
       if (isActive) {
         const newCurrentAngle = currentAngle + (angle - startAngle);
+        if (e.target.className !== "planet" && !e.target.className.includes("land") && e.target.className !== "sphere") {
+          // If off of the planet, we have to restart the animation
+          setAnimation(
+            box.current.animate(
+              [
+                // keyframes
+                { transform: `rotateZ(-23.5deg) rotateY(${newCurrentAngle}deg)` },
+                { transform: `rotateZ(-23.5deg) rotateY(${newCurrentAngle + 360}deg)` },
+              ],
+              {
+                // timing options
+                duration: 5000,
+                iterations: Infinity,
+              }
+            )
+          );
+        }
         setIsActive(false);
         setCurrentAngle(newCurrentAngle);
-        animation.cancel && animation.cancel();
-        setHoverActive(false);
-        setAnimation(
-          box.current.animate(
-            [
-              // keyframes
-              { transform: `rotateY(${newCurrentAngle}deg)` },
-              { transform: `rotateY(${newCurrentAngle + 360}deg)` },
-            ],
-            {
-              // timing options
-              duration: 5000,
-              iterations: Infinity,
-            }
-          )
-        );
-        
-        // setRotationAngle(newCurrentAngle)
+        setHoverActive(true);
+        setRotationAngle(newCurrentAngle);
       }
     },
     [isActive, angle, currentAngle, startAngle]
@@ -75,7 +77,7 @@ const Planet = ({ variant }) => {
           Math.atan2(Math.abs(fromBoxCenter.y), fromBoxCenter.x) *
             (180 / Math.PI);
         box.current.style.transform =
-          "rotateY(" +
+          "rotateZ(-23.5deg) rotateY(" +
           (currentAngle + (newAngle - (startAngle ? startAngle : 0))) +
           "deg)";
         setAngle(newAngle);
@@ -106,6 +108,7 @@ const Planet = ({ variant }) => {
       onMouseDown={mouseDownHandler}
       onMouseUp={mouseUpHandler}
       onMouseEnter={() => {
+        if (isActive) return;
         const style = getComputedStyle(box.current);
         var transformString =
           style["-webkit-transform"] ||
@@ -118,22 +121,22 @@ const Planet = ({ variant }) => {
         const test = Math.acos(parseFloat(splits[0].substr(parenLoc + 1)));
         let deg = (180 * test) / Math.PI;
         if (parseFloat(splits[8]) < 0) deg = 360 - deg;
-        box.current.style.transform = `rotateY(${deg}deg)`;
+        box.current.style.transform = `rotateZ(-23.5deg) rotateY(${deg}deg)`;
         box.current.style.animation = "null";
         box.current.style.animationPlayState = "pause";
         animation.cancel && animation.cancel();
         setRotationAngle(deg);
         setCurrentAngle(deg);
-        setHoverActive(true)
+        setHoverActive(true);
       }}
       onMouseLeave={() => {
-        if (!hoverActive) return;
+        if (!hoverActive || isActive) return;
         setAnimation(
           box.current.animate(
             [
               // keyframes
-              { transform: `rotateY(${rotationAngle}deg)` },
-              { transform: `rotateY(${rotationAngle + 360}deg)` },
+              { transform: `rotateZ(-23.5deg) rotateY(${rotationAngle}deg)` },
+              { transform: `rotateZ(-23.5deg) rotateY(${rotationAngle + 360}deg)` },
             ],
             {
               // timing options
@@ -146,7 +149,7 @@ const Planet = ({ variant }) => {
     >
       <div className="sphere" ref={box}>
         <div className="hemisphere">
-          {Array(1)
+          {Array(3)
             .fill("")
             .map((v, i) => (
               <div className="face face__africa" key={i}>
@@ -154,22 +157,22 @@ const Planet = ({ variant }) => {
                   .fill("")
                   .map((v, i) => (
                     <div className="land land__africa" key={i}>
-                      <div />
+                      <div className="land__land"/>
                     </div>
                   ))}
               </div>
             ))}
-          {
+          {/* {
             <div className="face face__south_america">
               {Array(25)
                 .fill("")
                 .map((v, i) => (
                   <div className="land land__south_america" key={i}>
-                    <div />
+                    <div className="land__land"/>
                   </div>
                 ))}
             </div>
-          }
+          } */}
         </div>
         <div className="hemisphere"></div>
       </div>
