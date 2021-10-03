@@ -1,0 +1,69 @@
+body 
+  background-color: rgb(32,35,86)
+
+.Portfolio-Site
+  margin: 0 auto
+  position: relative
+  > *
+    display: flex
+    justify-content: center
+    margin: 0 0 3rem 0
+
+.Portfolio-Site:first-child
+  margin-top: 2rem
+
+body 
+  overflow: hidden
+
+header
+  margin: 3rem 0
+  color: #d463bc
+  h1
+    font-size: 48px
+    font-family: serif
+    div
+      display: flex
+      align-items: center
+  img.ui.image
+    border: 2px solid black
+    border-radius: 50%
+    height: 48px
+    display: inline
+    margin-left: 1.3rem
+
+.introduction
+  text-align: center
+  max-width: 60rem
+  width: 50%
+ 
+div.ui.card
+  padding: 2rem
+  border-radius: 40px
+  > .content
+    align-items: center
+    display: flex
+    flex-direction: column
+    i
+      margin-top: 1rem
+
+.section
+  padding: 3rem
+  position: relative
+  margin-top: 6rem
+  &--pink
+    background: url("Images/bg.jpeg")
+    background-size: cover
+  > * 
+    display: flex
+    justify-content: center
+
+.section__header
+    width: 7rem
+    position: absolute
+    top: -4rem
+    left: 10%
+    margin-left: 3rem
+
+@media all and (min-width: 1470px) 
+  .section__header
+    left: calc(50% - 37rem)    
