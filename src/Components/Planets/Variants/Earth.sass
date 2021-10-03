@@ -1,81 +1,81 @@
-.face__africa:nth-child(1)
-  .land__africa
-    div
-      width: 51%
-      height: 79%
-      position: absolute
-      border-top-left-radius: 70% 78%
-      border-top-right-radius: 23% 73%
-      border-bottom-right-radius: 24%
-      border-bottom-left-radius: 9%
-      left: 50%
-      top: 50%
-      transform: translate(-80%, -59%) rotate(1deg)
+// .face__africa:nth-child(1)
+//   .land__africa
+//     div
+//       width: 51%
+//       height: 79%
+//       position: absolute
+//       border-top-left-radius: 70% 78%
+//       border-top-right-radius: 23% 73%
+//       border-bottom-right-radius: 24%
+//       border-bottom-left-radius: 9%
+//       left: 50%
+//       top: 50%
+//       transform: translate(-80%, -59%) rotate(1deg)
 
-.face__africa:nth-child(2)
-  .land__africa
-    div
-      width: 101%
-      height: 54%
-      position: absolute
-      border-bottom-right-radius: 31% 60%
-      border-bottom-left-radius: 11vmin 8vmin
-      border-top-right-radius: 33% 31%
-      border-top-left-radius: 5% 0%
-      left: 50%
-      top: 50%
-      transform: translate(-45%, 8%) rotate(14deg)
+// .face__africa:nth-child(2)
+//   .land__africa
+//     div
+//       width: 101%
+//       height: 54%
+//       position: absolute
+//       border-bottom-right-radius: 31% 60%
+//       border-bottom-left-radius: 11vmin 8vmin
+//       border-top-right-radius: 33% 31%
+//       border-top-left-radius: 5% 0%
+//       left: 50%
+//       top: 50%
+//       transform: translate(-45%, 8%) rotate(14deg)
 
-@for $i from 1 through 25
-  .face__africa:nth-child(1)
-    .land__africa:nth-child(#{$i})
-      @if $i == 5 or $i == 6 or $i == 7 or $i == 8 or $i == 9 or $i == 10
-        transform: rotateY(0deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4)) translateY(calc(#{$i}vmin * 0.1))
-      @if $i % 2 == 0
-        transform: rotateY(1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4)) translateY(calc(#{$i}vmin * 0.1))
-      @else
-        transform: rotateY(-1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4)) translateY(calc(#{$i}vmin * 0.1))
+// @for $i from 1 through 25
+//   .face__africa:nth-child(1)
+//     .land__africa:nth-child(#{$i})
+//       @if $i == 5 or $i == 6 or $i == 7 or $i == 8 or $i == 9 or $i == 10
+//         transform: rotateY(0deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4)) translateY(calc(#{$i}vmin * 0.1))
+//       @if $i % 2 == 0
+//         transform: rotateY(1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4)) translateY(calc(#{$i}vmin * 0.1))
+//       @else
+//         transform: rotateY(-1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4)) translateY(calc(#{$i}vmin * 0.1))
 
-  .face__africa:nth-child(2)
-    .land__africa:nth-child(#{$i})
-      @if $i == 5 or $i == 6 or $i == 7 or $i == 8 or $i == 9 or $i == 10
-        transform: rotateY(0deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
-      @if $i % 2 == 0
-        transform: rotateY(1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
-      @else
-        transform: rotateY(-1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
+//   .face__africa:nth-child(2)
+//     .land__africa:nth-child(#{$i})
+//       @if $i == 5 or $i == 6 or $i == 7 or $i == 8 or $i == 9 or $i == 10
+//         transform: rotateY(0deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
+//       @if $i % 2 == 0
+//         transform: rotateY(1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
+//       @else
+//         transform: rotateY(-1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
 
-.face__africa:nth-child(1)
-  transform: translateZ(-15.4vmin) rotateZ(9deg) translateY(-17.6vmin) rotateX(106deg) rotateZ(359deg) rotate(6deg)
-.face__africa:nth-child(2)
-  transform: translateZ(-9.4vmin) rotateZ(10deg) translateY(-24.2vmin) rotateX(78deg) translateX(-4vmin) rotate(-9deg)
+// .face__africa:nth-child(1)
+//   transform: translateZ(-15.4vmin) rotateZ(9deg) translateY(-17.6vmin) rotateX(106deg) rotateZ(359deg) rotate(6deg)
+// .face__africa:nth-child(2)
+//   transform: translateZ(-9.4vmin) rotateZ(10deg) translateY(-24.2vmin) rotateX(78deg) translateX(-4vmin) rotate(-9deg)
 
-.face__south_america
-  .land__south_america
-    div
-      width: 50%
-      height: 50%
-      position: absolute
-      border-top-left-radius: 50% 50%
-      border-top-right-radius: 50% 50%
-      border-bottom-right-radius: 50%
-      border-bottom-left-radius: 50%
-      left: 50%
-      top: 50%
-      transform: translate(-80%, -59%)
+// .face__south_america
+//   .land__south_america
+//     div
+//       width: 50%
+//       height: 50%
+//       position: absolute
+//       border-top-left-radius: 50% 50%
+//       border-top-right-radius: 50% 50%
+//       border-bottom-right-radius: 50%
+//       border-bottom-left-radius: 50%
+//       left: 50%
+//       top: 50%
+//       transform: translate(-80%, -59%)
 
-@for $i from 1 through 25
-  .face__south_america
-    .land__south_america:nth-child(#{$i})
-      @if $i == 5 or $i == 6 or $i == 7 or $i == 8 or $i == 9 or $i == 10
-        transform: rotateY(0deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
-      @if $i % 2 == 0
-        transform: rotateY(1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
-      @else
-        transform: rotateY(-1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
+// @for $i from 1 through 25
+//   .face__south_america
+//     .land__south_america:nth-child(#{$i})
+//       @if $i == 5 or $i == 6 or $i == 7 or $i == 8 or $i == 9 or $i == 10
+//         transform: rotateY(0deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
+//       @if $i % 2 == 0
+//         transform: rotateY(1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
+//       @else
+//         transform: rotateY(-1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
 
-.face__south_america
-  transform: translateZ(-16.4vmin) rotateZ(108deg) translateY(-16.6vmin) rotateX(106deg) rotate(6deg)
+// .face__south_america
+//   transform: translateZ(-16.4vmin) rotateZ(108deg) translateY(-16.6vmin) rotateX(106deg) rotate(6deg)
 
 
   
