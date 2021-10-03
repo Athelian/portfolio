@@ -1,16 +1,17 @@
 .face__africa:nth-child(1)
   .land__africa
     div
-      width: 51%
-      height: 79%
+      width: 100%
+      height: 100%
       position: absolute
-      border-top-left-radius: 70% 78%
-      border-top-right-radius: 23% 73%
-      border-bottom-right-radius: 24%
-      border-bottom-left-radius: 9%
-      left: 50%
-      top: 50%
-      transform: translate(-80%, -59%) rotate(1deg)
+      border-radius: 50%
+      // border-top-left-radius: 70% 78%
+      // border-top-right-radius: 23% 73%
+      // border-bottom-right-radius: 24%
+      // border-bottom-left-radius: 9%
+      // left: 50%
+      // top: 50%
+      // transform: translate(50%, 50%) rotate(1deg)
 
 .face__africa:nth-child(2)
   .land__africa
@@ -30,11 +31,11 @@
   .face__africa:nth-child(1)
     .land__africa:nth-child(#{$i})
       @if $i == 5 or $i == 6 or $i == 7 or $i == 8 or $i == 9 or $i == 10
-        transform: rotateY(0deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4)) translateY(calc(#{$i}vmin * 0.1))
+        transform: rotateY(0deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
       @if $i % 2 == 0
-        transform: rotateY(1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4)) translateY(calc(#{$i}vmin * 0.1))
+        transform: rotateY(1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
       @else
-        transform: rotateY(-1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4)) translateY(calc(#{$i}vmin * 0.1))
+        transform: rotateY(-1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
 
   .face__africa:nth-child(2)
     .land__africa:nth-child(#{$i})
@@ -46,7 +47,7 @@
         transform: rotateY(-1deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
 
 .face__africa:nth-child(1)
-  transform: translateZ(-15.4vmin) rotateZ(9deg) translateY(-17.6vmin) rotateX(106deg) rotateZ(359deg) rotate(6deg)
+  transform: translateZ(-15.4vmin) rotateZ(9deg) translateY(-15.6vmin) rotateX(106deg) rotateZ(359deg) rotate(6deg)
 .face__africa:nth-child(2)
   transform: translateZ(-9.4vmin) rotateZ(10deg) translateY(-24.2vmin) rotateX(78deg) translateX(-4vmin) rotate(-9deg)
 
