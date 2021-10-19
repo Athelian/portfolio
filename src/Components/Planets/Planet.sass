@@ -1,3 +1,10 @@
+/*
+ * @Author: Eliot.Austin-Forbes 
+ * @Date: 2021-10-19 17:15:54 
+ * @Last Modified by: Eliot.Austin-Forbes
+ * @Last Modified time: 2021-10-19 17:48:13
+ */
+
 .planet
   perspective: 200vmin
   transform-style: preserve-3d
@@ -5,6 +12,22 @@
   height: 40vmin
   top: 5vmin
   left: 5vmin
+
+.planet:hover
+  .sphere
+    animation-play-state: paused
+
+.planet::before
+  content: ''
+  position: absolute
+  width: 100%
+  height: 100%
+  top: 0%
+  left: 0%
+  background: rgb(91, 161, 214)
+  background: radial-gradient(circle farthest-corner at 3% 0%, #c5d4f1 10%, rgb(91, 161, 214) 60%)
+  border-radius: 50%
+  transform: translateZ(1vmin)
 
 .sphere
   transform-style: preserve-3d
@@ -16,23 +39,6 @@
   transform-origin: 50% 50%
   top: 0
   left: 0
-
-// .planet:hover
-//   .sphere
-//     animation-play-state: paused
-
-.planet::before
-  content: ''
-  position: absolute
-  width: 100%
-  height: 100%
-  top: 0%
-  left: 0%
-  background: rgb(91, 161, 214)
-  background: radial-gradient(circle farthest-corner at 3% 0%, #c5d4f1 10%, rgb(91, 161, 214) 60%)
-  // background: #01030180
-  border-radius: 50%
-  transform: translateZ(1vmin)
 
 .hemisphere
   position: absolute
@@ -47,7 +53,7 @@
 .hemisphere:nth-child(2)
   transform: rotateX(-90deg)
 
-.face
+.island
   position: absolute
   width: 20vmin
   height: 20vmin
@@ -55,62 +61,51 @@
   transform-origin: 50% 0
   top: 50%
   left: 10vmin
-  pointer-events: none
 
-.land
+.island
+  .land
+    background-color: rgb(91, 214, 171)
+
+.island--ice
+  .land
+    background-color: rgb(157, 241, 247)
+
+.plate
   width: 50%
   height: 50%
   position: absolute
   left: 50%
   top: 50%
   transform: translate(-50%,-50%)
-  pointer-events: none
+  .land
+    width: 100%
+    height: 100%
+    position: absolute
+    border-radius: 50%
+
+@mixin transform-z-tilt($tilt: 0, $i)
+  transform: rotateY(#{$tilt}deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
 
 @for $i from 1 through 25
-  .land:nth-child(#{$i})
+  // z-elevations and island tilts
+  .island
+    .plate:nth-child(#{$i})
+      @if $i % 2 == 0
+        @include transform-z-tilt($tilt: -1, $i: $i)
+      @else
+        @include transform-z-tilt($tilt:  1, $i: $i)
+  .island--no_tilt
+    .plate:nth-child(#{$i})
+      @include transform-z-tilt($i: $i)
+  // size tailoring
+  .plate:nth-child(#{$i})
     width: calc(100% - (#{$i * $i * 0.12}%))
     height: calc(100% - (#{$i * $i * 0.12}% ))
-    div
-      pointer-events: none
-      // @if $i < 8
-        // background-color: rgb(91, 161, 214)
-      // @else
-      background-color: rgb(91, 214, 171)
 
 @keyframes rotate
   0%
-    // transform: rotateZ(-15deg) rotateX(0deg) rotateY(0deg)
-    transform: rotateX(0deg) rotateY(0deg)
+    transform: rotateZ(-15deg) rotateX(0deg) rotateY(0deg)
+    // transform: rotateX(0deg) rotateY(0deg)
   100%
-    // transform: rotateZ(-15deg) rotateX(0deg) rotateY(360deg)
-    transform: rotateX(0deg) rotateY(360deg)
-
-// .face:nth-child(2) 
-//   transform: translateZ(-20.8vmin) rotateZ(80deg) translateY(-3.4vmin) rotateX(143deg)
-
-// .face:nth-child(3) 
-//   transform: translateZ(-20.8vmin) rotateZ(30deg) translateY(-3.4vmin) rotateX(143deg)
-
-// .face:nth-child(4) 
-//   transform: translateZ(-20.8vmin) rotateZ(40deg) translateY(-3.4vmin) rotateX(143deg)
-
-// .face:nth-child(5) 
-//   transform: translateZ(-20.8vmin) rotateZ(50deg) translateY(-3.4vmin) rotateX(143deg)
-
-// .face:nth-child(6) 
-//   transform: translateZ($ring-2-Z) rotateZ(36deg) translateY($ring-2-Y) rotateX($ring-2-X)
-
-// .face:nth-child(7) 
-//   transform: translateZ($ring-2-Z) rotateZ(108deg) translateY($ring-2-Y) rotateX($ring-2-X)
-
-// .face:nth-child(8) 
-//   transform: translateZ($ring-2-Z) rotateZ(180deg) translateY($ring-2-Y) rotateX($ring-2-X)
-
-// .face:nth-child(9) 
-//   transform: translateZ($ring-2-Z) rotateZ(252deg) translateY($ring-2-Y) rotateX($ring-2-X)
-
-// .face:nth-child(10) 
-//   transform: translateZ($ring-2-Z) rotateZ(-36deg) translateY($ring-2-Y) rotateX($ring-2-X)
-
-// .face:nth-child(11) 
-//   transform: translateZ($ring-2-Z) rotateZ(36deg) translateY($ring-2-Y) rotateX($ring-2-X)
+    transform: rotateZ(-15deg) rotateX(0deg) rotateY(360deg)
+    // transform: rotateX(0deg) rotateY(360deg)

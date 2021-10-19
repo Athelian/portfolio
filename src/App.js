@@ -1,4 +1,10 @@
-import Planet from "Components/Planets/Planet";
+/*
+ * @Author: Eliot.Austin-Forbes 
+ * @Date: 2021-10-19 16:31:00 
+ * @Last Modified by: Eliot.Austin-Forbes
+ * @Last Modified time: 2021-10-19 17:48:23
+ */
+
 import Earth from "Components/Planets/Variants/Earth";
 import about from "Images/about.png";
 import bitmoji from "Images/bitmoji.png";
@@ -29,7 +35,7 @@ function App() {
         </h3>
       </div>
       <div>
-        <Planet></Planet>
+        <Earth />
       </div>
       <section className="section section--pink">
         <img alt="section header" className="section__header" src={about} />
