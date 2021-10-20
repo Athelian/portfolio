@@ -1,15 +1,13 @@
-/*
- * @Author: Eliot.Austin-Forbes 
- * @Date: 2021-10-19 17:15:54 
- * @Last Modified by: Eliot.Austin-Forbes
- * @Last Modified time: 2021-10-20 00:01:16
- */
+@import 'src/variables.module.sass'
+
+$shrink-factor: 0.12 // The factor by which to raise the next layer above the previous
+$island-height: $shrink-factor * $layers-per-island // The final height added by the layers piling on top of one another
 
 .planet
   perspective: 200vmin
   transform-style: preserve-3d
-  width: 40vmin
-  height: 40vmin
+  width: $planet-radius * 2vmin
+  height: $planet-radius * 2vmin
   top: 5vmin
   left: 5vmin
 
@@ -55,8 +53,8 @@
 
 .island
   position: absolute
-  width: 20vmin
-  height: 20vmin
+  width: $island-radius * 2vmin
+  height: $island-radius * 2vmin
   transform-style: preserve-3d
   transform-origin: 50% 0
   top: 50%
@@ -65,10 +63,6 @@
 .island
   .land
     background-color: rgb(91, 214, 171)
-
-.island--ice
-  .land
-    background-color: rgb(157, 241, 247)
 
 .plate
   width: 50%
@@ -82,13 +76,6 @@
     height: 100%
     position: absolute
     border-radius: 50%
-
-$layers-per-island: 25 // The number of layers per island
-$shrink-factor: 0.12 // The factor by which to raise the next layer above the previous
-$island-height: $shrink-factor * $layers-per-island // The final height added by the layers piling on top of one another
-
-:export
-  whitecolor: white
 
 @mixin raise-island-layer($tilt: 0, $i)
   transform: rotateY(#{$tilt}deg) translate(-50%, -50%) translateZ(calc(-#{$island-height}vmin + #{$i}vmin * #{$shrink-factor}))

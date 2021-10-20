@@ -1,10 +1,3 @@
-/*
- * @Author: Eliot.Austin-Forbes 
- * @Date: 2021-10-19 16:31:00 
- * @Last Modified by: Eliot.Austin-Forbes
- * @Last Modified time: 2021-10-19 17:48:23
- */
-
 import Earth from "Components/Planets/Variants/Earth";
 import about from "Images/about.png";
 import bitmoji from "Images/bitmoji.png";

@@ -1,30 +1,6 @@
-/*
- * @Author: Eliot.Austin-Forbes 
- * @Date: 2021-10-19 16:48:26 
- * @Last Modified by: Eliot.Austin-Forbes
- * @Last Modified time: 2021-10-19 21:12:56
- */
-
 @use "sass:math"
+@import 'src/variables.module.sass'
 
-// .island
-//   background-color: red
-
-// .island:nth-child(1)
-//   transform: translateZ(-20.5vmin) rotateZ(36deg) translateY(-3.4vmin) rotateX(143deg)
-
-// .island:nth-child(2)
-//   transform: translateZ(-20.5vmin) rotateZ(108deg) translateY(-3.4vmin) rotateX(143deg)
-
-// .island:nth-child(3)
-//   transform: translateZ(-20.5vmin) rotateZ(180deg) translateY(-3.4vmin) rotateX(143deg)
-
-// .island:nth-child(4)
-//   transform: translateZ(-20.5vmin) rotateZ(252deg) translateY(-3.4vmin) rotateX(143deg)
-
-// 500 is the planet radius squared plus the island radius squared
-$planet-radius: 20 // vmin
-$island-radius: 10 // vmin
 $hypoteneuse: $planet-radius * $planet-radius + $island-radius * $island-radius
 
 @function calculate-translation($side)
@@ -33,22 +9,32 @@ $hypoteneuse: $planet-radius * $planet-radius + $island-radius * $island-radius
 @function get-random-z-y()
   $seed-y: math.random(10)
   $trans-y: calculate-translation($seed-y)
-  @debug $trans-y
+  $flip-y: math.random(2)
+  @if $flip-y == 1
+    $trans-y: -$trans-y
   $seed-z: 10 - $seed-y
   $trans-z: calculate-translation($seed-z)
+  $flip-z: math.random(2)
+  @if $flip-z == 1
+    $trans-z: -$trans-z
   @return ("y": $trans-y, "z": $trans-z)
 
 @mixin get-random-transformation()
   $seeds: get-random-z-y()
-  $flip: math.random(2)
   transform: translateZ(#{map-get($seeds, "z")}vmin) rotateZ(296deg) translateY(#{map-get($seeds, "y")}vmin) rotateX(61deg)
-
-@debug math.random(2)
 
 // Positionings
 .island:nth-child(1)
-  transform: translateZ(-20vmin) rotateZ(0deg) translateY(10vmin) rotateX(180deg)
+  // trans-z pushes to bottom, trans-y centers the island itself, rotateX makes upside down
+  transform: translateZ(-#{$planet-radius}vmin) rotateZ(0deg) translateY(#{$island-radius}vmin) rotateX(180deg)
+  .land
+    background-color: rgb(157, 241, 247) // ice
 .island:nth-child(2)
-  @include get-random-transformation
+  // trans-z pushes to bottom, trans-y centers the island itself, rotateX makes upside down
+  transform: translateZ(-#{$planet-radius}vmin) rotateZ(0deg) translateY(#{$island-radius}vmin) rotateX(180deg)
+  .land
+    background-color: rgb(157, 241, 247) // ice
 .island:nth-child(3)
+  @include get-random-transformation
+.island:nth-child(4)
   @include get-random-transformation
