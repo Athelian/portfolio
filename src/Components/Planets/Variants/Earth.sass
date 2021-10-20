@@ -4,24 +4,68 @@
 $hypoteneuse: $planet-radius * $planet-radius + $island-radius * $island-radius
 
 @function calculate-translation($side)
-  @return math.sqrt($hypoteneuse * ($side / 10))
+  @return math.sqrt($hypoteneuse * math.div($side, 10))
 
 @function get-random-z-y()
   $seed-y: math.random(10)
+  // $seed-y: 10
   $trans-y: calculate-translation($seed-y)
   $flip-y: math.random(2)
   @if $flip-y == 1
     $trans-y: -$trans-y
   $seed-z: 10 - $seed-y
+  // $seed-z: 0
   $trans-z: calculate-translation($seed-z)
   $flip-z: math.random(2)
   @if $flip-z == 1
     $trans-z: -$trans-z
-  @return ("y": $trans-y, "z": $trans-z)
+
+  $point-angle: 0deg
+  @if $trans-y >=0 and $trans-z >= 0
+    // $point-angle: math.atan(math.div(math.abs($trans-y), math.abs($trans-z) ))
+    $point-angle: math.atan(math.div(math.abs($trans-z), math.abs($trans-y) ))
+  @else if $trans-y < 0 and $trans-z < 0
+    // $point-angle: math.atan(math.div(math.abs($trans-y), math.abs($trans-z) ))
+    $point-angle: math.atan(math.div(math.abs($trans-z), math.abs($trans-y) ))
+  @else
+    // $point-angle: math.atan(math.div(math.abs($trans-z), math.abs($trans-y) ))
+    $point-angle: math.atan(math.div(math.abs($trans-y), math.abs($trans-z) ))
+
+  // $point-angle: math.atan(math.div(math.abs($trans-y), math.abs($trans-z) ))
+  // $point-angle2: math.atan(math.div(math.abs($trans-z), math.abs($trans-y) ))
+  // @debug $point-angle
+
+  @debug math.atan(math.div(math.abs($trans-y), math.abs($trans-z) ))
+  @debug  math.atan(math.div(math.abs($trans-z), math.abs($trans-y) ))
+
+  @debug $point-angle
+
+  $quadrant-bonus: 0deg
+  @if $trans-z >= 0 and $trans-y < 0
+    $quadrant-bonus: $quadrant-bonus + 0deg
+  @if $trans-z < 0 and $trans-y < 0
+    $quadrant-bonus: $quadrant-bonus + 90deg
+  @if $trans-z < 0 and $trans-y >= 0
+    $quadrant-bonus: $quadrant-bonus + 180deg
+  @if $trans-z >= 0 and $trans-y >= 0
+    $quadrant-bonus: $quadrant-bonus + 270deg
+
+  $chord-center-diff: 30deg // Because the chord creates an angle of 60 deg, to center is 30
+  // 90deg -> 240deg (180 + 90 - 30) if y is +
+  // 90deg -> 60deg (90 - 30) if y is -
+  $rotate-x: $point-angle - $chord-center-diff + $quadrant-bonus
+
+  @debug $point-angle
+  @debug $quadrant-bonus
+  @debug $rotate-x
+
+  // @debug $rotate-x
+
+  @return ("x": $rotate-x, "y": $trans-y, "z": $trans-z)
 
 @mixin get-random-transformation()
   $seeds: get-random-z-y()
-  transform: translateZ(#{map-get($seeds, "z")}vmin) rotateZ(296deg) translateY(#{map-get($seeds, "y")}vmin) rotateX(61deg)
+  transform: translateZ(#{map-get($seeds, "z")}vmin) rotateZ(90deg) translateY(#{map-get($seeds, "y")}vmin) rotateX(#{map-get($seeds, "x")})
 
 // Positionings
 .island:nth-child(1)
