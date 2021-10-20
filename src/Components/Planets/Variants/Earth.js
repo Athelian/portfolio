@@ -2,15 +2,15 @@
  * @Author: Eliot.Austin-Forbes 
  * @Date: 2021-10-19 17:48:05 
  * @Last Modified by: Eliot.Austin-Forbes
- * @Last Modified time: 2021-10-19 18:48:23
+ * @Last Modified time: 2021-10-19 20:40:09
  */
 
 import Planet from "../Planet";
 import "./Earth.sass";
 
 const NUMBER_OF_ISLANDS = 3
-const ISLANDS_NO_TILT = [1];
-const ISLANDS_ICE = [1];
+const ISLANDS_NO_TILT = [0];
+const ISLANDS_ICE = [0];
 
 const Earth = () => (
   <Planet>

@@ -2,7 +2,7 @@
  * @Author: Eliot.Austin-Forbes 
  * @Date: 2021-10-19 17:15:54 
  * @Last Modified by: Eliot.Austin-Forbes
- * @Last Modified time: 2021-10-19 19:24:51
+ * @Last Modified time: 2021-10-20 00:01:16
  */
 
 .planet
@@ -83,20 +83,27 @@
     position: absolute
     border-radius: 50%
 
-@mixin transform-z-tilt($tilt: 0, $i)
-  transform: rotateY(#{$tilt}deg) translate(-50%, -50%) translateZ(calc(-2.4vmin + #{$i}vmin * 0.05 * 2.4))
+$layers-per-island: 25 // The number of layers per island
+$shrink-factor: 0.12 // The factor by which to raise the next layer above the previous
+$island-height: $shrink-factor * $layers-per-island // The final height added by the layers piling on top of one another
+
+:export
+  whitecolor: white
+
+@mixin raise-island-layer($tilt: 0, $i)
+  transform: rotateY(#{$tilt}deg) translate(-50%, -50%) translateZ(calc(-#{$island-height}vmin + #{$i}vmin * #{$shrink-factor}))
 
 @for $i from 1 through 25
   // z-elevations and island tilts
   .island
     .plate:nth-child(#{$i})
       @if $i % 2 == 0
-        @include transform-z-tilt($tilt: -1, $i: $i)
+        @include raise-island-layer($tilt: -1, $i: $i)
       @else
-        @include transform-z-tilt($tilt:  1, $i: $i)
+        @include raise-island-layer($tilt:  1, $i: $i)
   .island--no_tilt
     .plate:nth-child(#{$i})
-      @include transform-z-tilt($i: $i)
+      @include raise-island-layer($i: $i)
   // size tailoring
   .plate:nth-child(#{$i})
     width: calc(100% - (#{$i * $i * 0.12}%))

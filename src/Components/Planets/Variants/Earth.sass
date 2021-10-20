@@ -2,7 +2,7 @@
  * @Author: Eliot.Austin-Forbes 
  * @Date: 2021-10-19 16:48:26 
  * @Last Modified by: Eliot.Austin-Forbes
- * @Last Modified time: 2021-10-19 20:03:35
+ * @Last Modified time: 2021-10-19 21:12:56
  */
 
 @use "sass:math"
@@ -22,13 +22,33 @@
 // .island:nth-child(4)
 //   transform: translateZ(-20.5vmin) rotateZ(252deg) translateY(-3.4vmin) rotateX(143deg)
 
-$z: math.sqrt(5) * 9
-$y: math.sqrt(5) * 1
+// 500 is the planet radius squared plus the island radius squared
+$planet-radius: 20 // vmin
+$island-radius: 10 // vmin
+$hypoteneuse: $planet-radius * $planet-radius + $island-radius * $island-radius
+
+@function calculate-translation($side)
+  @return math.sqrt($hypoteneuse * ($side / 10))
+
+@function get-random-z-y()
+  $seed-y: math.random(10)
+  $trans-y: calculate-translation($seed-y)
+  @debug $trans-y
+  $seed-z: 10 - $seed-y
+  $trans-z: calculate-translation($seed-z)
+  @return ("y": $trans-y, "z": $trans-z)
+
+@mixin get-random-transformation()
+  $seeds: get-random-z-y()
+  $flip: math.random(2)
+  transform: translateZ(#{map-get($seeds, "z")}vmin) rotateZ(296deg) translateY(#{map-get($seeds, "y")}vmin) rotateX(61deg)
+
+@debug math.random(2)
 
 // Positionings
 .island:nth-child(1)
-  transform: translateZ(-15.5vmin) rotateZ(36deg) translateY(-15.8vmin) rotateX(107deg)
+  transform: translateZ(-20vmin) rotateZ(0deg) translateY(10vmin) rotateX(180deg)
 .island:nth-child(2)
-  transform: translateZ(-19.3vmin) rotateZ(0deg) translateY(10vmin) rotateX(180deg)
+  @include get-random-transformation
 .island:nth-child(3)
-  transform: translateZ(#{$z}vmin) rotateZ(296deg) translateY(#{$y}vmin) rotateX(61deg)
+  @include get-random-transformation
