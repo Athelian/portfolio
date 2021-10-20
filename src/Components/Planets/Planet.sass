@@ -23,15 +23,15 @@ $island-height: $shrink-factor * $layers-per-island // The final height added by
   top: 0%
   left: 0%
   background: rgb(91, 161, 214)
-  // background: radial-gradient(circle farthest-corner at 3% 0%, #c5d4f1 10%, rgb(91, 161, 214) 60%)
-  background: rgba(1,1,1,0.3)
+  // background: rgba(1,1,1,0.3)
+  background: radial-gradient(circle farthest-corner at 3% 0%, #c5d4f1 10%, rgb(91, 161, 214) 60%)
   border-radius: 50%
   transform: translateZ(1vmin)
 
 .sphere
   transform-style: preserve-3d
   position: absolute
-  animation: rotate 0s infinite linear
+  animation: rotate 5s infinite linear
   transform: rotateY(0deg) rotateX(0deg)
   width: 100%
   height: 100%
@@ -79,7 +79,7 @@ $island-height: $shrink-factor * $layers-per-island // The final height added by
     border-radius: 50%
 
 @mixin raise-island-layer($tilt: 0, $i)
-  transform: rotateY(#{$tilt}deg) translate(-50%, -50%) translateZ(calc(-#{$island-height}vmin + #{$i}vmin * #{$shrink-factor}))
+  transform: rotateY(#{$tilt}deg) translate(-50%, -50%) translateZ(calc(-#{$island-height}vmin + (#{$i}vmin * #{$shrink-factor})))
 
 @for $i from 1 through 25
   // z-elevations and island tilts
@@ -99,8 +99,8 @@ $island-height: $shrink-factor * $layers-per-island // The final height added by
 
 @keyframes rotate
   0%
-    // transform: rotateZ(-15deg) rotateX(0deg) rotateY(0deg)
-    transform: rotateX(0deg) rotateY(0deg)
+    transform: rotateZ(-15deg) rotateX(0deg) rotateY(0deg)
+    // transform: rotateX(0deg) rotateY(0deg)
   100%
-    // transform: rotateZ(-15deg) rotateX(0deg) rotateY(360deg)
-    transform: rotateX(0deg) rotateY(360deg)
+    transform: rotateZ(-15deg) rotateX(0deg) rotateY(360deg)
+    // transform: rotateX(0deg) rotateY(360deg)

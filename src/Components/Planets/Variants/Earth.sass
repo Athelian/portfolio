@@ -2,83 +2,65 @@
 @import 'src/variables.module.sass'
 
 $hypoteneuse: $planet-radius * $planet-radius + $island-radius * $island-radius
+$total-possible-random-positions: 100
 
 @function calculate-translation($side)
-  @return math.sqrt($hypoteneuse * math.div($side, 10))
+  @return math.sqrt($hypoteneuse * math.div($side, $total-possible-random-positions))
 
-@function get-random-z-y()
-  $seed-y: math.random(10)
-  // $seed-y: 10
+@function get-random-z-y($seed)
+  $seed-z: $seed
+  $trans-z: calculate-translation($seed-z)
+  $flip-z: math.random(2)
+  @if $flip-z == 1 and $seed-z < 2000
+    $trans-z: -$trans-z
+  @debug $seed-z
+  @debug $trans-z
+  $seed-y: $total-possible-random-positions - $seed-z
   $trans-y: calculate-translation($seed-y)
   $flip-y: math.random(2)
   @if $flip-y == 1
     $trans-y: -$trans-y
-  $seed-z: 10 - $seed-y
-  // $seed-z: 0
-  $trans-z: calculate-translation($seed-z)
-  $flip-z: math.random(2)
-  @if $flip-z == 1
-    $trans-z: -$trans-z
 
   $point-angle: 0deg
-  @if $trans-y >=0 and $trans-z >= 0
-    // $point-angle: math.atan(math.div(math.abs($trans-y), math.abs($trans-z) ))
-    $point-angle: math.atan(math.div(math.abs($trans-z), math.abs($trans-y) ))
-  @else if $trans-y < 0 and $trans-z < 0
-    // $point-angle: math.atan(math.div(math.abs($trans-y), math.abs($trans-z) ))
-    $point-angle: math.atan(math.div(math.abs($trans-z), math.abs($trans-y) ))
+  @if ($trans-y >=0 and $trans-z >= 0) or ($trans-y < 0 and $trans-z < 0)
+    $point-angle: math.atan(math.div($trans-z, $trans-y ))
   @else
-    // $point-angle: math.atan(math.div(math.abs($trans-z), math.abs($trans-y) ))
     $point-angle: math.atan(math.div(math.abs($trans-y), math.abs($trans-z) ))
-
-  // $point-angle: math.atan(math.div(math.abs($trans-y), math.abs($trans-z) ))
-  // $point-angle2: math.atan(math.div(math.abs($trans-z), math.abs($trans-y) ))
-  // @debug $point-angle
-
-  @debug math.atan(math.div(math.abs($trans-y), math.abs($trans-z) ))
-  @debug  math.atan(math.div(math.abs($trans-z), math.abs($trans-y) ))
-
-  @debug $point-angle
 
   $quadrant-bonus: 0deg
   @if $trans-z >= 0 and $trans-y < 0
-    $quadrant-bonus: $quadrant-bonus + 0deg
+    $quadrant-bonus: 0deg
   @if $trans-z < 0 and $trans-y < 0
-    $quadrant-bonus: $quadrant-bonus + 90deg
+    $quadrant-bonus: 90deg
   @if $trans-z < 0 and $trans-y >= 0
-    $quadrant-bonus: $quadrant-bonus + 180deg
+    $quadrant-bonus: 180deg
   @if $trans-z >= 0 and $trans-y >= 0
-    $quadrant-bonus: $quadrant-bonus + 270deg
+    $quadrant-bonus: 270deg
 
-  $chord-center-diff: 30deg // Because the chord creates an angle of 60 deg, to center is 30
-  // 90deg -> 240deg (180 + 90 - 30) if y is +
-  // 90deg -> 60deg (90 - 30) if y is -
-  $rotate-x: $point-angle - $chord-center-diff + $quadrant-bonus
+  // Because the chord creates an angle of 60 deg, the further point
+  // is the one known by the browser, so count back half of this value
+  $chord-center-diff: math.asin(math.div($island-radius, $planet-radius))
+  $rounding-error: 3deg // not sure where this comes from, math should be correct, possibly a rounding error
+  $rotate-x: $point-angle - $chord-center-diff + $quadrant-bonus + $rounding-error
 
-  @debug $point-angle
-  @debug $quadrant-bonus
-  @debug $rotate-x
+  $rotate-z: math.random(360)
 
-  // @debug $rotate-x
+  @return ("rot-x": $rotate-x, "rot-z": $rotate-z, "trans-y": $trans-y, "trans-z": $trans-z)
 
-  @return ("x": $rotate-x, "y": $trans-y, "z": $trans-z)
-
-@mixin get-random-transformation()
-  $seeds: get-random-z-y()
-  transform: translateZ(#{map-get($seeds, "z")}vmin) rotateZ(90deg) translateY(#{map-get($seeds, "y")}vmin) rotateX(#{map-get($seeds, "x")})
+@mixin get-random-transformation($seed)
+  $seeds: get-random-z-y($seed: $seed)
+  transform: translateZ(#{map-get($seeds, "trans-z")}vmin) rotateZ(#{map-get($seeds, "rot-z")}deg) translateY(#{map-get($seeds, "trans-y")}vmin) rotateX(#{map-get($seeds, "rot-x")})
 
 // Positionings
 .island:nth-child(1)
   // trans-z pushes to bottom, trans-y centers the island itself, rotateX makes upside down
-  transform: translateZ(-#{$planet-radius}vmin) rotateZ(0deg) translateY(#{$island-radius}vmin) rotateX(180deg)
+  transform: translateZ(-#{$planet-radius}vmin) translateY(#{$island-radius}vmin) rotateX(180deg)
   .land
     background-color: rgb(157, 241, 247) // ice
 .island:nth-child(2)
-  // trans-z pushes to bottom, trans-y centers the island itself, rotateX makes upside down
-  transform: translateZ(-#{$planet-radius}vmin) rotateZ(0deg) translateY(#{$island-radius}vmin) rotateX(180deg)
+  transform: translateZ(#{$planet-radius}vmin) translateY(-#{$island-radius}vmin) rotateX(0deg)
   .land
     background-color: rgb(157, 241, 247) // ice
-.island:nth-child(3)
-  @include get-random-transformation
-.island:nth-child(4)
-  @include get-random-transformation
+@for $i from 2 through $total-possible-random-positions
+  .island--#{$i}
+    @include get-random-transformation($seed: $i)
