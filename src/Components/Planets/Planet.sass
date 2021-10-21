@@ -1,6 +1,6 @@
 @import 'src/variables.module.sass'
 
-$shrink-factor: 0.12 // The factor by which to raise the next layer above the previous
+$shrink-factor: 0.11 // The factor by which to raise the next layer above the previous
 $island-height: $shrink-factor * $layers-per-island // The final height added by the layers piling on top of one another
 
 .planet
@@ -31,7 +31,7 @@ $island-height: $shrink-factor * $layers-per-island // The final height added by
 .sphere
   transform-style: preserve-3d
   position: absolute
-  animation: rotate 5s infinite linear
+  animation: rotate 10s infinite linear
   transform: rotateY(0deg) rotateX(0deg)
   width: 100%
   height: 100%
@@ -79,12 +79,14 @@ $island-height: $shrink-factor * $layers-per-island // The final height added by
     border-radius: 50%
 
 @mixin raise-island-layer($tilt: 0, $i)
-  transform: rotateY(#{$tilt}deg) translate(-50%, -50%) translateZ(calc(-#{$island-height}vmin + (#{$i}vmin * #{$shrink-factor})))
+  transform: rotateY(#{$tilt}deg) translate(-50%, -50%) translateZ(calc((#{$i}vmin * #{$shrink-factor})))
 
 @for $i from 1 through 25
   // z-elevations and island tilts
   .island
     .plate:nth-child(#{$i})
+      // @if $i < 10
+      //   display: none
       @if $i % 2 == 0
         @include raise-island-layer($tilt: -1, $i: $i)
       @else
@@ -100,7 +102,7 @@ $island-height: $shrink-factor * $layers-per-island // The final height added by
 @keyframes rotate
   0%
     transform: rotateZ(-15deg) rotateX(0deg) rotateY(0deg)
-    // transform: rotateX(0deg) rotateY(0deg)
+    transform: rotateX(0deg) rotateY(0deg)
   100%
     transform: rotateZ(-15deg) rotateX(0deg) rotateY(360deg)
-    // transform: rotateX(0deg) rotateY(360deg)
+    transform: rotateX(0deg) rotateY(360deg)
