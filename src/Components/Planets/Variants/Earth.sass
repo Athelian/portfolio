@@ -8,38 +8,29 @@ $shrink-factor: 0.11 // The factor by which to raise the next layer above the pr
 $island-height: $shrink-factor * $layers-per-island // The final height added by the layers piling on top of one another
 
 @function calculate-translation($side)
-  // @return math.sqrt($hypoteneuse * math.div($side, $total-possible-random-positions))
-  @return math.sqrt(math.div($planet-r2 * $side,  25))
+  @return math.sqrt(math.div($planet-r2 * $side,  math.div($total-possible-random-positions, 4))) // 4 Quadrants on an xy graph
 
 @function get-random-z-y($seed)
-
   $seed-z: $seed
   @while $seed-z > 25
     $seed-z: $seed-z - 25
   $trans-z: calculate-translation($seed-z)
-  @if $seed > 25 and $seed < 75
-    $trans-z: -$trans-z
 
   $seed-y: 25 - $seed-z
   $trans-y: calculate-translation($seed-y)
+
+  // Ensure seeds go through all four quadrants equally
+  // 0 ---- z+ y+ ---- 25 ---- z- y+ ---- 50 ---- z+ y- ---- 75 ---- z- y- ---- 100
+  @if $seed > 25 and $seed < 50 or $seed > 75
+    $trans-z: -$trans-z
   @if $seed > 50
     $trans-y: -$trans-y
-
-  @debug "seed"
-  @debug $seed
-  @debug "seed-z"
-  @debug $seed-z
-  @debug "seed-y"
-  @debug $seed-y
 
   $point-angle: 0deg
   @if ($trans-y >=0 and $trans-z >= 0) or ($trans-y < 0 and $trans-z < 0)
     $point-angle: math.atan(math.div(math.abs($trans-z), math.abs($trans-y) ))
   @else
     $point-angle: math.atan(math.div(math.abs($trans-y), math.abs($trans-z) ))
-
-  @debug "point-angle"
-  @debug $point-angle
 
   $quadrant-bonus: 0deg
   @if $trans-z >= 0 and $trans-y < 0
@@ -55,16 +46,12 @@ $island-height: $shrink-factor * $layers-per-island // The final height added by
   // is the one known by the browser, so count back half of this value
   $chord-center-diff: math.asin(math.div($island-radius, $planet-radius))
   $rotate-x: $point-angle - $chord-center-diff + $quadrant-bonus
-
-  @if ($rotate-x > 40 and $rotate-x < 120) or ($rotate-x > 240 and $rotate-x < 300)
-    @debug "seed"
-    @debug $seed
-    // @debug "trans"
-    // @debug $trans-z
-    // @debug $trans-y
-
-  $rotate-z: math.random(360)
-  // $rotate-z: 3
+  $rotate-z: math.random(360) // try to space out in groups of 10
+  // $rotation-factor: $seed
+  // @while $rotation-factor > 25
+    // $rotation-factor: $rotation-factor - 25
+  // $rotation-factor: $rotation-factor * math.div(360, 25)
+  // $rotate-z: $rotation-factor
 
   @return ("rot-x": $rotate-x, "rot-z": $rotate-z, "trans-y": $trans-y, "trans-z": $trans-z)
 
