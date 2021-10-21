@@ -1,10 +1,16 @@
+@use "sass:math"
+
 $layers-per-island: 25
 $planet-radius: 20
+$planet-r2: math.pow($planet-radius, 2)
 $island-radius: 10
 $total-possible-random-positions: 100
+$shrink-factor: 0.11 // The factor by which to raise the next layer above the previous
+$island-height: $shrink-factor * $layers-per-island // The final height added by the layers piling on top of one another
 
 :export
   LAYERS_PER_ISLAND: $layers-per-island
   PLANET_RADIUS: $planet-radius
+  PLANET_R2: $planet-r2
   ISLAND_RADIUS: $island-radius
   TOTAL_POSSIBLE_RANDOM_POSITIONS: $total-possible-random-positions

@@ -1,9 +1,6 @@
 @use "sass:math"
 @import 'src/variables.module.sass'
 
-$shrink-factor: 0.11 // The factor by which to raise the next layer above the previous
-$island-height: $shrink-factor * $layers-per-island // The final height added by the layers piling on top of one another
-
 .planet
   perspective: 200vmin
   transform-style: preserve-3d
@@ -24,7 +21,7 @@ $island-height: $shrink-factor * $layers-per-island // The final height added by
   top: 0%
   left: 0%
   background: rgb(91, 161, 214)
-  // background: rgba(1,1,1,0.3)
+  background: rgba(1,1,1,0.3)
   background: radial-gradient(circle farthest-corner at 3% 0%, #c5d4f1 10%, rgb(91, 161, 214) 60%)
   border-radius: 50%
   transform: translateZ(1vmin)
@@ -32,7 +29,7 @@ $island-height: $shrink-factor * $layers-per-island // The final height added by
 .sphere
   transform-style: preserve-3d
   position: absolute
-  animation: rotate 5s infinite linear
+  animation: rotate 15s infinite linear
   transform: rotateY(0deg) rotateX(0deg)
   width: 100%
   height: 100%
@@ -62,10 +59,6 @@ $island-height: $shrink-factor * $layers-per-island // The final height added by
   top: 50%
   left: 10vmin
 
-.island
-  .land
-    background-color: rgb(91, 214, 171)
-
 .plate
   width: 50%
   height: 50%
@@ -79,31 +72,24 @@ $island-height: $shrink-factor * $layers-per-island // The final height added by
     position: absolute
     border-radius: 50%
 
-@function new-chord-distance($layer)
-
 @function calc-width($layer)
-  @debug $layer
   $planet-radius-sqr: $planet-radius * $planet-radius
   $island-radius-sqr: $island-radius * $island-radius
   $base-chord-distance: math.sqrt($planet-radius-sqr - $island-radius-sqr)
-  // $new-chord-distance: $base-chord-distance + 0.11 *
-  @return 2 * (math.sqrt($planet-radius-sqr - ( ($base-chord-distance + 0.11 * $layer) * ($base-chord-distance + 0.11 * $layer)) ))
+  @return 2 * (math.sqrt($planet-radius-sqr - ( math.pow($base-chord-distance + 0.11 * $layer, 2)) ))
 
 @mixin layer-dimensions($layer)
   $length: calc-width($layer)
   height: #{$length}vmin
   width: #{$length}vmin
-  @debug $length
 
 @mixin raise-island-layer($tilt: 0, $i)
-  transform: rotateY(#{$tilt}deg) translate(-50%, -50%) translateZ(calc((#{$i}vmin * #{$shrink-factor})))
+  transform: rotateY(#{$tilt * 1deg}) translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin})
 
 @for $i from 1 through 25
   // z-elevations and island tilts
   .island
     .plate:nth-child(#{$i})
-      // @if $i < 10
-      //   display: none
       @if $i % 2 == 0
         @include raise-island-layer($tilt: -1, $i: $i)
       @else
@@ -118,7 +104,62 @@ $island-height: $shrink-factor * $layers-per-island // The final height added by
 @keyframes rotate
   0%
     transform: rotateZ(-15deg) rotateX(0deg) rotateY(0deg)
-    transform: rotateX(0deg) rotateY(0deg)
+    // transform: rotateX(0deg) rotateY(0deg)
   100%
     transform: rotateZ(-15deg) rotateX(0deg) rotateY(360deg)
-    transform: rotateX(0deg) rotateY(360deg)
+    // transform: rotateX(0deg) rotateY(360deg)
+
+@function calculate-translation($side)
+  @return math.sqrt(math.div($planet-r2 * $side,  math.div($total-possible-random-positions, 4))) // 4 Quadrants on an xy graph
+
+@function get-random-z-y($seed)
+  $seed-z: $seed
+  @while $seed-z > 25
+    $seed-z: $seed-z - 25
+  $trans-z: calculate-translation($seed-z)
+  $seed-y: 25 - $seed-z
+  $trans-y: calculate-translation($seed-y)
+
+  // Ensure seeds go through all four quadrants equally
+  // 0 ---- z+ y+ ---- 25 ---- z- y+ ---- 50 ---- z+ y- ---- 75 ---- z- y- ---- 100
+  @if $seed > 25 and $seed < 50 or $seed > 75
+    $trans-z: -$trans-z
+  @if $seed > 50
+    $trans-y: -$trans-y
+
+  $point-angle: 0deg
+  @if ($trans-y >=0 and $trans-z >= 0) or ($trans-y < 0 and $trans-z < 0)
+    $point-angle: math.atan(math.div(math.abs($trans-z), math.abs($trans-y) ))
+  @else
+    $point-angle: math.atan(math.div(math.abs($trans-y), math.abs($trans-z) ))
+
+  $quadrant-bonus: 0deg
+  @if $trans-z >= 0 and $trans-y < 0
+    $quadrant-bonus: 0deg
+  @if $trans-z < 0 and $trans-y < 0
+    $quadrant-bonus: 90deg
+  @if $trans-z < 0 and $trans-y >= 0
+    $quadrant-bonus: 180deg
+  @if $trans-z >= 0 and $trans-y >= 0
+    $quadrant-bonus: 270deg
+
+  $chord-center-diff: math.asin(math.div($island-radius, $planet-radius))
+  $rotate-x: $point-angle - $chord-center-diff + $quadrant-bonus
+  @return ("rot-x": $rotate-x, "trans-y": $trans-y, "trans-z": $trans-z)
+
+@mixin get-random-transformation($seed)
+  $seeds: get-random-z-y($seed: $seed)
+  transform: translateZ(#{map-get($seeds, "trans-z")}vmin) rotateZ(#{map-get($seeds, "rot-z")}deg) translateY(#{map-get($seeds, "trans-y")}vmin) rotateX(#{map-get($seeds, "rot-x")})
+
+// Positionings
+@for $i from 0 through $total-possible-random-positions
+  $translations: get-random-z-y($seed: $i)
+  .island--#{$i}
+    .land
+      border-top-right-radius: math.random(50) + 50 * 1%
+      border-top-left-radius: math.random(50) + 50 * 1%
+      border-bottom-right-radius: math.random(50) + 50 * 1%
+      border-bottom-left-radius: math.random(50) + 50 * 1%
+  @for $j from 0 through 360
+    .island--#{$i}.island--rotate-z-#{$j}deg
+      transform: translateZ(#{map-get($translations, "trans-z")}vmin) rotateZ(#{$j}deg) translateY(#{map-get($translations, "trans-y")}vmin) rotateX(#{map-get($translations, "rot-x")})
