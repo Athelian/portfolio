@@ -3,7 +3,7 @@ import VARIABLES from "../../../_variables.module.sass";
 import "./Earth.sass";
 
 const { LAYERS_PER_ISLAND } = VARIABLES;
-const NUMBER_OF_CONTINENTS = 25;
+const NUMBER_OF_CONTINENTS = 20;
 
 const getRandomInt = (min, max) =>
   Math.floor(Math.random() * (parseInt(max) - min + 1)) + min;
@@ -27,7 +27,7 @@ const Earth = () => {
   const _continentNumbers = [...continentNumbers];
   return (
     <div>
-      <Planet>
+      <Planet variant="earth">
         {Array(NUMBER_OF_CONTINENTS)
           .fill("")
           .map((_, i) => (
@@ -46,7 +46,7 @@ const Earth = () => {
                     className="plate"
                     key={i}
                     style={
-                      i < getRandomInt(10, 24)
+                      i < getRandomInt(12, 24)
                         ? { contentVisibility: "hidden" }
                         : {}
                     }

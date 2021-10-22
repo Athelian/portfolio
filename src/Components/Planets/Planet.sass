@@ -4,10 +4,10 @@
 .planet
   perspective: 200vmin
   transform-style: preserve-3d
-  width: $planet-radius * 2vmin
-  height: $planet-radius * 2vmin
-  top: 5vmin
-  left: 5vmin
+  width: $planet-diameter * 1vmin
+  height: $planet-diameter * 1vmin
+  top: 5vmin // hard to say if this is a variable or constant 5vmin
+  left: 5vmin // hard to say if this is a variable or constant 5vmin
 
 .planet:hover
   .sphere
@@ -21,7 +21,6 @@
   top: 0%
   left: 0%
   background: rgb(91, 161, 214)
-  background: rgba(1,1,1,0.3)
   background: radial-gradient(circle farthest-corner at 3% 0%, #c5d4f1 10%, rgb(91, 161, 214) 60%)
   border-radius: 50%
   transform: translateZ(1vmin)
@@ -52,12 +51,12 @@
 
 .island
   position: absolute
-  width: $island-radius * 2vmin
-  height: $island-radius * 2vmin
+  width: $island-diameter * 1vmin
+  height: $island-diameter * 1vmin
   transform-style: preserve-3d
   transform-origin: 50% 0
   top: 50%
-  left: 10vmin
+  left: $island-radius * 1vmin
 
 .plate
   width: 50%
@@ -73,15 +72,13 @@
     border-radius: 50%
 
 @function calc-width($layer)
-  $planet-radius-sqr: $planet-radius * $planet-radius
-  $island-radius-sqr: $island-radius * $island-radius
-  $base-chord-distance: math.sqrt($planet-radius-sqr - $island-radius-sqr)
-  @return 2 * (math.sqrt($planet-radius-sqr - ( math.pow($base-chord-distance + 0.11 * $layer, 2)) ))
+  $base-chord-distance: math.sqrt($planet-r2 - $island-r2)
+  @return 2 * (math.sqrt($planet-r2 - ( math.pow($base-chord-distance + $shrink-factor * $layer, 2)) ))
 
 @mixin layer-dimensions($layer)
   $length: calc-width($layer)
-  height: #{$length}vmin
-  width: #{$length}vmin
+  height: #{$length * 1vmin}
+  width: #{$length * 1vmin}
 
 @mixin raise-island-layer($tilt: 0, $i)
   transform: rotateY(#{$tilt * 1deg}) translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin})
@@ -90,6 +87,7 @@
   // z-elevations and island tilts
   .island
     .plate:nth-child(#{$i})
+      // alternate +/- 1 degree tilts to 'thread' the layers and make them appear as a solid block when viewing along their plane
       @if $i % 2 == 0
         @include raise-island-layer($tilt: -1, $i: $i)
       @else
@@ -114,17 +112,17 @@
 
 @function get-random-z-y($seed)
   $seed-z: $seed
-  @while $seed-z > 25
-    $seed-z: $seed-z - 25
+  @while $seed-z > $quadrant-boundary
+    $seed-z: $seed-z - $quadrant-boundary
   $trans-z: calculate-translation($seed-z)
-  $seed-y: 25 - $seed-z
+  $seed-y: $quadrant-boundary - $seed-z
   $trans-y: calculate-translation($seed-y)
 
   // Ensure seeds go through all four quadrants equally
   // 0 ---- z+ y+ ---- 25 ---- z- y+ ---- 50 ---- z+ y- ---- 75 ---- z- y- ---- 100
-  @if $seed > 25 and $seed < 50 or $seed > 75
+  @if $seed >= $first-quadrant-limit and $seed < $second-quadrant-limit or $seed >= $third-quadrant-limit
     $trans-z: -$trans-z
-  @if $seed > 50
+  @if $seed >= $second-quadrant-limit
     $trans-y: -$trans-y
 
   $point-angle: 0deg
