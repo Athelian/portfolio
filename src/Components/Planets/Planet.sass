@@ -72,8 +72,8 @@
     border-radius: 50%
 
 @function calc-width($layer)
-  $base-chord-distance: math.sqrt($planet-r2 - $island-r2)
-  @return 2 * (math.sqrt($planet-r2 - ( math.pow($base-chord-distance + $shrink-factor * $layer, 2)) ))
+  $base-chord-distance: math.sqrt($planet-radius-squared - $island-radius-squared)
+  @return 2 * (math.sqrt($planet-radius-squared - ( math.pow($base-chord-distance + $shrink-factor * $layer, 2)) ))
 
 @mixin layer-dimensions($layer)
   $length: calc-width($layer)
@@ -108,7 +108,7 @@
     // transform: rotateX(0deg) rotateY(360deg)
 
 @function calculate-translation($side)
-  @return math.sqrt(math.div($planet-r2 * $side,  math.div($total-possible-random-positions, 4))) // 4 Quadrants on an xy graph
+  @return math.sqrt(math.div($planet-radius-squared * $side,  math.div($total-possible-random-positions, 4))) // 4 Quadrants on an xy graph
 
 @function get-random-z-y($seed)
   $seed-z: $seed

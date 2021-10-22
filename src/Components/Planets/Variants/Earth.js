@@ -10,26 +10,8 @@ const { LAYERS_PER_ISLAND } = VARIABLES;
 const getRandomInt = (min, max) =>
   Math.floor(Math.random() * (parseInt(max) - min + 1)) + min;
 
-// const getRandomContinentNumbers = () => {
-//   let _numberOfContinents = NUMBER_OF_CONTINENTS;
-//   const randomNumbers = [];
-//   while (_numberOfContinents) {
-//     let random = getRandomInt(0, 100);
-//     while (
-//       randomNumbers.includes(random)
-//       // randomNumbers.some((num) => random > num - 2 && random < num + 2)
-//     ) {
-//       random = getRandomInt(0, 100);
-//     }
-//     randomNumbers.push(random);
-//     _numberOfContinents--;
-//   }
-//   return randomNumbers;
-// };
-
 const Earth = () => {
-  // const continentNumbers = getRandomContinentNumbers();
-  // const _continentNumbers = [...continentNumbers];
+  // eslint-disable-next-line
   const [update, setUpdate] = useState(false);
   const rots = [];
 
@@ -40,26 +22,20 @@ const Earth = () => {
         {Array(NUMBER_OF_CONTINENTS)
           .fill("")
           .map((_, i) => {
-            let rotation = getRandomInt(0, 360);
+            let rotation = i === 0 ? getRandomInt(0, 360) : rots[rots.length - 1] + 20 + getRandomInt(1, 180);
+            if (rotation > 360) rotation = rotation - 360;
             rots.push(rotation);
-            rotation = (rotation < rots[rots.length - 2] + 45 && rotation > rots[rots.length - 2] - 45) ? rotation + 180 : rotation
-            while (rotation > 360) {
-              rotation = rotation - 360
-            }
-
             return (
               <div
                 className={
                   "island" +
-                  ` island--${
-                  // _continentNumbers.shift()
-                  i
+                  ` island--${i
                   }` +
                   ` island--rotate-z-${rotation}deg`
                 }
                 key={i}
               >
-                {Array(parseInt(LAYERS_PER_ISLAND) - 1) // -1 as the final layer has no width or height and bugs out sass
+                {Array(parseInt(LAYERS_PER_ISLAND) - 1) // -1 as the final layer has no width or height
                   .fill("")
                   .map((_, i) => (
                     <div
@@ -68,7 +44,7 @@ const Earth = () => {
                       style={
                         i < getRandomInt(12, 24)
                           ? { contentVisibility: "hidden" }
-                          : {}
+                          : null
                       }
                     >
                       <div className="land" />
