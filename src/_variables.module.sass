@@ -1,10 +1,10 @@
 @use "sass:math"
 
 // Arbitrary values
-$layers-per-island: 50 // number of divs to stack on top of one another when creating an islanbd
-$total-possible-random-positions: 160 // number of (x,y) positions to pick from when placing land
+$layers-per-island: 25 // number of divs to stack on top of one another when creating an islanbd
+$total-possible-random-positions: 100 // number of (x,y) positions to pick from when placing land
 $planet-diameter: 40
-$island-diameter: 35
+$island-diameter: 20
 
 // Calculations
 $planet-radius: math.div($planet-diameter, 2)
@@ -21,5 +21,3 @@ $third-quadrant-limit: $quadrant-boundary * 3
 
 :export
   LAYERS_PER_ISLAND: $layers-per-island
-  TOTAL_POSSIBLE_RANDOM_POSITIONS: $total-possible-random-positions
-  ISLAND_DIAMETER: $island-diameter

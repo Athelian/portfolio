@@ -9,10 +9,6 @@
   top: 5vmin // hard to say if this is a variable or constant 5vmin
   left: 5vmin // hard to say if this is a variable or constant 5vmin
 
-.backface_dome
-  .plate
-    backface-visibility: hidden
-
 .planet:hover
   .sphere
     animation-play-state: paused
@@ -24,6 +20,8 @@
   height: 100%
   top: 0%
   left: 0%
+  background: rgb(91, 161, 214)
+  background: radial-gradient(circle farthest-corner at 3% 0%, #c5d4f1 10%, rgb(91, 161, 214) 60%)
   border-radius: 50%
   transform: translateZ(1vmin)
 
@@ -58,7 +56,7 @@
   transform-style: preserve-3d
   transform-origin: 50% 0
   top: 50%
-  left: (math.div($planet-diameter - $island-diameter, 2)) * 1vmin
+  left: $island-radius * 1vmin
 
 .plate
   width: 50%
@@ -82,21 +80,21 @@
   height: #{$length * 1vmin}
   width: #{$length * 1vmin}
 
-@mixin raise-island-layer($tilt: 0, $i, $backwards: false)
-  @if $backwards
-    transform: rotateY(#{$tilt* 1deg}) translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
-  @else
-    transform: rotateY(#{$tilt * 1deg}) translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
+@mixin raise-island-layer($tilt: 0, $i)
+  transform: rotateY(#{$tilt * 1deg}) translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin})
 
-@for $i from 1 through $layers-per-island
+@for $i from 1 through 25
   // z-elevations and island tilts
   .island
     .plate:nth-child(#{$i})
       // alternate +/- 1 degree tilts to 'thread' the layers and make them appear as a solid block when viewing along their plane
       @if $i % 2 == 0
-        @include raise-island-layer($tilt: 1, $i: $i)
-      @else
         @include raise-island-layer($tilt: -1, $i: $i)
+      @else
+        @include raise-island-layer($tilt:  1, $i: $i)
+  .island--no_tilt
+    .plate:nth-child(#{$i})
+      @include raise-island-layer($i: $i)
   // size tailoring
   .plate:nth-child(#{$i})
     @include layer-dimensions($i)
@@ -150,3 +148,16 @@
 @mixin get-random-transformation($seed)
   $seeds: get-random-z-y($seed: $seed)
   transform: translateZ(#{map-get($seeds, "trans-z")}vmin) rotateZ(#{map-get($seeds, "rot-z")}deg) translateY(#{map-get($seeds, "trans-y")}vmin) rotateX(#{map-get($seeds, "rot-x")})
+
+// Positionings
+@for $i from 0 through $total-possible-random-positions
+  $translations: get-random-z-y($seed: $i)
+  .island--#{$i}
+    .land
+      border-top-right-radius: math.random(50) + 50 * 1%
+      border-top-left-radius: math.random(50) + 50 * 1%
+      border-bottom-right-radius: math.random(50) + 50 * 1%
+      border-bottom-left-radius: math.random(50) + 50 * 1%
+  @for $j from 0 through 360
+    .island--#{$i}.island--rotate-z-#{$j}deg
+      transform: translateZ(#{map-get($translations, "trans-z")}vmin) rotateZ(#{$j}deg) translateY(#{map-get($translations, "trans-y")}vmin) rotateX(#{map-get($translations, "rot-x")})
