@@ -67,6 +67,8 @@
   left: 50%
   top: 50%
   transform: translate(-50%,-50%)
+
+.plate > div
   .land
     width: 100%
     height: 100%
@@ -81,6 +83,11 @@
   $length: calc-width($layer)
   height: #{$length * 1vmin}
   width: #{$length * 1vmin}
+  .land
+    left: 50%
+    transform: translate(-50%, #{math.div((35 - $length), 2) * -1vmin})
+  .land--rotated
+    transform: translate(-50%, #{math.div((35 - $length), 2) * -1vmin}) rotate(180deg)
 
 @mixin raise-island-layer($tilt: 0, $i, $backwards: false)
   @if $backwards
@@ -88,15 +95,15 @@
   @else
     transform: rotateY(#{$tilt * 1deg}) translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
 
-@for $i from 1 through $layers-per-island
+@for $i from 0 through $layers-per-island
   // z-elevations and island tilts
   .island
     .plate:nth-child(#{$i})
       // alternate +/- 1 degree tilts to 'thread' the layers and make them appear as a solid block when viewing along their plane
       @if $i % 2 == 0
-        @include raise-island-layer($tilt: 1, $i: $i)
+        @include raise-island-layer($tilt: 0, $i: $i)
       @else
-        @include raise-island-layer($tilt: -1, $i: $i)
+        @include raise-island-layer($tilt: 0, $i: $i)
   // size tailoring
   .plate:nth-child(#{$i})
     @include layer-dimensions($i)

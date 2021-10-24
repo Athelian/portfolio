@@ -27,7 +27,7 @@ function App() {
           stacks
         </h3>
       </div>
-      <div>
+      <div className="earth-holder">
         <Earth />
       </div>
       <section className="section section--pink">

@@ -26,7 +26,6 @@ const Earth = () => {
 
   return (
     <div>
-      <Button onClick={() => setUpdate((prev) => !prev)} />
       <Planet variant="earth">
         <div
           className={
@@ -42,12 +41,19 @@ const Earth = () => {
                 className="plate"
                 key={i}
                 style={
-                  i < 20
+                  // i !== 1
+                  i < 0
+                    // (i !== 10 && i !== 11 && i !== 12)
                     ? { contentVisibility: "hidden" }
                     : null
                 }
               >
-                <div className="land" />
+                <div style={{ display: "none" }}>
+                  <div className="land" />
+                </div>
+                <div>
+                  <div className="land" />
+                </div>
               </div>
             ))}
         </div>
@@ -65,7 +71,7 @@ const Earth = () => {
                 className="plate"
                 key={i}
                 style={
-                  i < 20
+                  i !== 10
                     ? { contentVisibility: "hidden" }
                     : null
                 }
