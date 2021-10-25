@@ -85,9 +85,9 @@
   width: #{$length * 1vmin}
   .land
     left: 50%
-    transform: translate(-50%, #{math.div((35 - $length), 2) * -1vmin})
+    transform: translate(-50%, #{math.div(($island-diameter - $length), 2) * -1vmin})
   .land--rotated
-    transform: translate(-50%, #{-35 + ((math.div((35 - $length), 2) + 3) * 1vmin )}) // 3 as in the height of the div above
+    transform: translate(-50%, #{-$island-diameter + ((math.div(($island-diameter - $length), 2) + 3) * 1vmin )}) // 3 as in the height of the div above
 
 @mixin raise-island-layer($tilt: 0, $i, $backwards: false)
   @if $backwards
