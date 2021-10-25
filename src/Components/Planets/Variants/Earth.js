@@ -41,18 +41,19 @@ const Earth = () => {
                 className="plate"
                 key={i}
                 style={
-                  // i !== 1
+                  // i !== 31
                   i < 0
                     // (i !== 10 && i !== 11 && i !== 12)
                     ? { contentVisibility: "hidden" }
                     : null
                 }
               >
-                <div style={{ display: "none" }}>
+                <div
+                >
                   <div className="land" />
                 </div>
                 <div>
-                  <div className="land" />
+                  <div className="land land--rotated" />
                 </div>
               </div>
             ))}
