@@ -9,10 +9,6 @@
   top: 5vmin // hard to say if this is a variable or constant 5vmin
   left: 5vmin // hard to say if this is a variable or constant 5vmin
 
-.backface_dome
-  .plate
-    backface-visibility: hidden
-
 .planet:hover
   .sphere
     animation-play-state: paused
@@ -51,30 +47,6 @@
 .hemisphere:nth-child(2)
   transform: rotateX(-90deg)
 
-.island
-  position: absolute
-  width: $island-diameter * 1vmin
-  height: $island-diameter * 1vmin
-  transform-style: preserve-3d
-  transform-origin: 50% 0
-  top: 50%
-  left: (math.div($planet-diameter - $island-diameter, 2)) * 1vmin
-
-.plate
-  width: 50%
-  height: 50%
-  position: absolute
-  left: 50%
-  top: 50%
-  transform: translate(-50%,-50%)
-
-.plate > div
-  .land
-    width: 100%
-    height: 100%
-    position: absolute
-    border-radius: 50%
-
 @function calc-width($layer)
   $base-chord-distance: math.sqrt($planet-radius-squared - $island-radius-squared)
   @return 2 * (math.sqrt($planet-radius-squared - ( math.pow($base-chord-distance + $shrink-factor * $layer, 2)) ))
@@ -89,32 +61,40 @@
   .land--rotated
     transform: translate(-50%, #{-$island-diameter + ((math.div(($island-diameter - $length), 2) + 3) * 1vmin )}) // 3 as in the height of the div above
 
-@mixin raise-island-layer($tilt: 0, $i, $backwards: false)
-  @if $backwards
-    transform: rotateY(#{$tilt* 1deg}) translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
-  @else
-    transform: rotateY(#{$tilt * 1deg}) translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
+@mixin gen-island($name, $island-layers, $island-diameter)
+  .island--#{$name}
+    width: $island-diameter * 1vmin
+    height: $island-diameter * 1vmin
+    left: (math.div($planet-diameter - $island-diameter, 2)) * 1vmin
+  @for $i from 0 through $island-layers
+    .island--#{$name}
+      .plate:nth-child(#{$i})
+        // alternate +/- 1 degree tilts to 'thread' the layers and make them appear as a solid block when viewing along their plane
+        @if $i % 2 == 0
+          transform: rotateY(1deg) translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg) // 180deg as inverse sphere
+        @else
+          transform: rotateY(-1deg) translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
+      .plate:nth-child(#{$i})
+        @include layer-dimensions($i)
 
-@for $i from 0 through $layers-per-island
-  // z-elevations and island tilts
-  .island
-    .plate:nth-child(#{$i})
-      // alternate +/- 1 degree tilts to 'thread' the layers and make them appear as a solid block when viewing along their plane
-      @if $i % 2 == 0
-        @include raise-island-layer($tilt: 0, $i: $i)
-      @else
-        @include raise-island-layer($tilt: 0, $i: $i)
-  // size tailoring
-  .plate:nth-child(#{$i})
-    @include layer-dimensions($i)
+.island
+  position: absolute
+  transform-style: preserve-3d
+  transform-origin: 50% 0
+  top: 50%
 
-@keyframes rotate
-  0%
-    transform: rotateZ(-15deg) rotateX(0deg) rotateY(0deg)
-    // transform: rotateX(0deg) rotateY(0deg)
-  100%
-    transform: rotateZ(-15deg) rotateX(0deg) rotateY(360deg)
-    // transform: rotateX(0deg) rotateY(360deg)
+@include gen-island(africa, 30, 30)
+
+.plate
+  width: 50%
+  height: 50%
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translate(-50%,-50%)
+
+.land
+  position: absolute
 
 @function calculate-translation($side)
   @return math.sqrt(math.div($planet-radius-squared * $side,  math.div($total-possible-random-positions, 4))) // 4 Quadrants on an xy graph
@@ -154,6 +134,10 @@
   $rotate-x: $point-angle - $chord-center-diff + $quadrant-bonus
   @return ("rot-x": $rotate-x, "trans-y": $trans-y, "trans-z": $trans-z)
 
-@mixin get-random-transformation($seed)
-  $seeds: get-random-z-y($seed: $seed)
-  transform: translateZ(#{map-get($seeds, "trans-z")}vmin) rotateZ(#{map-get($seeds, "rot-z")}deg) translateY(#{map-get($seeds, "trans-y")}vmin) rotateX(#{map-get($seeds, "rot-x")})
+@keyframes rotate
+  0%
+    transform: rotateZ(-15deg) rotateX(0deg) rotateY(0deg)
+// transform: rotateX(0deg) rotateY(0deg)
+  100%
+    transform: rotateZ(-15deg) rotateX(0deg) rotateY(360deg)
+// transform: rotateX(0deg) rotateY(360deg)
