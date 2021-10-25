@@ -47,43 +47,11 @@
 .hemisphere:nth-child(2)
   transform: rotateX(-90deg)
 
-@function calc-width($layer)
-  $base-chord-distance: math.sqrt($planet-radius-squared - $island-radius-squared)
-  @return 2 * (math.sqrt($planet-radius-squared - ( math.pow($base-chord-distance + $shrink-factor * $layer, 2)) ))
-
-@mixin layer-dimensions($layer)
-  $length: calc-width($layer)
-  height: #{$length * 1vmin}
-  width: #{$length * 1vmin}
-  .land
-    left: 50%
-    transform: translate(-50%, #{math.div(($island-diameter - $length), 2) * -1vmin})
-  .land--rotated
-    transform: translate(-50%, #{-$island-diameter + ((math.div(($island-diameter - $length), 2) + 3) * 1vmin )}) // 3 as in the height of the div above
-
-@mixin gen-island($name, $island-layers, $island-diameter)
-  .island--#{$name}
-    width: $island-diameter * 1vmin
-    height: $island-diameter * 1vmin
-    left: (math.div($planet-diameter - $island-diameter, 2)) * 1vmin
-  @for $i from 0 through $island-layers
-    .island--#{$name}
-      .plate:nth-child(#{$i})
-        // alternate +/- 1 degree tilts to 'thread' the layers and make them appear as a solid block when viewing along their plane
-        @if $i % 2 == 0
-          transform: rotateY(1deg) translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg) // 180deg as inverse sphere
-        @else
-          transform: rotateY(-1deg) translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
-      .plate:nth-child(#{$i})
-        @include layer-dimensions($i)
-
 .island
   position: absolute
   transform-style: preserve-3d
   transform-origin: 50% 0
   top: 50%
-
-@include gen-island(africa, 30, 30)
 
 .plate
   width: 50%
@@ -95,11 +63,42 @@
 
 .land
   position: absolute
+  left: 50%
+
+@mixin gen-island($name, $island-layers, $island-diameter, $rotation)
+  $island-radius: math.div($island-diameter, 2)
+  $island-radius-squared: math.pow($island-radius, 2)
+  $island-height: $planet-radius - math.sqrt($planet-radius-squared - $island-radius-squared) // The final height added by the layers piling on top of one another
+  $shrink-factor: math.div($island-height, $layers-per-island) // The factor by which to raise the next layer above the previous
+  .island--#{$name}
+    width: $island-diameter * 1vmin
+    height: $island-diameter * 1vmin
+    left: (math.div($planet-diameter - $island-diameter, 2)) * 1vmin
+    .land
+      height: $island-diameter * 1vmin
+      width: $island-diameter * 1vmin
+  @for $i from 0 through $island-layers
+    $base-chord-distance: math.sqrt($planet-radius-squared - $island-radius-squared)
+    $length: 2 * (math.sqrt($planet-radius-squared - ( math.pow($base-chord-distance + $shrink-factor * $i, 2)) ))
+    .island--#{$name}
+      .plate:nth-child(#{$i})
+        // alternate +/- 1 degree tilts to 'thread' the layers and make them appear as a solid block when viewing along their plane
+        @if $i % 2 == 0
+          transform: rotateY(1deg) translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg) // 180deg as inverse sphere
+        @else
+          transform: rotateY(-1deg) translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
+      .plate:nth-child(#{$i})
+        height: #{$length * 1vmin}
+        width: #{$length * 1vmin}
+        .land
+          transform: translate(-50%, #{math.div(($island-diameter - $length), 2) * -1vmin}) rotate($rotation * 1deg)
+        .land--rotated
+          transform: translate(-50%, #{-$island-diameter + (math.div(($island-diameter - $length), 2) + 3 * 1vmin )}) rotate($rotation * 1deg) // 3 as in the height of the div above
 
 @function calculate-translation($side)
   @return math.sqrt(math.div($planet-radius-squared * $side,  math.div($total-possible-random-positions, 4))) // 4 Quadrants on an xy graph
 
-@function get-random-z-y($seed)
+@function get-random-z-y($seed, $island-radius)
   $seed-z: $seed
   @while $seed-z > $quadrant-boundary
     $seed-z: $seed-z - $quadrant-boundary
