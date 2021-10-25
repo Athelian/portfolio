@@ -1,19 +1,19 @@
 @use "sass:math"
 
 // Arbitrary values
-$layers-per-island: 80 // number of divs to stack on top of one another when creating an islanbd
+$layers-per-island: 30 // number of divs to stack on top of one another when creating an islanbd
 $total-possible-random-positions: 160 // number of (x,y) positions to pick from when placing land
 $planet-diameter: 40
-$island-diameter: 28
+// $island-diameter: 28
 
 // Calculations
 $planet-radius: math.div($planet-diameter, 2)
 $planet-radius-squared: math.pow($planet-radius, 2)
-$island-radius: math.div($island-diameter, 2)
-$island-radius-squared: math.pow($island-radius, 2)
+// $island-radius: math.div($island-diameter, 2)
+// $island-radius-squared: math.pow($island-radius, 2)
 
-$island-height: $planet-radius - math.sqrt($planet-radius-squared - $island-radius-squared) // The final height added by the layers piling on top of one another
-$shrink-factor: math.div($island-height, $layers-per-island) // The factor by which to raise the next layer above the previous
+// $island-height: $planet-radius - math.sqrt($planet-radius-squared - $island-radius-squared) // The final height added by the layers piling on top of one another
+// $shrink-factor: math.div($island-height, $layers-per-island) // The factor by which to raise the next layer above the previous
 $quadrant-boundary: math.div($total-possible-random-positions, 4) // x-y quadrant limits based on quarters of the total random possible positions
 $first-quadrant-limit: $quadrant-boundary * 1
 $second-quadrant-limit: $quadrant-boundary * 2
@@ -22,4 +22,4 @@ $third-quadrant-limit: $quadrant-boundary * 3
 :export
   LAYERS_PER_ISLAND: $layers-per-island
   TOTAL_POSSIBLE_RANDOM_POSITIONS: $total-possible-random-positions
-  ISLAND_DIAMETER: $island-diameter
+  // ISLAND_DIAMETER: $island-diameter
