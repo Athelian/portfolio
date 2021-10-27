@@ -91,9 +91,9 @@
         height: #{$length * 1vmin}
         width: #{$length * 1vmin}
         .land
-          transform: translate(-50%, #{math.div(($island-diameter - $length), 2) * -1vmin}) rotate($rotation * 1deg)
+          transform: translate(-50%, #{math.div(($island-diameter - $length), 2) * -1vmin}) rotate($rotation)
         .land--rotated
-          transform: translate(-50%, #{-$island-diameter + (math.div(($island-diameter - $length), 2) + 3 * 1vmin )}) rotate($rotation * 1deg) // 3 as in the height of the div above
+          transform: translate(-50%, #{-$island-diameter + (math.div(($island-diameter - $length), 2) + 3 * 1vmin )}) rotate($rotation) // 3 as in the height of the div above
 
 @function calculate-translation($side)
   @return math.sqrt(math.div($planet-radius-squared * $side,  math.div($total-possible-random-positions, 4))) // 4 Quadrants on an xy graph
