@@ -69,7 +69,12 @@
   $island-radius: math.div($island-diameter, 2)
   $island-radius-squared: math.pow($island-radius, 2)
   $island-height: $planet-radius - math.sqrt($planet-radius-squared - $island-radius-squared) // The final height added by the layers piling on top of one another
-  $shrink-factor: math.div($island-height, $layers-per-island) // The factor by which to raise the next layer above the previous
+  $shrink-factor: math.div($island-height, $island-layers) // The factor by which to raise the next layer above the previous
+  $base-chord-distance: math.sqrt($planet-radius-squared - $island-radius-squared)
+  @debug $island-layers
+  @debug $island-radius
+  @debug $island-height
+  @debug $shrink-factor
   .island--#{$name}
     width: $island-diameter * 1vmin
     height: $island-diameter * 1vmin
@@ -77,23 +82,36 @@
     .land
       height: $island-diameter * 1vmin
       width: $island-diameter * 1vmin
-  @for $i from 0 through $island-layers
-    $base-chord-distance: math.sqrt($planet-radius-squared - $island-radius-squared)
-    $length: 2 * (math.sqrt($planet-radius-squared - ( math.pow($base-chord-distance + $shrink-factor * $i, 2)) ))
+  @for $i from 0 through $island-layers - 1
+    $island-layer-radius: math.sqrt($planet-radius-squared - ( math.pow($base-chord-distance + $shrink-factor * $i, 2)) )
+    $island-layer-diameter: 2 * $island-layer-radius
+    $window-length: $island-layer-radius - math.sqrt($planet-radius-squared - ( math.pow($base-chord-distance + $shrink-factor * ($i + 1), 2)) )
+    @debug $i
+    @debug $island-layer-radius
+    @debug $window-length
+    @debug $island-radius
+    @debug +$window-length - $island-layer-radius - $island-radius
     .island--#{$name}
       .plate:nth-child(#{$i})
-        // alternate +/- 1 degree tilts to 'thread' the layers and make them appear as a solid block when viewing along their plane
+        height: #{$island-layer-diameter * 1vmin}
+        width: #{$island-layer-diameter * 1vmin}
         @if $i % 2 == 0
           transform: rotateY(1deg) translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg) // 180deg as inverse sphere
         @else
           transform: rotateY(-1deg) translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
-      .plate:nth-child(#{$i})
-        height: #{$length * 1vmin}
-        width: #{$length * 1vmin}
+        > *
+          height: $window-length * 1vmin + 0.2vmin
         .land
-          transform: translate(-50%, #{math.div(($island-diameter - $length), 2) * -1vmin}) rotate($rotation)
+          transform: translate(-50%, #{math.div(($island-diameter - $island-layer-diameter), 2) * -1vmin}) rotate($rotation)
         .land--rotated
-          transform: translate(-50%, #{-$island-diameter + (math.div(($island-diameter - $length), 2) + 3 * 1vmin )}) rotate($rotation) // 3 as in the height of the div above
+          transform: translate(-50%, #{($window-length - $island-layer-radius - $island-radius) * 1vmin} ) rotate($rotation) // MUST be multiplied by plate height to put in correct position
+    @if $i == $island-layers
+      // At this point the shrink factor will be equal to the island height. This means that the the height
+      // will inevitably be zero, but what if the plate child windows (1vmin by default) will not cover the remainder?
+      // In this case, we can up the plate covers to be half the calculated length respectively... why not do this anyway?
+      .island
+
+// Problem that final layer will only reach so far
 
 @function calculate-translation($side)
   @return math.sqrt(math.div($planet-radius-squared * $side,  math.div($total-possible-random-positions, 4))) // 4 Quadrants on an xy graph

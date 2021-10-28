@@ -1,7 +1,6 @@
 import VARIABLES from "../../_variables.module.sass";
 
 // Not so elegant way of processing exported nested maps from sass 
-
 const mapPlanets = (map) =>
   Object.keys(map).reduce((memo, key) => {
     if (!key.startsWith("planet")) return memo;

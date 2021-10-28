@@ -1,21 +1,20 @@
 import Planet from "Components/Planets/Planet";
 import React from "react";
-import VARIABLES from "../../../_variables.module.sass";
 import PlanetProperties from "../PlanetProperties";
 import "./Earth.sass";
 
-const { LAYERS_PER_ISLAND } = VARIABLES;
-
-console.log(PlanetProperties)
-
-const Earth = () => {
-  return (
-    <div>
-      <Planet variant="earth">
+const Earth = () => (
+  <div>
+    <Planet variant="earth">
+      {Object.keys(PlanetProperties["earth"]).map((island) => (
         <div
-          className={"island" + ` island--africa` + ` island--rotate-z-${0}deg`}
+          className={
+            "island" +
+            ` island--${island}` +
+            ` island--rotate-z-${PlanetProperties["earth"][island]["rotation"]}deg`
+          }
         >
-          {Array(parseInt(LAYERS_PER_ISLAND) - 1) // -1 as the final layer has no width or height
+          {Array(parseInt(PlanetProperties["earth"][island]["layers"]) - 1) // -1 as the final layer has no width or height
             .fill("")
             .map((_, i) => (
               <div className="plate" key={i}>
@@ -28,32 +27,9 @@ const Earth = () => {
               </div>
             ))}
         </div>
-        {/* <div
-          className={
-            "island" +
-            ` island--europe` +
-            ` island--rotate-z-${0}deg`
-          }
-        >
-          {Array(parseInt(LAYERS_PER_ISLAND) - 1) // -1 as the final layer has no width or height
-            .fill("")
-            .map((_, i) => (
-              <div
-                className="plate"
-                key={i}
-                style={
-                  i < 20
-                    ? { contentVisibility: "hidden" }
-                    : null
-                }
-              >
-                <div className="land" />
-              </div>
-            ))}
-        </div> */}
-      </Planet>
-    </div>
-  );
-};
+      ))}
+    </Planet>
+  </div>
+);
 
 export default Earth;
