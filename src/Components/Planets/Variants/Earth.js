@@ -1,9 +1,13 @@
 import Planet from "Components/Planets/Planet";
 import React from "react";
 import VARIABLES from "../../../_variables.module.sass";
+import PlanetProperties from "../PlanetProperties";
 import "./Earth.sass";
 
 const { LAYERS_PER_ISLAND } = VARIABLES;
+
+console.log(PlanetProperties)
+
 const Earth = () => {
   return (
     <div>

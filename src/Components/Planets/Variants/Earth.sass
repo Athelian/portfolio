@@ -26,7 +26,7 @@
   animation: rotate 0s infinite linear
   transform: rotateY(0deg) rotateX(15deg)
 
-@include gen-island($name: africa, $island-layers: 30, $island-diameter: 30, $rotation: 7deg)
+@include gen-island($name: africa, $island-layers: map-get($africa, "layers"), $island-diameter: map-get($africa, "diameter"), $rotation: 7deg)
 
 .island--africa
   $translations: get-random-z-y(20, 15)
