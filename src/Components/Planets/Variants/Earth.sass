@@ -3,7 +3,7 @@
 @import 'src/Components/Planets/Planet.sass'
 
 .plate > *
-  height: 1vmin
+  // height: 1vmin
   overflow: hidden
   width: $planet-diameter * 1vmin
   position: absolute
@@ -16,6 +16,12 @@
     bottom: 0
     top: initial
 
+// .cover
+//   height: 100%
+//   width: 100%
+//   clip-path: circle(40%)
+//   background-color: red
+
 .land
   background-color: rgb(91, 214, 171)
 
@@ -24,7 +30,7 @@
 
 .sphere
   animation: rotate 0s infinite linear
-  transform: rotateY(0deg) rotateX(15deg)
+  transform: rotateY(0deg) rotateX(4deg)
 
 @include gen-island($name: africa, $island-layers: map-get($africa, "layers"), $island-diameter: map-get($africa, "diameter"), $rotation: map-get($africa, "rotation") * 1deg)
 

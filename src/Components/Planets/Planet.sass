@@ -84,6 +84,7 @@
       width: $island-diameter * 1vmin
   @for $i from 0 through $island-layers - 1
     $island-layer-radius: math.sqrt($planet-radius-squared - ( math.pow($base-chord-distance + $shrink-factor * $i, 2)) )
+    $island-layer-radius-next: math.sqrt($planet-radius-squared - ( math.pow($base-chord-distance + $shrink-factor * ($i + 1), 2)) )
     $island-layer-diameter: 2 * $island-layer-radius
     $window-length: $island-layer-radius - math.sqrt($planet-radius-squared - ( math.pow($base-chord-distance + $shrink-factor * ($i + 1), 2)) )
     @debug $i
@@ -96,15 +97,20 @@
         height: #{$island-layer-diameter * 1vmin}
         width: #{$island-layer-diameter * 1vmin}
         @if $i % 2 == 0
-          transform: rotateY(1deg) translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg) // 180deg as inverse sphere
+          transform: translate(-50%, -50%) rotateY(0deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(181deg) // 180deg as inverse sphere
         @else
-          transform: rotateY(-1deg) translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
+          transform: translate(-50%, -50%) rotateY(0deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(179deg)
+        .land__window
+          mask: radial-gradient(circle #{($island-layer-radius-next * 1vmin) - 0.5vmin},transparent 100%,#fff 100%)
+          height: 100%
+          width: 100%
         > *
-          height: $window-length * 1vmin + 0.2vmin
+          height: 100%
         .land
           transform: translate(-50%, #{math.div(($island-diameter - $island-layer-diameter), 2) * -1vmin}) rotate($rotation)
         .land--rotated
-          transform: translate(-50%, #{($window-length - $island-layer-radius - $island-radius) * 1vmin} ) rotate($rotation) // MUST be multiplied by plate height to put in correct position
+          transform: translate(-50%, #{($window-length - $island-layer-radius - $island-radius) * 1vmin} ) rotate($rotation)
+
     @if $i == $island-layers
       // At this point the shrink factor will be equal to the island height. This means that the the height
       // will inevitably be zero, but what if the plate child windows (1vmin by default) will not cover the remainder?
