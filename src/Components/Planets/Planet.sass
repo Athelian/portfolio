@@ -104,11 +104,11 @@
         height: #{$island-layer-diameter * 1vmin}
         width: #{$island-layer-diameter * 1vmin}
         @if $i % 2 == 0
-          transform: translate(-50%, -50%) rotateY(-1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg) // 180deg as inverse sphere
+          transform: translate(-50%, -50%) rotateY(-1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
         @if $i % 3 == 0
-          transform: translate(-50%, -50%) rotateY(1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg) // 180deg as inverse sphere
+          transform: translate(-50%, -50%) rotateY(1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
         @if $i % 4 == 0
-          transform: translate(-50%, -50%) rotateY(0deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(181deg) // 180deg as inverse sphere
+          transform: translate(-50%, -50%) rotateY(0deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(181deg)
         @else
           transform: translate(-50%, -50%) rotateY(0deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(179deg)
         .land__window
