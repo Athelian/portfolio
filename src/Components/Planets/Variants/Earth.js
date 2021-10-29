@@ -17,12 +17,9 @@ const Earth = () => (
           {Array(parseInt(PlanetProperties["earth"][island]["layers"]) - 1) // -1 as the final layer has no width or height
             .fill("")
             .map((_, i) => (
-              <div className="plate" key={i}>
+              i < 400 && <div className="plate" key={i} style={i > 1000 ? { display: "none" } : {}}>
                 <div className="land__window">
                   <div className="land" />
-                </div>
-                <div className="land__window">
-                  <div className="land land--rotated" />
                 </div>
               </div>
             ))}
