@@ -72,7 +72,7 @@
   position: absolute
   left: 50%
 
-@mixin gen-island($name, $island-layers, $island-diameter, $rotation)
+@mixin gen-island($name, $island-layers, $island-diameter, $rotation, $flip: false)
   $island-radius: math.div($island-diameter, 2)
   $island-radius-squared: math.pow($island-radius, 2)
   $island-height: $planet-radius - math.sqrt($planet-radius-squared - $island-radius-squared) // The final height added by the layers piling on top of one another
@@ -104,13 +104,25 @@
         height: #{$island-layer-diameter * 1vmin}
         width: #{$island-layer-diameter * 1vmin}
         @if $i % 2 == 0
-          transform: translate(-50%, -50%) rotateY(-1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
+          @if $flip
+            transform: translate(-50%, -50%) rotateY(-1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(0deg)
+          @else
+            transform: translate(-50%, -50%) rotateY(-1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
         @if $i % 3 == 0
-          transform: translate(-50%, -50%) rotateY(1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
+          @if $flip
+            transform: translate(-50%, -50%) rotateY(1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(0deg)
+          @else
+            transform: translate(-50%, -50%) rotateY(1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
         @if $i % 4 == 0
-          transform: translate(-50%, -50%) rotateY(0deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(181deg)
+          @if $flip
+            transform: translate(-50%, -50%) rotateY(0deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(1deg)
+          @else
+            transform: translate(-50%, -50%) rotateY(0deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(181deg)
         @else
-          transform: translate(-50%, -50%) rotateY(0deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(179deg)
+          @if $flip
+            transform: translate(-50%, -50%) rotateY(0deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(-1deg)
+          @else
+            transform: translate(-50%, -50%) rotateY(0deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(179deg)
         .land__window
           height: 100%
           width: 100%
@@ -121,11 +133,9 @@
         > *
           height: 100%
         .land
-          transform: translate(-50%, #{math.div(($island-diameter - $island-layer-diameter), 2) * -1vmin})
-          //rotate($rotation * 1deg)
+          transform: translate(-50%, #{math.div(($island-diameter - $island-layer-diameter), 2) * -1vmin}) rotate($rotation * 1deg)
         .land--rotated
-          transform: translate(-50%, #{($window-length - $island-layer-radius - $island-radius) * 1vmin} )
-          //rotate($rotation * 1deg)
+          transform: translate(-50%, #{($window-length - $island-layer-radius - $island-radius) * 1vmin} ) rotate($rotation * 1deg)
 
 @function calculate-translation($side)
   @return math.sqrt(math.div($planet-radius-squared * $side,  math.div($total-possible-random-positions, 4))) // 4 Quadrants on an xy graph
