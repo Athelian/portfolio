@@ -86,9 +86,9 @@
   $island-height: $planet-radius - math.sqrt($planet-radius-squared - $island-radius-squared) // The final height added by the layers piling on top of one another
   $shrink-factor: math.div($island-height, $island-layers) // The factor by which to raise the next layer above the previous
   $base-chord-distance: math.sqrt($planet-radius-squared - $island-radius-squared)
-  $layer-offset-remainder: 0.2 // If you don't look directly down the axis at all times there is some offset.
+  $layer-offset-remainder: 0.4 // If you don't look directly down the axis at all times there is some offset.
   .island--#{$name}
-    transform: translateZ(#{map-get($translations, "trans-z")}vmin ) rotateZ($z-rotation * 1deg) translateY(#{map-get($translations, "trans-y")}vmin) rotateX(#{map-get($translations, "rot-x")})
+    transform: translateZ(#{map-get($translations, "trans-z")}vmin ) rotateZ($z-rotation * 1deg) translateY(#{map-get($translations, "trans-y")}vmin) rotateX(#{map-get($translations, "rot-x")}) rotate($rotation * 1deg)
     width: $island-diameter * 1vmin
     height: $island-diameter * 1vmin
     left: (math.div($planet-diameter - $island-diameter, 2)) * 1vmin
@@ -113,7 +113,7 @@
           @else
             mask: radial-gradient(circle #{($island-layer-radius-next - $layer-offset-remainder * 1vmin)},transparent 100%,#fff 100%)
         .land
-          transform: translate(-50%, #{math.div(($island-diameter - $island-layer-diameter), 2) * -1vmin}) rotate($rotation * 1deg)
+          transform: translate(-50%, #{math.div(($island-diameter - $island-layer-diameter), 2) * -1vmin})
 
 @function calculate-translation($side)
   @return math.sqrt(math.div($planet-radius-squared * $side,  math.div($total-possible-random-positions, 4))) // 4 Quadrants on an xy graph
