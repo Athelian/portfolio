@@ -60,9 +60,10 @@
   left: 50%
   top: 50%
   transform: translate(-50%,-50%)
+  transform-style: preserve-3d
 
 .land__window
-  // overflow: hidden
+  transform-style: preserve-3d
   position: absolute
   left: 50%
   top: 0%
@@ -72,12 +73,23 @@
   position: absolute
   left: 50%
 
+.test
+  width: 100%
+  height: 100%
+  // background-color: rgb(91, 214, 171)
+  background-color: red
+  position: absolute
+
+.test-up
+  bottom: 0
+
 @mixin gen-island($name, $island-layers, $island-diameter, $rotation, $flip: false)
   $island-radius: math.div($island-diameter, 2)
   $island-radius-squared: math.pow($island-radius, 2)
   $island-height: $planet-radius - math.sqrt($planet-radius-squared - $island-radius-squared) // The final height added by the layers piling on top of one another
   $shrink-factor: math.div($island-height, $island-layers) // The factor by which to raise the next layer above the previous
   $base-chord-distance: math.sqrt($planet-radius-squared - $island-radius-squared)
+  $layer-offset-remainder: 0.6
   @debug $island-layers
   @debug $island-radius
   @debug $island-height
@@ -94,42 +106,59 @@
     $island-layer-radius-next: math.sqrt($planet-radius-squared - ( math.pow($base-chord-distance + $shrink-factor * ($i + 1), 2)) )
     $island-layer-diameter: 2 * $island-layer-radius
     $window-length: $island-layer-radius - math.sqrt($planet-radius-squared - ( math.pow($base-chord-distance + $shrink-factor * ($i + 1), 2)) )
-    @debug $i
-    @debug $island-layer-radius
-    @debug $window-length
-    @debug $island-radius
-    @debug +$window-length - $island-layer-radius - $island-radius
     .island--#{$name}
       .plate:nth-child(#{$i})
+        $position: $i % 6
         height: #{$island-layer-diameter * 1vmin}
         width: #{$island-layer-diameter * 1vmin}
-        @if $i % 2 == 0
-          @if $flip
-            transform: translate(-50%, -50%) rotateY(-1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(0deg)
-          @else
-            transform: translate(-50%, -50%) rotateY(-1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
-        @if $i % 3 == 0
-          @if $flip
-            transform: translate(-50%, -50%) rotateY(1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(0deg)
-          @else
-            transform: translate(-50%, -50%) rotateY(1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
-        @if $i % 4 == 0
-          @if $flip
-            transform: translate(-50%, -50%) rotateY(0deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(1deg)
-          @else
-            transform: translate(-50%, -50%) rotateY(0deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(181deg)
+        .test
+          width: $shrink-factor * 1vmin
+          left: calc(50% - math.div($shrink-factor, 2) * 1vmin)
+          transform: rotateY(90deg) translateX(math.div($shrink-factor, 2) * 1vmin)
+          height: math.div(math.div($island-layer-diameter,2) - ($island-layer-radius-next - $layer-offset-remainder), 1) * 1vmin
+          // mask: radial-gradient(circle #{($island-layer-radius-next * 1vmin)},transparent 100%,#fff 100%)
+        @if $flip
+          transform: translate(-50%, -50%) rotateY(-0.0deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(0deg)
         @else
-          @if $flip
-            transform: translate(-50%, -50%) rotateY(0deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(-1deg)
-          @else
-            transform: translate(-50%, -50%) rotateY(0deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(179deg)
+          transform: translate(-50%, -50%) rotateY(-0.0deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
+        // @if $position == 0
+        //   @if $flip
+        //     transform: translate(-50%, -50%) rotateY(0.3deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(0deg)
+        //   @else
+        //     transform: translate(-50%, -50%) rotateY(0.3deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
+        // @if $position == 1
+        //   @if $flip
+        //     transform: translate(-50%, -50%) rotateY(-0.3deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(0deg)
+        //   @else
+        //     transform: translate(-50%, -50%) rotateY(-0.3deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
+        // @if $position == 2
+        //   @if $flip
+        //     transform: translate(-50%, -50%) rotateY(0.2deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(0deg)
+        //   @else
+        //     transform: translate(-50%, -50%) rotateY(0.2deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
+        // @if $position == 3
+        //   @if $flip
+        //     transform: translate(-50%, -50%) rotateY(-0.2deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(0deg)
+        //   @else
+        //     transform: translate(-50%, -50%) rotateY(-0.2deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
+        // @if $position == 4
+        //   @if $flip
+        //     transform: translate(-50%, -50%) rotateY(0.1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(0deg)
+        //   @else
+        //     transform: translate(-50%, -50%) rotateY(0.1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
+        // @if $position == 5
+        //   @if $flip
+        //     transform: translate(-50%, -50%) rotateY(-0.1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(0deg)
+        //   @else
+        //     transform: translate(-50%, -50%) rotateY(-0.1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
+        .land__window
         .land__window
           height: 100%
           width: 100%
           @if $i == $island-layers - 1
             mask: radial-gradient(circle 0vmin,transparent 100%,#fff 100%)
           @else
-            mask: radial-gradient(circle #{($island-layer-radius-next * 1vmin) - 0.4vmin},transparent 100%,#fff 100%)
+            mask: radial-gradient(circle #{($island-layer-radius-next - $layer-offset-remainder * 1vmin)},transparent 100%,#fff 100%)
         > *
           height: 100%
         .land
