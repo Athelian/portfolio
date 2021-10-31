@@ -3,8 +3,6 @@ import React from "react";
 import PlanetProperties from "../PlanetProperties";
 import "./Earth.sass";
 
-console.log(PlanetProperties)
-
 const Earth = () => (
   <div>
     <Planet variant="earth">
@@ -27,22 +25,8 @@ const Earth = () => (
                     style={i === -1 ? { display: "none" } : {}}
                   >
                     <div className="land__window">
-                      {Array(
-                        parseInt(
-                          PlanetProperties["earth"][island]["components"]
-                        )
-                      )
-                        .fill("")
-                        .map((_, i) => (
-                          <>
-                            <div className="land" key={i}>
-                              {/* <div /> */}
-                            </div>
-                          </>
-                        ))}
+                      <div className="land" key={i}></div>
                     </div>
-                    {/* <div className="test" /> */}
-                    {/* <div className="test test-up" /> */}
                   </div>
                 )
             )}
