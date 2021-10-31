@@ -1,10 +1,8 @@
 @use "sass:math"
 
 // Arbitrary values
-$layers-per-island: 30 // number of divs to stack on top of one another when creating an islanbd
-$total-possible-random-positions: 160 // number of (x,y) positions to pick from when placing land
+$total-possible-random-positions: 640 // number of (x,y) positions to pick from when placing land
 $planet-diameter: 40
-$island-diameter: 28
 
 // Calculations
 $planet-radius: math.div($planet-diameter, 2)
@@ -15,10 +13,14 @@ $first-quadrant-limit: $quadrant-boundary * 1
 $second-quadrant-limit: $quadrant-boundary * 2
 $third-quadrant-limit: $quadrant-boundary * 3
 
-$africa: (layers: 50, diameter: 26, rotation: 0, components: 1)
-$europe: (layers: 50, diameter: 16, rotation: 0, components: 4)
-$asia: (layers: 50, diameter: 36, rotation: 0, components: 1)
-$earth: (asia: $asia, africa: $africa, europe: $europe)
+$nw_africa: (layers: 10, diameter: 15, rotation: 0, z-rotation: 18, position: 2)
+$ne_africa: (layers: 10, diameter: 18, rotation: 0, z-rotation: -13, position: 0)
+$c-africa: (layers: 10, diameter: 14, rotation: 0, z-rotation: -5, position: 192)
+$s-africa: (layers: 15, diameter: 15, rotation: -8, z-rotation: -14, position: 247, components: 2)
+$middle_east: (layers: 20, diameter: 13, rotation: 0, z-rotation: -35, position: 12)
+$se_europe: (layers: 20, diameter: 10, rotation: 0, z-rotation: -13, position: 38)
+$c_europe: (layers: 20, diameter: 13, rotation: 0, z-rotation: -4, position: 78, components: 2)
+$earth: (nw_africa: $nw_africa, ne_africa: $ne_africa, c_africa: $c_africa, s_africa: $s_africa, middle_east: $middle_east, se_europe: $se_europe, c_europe: $c_europe)
 
 @mixin rule($key, $value, $prefix)
   #{$prefix}-#{$key}: $value
@@ -30,5 +32,4 @@ $earth: (asia: $asia, africa: $africa, europe: $europe)
     @include internal-map-to-string($key, $value, $prefix)
 
 :export
-  LAYERS_PER_ISLAND: $layers-per-island
   @include map-to-string($earth, "planet-earth")
