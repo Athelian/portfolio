@@ -128,20 +128,17 @@
   $trans-z: calculate-translation($seed-z)
   $seed-y: $quadrant-boundary - $seed-z
   $trans-y: calculate-translation($seed-y)
-
   // Ensure seeds go through all four quadrants equally
   // 0 ---- z+ y+ ---- 25 ---- z- y+ ---- 50 ---- z+ y- ---- 75 ---- z- y- ---- 100
   @if $seed >= $first-quadrant-limit and $seed < $second-quadrant-limit or $seed >= $third-quadrant-limit
     $trans-z: -$trans-z
   @if $seed >= $second-quadrant-limit
     $trans-y: -$trans-y
-
   $point-angle: 0deg
   @if ($trans-y >=0 and $trans-z >= 0) or ($trans-y < 0 and $trans-z < 0)
     $point-angle: math.atan(math.div(math.abs($trans-z), math.abs($trans-y) ))
   @else
     $point-angle: math.atan(math.div(math.abs($trans-y), math.abs($trans-z) ))
-
   $quadrant-bonus: 0deg
   @if $trans-z >= 0 and $trans-y < 0
     $quadrant-bonus: 0deg
@@ -151,7 +148,6 @@
     $quadrant-bonus: 180deg
   @if $trans-z >= 0 and $trans-y >= 0
     $quadrant-bonus: 270deg
-
   $chord-center-diff: math.asin(math.div($island-radius, $planet-radius))
   $rotate-x: $point-angle - $chord-center-diff + $quadrant-bonus
   @return ("rot-x": $rotate-x, "trans-y": $trans-y, "trans-z": $trans-z)

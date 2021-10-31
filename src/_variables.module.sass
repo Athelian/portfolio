@@ -13,10 +13,11 @@ $first-quadrant-limit: $quadrant-boundary * 1
 $second-quadrant-limit: $quadrant-boundary * 2
 $third-quadrant-limit: $quadrant-boundary * 3
 
-$africa: (layers: 60, diameter: 26, rotation: 0, z-rotation: 0, position: 3)
-$middle-east: (layers: 60, diameter: 13, rotation: 0, z-rotation: -33, position: 14, flip: true)
-
-$earth: (africa: $africa, middle_east: $middle-east)
+$africa: (layers: 60, diameter: 26, rotation: 0, z-rotation: 0, position: 3, components: 1)
+$middle-east: (layers: 30, diameter: 13, rotation: 0, z-rotation: -33, position: 12, components: 1, flip: true)
+$se-europe: (layers: 30, diameter: 10, rotation: 0, z-rotation: -9, position: 27, components: 1, flip: true)
+$c-europe: (layers: 30, diameter: 13, rotation: 0, z-rotation: 3, position: 54, components: 1, flip: true)
+$earth: (africa: $africa, middle_east: $middle-east, se_europe: $se-europe, c_europe: $c-europe)
 
 @mixin rule($key, $value, $prefix)
   #{$prefix}-#{$key}: $value
