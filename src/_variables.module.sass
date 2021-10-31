@@ -2,7 +2,7 @@
 
 // Arbitrary values
 $total-possible-random-positions: 640 // number of (x,y) positions to pick from when placing land
-$planet-diameter: 40
+$planet-diameter: 42
 
 // Calculations
 $planet-radius: math.div($planet-diameter, 2)
@@ -13,13 +13,13 @@ $first-quadrant-limit: $quadrant-boundary * 1
 $second-quadrant-limit: $quadrant-boundary * 2
 $third-quadrant-limit: $quadrant-boundary * 3
 
-$nw_africa: (layers: 10, diameter: 15, rotation: 0, z-rotation: 18, position: 2)
-$ne_africa: (layers: 10, diameter: 18, rotation: 0, z-rotation: -13, position: 0)
-$c-africa: (layers: 10, diameter: 14, rotation: 0, z-rotation: -5, position: 192)
-$s-africa: (layers: 15, diameter: 15, rotation: -8, z-rotation: -14, position: 247, components: 2)
-$middle_east: (layers: 20, diameter: 13, rotation: 0, z-rotation: -35, position: 12)
-$se_europe: (layers: 20, diameter: 10, rotation: 0, z-rotation: -13, position: 38)
-$c_europe: (layers: 20, diameter: 13, rotation: 0, z-rotation: -4, position: 78, components: 2)
+$nw_africa: (layers: 10, diameter: 14, rotation: -10, z-rotation: 17, position: 0)
+$ne_africa: (layers: 10, diameter: 17, rotation: 0, z-rotation: -13, position: 0)
+$c-africa: (layers: 10, diameter: 13, rotation: 0, z-rotation: -6, position: 186)
+$s-africa: (layers: 15, diameter: 14, rotation: -9, z-rotation: -13, position: 234, components: 2)
+$middle_east: (layers: 20, diameter: 12, rotation: 0, z-rotation: -28, position: 5)
+$se_europe: (layers: 20, diameter: 9, rotation: 12, z-rotation: -12, position: 28)
+$c_europe: (layers: 20, diameter: 12, rotation: 0, z-rotation: -9, position: 66, components: 2)
 $earth: (nw_africa: $nw_africa, ne_africa: $ne_africa, c_africa: $c_africa, s_africa: $s_africa, middle_east: $middle_east, se_europe: $se_europe, c_europe: $c_europe)
 
 @mixin rule($key, $value, $prefix)
