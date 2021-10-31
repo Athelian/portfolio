@@ -79,7 +79,7 @@
   100%
     transform: rotateZ(-23.5deg) rotateX(0deg) rotateY(360deg)
 
-@mixin gen-island($name, $island-layers, $island-diameter, $rotation, $z-rotation, $position, $flip: false)
+@mixin gen-island($name, $island-layers, $island-diameter, $rotation, $z-rotation, $position)
   $island-radius: math.div($island-diameter, 2)
   $translations: get-random-z-y($position, $island-radius)
   $island-radius-squared: math.pow($island-radius, 2)
@@ -104,10 +104,7 @@
       .plate:nth-child(#{$i})
         height: #{$island-layer-diameter * 1vmin}
         width: #{$island-layer-diameter * 1vmin}
-        @if $flip
-          transform: translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(0deg)
-        @else
-          transform: translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(180deg)
+        transform: translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(0deg)
         .land__window
           height: 100%
           width: 100%

@@ -16,7 +16,7 @@ const Earth = () => (
               <div className="plate" key={i}>
                 <div className="land__window">
                   {Array(
-                    parseInt(PlanetProperties["earth"][island]["components"])
+                    parseInt(PlanetProperties["earth"][island]?.["components"] || 1)
                   )
                     .fill("")
                     .map((_, i) => (
