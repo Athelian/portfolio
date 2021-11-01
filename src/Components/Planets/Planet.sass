@@ -67,7 +67,6 @@
   position: absolute
   left: 50%
   top: 0%
-  transform: translate(-50%, 0%)
 
 .land
   position: absolute
@@ -85,10 +84,11 @@
   $island-radius-squared: math.pow($island-radius, 2)
   $island-height: $planet-radius - math.sqrt($planet-radius-squared - $island-radius-squared) // The final height added by the layers piling on top of one another
   $shrink-factor: math.div($island-height, $island-layers) // The factor by which to raise the next layer above the previous
+  $shrink-factor-root: math.sqrt($shrink-factor)
   $base-chord-distance: math.sqrt($planet-radius-squared - $island-radius-squared)
   $layer-offset-remainder: 0.4 // If you don't look directly down the axis at all times there is some offset.
   .island--#{$name}
-    transform: translateZ(#{map-get($translations, "trans-z")}vmin ) rotateZ($z-rotation * 1deg) translateY(#{map-get($translations, "trans-y")}vmin) rotateX(#{map-get($translations, "rot-x")}) rotate($rotation * 1deg)
+    transform: translateZ(#{map-get($translations, "trans-z")}vmin ) rotateZ($z-rotation * 1deg) translateY(#{map-get($translations, "trans-y")}vmin) rotateX(#{map-get($translations, "rot-x")})
     width: $island-diameter * 1vmin
     height: $island-diameter * 1vmin
     left: (math.div($planet-diameter - $island-diameter, 2)) * 1vmin
@@ -104,10 +104,15 @@
       .plate:nth-child(#{$i})
         height: #{$island-layer-diameter * 1vmin}
         width: #{$island-layer-diameter * 1vmin}
-        transform: translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(0deg)
+        @debug math.div($i, $island-layers)
+        @if $i % 2 == 0
+          transform: translate(-50%, -50%) rotateY(0.1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(0deg)
+        @else
+          transform: translate(-50%, -50%) rotateY(-0.1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(0deg)
         .land__window
           height: 100%
           width: 100%
+          transform: translate(-50%, 0%) rotate($rotation * 1deg)
           @if $i == $island-layers - 1
             mask: radial-gradient(circle 0vmin,transparent 100%,#fff 100%) // Final layer should not hide anything
           @else
