@@ -87,7 +87,7 @@
   $shrink-factor: math.div($island-height, $island-layers) // The factor by which to raise the next layer above the previous
   $shrink-factor-root: math.sqrt($shrink-factor)
   $base-chord-distance: math.sqrt($planet-radius-squared - $island-radius-squared)
-  $layer-offset-remainder: 0.5 // If you don't look directly down the axis at all times there is some offset.
+  $layer-offset-remainder: 0.2 // If you don't look directly down the axis at all times there is some offset.
   .island--#{$name}
     transform: translateZ(#{map-get($translations, "trans-z")}vmin ) rotateZ($z-rotation * 1deg) translateY(#{map-get($translations, "trans-y")}vmin) rotateX(#{map-get($translations, "rot-x")})
     width: $island-diameter * 1vmin
@@ -111,10 +111,10 @@
         width: #{$island-layer-diameter * 1vmin}
         // @if $i < math.div($island-layers, 2)
         //   filter: blur(2px)
-        @if $name == asia
-          transform: translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotate($rotation * 1deg) rotateY(-20deg)
-        @else
-          transform: translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotate($rotation * 1deg)
+        // @if $name == asia
+          // transform: translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotate($rotation * 1deg) rotateY(-20deg)
+        // @else
+        transform: translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotate($rotation * 1deg)
 
         @if $i == $island-layers - 1
           mask: radial-gradient(circle 0vmin,transparent 100%,#fff 100%) // Final layer should not hide anything

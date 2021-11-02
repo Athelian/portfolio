@@ -38,6 +38,7 @@ header
 
 .earth-holder
   clip-path: circle(21vmin)
+  height: 42vmin
 
 div.ui.card
   padding: 2rem
@@ -70,3 +71,7 @@ div.ui.card
 @media all and (min-width: 1470px)
   .section__header
     left: calc(50% - 37rem)
+
+.hide
+  .planet--earth::before
+    background-color: rgba(1, 1, 1, 0) !important

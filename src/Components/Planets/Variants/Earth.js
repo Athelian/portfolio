@@ -5,11 +5,18 @@ import "./Earth.sass";
 
 console.log(PlanetProperties);
 
-const Earth = () => (
-  <div>
-    <Planet variant="earth">
-      {Object.keys(PlanetProperties["earth"]).map((island) => (
-        <div className={"island" + ` island--${island}`} key={island}>
+const Earth = (props) => (
+  <div
+    className={props.second && "hide"}
+    style={{ position: "absolute" }}>
+    <Planet variant={`earth`}>
+      {Object.keys(PlanetProperties["earth"]).map((island) => {
+        if (props.second) {
+          if (island === "europe" || island === "africa") return
+        } else {
+          if (island === "asia") return;
+        }
+        return <div className={"island" + ` island--${island}`} key={island}>
           {Array(parseInt(PlanetProperties["earth"][island]["layers"]) - 1) // -1 as the final layer has no width or height
             .fill("")
             .map((_, i) => (
@@ -34,8 +41,8 @@ const Earth = () => (
                 {/* </div> */}
               </div>
             ))}
-        </div>
-      ))}
+        </div>;
+      })}
     </Planet>
   </div>
 );
