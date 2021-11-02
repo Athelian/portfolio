@@ -29,6 +29,7 @@ function App() {
       </div>
       <div className="earth-holder">
         <Earth />
+        <Earth second />
       </div>
       <section className="section section--pink">
         <img alt="section header" className="section__header" src={about} />
