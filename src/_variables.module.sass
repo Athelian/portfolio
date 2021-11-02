@@ -13,11 +13,13 @@ $first-quadrant-limit: $quadrant-boundary * 1
 $second-quadrant-limit: $quadrant-boundary * 2
 $third-quadrant-limit: $quadrant-boundary * 3
 
-$africa: (layers: 20, diameter: 28, rotation: 0, z-rotation: 17, position: 0)
-$e-m: (layers: 30, diameter: 38, rotation: 5, z-rotation: -11, position: 156, components: 1)
+$e-m: (layers: 30, diameter: 38, rotation: 5, z-rotation: 90, position: 156, components: 1)
 $uk: (layers: 40, diameter: 6, rotation: 1, z-rotation: 36, position: 52, components: 2)
 $russia: (layers: 20, diameter: 40, rotation: 18, z-rotation: -62, position: 144)
-$asia: (layers: 20, diameter: 34, rotation: 40, z-rotation: -120, position: 138)
+
+$africa: (layers: 80, diameter: 41.99, rotation: 0, z-rotation: 17, position: 0)
+$asia: (layers: 80, diameter: 33, rotation: 20, z-rotation: -90, position: 80)
+$europe: (layers: 80, diameter: 25, rotation: 18, z-rotation: 0, position: 129, components: 8)
 
 $nw_africa: (layers: 10, diameter: 14, rotation: -10, z-rotation: 17, position: 0)
 $ne_africa: (layers: 10, diameter: 17, rotation: 0, z-rotation: -13, position: 0)
@@ -27,9 +29,8 @@ $middle_east: (layers: 20, diameter: 12, rotation: 0, z-rotation: -28, position:
 $se_europe: (layers: 20, diameter: 9, rotation: 12, z-rotation: -12, position: 28)
 $c_europe: (layers: 10, diameter: 12, rotation: 13, z-rotation: -8, position: 69, components: 2)
 $w_europe: (layers: 30, diameter: 12, rotation: 8, z-rotation: 10, position: 88, components: 1)
-$europe: (layers: 30, diameter: 20, rotation: 18, z-rotation: 2, position: 88, components: 1)
-$earth: (africa: $africa, e_m: $e-m, uk: $uk, asia: $asia)
-// $earth: (e_m: $e-m, uk: $uk, asia: $asia)
+// $earth: (africa: $africa, e_m: $e-m, uk: $uk, asia: $asia)
+$earth: (africa: $africa)
 
 @mixin rule($key, $value, $prefix)
   #{$prefix}-#{$key}: $value
