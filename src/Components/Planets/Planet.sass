@@ -72,6 +72,9 @@
   position: absolute
   left: 50%
 
+.test
+  transform: rotateY(3deg)
+
 @keyframes rotate
   0%
     transform: rotateZ(-23.5deg) rotateX(0deg) rotateY(0deg)
@@ -86,7 +89,7 @@
   $shrink-factor: math.div($island-height, $island-layers) // The factor by which to raise the next layer above the previous
   $shrink-factor-root: math.sqrt($shrink-factor)
   $base-chord-distance: math.sqrt($planet-radius-squared - $island-radius-squared)
-  $layer-offset-remainder: 0.9 // If you don't look directly down the axis at all times there is some offset.
+  $layer-offset-remainder: 0.5 // If you don't look directly down the axis at all times there is some offset.
   .island--#{$name}
     transform: translateZ(#{map-get($translations, "trans-z")}vmin ) rotate($rotation * 1deg) rotateZ($z-rotation * 1deg) translateY(#{map-get($translations, "trans-y")}vmin) rotateX(#{map-get($translations, "rot-x")})
     width: $island-diameter * 1vmin
@@ -104,11 +107,12 @@
       .plate:nth-child(#{$i})
         height: #{$island-layer-diameter * 1vmin}
         width: #{$island-layer-diameter * 1vmin}
-        @debug math.div($i, $island-layers)
-        @if $i % 2 == 0
-          transform: translate(-50%, -50%) rotateY(0.1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(-0.1deg)
-        @else
-          transform: translate(-50%, -50%) rotateY(-0.1deg) translateZ(#{$i * $shrink-factor * 1vmin}) rotateX(0.1deg)
+        // @if $i < math.div($island-layers, 2)
+        //   filter: blur(2px)
+        // @if $i % 2 == 0
+        transform: translate(-50%, -50%) rotateY(0) translateZ(#{$i * $shrink-factor * 1vmin})
+        // @else
+        // transform: translate(-50%, -50%) rotateY(-0.1deg) translateZ(#{$i * $shrink-factor * 1vmin})
         .land__window
           height: 100%
           width: 100%

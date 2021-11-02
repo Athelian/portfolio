@@ -13,15 +13,23 @@ const Earth = () => (
           {Array(parseInt(PlanetProperties["earth"][island]["layers"]) - 1) // -1 as the final layer has no width or height
             .fill("")
             .map((_, i) => (
-              <div className="plate" key={i}>
+              <div
+                className="plate"
+                key={i}
+              // style={i !== 1 ? { display: "none" } : {}}
+              >
                 <div className="land__window">
+                  {/* <div className="test"> */}
                   {Array(
-                    parseInt(PlanetProperties["earth"][island]?.["components"] || 1)
+                    parseInt(
+                      PlanetProperties["earth"][island]?.["components"] || 1
+                    )
                   )
                     .fill("")
                     .map((_, i) => (
                       <div className="land" key={i} />
                     ))}
+                  {/* </div> */}
                 </div>
               </div>
             ))}
