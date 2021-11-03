@@ -27,11 +27,7 @@ function App() {
           stacks
         </h3>
       </div>
-      <div className="earth-holder">
-        <Earth />
-        {/* <Earth second /> */}
-        {/* <Earth third /> */}
-      </div>
+      <Earth />
       <section className="section section--pink">
         <img alt="section header" className="section__header" src={about} />
         <Card.Group centered>

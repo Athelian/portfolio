@@ -3,6 +3,7 @@
 // Arbitrary values
 $total-possible-random-positions: 2560 // number of (x,y) positions to pick from when placing land
 $planet-diameter: 42
+$layer-offset-remainder: 0.3 // If you don't look directly down the axis at all times there is some offset.
 
 // Calculations
 $planet-radius: math.div($planet-diameter, 2)
@@ -18,7 +19,6 @@ $asia: (layers: 20, diameter: 38, rotation: -4, z-rotation: -45, position: 1919,
 $europe: (layers: 20, diameter: 21, rotation: 0, z-rotation: 10, position: 520, components: 8)
 $america: (layers: 30, diameter: 40, rotation: 6, z-rotation: 140, position: 530, components: 4)
 $aus: (layers: 20, diameter: 24, rotation: -10, z-rotation: -89, position: 1, components: 24)
-
 $earth: (africa: $africa, europe: $europe, asia: $asia, america: $america, aus: $aus)
 
 @mixin rule($key, $value, $prefix)
