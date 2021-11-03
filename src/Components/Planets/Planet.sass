@@ -87,7 +87,7 @@
   $shrink-factor: math.div($island-height, $island-layers) // The factor by which to raise the next layer above the previous
   $shrink-factor-root: math.sqrt($shrink-factor)
   $base-chord-distance: math.sqrt($planet-radius-squared - $island-radius-squared)
-  $layer-offset-remainder: 0.2 // If you don't look directly down the axis at all times there is some offset.
+  $layer-offset-remainder: 0.6 // If you don't look directly down the axis at all times there is some offset.
   .island--#{$name}
     transform: translateZ(#{map-get($translations, "trans-z")}vmin ) rotateZ($z-rotation * 1deg) translateY(#{map-get($translations, "trans-y")}vmin) rotateX(#{map-get($translations, "rot-x")})
     width: $island-diameter * 1vmin

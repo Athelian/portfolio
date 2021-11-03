@@ -29,7 +29,8 @@ function App() {
       </div>
       <div className="earth-holder">
         <Earth />
-        <Earth second />
+        {/* <Earth second /> */}
+        {/* <Earth third /> */}
       </div>
       <section className="section section--pink">
         <img alt="section header" className="section__header" src={about} />
