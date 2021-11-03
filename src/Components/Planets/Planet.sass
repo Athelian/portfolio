@@ -20,6 +20,7 @@
   transform: translateZ(1vmin)
 
 .sphere
+  position: absolute
   transform-style: preserve-3d
   animation: rotate 15s infinite linear
   transform: rotateY(0deg) rotateX(0deg)
@@ -35,6 +36,9 @@
   transform-style: preserve-3d
   transform-origin: 50% 50%
   transform: rotateX(90deg)
+
+.hemisphere:nth-child(2)
+  transform: rotateX(-90deg)
 
 .island
   position: absolute
