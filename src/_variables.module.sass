@@ -1,8 +1,9 @@
 @use "sass:math"
 
 // Arbitrary values
-$total-possible-random-positions: 640 // number of (x,y) positions to pick from when placing land
+$total-possible-random-positions: 2560 // number of (x,y) positions to pick from when placing land
 $planet-diameter: 42
+$layer-offset-remainder: 0.3 // If you don't look directly down the axis at all times there is some offset.
 
 // Calculations
 $planet-radius: math.div($planet-diameter, 2)
@@ -13,30 +14,20 @@ $first-quadrant-limit: $quadrant-boundary * 1
 $second-quadrant-limit: $quadrant-boundary * 2
 $third-quadrant-limit: $quadrant-boundary * 3
 
-$e-m: (layers: 30, diameter: 38, rotation: 5, z-rotation: 90, position: 156, components: 1)
-$uk: (layers: 40, diameter: 6, rotation: 1, z-rotation: 36, position: 52, components: 2)
-$russia: (layers: 20, diameter: 40, rotation: 18, z-rotation: -62, position: 144)
-
-$africa: (layers: 80, diameter: 25, rotation: 0, z-rotation: 17, position: 0)
-$asia: (layers: 80, diameter: 32, rotation: 12, z-rotation: -55, position: 65)
-$europe: (layers: 80, diameter: 25, rotation: 18, z-rotation: 0, position: 129, components: 8)
-
-$nw_africa: (layers: 10, diameter: 14, rotation: -10, z-rotation: 17, position: 0)
-$ne_africa: (layers: 10, diameter: 17, rotation: 0, z-rotation: -13, position: 0)
-$c-africa: (layers: 10, diameter: 13, rotation: 0, z-rotation: -6, position: 186)
-$s-africa: (layers: 15, diameter: 16, rotation: -4, z-rotation: -15, position: 233, components: 2)
-$middle_east: (layers: 20, diameter: 12, rotation: 0, z-rotation: -28, position: 5)
-$se_europe: (layers: 20, diameter: 9, rotation: 12, z-rotation: -12, position: 28)
-$c_europe: (layers: 10, diameter: 12, rotation: 13, z-rotation: -8, position: 69, components: 2)
-$w_europe: (layers: 30, diameter: 12, rotation: 8, z-rotation: 10, position: 88, components: 1)
-// $earth: (africa: $africa, e_m: $e-m, uk: $uk, asia: $asia)
-$earth: (africa: $africa, europe: $europe, asia: $asia)
+$africa: (layers: 20, diameter: 26, rotation: -8, z-rotation: 14, position: 10)
+$asia: (layers: 20, diameter: 38, rotation: -4, z-rotation: -45, position: 1919, components: 7)
+$europe: (layers: 20, diameter: 21, rotation: 0, z-rotation: 10, position: 520, components: 8)
+$america: (layers: 30, diameter: 40, rotation: 6, z-rotation: 140, position: 530, components: 4)
+$aus: (layers: 20, diameter: 24, rotation: -10, z-rotation: -89, position: 1, components: 24)
+$earth: (africa: $africa, europe: $europe, asia: $asia, america: $america, aus: $aus)
 
 @mixin rule($key, $value, $prefix)
   #{$prefix}-#{$key}: $value
+
 @mixin internal-map-to-string($key1, $value, $prefix)
   @each $key, $value in $value
     @include rule($key, $value, #{$prefix + "-" + $key1})
+
 @mixin map-to-string($map, $prefix)
   @each $key, $value in $map
     @include internal-map-to-string($key, $value, $prefix)

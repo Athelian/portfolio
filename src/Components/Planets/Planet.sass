@@ -2,12 +2,10 @@
 @import 'src/variables.module.sass'
 
 .planet
-  perspective: 200vmin
+  perspective: $planet-radius * 10 * 1vmin
   transform-style: preserve-3d
   width: $planet-diameter * 1vmin
   height: $planet-diameter * 1vmin
-  top: 5vmin // hard to say if this is a variable or constant 5vmin
-  left: 5vmin // hard to say if this is a variable or constant 5vmin
 
 .planet:hover
   .sphere
@@ -18,21 +16,15 @@
   position: absolute
   width: 100%
   height: 100%
-  top: 0%
-  left: 0%
   border-radius: 50%
   transform: translateZ(1vmin)
 
 .sphere
   transform-style: preserve-3d
-  position: absolute
   animation: rotate 15s infinite linear
   transform: rotateY(0deg) rotateX(0deg)
   width: 100%
   height: 100%
-  transform-origin: 50% 50%
-  top: 0
-  left: 0
 
 .hemisphere
   position: absolute
@@ -44,9 +36,6 @@
   transform-origin: 50% 50%
   transform: rotateX(90deg)
 
-.hemisphere:nth-child(2)
-  transform: rotateX(-90deg)
-
 .island
   position: absolute
   transform-style: preserve-3d
@@ -57,17 +46,15 @@
   position: absolute
   left: 50%
   top: 50%
-  // border-radius: 35%
   transform: translate(-50%,-50%)
-  transform-style: preserve-3d
 
 .land__window
-  transform-style: preserve-3d
   position: absolute
   left: 50%
   top: 0%
   height: 100%
   width: 100%
+  transform: translate(-50%, 0%)
 
 .land
   position: absolute
@@ -85,44 +72,29 @@
   $island-radius-squared: math.pow($island-radius, 2)
   $island-height: $planet-radius - math.sqrt($planet-radius-squared - $island-radius-squared) // The final height added by the layers piling on top of one another
   $shrink-factor: math.div($island-height, $island-layers) // The factor by which to raise the next layer above the previous
-  $shrink-factor-root: math.sqrt($shrink-factor)
   $base-chord-distance: math.sqrt($planet-radius-squared - $island-radius-squared)
-  $layer-offset-remainder: 0.2 // If you don't look directly down the axis at all times there is some offset.
   .island--#{$name}
     transform: translateZ(#{map-get($translations, "trans-z")}vmin ) rotateZ($z-rotation * 1deg) translateY(#{map-get($translations, "trans-y")}vmin) rotateX(#{map-get($translations, "rot-x")})
     width: $island-diameter * 1vmin
     height: $island-diameter * 1vmin
     left: (math.div($planet-diameter - $island-diameter, 2)) * 1vmin
-    // .plate
-    //   height: $island-diameter * 1vmin 
-    //   width: $island-diameter * 1vmin
     .land
       height: $island-diameter * 1vmin
       width: $island-diameter * 1vmin
   @for $i from 0 through $island-layers - 1
     $island-layer-radius: math.sqrt($planet-radius-squared - ( math.pow($base-chord-distance + $shrink-factor * $i, 2)) )
-    $scale-factor: math.div($island-layer-radius, $island-radius)
-    $island-layer-radius-next: math.sqrt($planet-radius-squared - ( math.pow($base-chord-distance + $shrink-factor * ($i + 1), 2)) )
     $island-layer-diameter: 2 * $island-layer-radius
+    $island-layer-radius-next: math.sqrt($planet-radius-squared - ( math.pow($base-chord-distance + $shrink-factor * ($i + 1), 2)) )
     $window-length: $island-layer-radius - math.sqrt($planet-radius-squared - ( math.pow($base-chord-distance + $shrink-factor * ($i + 1), 2)) )
+    $hole-size: $island-layer-radius-next - $layer-offset-remainder
+    @if $i == $island-layers - 1
+      $hole-size: 0
     .island--#{$name}
       .plate:nth-child(#{$i})
         height: #{$island-layer-diameter * 1vmin}
         width: #{$island-layer-diameter * 1vmin}
-        // @if $i < math.div($island-layers, 2)
-        //   filter: blur(2px)
-        // @if $name == asia
-          // transform: translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotate($rotation * 1deg) rotateY(-20deg)
-        // @else
         transform: translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotate($rotation * 1deg)
-
-        @if $i == $island-layers - 1
-          mask: radial-gradient(circle 0vmin,transparent 100%,#fff 100%) // Final layer should not hide anything
-        @else
-          mask: radial-gradient(circle #{($island-layer-radius-next - $layer-offset-remainder * 1vmin)},transparent 100%,#fff 100%)
-        .land__window
-          transform: translate(-50%, 0%)
-
+        mask: radial-gradient(circle #{($hole-size * 1vmin)},transparent 100%,#fff 100%)
         .land
           transform: translate(-50%, #{math.div(($island-diameter - $island-layer-diameter), 2) * -1vmin})
 
