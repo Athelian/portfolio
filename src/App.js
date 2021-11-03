@@ -27,13 +27,6 @@ function App() {
           stacks
         </h3>
       </div>
-      <div style={{ margin: "0" }}>
-        <div className="sphere sphere-cloud">
-          <div className="hemisphere">
-            <div className={"island cloud"}></div>
-          </div>
-        </div>
-      </div>
       <Earth />
       <section className="section section--pink">
         <img alt="section header" className="section__header" src={about} />
