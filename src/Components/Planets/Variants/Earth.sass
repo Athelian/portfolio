@@ -12,7 +12,7 @@
   background-color: white
   width: 100px
   height: 100px
-  transform: translateZ(0) scale(1) rotateY(90deg)
+  transform: scale(1) rotateY(90deg)
   clip-path: path('M 25,60 a 20,20 1 0,0 0,40 h 50 a 20,20 1 0,0 0,-40 a 10,10 1 0,0 -15,-10 a 15,15 1 0,0 -35,10 z')
 
 .planet--earth::before
@@ -24,7 +24,8 @@
   // animation: rotate-clouds 30s infinite linear
 
 .sphere-cloud
-  animation: rotate-clouds 20s infinite linear
+
+  animation: rotate-clouds 14s infinite linear
   width: $planet-diameter + 18 * 1vmin
   height: $planet-diameter * 1vmin
   .hemisphere
@@ -38,12 +39,12 @@
 
 @keyframes rotate-clouds
   0%
-    // z-index: 10
+    // z-index: 10 // maybe not needed as long as you don't set a perspective?!
     transform: rotateX(0deg) rotateY(0deg)
   // 50%
     // z-index: 0
   100%
-    z-index: 10
+    // z-index: 10
     transform: rotateX(0deg) rotateY(360deg)
 
 $islands: map-keys($earth)
