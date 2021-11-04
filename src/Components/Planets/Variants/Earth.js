@@ -5,12 +5,19 @@ import "./Earth.sass";
 
 const Earth = () => (
   <div>
-    <div className="sphere sphere-cloud">
-      <div className="hemisphere">
-        <div className={"island cloud"}></div>
+    <div className="cloud-holder">
+      <div className={`planet planet--clouds`}>
+        <div className="sphere sphere--clouds">
+          <div className="hemisphere">
+            <div className={"island cloud"}>
+              <div />
+              <div />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div className="earth-holder">
+    <div className="earth-holder" style={{ visibility: "hidden" }} >
       <Planet variant={`earth`}>
         {Object.keys(PlanetProperties["earth"]).map((island) => (
           <div className={"island" + ` island--${island}`} key={island}>
@@ -33,7 +40,7 @@ const Earth = () => (
         ))}
       </Planet>
     </div>
-  </div>
+  </div >
 );
 
 export default Earth;

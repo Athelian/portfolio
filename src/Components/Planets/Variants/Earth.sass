@@ -9,22 +9,61 @@
   background-color: rgb(91, 214, 171)
 
 .cloud
+  width: 100px
+  height: 100px
+  transform: scale(1) rotateY(90deg)
+  // clip-path: path('M 25,60 a 20,20 1 0,0 0,40 h 50 a 20,20 1 0,0 0,-40 a 10,10 1 0,0 -15,-10 a 15,15 1 0,0 -35,10 z')
+  div:nth-child(1)
+    position: absolute
+    width: 100px
+    height: 100px
+    background-color: white
+    clip-path: path('M 25,60 a 20,20 1 0,0 0,40 h 50 a 20,20 1 0,0 0,-40 a 10,10 1 0,0 -15,-10 a 15,15 1 0,0 -35,10 z')
+  div:nth-child(2)
+    position: absolute
+    width: 100px
+    height: 100px
+    background-color: white
+    clip-path: path('M 25,60 a 20,20 1 0,0 0,40 h 50 a 20,20 1 0,0 0,-40 a 10,10 1 0,0 -15,-10 a 15,15 1 0,0 -35,10 z')
+    transform: translateZ(1vmin)
+    // top: 0
+
+// .cloud::after
+//   content: ''
+//   background-color: red
+//   width: 100px
+//   height: 100px
+//   clip-path: path('M 25,60 a 20,20 1 0,0 0,40 h 50 a 20,20 1 0,0 0,-40 a 10,10 1 0,0 -15,-10 a 15,15 1 0,0 -35,10 z')
+//   position: absolute
+//   transform: translateZ(1vmin)
+//   // transform-style: preserve-3d
+//   // transform-origin: 50% 0
+//   // top: 50%
+
+.cloud-holder
+  position: absolute
+  perspective: 210vmin
+  animation: elevate-cloud 14s infinite linear
+
+.circle
   background-color: white
   width: 100px
   height: 100px
   transform: scale(1) rotateY(90deg)
-  clip-path: path('M 25,60 a 20,20 1 0,0 0,40 h 50 a 20,20 1 0,0 0,-40 a 10,10 1 0,0 -15,-10 a 15,15 1 0,0 -35,10 z')
 
 .planet--earth::before
   background: rgb(91, 161, 214)
+
+.planet--clouds
+  width: 60vmin
+  height: 40vmin
 
 .sphere
   animation: rotate-earth 12s infinite linear
 // .sphere:nth-child(2)
   // animation: rotate-clouds 30s infinite linear
 
-.sphere-cloud
-
+.sphere--clouds
   animation: rotate-clouds 14s infinite linear
   width: $planet-diameter + 18 * 1vmin
   height: $planet-diameter * 1vmin
@@ -44,8 +83,14 @@
   // 50%
     // z-index: 0
   100%
-    // z-index: 10
+    // z-index: 1
     transform: rotateX(0deg) rotateY(360deg)
+
+@keyframes elevate-cloud
+  0%
+    z-index: 1
+  100%
+    z-index: 0
 
 $islands: map-keys($earth)
 @each $island in $islands
