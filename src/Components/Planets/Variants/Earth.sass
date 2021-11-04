@@ -2,9 +2,19 @@
 @import 'src/variables.module.sass'
 @import 'src/Components/Planets/Planet.sass'
 
+$earth-rotation-speed: 12s
 $cloud-rotation-speed: 18s
+
 .earth-holder
   clip-path: circle(math.div($planet-diameter, 2) - math.div($layer-offset-remainder, 2) * 1vmin)
+
+.island--asia
+  .plate
+    > div
+      animation: rotate-y $earth-rotation-speed infinite linear
+      // from -111 30.833% deg on earth to 132 36.666% (full parallel) to 207 57.5% (invisible)
+      // bring to minus 8 deg and back
+      // 3.6 deg 1% to 36 deg 10% to 72 deg 20%
 
 .land
   background-color: rgb(91, 214, 171)
@@ -54,7 +64,7 @@ $cloud-rotation-speed: 18s
   pointer-events: none
 
 .sphere
-  animation: rotate-earth 0s infinite linear
+  animation: rotate-earth $earth-rotation-speed infinite linear
 // .sphere:nth-child(2)
   // animation: rotate-clouds 30s infinite linear
 
@@ -62,6 +72,21 @@ $cloud-rotation-speed: 18s
   animation: rotate-clouds $cloud-rotation-speed infinite linear
   .hemisphere
     transform: rotateX(0deg)
+
+// animation: rotate-y $earth-rotation-speed infinite linear
+// from -111 30.833% deg on earth to 132 36.666% (full parallel) to 207 57.5% (invisible)
+// bring to minus 8 deg and back
+// 3.6 deg 1% to 36 deg 10% to 72 deg 20%
+
+@keyframes rotate-y
+  0%
+    transform: rotateY(0deg)
+  1%
+    transform: rotateY(0deg)
+  22%
+    transform: rotateY(-47deg) translateZ(12vmin)
+  60%
+    transform: rotateY(-0deg) translateZ(0vmin)
 
 @keyframes rotate-earth
   0%

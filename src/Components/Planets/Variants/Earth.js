@@ -33,7 +33,6 @@ const Earth = () => (
               .map((_, i) => (
                 <div className="plate" key={i}>
                   <div>
-
                     {Array(
                       parseInt(
                         PlanetProperties["earth"][island]?.["components"] || 1
