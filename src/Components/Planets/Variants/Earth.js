@@ -12,6 +12,7 @@ const Earth = () => (
             <div className={"island cloud"}>
               <div />
               <div />
+              <div />
             </div>
           </div>
         </div>
