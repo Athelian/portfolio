@@ -32,15 +32,18 @@ const Earth = () => (
               .fill("")
               .map((_, i) => (
                 <div className="plate" key={i}>
-                  {Array(
-                    parseInt(
-                      PlanetProperties["earth"][island]?.["components"] || 1
+                  <div>
+
+                    {Array(
+                      parseInt(
+                        PlanetProperties["earth"][island]?.["components"] || 1
+                      )
                     )
-                  )
-                    .fill("")
-                    .map((_, i) => (
-                      <div className="land" key={i} />
-                    ))}
+                      .fill("")
+                      .map((_, i) => (
+                        <div className="land" key={i} />
+                      ))}
+                  </div>
                 </div>
               ))}
           </div>
