@@ -3,11 +3,12 @@
 
 .planet
   perspective: $planet-radius * 10 * 1vmin
+  perspective-origin: 50% 50%
   transform-style: preserve-3d
   width: $planet-diameter * 1vmin
   height: $planet-diameter * 1vmin
 
-.planet:hover
+.planet:hover:not(.planet--clouds)
   .sphere
     animation-play-state: paused
 

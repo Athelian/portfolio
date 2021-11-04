@@ -13,12 +13,18 @@ const Earth = () => (
               <div />
               <div />
               <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div className="earth-holder" style={{ visibility: "hidden" }} >
+    <div className="earth-holder">
       <Planet variant={`earth`}>
         {Object.keys(PlanetProperties["earth"]).map((island) => (
           <div className={"island" + ` island--${island}`} key={island}>
@@ -41,7 +47,7 @@ const Earth = () => (
         ))}
       </Planet>
     </div>
-  </div >
+  </div>
 );
 
 export default Earth;

@@ -2,6 +2,7 @@
 @import 'src/variables.module.sass'
 @import 'src/Components/Planets/Planet.sass'
 
+$cloud-rotation-speed: 18s
 .earth-holder
   clip-path: circle(math.div($planet-diameter, 2) - math.div($layer-offset-remainder, 2) * 1vmin)
 
@@ -9,49 +10,32 @@
   background-color: rgb(91, 214, 171)
 
 .cloud
-  width: 100px
-  height: 100px
-  transform: scale(1) rotateY(90deg)
-  // clip-path: path('M 25,60 a 20,20 1 0,0 0,40 h 50 a 20,20 1 0,0 0,-40 a 10,10 1 0,0 -15,-10 a 15,15 1 0,0 -35,10 z')
-  div:nth-child(1)
+  // transform: rotateY(90deg) rotateX(11deg) //TODO
+  transform: rotateY(90deg)//TODO
+  div
+    clip-path: path('M 25,60 a 20,20 1 0,0 0,40 h 50 a 20,20 1 0,0 0,-40 a 10,10 1 0,0 -15,-10 a 15,15 1 0,0 -35,10 z')
+    background-color: white
     position: absolute
     width: 100px
-    height: 100px
-    background-color: white
-    clip-path: path('M 25,60 a 20,20 1 0,0 0,40 h 50 a 20,20 1 0,0 0,-40 a 10,10 1 0,0 -15,-10 a 15,15 1 0,0 -35,10 z')
-  div:nth-child(2)
-    position: absolute
-    width: 100px
-    height: 100px
-    background-color: white
-    clip-path: path('M 25,60 a 20,20 1 0,0 0,40 h 50 a 20,20 1 0,0 0,-40 a 10,10 1 0,0 -15,-10 a 15,15 1 0,0 -35,10 z')
-    transform: translateZ(1vmin)
-  div:nth-child(3)
-    background-color: green
-    position: absolute
-    transform: rotateY(90deg)
-    background-color: white
-    position: absolute
-    transform: rotateY(90deg) translateZ(40px) translate(-0.5vmin, 36px)
-    height: 64px
-    width: 1vmin
+    height: 148px
+    transform: translate(-50%, -50%)
+  @for $i from 1 through 4
+    div:nth-child(#{2 * $i})
+      transform: translateZ(0.2 * $i * 1vmin) translate(-50%, -50%)
+    div:nth-child(#{2 * $i + 1})
+      transform: translateZ(-0.2 * $i * 1vmin) translate(-50%, -50%)
 
-// .cloud::after
-//   content: ''
-//   background-color: red
-//   width: 100px
-//   height: 100px
-//   clip-path: path('M 25,60 a 20,20 1 0,0 0,40 h 50 a 20,20 1 0,0 0,-40 a 10,10 1 0,0 -15,-10 a 15,15 1 0,0 -35,10 z')
-//   position: absolute
-//   transform: translateZ(1vmin)
-//   // transform-style: preserve-3d
-//   // transform-origin: 50% 0
-//   // top: 50%
+.cloud::after
+  content: ""
+  background-color: white
+  position: absolute
+  transform: translateZ(0px) translate(-2vmin, -37px) rotateY(88deg)
+  height: 64px
+  width: 2vmin
 
 .cloud-holder
   position: absolute
-  perspective: 210vmin
-  animation: elevate-cloud 14s infinite linear
+  animation: elevate-cloud $cloud-rotation-speed steps(2, start) infinite
 
 .circle
   background-color: white
@@ -63,8 +47,11 @@
   background: rgb(91, 161, 214)
 
 .planet--clouds
-  width: 60vmin
-  height: 40vmin
+  width: 44vmin
+  height: 44vmin
+  perspective: 220vmin
+.cloud-holder, .cloud-holder *
+  pointer-events: none
 
 .sphere
   animation: rotate-earth 12s infinite linear
@@ -72,9 +59,7 @@
   // animation: rotate-clouds 30s infinite linear
 
 .sphere--clouds
-  animation: rotate-clouds 14s infinite linear
-  width: $planet-diameter + 18 * 1vmin
-  height: $planet-diameter * 1vmin
+  animation: rotate-clouds $cloud-rotation-speed infinite linear
   .hemisphere
     transform: rotateX(0deg)
 
@@ -86,13 +71,11 @@
 
 @keyframes rotate-clouds
   0%
-    // z-index: 10 // maybe not needed as long as you don't set a perspective?!
-    transform: rotateX(0deg) rotateY(0deg)
-  // 50%
-    // z-index: 0
+    transform: rotateZ(-23.5deg) rotateY(0deg)
+    // transform: rotateZ(0deg) rotateY(0deg)
   100%
-    // z-index: 1
-    transform: rotateX(0deg) rotateY(360deg)
+    transform: rotateZ(-23.5deg) rotateY(360deg)
+    // transform: rotateZ(0deg) rotateY(360deg)
 
 @keyframes elevate-cloud
   0%
