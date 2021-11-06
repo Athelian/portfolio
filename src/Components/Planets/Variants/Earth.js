@@ -4,6 +4,9 @@ import PlanetProperties from "../PlanetProperties";
 import "./Earth.sass";
 import VARIABLES from "../../../_variables.module.sass";
 
+console.log(PlanetProperties)
+console.log(VARIABLES)
+
 const Earth = () => (
   <div className="earth">
     <div className="earth-container" 
@@ -38,7 +41,7 @@ const Earth = () => (
         {/* <div className="island cloud cloud--1">
           {Array(parseInt(VARIABLES["cloud-layers"])).fill("").map((_, i) => <div key={i} />)}
         </div> */}
-        <div className="island cloud cloud--2">
+        <div className="island cloud cloud--a">
           {Array(parseInt(VARIABLES["cloud-layers"])).fill("").map((_, i) => <div key={i} />)}
         </div>
       </Planet>
