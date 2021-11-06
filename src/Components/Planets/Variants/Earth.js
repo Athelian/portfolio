@@ -6,7 +6,9 @@ import VARIABLES from "../../../_variables.module.sass";
 
 const Earth = () => (
   <div className="earth">
-    <div className="earth-container">
+    <div className="earth-container" 
+    style={{ opacity: "0.1" }}
+    >
       <Planet variant="earth">
         {Object.keys(PlanetProperties["earth"]).map((island) => (
           <div className={"island" + ` island--${island}`} key={island}>
