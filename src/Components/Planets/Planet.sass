@@ -9,7 +9,7 @@
   height: $planet-diameter * 1vmin
 
 .planet:hover:not(.planet--clouds)
-  .sphere
+  .sphere, .island--asia .surface
     animation-play-state: paused
 
 .planet::before
@@ -52,6 +52,12 @@
   left: 50%
   top: 50%
   transform: translate(-50%,-50%)
+  transform-style: preserve-3d
+  > div
+    width: 100%
+    height: 100%
+    position: absolute
+    transform: rotateY(0deg)
 
 .land__window
   position: absolute
@@ -99,7 +105,8 @@
         height: #{$island-layer-diameter * 1vmin}
         width: #{$island-layer-diameter * 1vmin}
         transform: translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotate($rotation * 1deg)
-        mask: radial-gradient(circle #{($hole-size * 1vmin)},transparent 100%,#fff 100%)
+        > div
+          mask: radial-gradient(circle #{($hole-size * 1vmin)},transparent 100%,#fff 100%)
         .land
           transform: translate(-50%, #{math.div(($island-diameter - $island-layer-diameter), 2) * -1vmin})
 
