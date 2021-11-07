@@ -7,11 +7,13 @@ const mapPlanets = (map) =>
     const value = map[key]
     const values = key.split("-");
     const planet = values[1]
-    const continent = values[3]
+    const type = values[2]
+    const name = values[3]
     const property = values[4]
     if (!memo[planet]) memo[planet] = {}
-    if (!memo[planet][continent]) memo[planet][continent] = {}
-    memo[planet][continent][property] = value
+    if (!memo[planet][type]) memo[planet][type] = {}
+    if (!memo[planet][type][name]) memo[planet][type][name] = {}
+    memo[planet][type][name][property] = value
     return memo;
   }, {});
 

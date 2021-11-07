@@ -10,19 +10,18 @@ console.log(VARIABLES)
 const Earth = () => (
   <div className="earth">
     <div className="earth-container" 
-    // style={{ opacity: "0.1" }}
     >
       <Planet variant="earth">
-        {Object.keys(PlanetProperties["earth"]).map((island) => (
+        {Object.keys(PlanetProperties["earth"]["continents"]).map((island) => (
           <div className={"island" + ` island--${island}`} key={island}>
-            {Array(parseInt(PlanetProperties["earth"][island]["layers"]) - 1) // -1 as the final layer has no width or height
+            {Array(parseInt(PlanetProperties["earth"]["continents"][island]["layers"]) - 1) // -1 as the final layer has no width or height
               .fill("")
               .map((_, i) => (
                 <div className="plate" key={i}>
                   <div className="surface">
                     {Array(
                       parseInt(
-                        PlanetProperties["earth"][island]?.["components"] || 1
+                        PlanetProperties["earth"]["continents"][island]?.["components"] || 1
                       )
                     )
                       .fill("")
@@ -38,12 +37,10 @@ const Earth = () => (
     </div>
     <div className="cloud-container">
       <Planet variant="clouds">
-        {/* <div className="island cloud cloud--1">
-          {Array(parseInt(VARIABLES["cloud-layers"])).fill("").map((_, i) => <div key={i} />)}
-        </div> */}
-        <div className="island cloud cloud--a">
-          {Array(parseInt(VARIABLES["cloud-layers"])).fill("").map((_, i) => <div key={i} />)}
-        </div>
+        {Object.keys(PlanetProperties["earth"]["clouds"]).map((cloud) => (<div className={`island cloud cloud--${cloud}`}>
+          {Array(parseInt(VARIABLES["cloud-layers"]) + 1).fill("").map((_, i) => <div key={i} />)  // Plus one for final layer to be centered
+          } 
+        </div>))}
       </Planet>
     </div>
   </div>
