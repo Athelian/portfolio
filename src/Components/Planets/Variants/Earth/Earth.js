@@ -3,15 +3,9 @@ import React from "react";
 import Clouds from "./Components/Clouds";
 import PlanetProperties from "../../PlanetProperties";
 import "./Earth.sass";
-import useWindowDimensions from "../../../../Utility/useWindowDimensions";
 
 console.log(PlanetProperties);
 const Earth = () => {
-  const { vmin } = useWindowDimensions();
-  const scale = 720 - vmin;
-  let scaleReduction = Math.floor((scale - (scale % 10)) / 20);
-  if (scaleReduction > 20) scaleReduction = 20;
-  if (scaleReduction < 0) scaleReduction = 0;
   return (
     <div className="earth">
       <div className="earth-container">
@@ -42,15 +36,28 @@ const Earth = () => {
                       </div>
                     </div>
                   ))}
-                {PlanetProperties["earth"]["continents"][island]?.landmark && (
-                  <div className="landmark" />
-                )}
               </div>
             )
           )}
         </Planet>
       </div>
-      <Clouds scaleReduction={scaleReduction} />
+      <Planet planetClassname="planet--flag">
+        <div className="island landmark">
+          <div style={{ transform: "rotateX(270deg) scale(0.2)" }}>
+            <div
+              className="contain-flag"
+              style={{
+                transform: "translate(0, -100%)"
+              }}
+            >
+              <div className="pole" />
+              <div className="flag" />
+              <div className="shadow" />
+              <div className="flag flag-2" />
+            </div>
+          </div>
+        </div>
+      </Planet>
     </div>
   );
 };

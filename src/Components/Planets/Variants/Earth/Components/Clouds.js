@@ -1,6 +1,7 @@
 import VARIABLES from "../../../../../_variables.module.sass";
 import PlanetProperties from "../../../PlanetProperties";
 import Planet from "Components/Planets/Planet";
+import useWindowDimensions from "Utility/useWindowDimensions";
 
 const randomNumber = ({ min, max }) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -20,8 +21,12 @@ const clouds = Array(randomNumber({ min: 5, max: 16 }))
     return { randomZ, randomY, randomCloud, randomScale };
   });
 
-const Clouds = (props) => {
-  const { scaleReduction } = props;
+const Clouds = () => {
+  const { vmin } = useWindowDimensions();
+  const scale = 720 - vmin;
+  let scaleReduction = Math.floor((scale - (scale % 10)) / 20);
+  if (scaleReduction > 20) scaleReduction = 20;
+  if (scaleReduction < 0) scaleReduction = 0;
   return (
     <>
       {clouds.map((cloud) => (

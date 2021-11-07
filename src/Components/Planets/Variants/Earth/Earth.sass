@@ -5,6 +5,7 @@
 @import './Components/Islands.sass'
 
 $earth-rotation-speed: 24s
+// $earth-rotation-speed: 0s
 
 $cloud-scale-factor: 0.3
 $cloud-rotation-speed: 38s
@@ -13,11 +14,75 @@ $cloud-total-depth: $cloud-layers * $cloud-layer-separation-distance
 $cloud-separation-from-earth: 1vmin
 $cloud-fin-scale-factor: 0.05
 
-.landmark
-  background-color: violet
-  transform: translateZ(0vmin) translate(50%, 50%)
-  width: 38px
-  height: 48px
+.planet--flag
+  z-index: 2
+  position: absolute
+  .sphere
+    animation: rotate-earth $earth-rotation-speed linear infinite
+    .landmark
+      $translations: get-random-z-y(160, 2)
+      transform:  translateZ(#{map-get($translations, "trans-z")}vmin ) rotateZ(32deg) translateY(#{map-get($translations, "trans-y")}vmin)  rotateX(#{map-get($translations, "rot-x")})
+      width: 2vmin
+      height: 2vmin
+      left: (math.div($planet-diameter - 2, 2)) * 1vmin
+      .contain-flag 
+        position: absolute
+        height: auto
+        transform: rotateX(22deg)
+        .pole
+          background-color: gray
+          border: 0.1vmin solid #636262
+          border-radius: 1vmin
+          width: 1vmin
+          height: 30vmin
+        .pole::before
+          position: absolute
+          top: -1.4vmin
+          left: -.5vmin
+          display: block
+          background-color: gray
+          border-radius: 50%
+          border: .1vmin solid #636262
+          width: 2vmin
+          height: 2vmin
+          content:''
+        .flag 
+          position: absolute 
+          top: .8vmin
+          z-index: 10
+          background-color: #eb573b
+          border: .1vmin solid #d64b38
+          width: 15vmin
+          height: 9vmin
+        .shadow 
+          position: absolute
+          top: 7vmin
+          left: 9vmin
+          z-index: 4
+          width: 0 
+          height: 0 
+          border-top: 3vmin solid transparent
+          border-bottom: 3.2vmin solid transparent
+          border-left: 6.2vmin solid #c14333
+        .flag-2
+          position: absolute 
+          top: 4vmin
+          left: 9vmin
+          z-index: 1
+          background-color: #eb573b
+          width: 15vmin
+          height: 9vmin
+        .flag-2:after
+          position: absolute
+          left: 10vmin
+          top: -1.5vmin
+          display: block
+          width: 0 
+          height: 0 
+          border-top: 6vmin solid transparent
+          border-bottom: 6vmin solid transparent 
+          border-right: 6vmin solid transparent
+          content:''
 
 .earth-container
   position: relative
