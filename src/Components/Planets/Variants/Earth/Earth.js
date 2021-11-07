@@ -19,9 +19,6 @@ const Earth = () => {
           {Object.keys(PlanetProperties["earth"]["continents"]).map(
             (island) => (
               <div className={"island" + ` island--${island}`} key={island}>
-                {PlanetProperties["earth"]["continents"][island]?.landmark && (
-                  <div className="landmark" />
-                )}
                 {Array(
                   parseInt(
                     PlanetProperties["earth"]["continents"][island]["layers"]
@@ -45,6 +42,9 @@ const Earth = () => {
                       </div>
                     </div>
                   ))}
+                {PlanetProperties["earth"]["continents"][island]?.landmark && (
+                  <div className="landmark" />
+                )}
               </div>
             )
           )}
