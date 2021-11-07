@@ -44,10 +44,10 @@ const Earth = () => (
         ))}
       </Planet>
     </div>
-    {Array(randomNumber({ min: 2, max: 10 }))
+    {Array(randomNumber({ min: 5, max: 16 }))
       .fill("")
       .map((cloud, i) => {
-        const randomZ = randomNumber({ min: -70, max: 70 });
+        const randomZ = randomNumber({ min: -50, max: 50 });
         const randomY = randomNumber({ min: 0, max: 36 }) * 10;
         const clouds = Object.values(PlanetProperties["earth"]["clouds"]).map(
           (properties) => properties["label"]
@@ -66,7 +66,9 @@ const Earth = () => (
                 }}
               >
                 <div
-                  className={`island cloud cloud--${randomCloud} cloud--scale-1`}
+                  className={`island cloud cloud--${randomCloud} cloud--scale-${randomNumber(
+                    { min: 1, max: 5 }
+                  )}`}
                 >
                   {
                     Array(parseInt(VARIABLES["cloud-layers"]) + 1)

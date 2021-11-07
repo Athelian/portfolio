@@ -4,7 +4,7 @@
 
 $earth-rotation-speed: 12s
 
-$cloud-scale-factor: 0.1
+$cloud-scale-factor: 0.3
 $cloud-rotation-speed: 16s
 $cloud-layer-separation-distance: 0.1vmin
 $cloud-total-depth: $cloud-layers * $cloud-layer-separation-distance
@@ -28,8 +28,9 @@ $islands: map-keys($continents)
     .land
       background-color: rgb(91, 214, 171)
     .island--asia // fix bad cut on Europe and Asia
-      .surface
-        animation: rotate-asia-offset $earth-rotation-speed infinite linear
+      > .plate
+        > .surface
+          animation: rotate-asia-offset $earth-rotation-speed infinite linear
 
 .planet--clouds
   animation: elevate-cloud $cloud-rotation-speed linear infinite
@@ -38,7 +39,6 @@ $islands: map-keys($continents)
   width: ($planet-diameter * 1vmin) + $cloud-total-depth + $cloud-separation-from-earth
   height: ($planet-diameter * 1vmin) + $cloud-total-depth + $cloud-separation-from-earth
   perspective: none // If there is a perspective, the cloud may not turn around quickly enough around the side
-  transform: rotateZ(360deg) 
   @for $i from 1 through 36
     $rotation: $i * 10
     &--y-rotation--#{$rotation}
@@ -53,36 +53,40 @@ $islands: map-keys($continents)
           position: absolute
         &:after
           content: ""
-          width: math.div($cloud-total-depth, $cloud-scale-factor)
-          left: calc(50% - math.div(math.div($cloud-total-depth, $cloud-scale-factor), 2))
       @each $cloud in $clouds
         $center-to-apex: map-get($cloud, "center-to-apex")
-        $label: map-get($cloud, "label")
-        $height: map-get($cloud, "height")
-        $width: map-get($cloud, "width")
-        $path: map-get($cloud, "path")
-        .cloud--#{$label}
-          height: $height
-          width: $width
-          transform: rotateY(90deg) translate(0, -50%) translateZ(math.div($width, 2) * -1)
+        .cloud--#{map-get($cloud, "label")}
+          height: map-get($cloud, "height")
+          width: map-get($cloud, "width")
+          transform: rotateY(90deg) translate(0, -50%) translateZ(math.div(map-get($cloud, "width"), 2) * -1)
           > div
-            clip-path: path($path)
+            clip-path: map-get($cloud, "path")
             height: 100%
             width: 100%
-            transform: scale($cloud-scale-factor)
-          @for $i from 1 through $cloud-layers
-            $direction: 1
-            $factor: $i
-            @if $i > math.div($cloud-layers, 2)
-              $direction: -1
-              $factor: $factor - math.div($cloud-layers, 2)
-            div:nth-child(#{$i})
-              transform: translateZ($cloud-layer-separation-distance * $direction * $factor) scale($cloud-scale-factor)
           &:after
-            height: $height * (1 - $cloud-fin-scale-factor) // Remove 5% height to ensure no overscaling
-            // translate from center to apex by the appropriate amount, accounting for scale factor.
-            transform: translate($center-to-apex * $cloud-scale-factor * 1px, math.div($cloud-fin-scale-factor, 2) * 100% ) rotateY(90deg) scale($cloud-scale-factor) 
-
+            height: map-get($cloud, "height") * (1 - $cloud-fin-scale-factor) // Remove 5% height to ensure no overscaling
+      @for $scale-factor from 1 through 10
+        $scale: math.div(math.div($scale-factor, 10), 2.5)
+        .cloud--scale-#{$scale-factor}
+          &:after
+            width: math.div($cloud-total-depth, $scale)
+            left: calc(50% - math.div(math.div($cloud-total-depth, $scale), 2))
+        @each $cloud in $clouds
+          .cloud--#{map-get($cloud, "label")}.cloud--scale-#{$scale-factor}
+            > div
+              transform: scale($scale)
+            @for $i from 1 through $cloud-layers
+              $direction: 1
+              $factor: $i
+              @if $i > math.div($cloud-layers, 2)
+                $direction: -1
+                $factor: $factor - math.div($cloud-layers, 2)
+              div:nth-child(#{$i})
+                transform: translateZ($cloud-layer-separation-distance * $direction * $factor) scale($scale)
+            &:after
+              // translate from center to apex by the appropriate amount, accounting for scale factor.
+              transform: translate(map-get($cloud, "center-to-apex") * $scale * 1px, math.div($cloud-fin-scale-factor, 2) * 100% ) rotateY(90deg) scale($scale) 
+  
 @keyframes rotate-asia-offset
   0%
     transform: rotateY(0deg)
