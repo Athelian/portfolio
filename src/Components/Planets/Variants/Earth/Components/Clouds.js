@@ -1,5 +1,6 @@
 import VARIABLES from "../../../../../_variables.module.sass";
 import PlanetProperties from "../../../PlanetProperties";
+import Planet from "Components/Planets/Planet";
 
 const randomNumber = ({ min, max }) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -7,7 +8,7 @@ const randomNumber = ({ min, max }) => {
 
 const clouds = Array(randomNumber({ min: 5, max: 16 }))
   .fill("")
-  .map((cloud, i) => {
+  .map(() => {
     const randomZ = randomNumber({ min: -50, max: 50 });
     const randomY = randomNumber({ min: 0, max: 36 }) * 10;
     const clouds = Object.values(PlanetProperties["earth"]["clouds"]).map(
@@ -24,32 +25,26 @@ const Clouds = (props) => {
   return (
     <>
       {clouds.map((cloud) => (
-        <div
-          className={`planet planet--clouds planet--clouds--y-rotation--${cloud.randomY}`}
+        <Planet
+          planetClassname={`planet--clouds planet--clouds--y-rotation--${cloud.randomY}`}
+          hemisphereProps={{
+            style: {
+              transform: `rotateY(${cloud.randomY}deg) rotateZ(${cloud.randomZ}deg)`
+            }
+          }}
         >
-          <div className={`sphere`}>
-            <div
-              className="hemisphere"
-              style={{
-                transform: `rotateY(${cloud.randomY}deg) rotateZ(${cloud.randomZ}deg)`
-              }}
-            >
-              <div
-                className={`island cloud cloud--${
-                  cloud.randomCloud
-                } cloud--scale-${cloud.randomScale - scaleReduction}`}
-              >
-                {
-                  Array(parseInt(VARIABLES["cloud-layers"]) + 1)
-                    .fill("")
-                    .map((_, i) => (
-                      <div key={i} />
-                    )) // Plus one for final layer to be centered
-                }
-              </div>
-            </div>
+          <div
+            className={`island cloud cloud--${cloud.randomCloud} cloud--scale-${
+              cloud.randomScale - scaleReduction
+            }`}
+          >
+            {Array(parseInt(VARIABLES["cloud-layers"]) + 1) // Plus one for final layer to be centered
+              .fill("")
+              .map((_, i) => (
+                <div key={i} />
+              ))}
           </div>
-        </div>
+        </Planet>
       ))}
     </>
   );

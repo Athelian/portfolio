@@ -1,9 +1,11 @@
 import "./Planet.sass";
 
-const Planet = ({ children, variant }) => (
-  <div className={`planet planet--${variant}`}>
+const Planet = (props) => (
+  <div className={"planet" + " " + props.planetClassname}>
     <div className="sphere">
-      <div className="hemisphere">{children}</div>
+      <div className={"hemisphere"} {...props.hemisphereProps}>
+        {props.children}
+      </div>
     </div>
   </div>
 );

@@ -5,6 +5,7 @@ import PlanetProperties from "../../PlanetProperties";
 import "./Earth.sass";
 import useWindowDimensions from "../../../../Utility/useWindowDimensions";
 
+console.log(PlanetProperties);
 const Earth = () => {
   const { vmin } = useWindowDimensions();
   const scale = 720 - vmin;
@@ -14,10 +15,13 @@ const Earth = () => {
   return (
     <div className="earth">
       <div className="earth-container">
-        <Planet variant="earth">
+        <Planet planetClassname="planet--earth">
           {Object.keys(PlanetProperties["earth"]["continents"]).map(
             (island) => (
               <div className={"island" + ` island--${island}`} key={island}>
+                {PlanetProperties["earth"]["continents"][island]?.landmark && (
+                  <div className="landmark" />
+                )}
                 {Array(
                   parseInt(
                     PlanetProperties["earth"]["continents"][island]["layers"]
