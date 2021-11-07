@@ -9,18 +9,6 @@
   height: $planet-diameter * 1vmin
   will-change: transform
 
-.planet:hover:not(.planet--clouds)
-  .sphere, .island--asia .surface
-    animation-play-state: paused
-
-.planet--earth::before
-  content: ''
-  position: absolute
-  width: 100%
-  height: 100%
-  border-radius: 50%
-  transform: translateZ(1vmin)
-
 .sphere
   position: absolute
   transform-style: preserve-3d
@@ -38,9 +26,6 @@
   transform-style: preserve-3d
   transform-origin: 50% 50%
   transform: rotateX(90deg)
-
-.hemisphere:nth-child(2)
-  transform: rotateX(-90deg)
 
 .island
   position: absolute

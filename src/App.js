@@ -1,4 +1,4 @@
-import Earth from "Components/Planets/Variants/Earth";
+import Earth from "Components/Planets/Variants/Earth/Earth";
 import about from "Images/about.png";
 import bitmoji from "Images/bitmoji.png";
 import "semantic-ui-css/semantic.min.css";

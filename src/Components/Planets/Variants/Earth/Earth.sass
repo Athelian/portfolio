@@ -21,16 +21,26 @@ $islands: map-keys($continents)
   position: relative
   z-index: 1
   clip-path: circle(math.div($planet-diameter, 2) - math.div($layer-offset-remainder, 2) * 1vmin)
-  .planet::before
-    background: rgb(91, 161, 214)
+  .planet
+    &:hover
+      .sphere, .island--asia .surface
+        animation-play-state: paused
+    &::before
+      background: rgb(91, 161, 214)
+      content: ''
+      position: absolute
+      width: 100%
+      height: 100%
+      border-radius: 50%
+      // transform: translateZ(1vmin) // unclear what the purpose of this is
   .sphere
-    animation: rotate-earth $earth-rotation-speed infinite linear
+    animation: rotate-earth $earth-rotation-speed linear infinite
     .land
       background-color: rgb(91, 214, 171)
     .island--asia // fix bad cut on Europe and Asia
       > .plate
         > .surface
-          animation: rotate-asia-offset $earth-rotation-speed infinite linear
+          animation: rotate-asia-offset $earth-rotation-speed linear infinite
 
 .planet--clouds
   animation: elevate-cloud $cloud-rotation-speed linear infinite
@@ -44,7 +54,7 @@ $islands: map-keys($continents)
     &--y-rotation--#{$rotation}
       animation: elevate-cloud $cloud-rotation-speed math.div($rotation, 360) * -1 * $cloud-rotation-speed linear infinite
   .sphere
-    animation: rotate-earth $cloud-rotation-speed infinite linear
+    animation: rotate-earth $cloud-rotation-speed linear infinite
     .hemisphere
       transform: none
       .cloud
@@ -65,8 +75,8 @@ $islands: map-keys($continents)
             width: 100%
           &:after
             height: map-get($cloud, "height") * (1 - $cloud-fin-scale-factor) // Remove 5% height to ensure no overscaling
-      @for $scale-factor from 1 through 10
-        $scale: math.div(math.div($scale-factor, 10), 2.5)
+      @for $scale-factor from 1 through 30
+        $scale: math.div(math.div($scale-factor, 10), 20) // Arbitrary division value
         .cloud--scale-#{$scale-factor}
           &:after
             width: math.div($cloud-total-depth, $scale)
