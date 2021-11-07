@@ -1,6 +1,4 @@
-import { useState } from "react";
 import VARIABLES from "../../../../../_variables.module.sass";
-
 import PlanetProperties from "../../../PlanetProperties";
 
 const randomNumber = ({ min, max }) => {
@@ -23,35 +21,38 @@ const clouds = Array(randomNumber({ min: 5, max: 16 }))
 
 const Clouds = (props) => {
   const { scaleReduction } = props;
-  // const [clouds, setClouds] = useState(genClouds());
-  return clouds.map((cloud) => (
-    <div
-      className={`planet planet--clouds planet--clouds--y-rotation--${cloud.randomY}`}
-    >
-      <div className={`sphere`}>
+  return (
+    <>
+      {clouds.map((cloud) => (
         <div
-          className="hemisphere"
-          style={{
-            transform: `rotateY(${cloud.randomY}deg) rotateZ(${cloud.randomZ}deg)`
-          }}
+          className={`planet planet--clouds planet--clouds--y-rotation--${cloud.randomY}`}
         >
-          <div
-            className={`island cloud cloud--${cloud.randomCloud} cloud--scale-${
-              cloud.randomScale - scaleReduction
-            }`}
-          >
-            {
-              Array(parseInt(VARIABLES["cloud-layers"]) + 1)
-                .fill("")
-                .map((_, i) => (
-                  <div key={i} />
-                )) // Plus one for final layer to be centered
-            }
+          <div className={`sphere`}>
+            <div
+              className="hemisphere"
+              style={{
+                transform: `rotateY(${cloud.randomY}deg) rotateZ(${cloud.randomZ}deg)`
+              }}
+            >
+              <div
+                className={`island cloud cloud--${
+                  cloud.randomCloud
+                } cloud--scale-${cloud.randomScale - scaleReduction}`}
+              >
+                {
+                  Array(parseInt(VARIABLES["cloud-layers"]) + 1)
+                    .fill("")
+                    .map((_, i) => (
+                      <div key={i} />
+                    )) // Plus one for final layer to be centered
+                }
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  ));
+      ))}
+    </>
+  );
 };
 
 export default Clouds;

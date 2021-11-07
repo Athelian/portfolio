@@ -3,7 +3,7 @@ import React from "react";
 import Clouds from "./Components/Clouds";
 import PlanetProperties from "../../PlanetProperties";
 import "./Earth.sass";
-import useWindowDimensions from "../../../../utility/useWindowDimensions";
+import useWindowDimensions from "../../../../Utility/useWindowDimensions";
 
 const Earth = () => {
   const { vmin } = useWindowDimensions();
