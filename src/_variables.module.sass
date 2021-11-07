@@ -16,33 +16,33 @@ $second-quadrant-limit: $quadrant-boundary * 2
 $third-quadrant-limit: $quadrant-boundary * 3
 
 $africa: (layers: 20, diameter: 26, rotation: -8, z-rotation: 14, position: 10)
-$asia: (layers: 30, diameter: 38, rotation: -4, z-rotation: -45, position: 1919, components: 7)
+$asia: (layers: 20, diameter: 38, rotation: -4, z-rotation: -45, position: 1919, components: 7)
 $europe: (layers: 10, diameter: 21, rotation: 0, z-rotation: 10, position: 520, components: 8)
-$america: (layers: 25, diameter: 41, rotation: 20, z-rotation: 140, position: 560, components: 4)
+$america: (layers: 20, diameter: 41, rotation: 20, z-rotation: 140, position: 560, components: 4)
 $aus: (layers: 20, diameter: 24, rotation: -10, z-rotation: -89, position: 1, components: 24)
 
 $cloud--a: (center-to-apex: -95, label: "a", width: 632.15px, height: 271.38px)
-$cloud--b: (center-to-apex: -95, label: "b", width: 762.01px, height: 301.12px)
-$clouds: $cloud--a, $cloud--a
+$cloud--b: (center-to-apex: 0, label: "b", width: 762.01px, height: 301.12px)
+$clouds: $cloud--a, $cloud--b
 $continents: (africa: $africa, europe: $europe, asia: $asia, america: $america, aus: $aus)
 $earth: (continents: $continents, clouds: $clouds)
 
 @mixin rule($key, $value, $prefix)
   #{$prefix}-#{$key}: $value
 
-@mixin nested-map-to-string($key1, $value, $prefix)
+@mixin map-to-string($key1, $value, $prefix)
   @each $key, $value in $value
     @include rule($key, $value, #{$prefix + "-" + $key1})
 
-@mixin map-to-string($map, $prefix)
+@mixin map-map-to-string($map, $prefix)
   @each $key, $value in $map
-    @include nested-map-to-string($key, $value, $prefix)
+    @include map-to-string($key, $value, $prefix)
 
-@mixin list-to-string($list, $prefix)
+@mixin list-map-to-string($list, $prefix)
   @each $value in $list
-    @include nested-map-to-string(map-get($value, "label"), $value, $prefix)
+    @include map-to-string(map-get($value, "label"), $value, $prefix)
 
 :export
-  @include map-to-string($continents, "planet-earth-continents")
-  @include list-to-string($clouds, "planet-earth-clouds")
+  @include map-map-to-string($continents, "planet-earth-continents")
+  @include list-map-to-string($clouds, "planet-earth-clouds")
   cloud-layers: $cloud-layers
