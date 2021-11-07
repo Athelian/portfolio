@@ -3,10 +3,12 @@
 @import 'src/Components/Planets/Planet.sass'
 
 $earth-rotation-speed: 12s
-$cloud-rotation-speed: 16s
+
 $cloud-scale-factor: 0.1
+$cloud-rotation-speed: 16s
 $cloud-layer-separation-distance: 0.1vmin
 $cloud-total-depth: $cloud-layers * $cloud-layer-separation-distance
+$cloud-separation-from-earth: 1vmin
 $cloud-fin-scale-factor: 0.05
 
 $continents: map-get($earth, "continents")
@@ -33,8 +35,8 @@ $islands: map-keys($continents)
   animation: elevate-cloud $cloud-rotation-speed linear infinite
   pointer-events: none
   position: absolute
-  width: ($planet-diameter * 1vmin) + $cloud-total-depth + 1vmin
-  height: ($planet-diameter * 1vmin) + $cloud-total-depth + 1vmin
+  width: ($planet-diameter * 1vmin) + $cloud-total-depth + $cloud-separation-from-earth
+  height: ($planet-diameter * 1vmin) + $cloud-total-depth + $cloud-separation-from-earth
   perspective: none // If there is a perspective, the cloud may not turn around quickly enough around the side
   transform: rotateZ(360deg) 
   @for $i from 1 through 36
@@ -78,7 +80,8 @@ $islands: map-keys($continents)
               transform: translateZ($cloud-layer-separation-distance * $direction * $factor) scale($cloud-scale-factor)
           &:after
             height: $height * (1 - $cloud-fin-scale-factor) // Remove 5% height to ensure no overscaling
-            transform: translate($center-to-apex * $cloud-scale-factor * 1px, math.div($cloud-fin-scale-factor, 2) * 100% ) rotateY(90deg) scale($cloud-scale-factor) // translate from center to apex by the appropriate amount, accounting for scale factor.
+            // translate from center to apex by the appropriate amount, accounting for scale factor.
+            transform: translate($center-to-apex * $cloud-scale-factor * 1px, math.div($cloud-fin-scale-factor, 2) * 100% ) rotateY(90deg) scale($cloud-scale-factor) 
 
 @keyframes rotate-asia-offset
   0%

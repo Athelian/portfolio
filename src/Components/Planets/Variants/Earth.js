@@ -44,34 +44,43 @@ const Earth = () => (
         ))}
       </Planet>
     </div>
-    {Object.keys(PlanetProperties["earth"]["clouds"]).map((cloud, i) => {
-      const randomZ = randomNumber({ min: -90, max: 90 });
-      const randomY = randomNumber({ min: 0, max: 36 }) * 10;
-      return (
-        <div
-          className={`planet planet--clouds planet--clouds--y-rotation--${randomY}`}
-        >
-          <div className={`sphere`}>
-            <div
-              className="hemisphere"
-              style={{
-                transform: `rotateY(${randomY}deg) rotateZ(${randomZ}deg)`
-              }}
-            >
-              <div className={`island cloud cloud--${cloud}`}>
-                {
-                  Array(parseInt(VARIABLES["cloud-layers"]) + 1)
-                    .fill("")
-                    .map((_, i) => (
-                      <div key={i} />
-                    )) // Plus one for final layer to be centered
-                }
+    {Array(randomNumber({ min: 2, max: 10 }))
+      .fill("")
+      .map((cloud, i) => {
+        const randomZ = randomNumber({ min: -70, max: 70 });
+        const randomY = randomNumber({ min: 0, max: 36 }) * 10;
+        const clouds = Object.values(PlanetProperties["earth"]["clouds"]).map(
+          (properties) => properties["label"]
+        );
+        const randomCloud =
+          clouds[randomNumber({ min: 0, max: clouds.length - 1 })];
+        return (
+          <div
+            className={`planet planet--clouds planet--clouds--y-rotation--${randomY}`}
+          >
+            <div className={`sphere`}>
+              <div
+                className="hemisphere"
+                style={{
+                  transform: `rotateY(${randomY}deg) rotateZ(${randomZ}deg)`
+                }}
+              >
+                <div
+                  className={`island cloud cloud--${randomCloud} cloud--scale-1`}
+                >
+                  {
+                    Array(parseInt(VARIABLES["cloud-layers"]) + 1)
+                      .fill("")
+                      .map((_, i) => (
+                        <div key={i} />
+                      )) // Plus one for final layer to be centered
+                  }
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      );
-    })}
+        );
+      })}
   </div>
 );
 
