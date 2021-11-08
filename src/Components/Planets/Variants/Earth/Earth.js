@@ -51,13 +51,15 @@ const Earth = () => {
               }}
             >
               <div className="pole" />
-              <div className="flag" />
+              <div className="flag">
+                
+              </div>
               <div className="shadow" />
-              <div className="flag flag-2" />
             </div>
           </div>
         </div>
       </Planet>
+      <Clouds/>
     </div>
   );
 };
