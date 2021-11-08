@@ -1,26 +1,32 @@
 @import 'src/variables.module.sass'
 
 body
-  background-color: rgb(32,35,86)
+  background-color: $base-color
 
 .Portfolio-Site
   margin: 0 auto
   position: relative
   > *
-    display: flex
-    justify-content: center
-    align-items: center
-    margin: 0 0 3rem 0
-
-.Portfolio-Site:first-child
-  margin-top: 2rem
+    // display: flex
+    // justify-content: center
+    // align-items: center
+    // margin: 0 0 3rem 0
 
 header
-  margin: 3rem 0
-  color: #d463bc
+  position: absolute
+  left: 0
+  right: 0
+  margin-left: auto
+  margin-right: auto
+  width: 22rem
+  margin-top: 3rem
+  display: in
+  z-index: 2
   h1
     font-size: 48px
+    color: #d463bc
     font-family: serif
+    margin-bottom: 2rem
     div
       display: flex
       align-items: center
@@ -33,8 +39,7 @@ header
 
 .introduction
   text-align: center
-  max-width: 60rem
-  width: 50%
+  color: white
 
 div.ui.card
   padding: 2rem

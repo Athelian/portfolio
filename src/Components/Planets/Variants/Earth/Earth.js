@@ -31,73 +31,89 @@ const Earth = () => {
 
   return (
     <div className="earth">
-      <div className="earth-container">
-        <Planet planetClassname="planet--earth">
-          {Object.keys(PlanetProperties["earth"]["continents"]).map(
-            (island) => (
-              <div className={"island" + ` island--${island}`} key={island}>
-                {Array(
-                  parseInt(
-                    PlanetProperties["earth"]["continents"][island]["layers"]
-                  ) - 1
-                ) // -1 as the final layer has no width or height
+      <div className="stars">
+        {Array(36)
+          .fill("")
+          .map(() => (
+            <div className="star">
+              <div className="star-top"></div>
+              <div className="star-bottom"></div>
+            </div>
+          ))}
+      </div>
+      <div className="earth__components">
+        <div className="earth-container">
+          <Planet planetClassname="planet--earth">
+            {Object.keys(PlanetProperties["earth"]["continents"]).map(
+              (island) => (
+                <div className={"island" + ` island--${island}`} key={island}>
+                  {Array(
+                    parseInt(
+                      PlanetProperties["earth"]["continents"][island]["layers"]
+                    ) - 1
+                  ) // -1 as the final layer has no width or height
+                    .fill("")
+                    .map((_, i) => (
+                      <div className="plate" key={i}>
+                        <div className="surface">
+                          {Array(
+                            parseInt(
+                              PlanetProperties["earth"]["continents"][island]?.[
+                                "components"
+                              ] || 1
+                            )
+                          )
+                            .fill("")
+                            .map((_, i) => (
+                              <div className="land" key={i} />
+                            ))}
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              )
+            )}
+          </Planet>
+        </div>
+        <div className="flags">
+          {flags.map((flag) => (
+            <Planet planetClassname={`planet--flag planet--flag--${flag}`}>
+              <div className="island landmark">
+                <div>
+                  <div className="contain-flag">
+                    <div className="pole" />
+                    <div className="flag flag--uk" />
+                  </div>
+                </div>
+              </div>
+            </Planet>
+          ))}
+        </div>
+        <div className="clouds">
+          {clouds.map((cloud) => (
+            <Planet
+              planetClassname={`planet--clouds planet--clouds--y-rotation--${cloud.randomY}`}
+              hemisphereProps={{
+                style: {
+                  transform: `rotateY(${cloud.randomY}deg) rotateZ(${cloud.randomZ}deg)`
+                }
+              }}
+            >
+              <div
+                className={`island cloud cloud--${
+                  cloud.randomCloud
+                } cloud--scale-${cloud.randomScale - scaleReduction}`}
+              >
+                {Array(parseInt(VARIABLES["cloud-layers"]) + 1) // Plus one for final layer to be centered
                   .fill("")
                   .map((_, i) => (
-                    <div className="plate" key={i}>
-                      <div className="surface">
-                        {Array(
-                          parseInt(
-                            PlanetProperties["earth"]["continents"][island]?.[
-                              "components"
-                            ] || 1
-                          )
-                        )
-                          .fill("")
-                          .map((_, i) => (
-                            <div className="land" key={i} />
-                          ))}
-                      </div>
-                    </div>
+                    <div key={i} />
                   ))}
               </div>
-            )
-          )}
-        </Planet>
+            </Planet>
+          ))}
+        </div>
       </div>
-      {flags.map((flag) => (
-        <Planet planetClassname={`planet--flag planet--flag--${flag}`}>
-          <div className="island landmark">
-            <div>
-              <div className="contain-flag">
-                <div className="pole" />
-                <div className="flag flag--uk" />
-              </div>
-            </div>
-          </div>
-        </Planet>
-      ))}
-      {clouds.map((cloud) => (
-        <Planet
-          planetClassname={`planet--clouds planet--clouds--y-rotation--${cloud.randomY}`}
-          hemisphereProps={{
-            style: {
-              transform: `rotateY(${cloud.randomY}deg) rotateZ(${cloud.randomZ}deg)`
-            }
-          }}
-        >
-          <div
-            className={`island cloud cloud--${cloud.randomCloud} cloud--scale-${
-              cloud.randomScale - scaleReduction
-            }`}
-          >
-            {Array(parseInt(VARIABLES["cloud-layers"]) + 1) // Plus one for final layer to be centered
-              .fill("")
-              .map((_, i) => (
-                <div key={i} />
-              ))}
-          </div>
-        </Planet>
-      ))}
     </div>
   );
 };

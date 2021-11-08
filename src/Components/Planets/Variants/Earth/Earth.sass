@@ -3,7 +3,7 @@
 @import 'src/Components/Planets/Planet.sass'
 @import './Clouds.sass'
 @import './Islands.sass'
-
+ 
 $earth-rotation-speed: 24s
 $earth-rotation-speed: 12s
 
@@ -14,6 +14,67 @@ $cloud-layer-separation-distance: 0.14vmin
 $cloud-total-depth: $cloud-layers * $cloud-layer-separation-distance
 $cloud-separation-from-earth: 1vmin
 $cloud-fin-scale-factor: 0.05
+
+.earth
+  display: flex
+  justify-content: center
+  position: relative
+  padding: 24rem 0 12rem 0
+  .earth__components
+    display: contents
+
+.star
+  display: block
+  position: absolute
+  background: #f6f6f6
+  overflow: hidden
+  z-index: 1
+  background-color: yellow
+  @for $i from 1 through $number-of-stars
+    &:nth-child(#{$i})
+      $size: (math.random() + 1) * 1vmin
+      $half-size: math.div($size, 2)
+      width: $size
+      height: $size
+      top: math.random(100) * 1%
+      left: math.random(98) * 1%
+      animation: flickerAnimation math.random(7) + 3 * 1s cubic-bezier(0.72, 0.01, 0.74, 0.05) infinite
+      .star-top,
+      .star-bottom
+        position: relative
+        display: block
+        margin: 0
+      .star-top:before, 
+      .star-top:after, 
+      .star-bottom:before, 
+      .star-bottom:after
+        content: ''
+        width: $size
+        height: $size
+        background: $base-color
+        border-radius: 50%
+        position: absolute
+      /*CSS3 pseudo class for positioning curves*/
+      .star-top:before 
+        top: -$half-size
+        left: -$half-size
+      .star-top:after 
+        bottom: -$half-size
+        left: $half-size
+      .star-bottom:before 
+        top: $half-size
+        left: -$half-size
+      .star-bottom:after 
+        top: $half-size
+        left: $half-size
+
+@keyframes flickerAnimation 
+  0%  
+    opacity:0
+  50%  
+    opacity:1
+  100% 
+    opacity:0
 
 .contain-flag 
   position: absolute
@@ -50,11 +111,11 @@ $cloud-fin-scale-factor: 0.05
   .sphere
     animation: rotate-earth $earth-rotation-speed linear infinite
   &--uk
-    $rotation: 32
+    $rotation: 28
     // 90 - $rotation as the rotation is relative to the center of the face of the planet, not the edge
     animation: elevate-flag $earth-rotation-speed math.div(90 - $rotation, 360) * -1 * $earth-rotation-speed steps(2,start) infinite
     .landmark
-      $translations: get-random-z-y(160, 0)
+      $translations: get-random-z-y(120, 0)
       transform:  translateZ(#{map-get($translations, "trans-z")}vmin ) rotateZ($rotation * 1deg) translateY(#{map-get($translations, "trans-y")}vmin)  rotateX(#{map-get($translations, "rot-x")})
       left: (math.div($planet-diameter - 2, 2)) * 1vmin
       > div
@@ -72,31 +133,33 @@ $cloud-fin-scale-factor: 0.05
         transform: rotateX(312deg) scale(0.2)
         .flag
           background: radial-gradient(circle 4vmin, red 100%, white 100%)
-
-.earth-container
-  position: relative
-  &:hover
-    .sphere, .island--asia .surface, ~ .planet--flag, ~ .planet--flag .sphere
-      animation-play-state: paused
-  z-index: 2
-  clip-path: circle(math.div($planet-diameter, 2) - math.div($layer-offset-remainder, 2) * 1vmin)
-  .planet
-    &::before
-      background: rgb(91, 161, 214)
-      content: ''
-      position: absolute
-      width: 100%
-      height: 100%
-      border-radius: 50%
-      // transform: translateZ(1vmin) // unclear what the purpose of this is
-  .sphere
-    animation: rotate-earth $earth-rotation-speed linear infinite
-    .land
-      background-color: rgb(91, 214, 171)
-    .island--asia // fix bad cut on Europe and Asia
-      > .plate
-        > .surface
-          // animation: rotate-asia-offset $earth-rotation-speed linear infinite
+.earth
+  .clouds,.flags
+    display: contents
+  .earth-container
+    position: relative
+    &:hover
+      .sphere, .island--asia .surface, ~ .flags > .planet--flag, ~ .flags > .planet--flag .sphere
+        animation-play-state: paused
+    z-index: 2
+    clip-path: circle(math.div($planet-diameter, 2) - math.div($layer-offset-remainder, 2) * 1vmin)
+    .planet
+      &::before
+        background: rgb(91, 161, 214)
+        content: ''
+        position: absolute
+        width: 100%
+        height: 100%
+        border-radius: 50%
+        // transform: translateZ(1vmin) // unclear what the purpose of this is
+    .sphere
+      animation: rotate-earth $earth-rotation-speed linear infinite
+      .land
+        background-color: rgb(91, 214, 171)
+      .island--asia // fix bad cut on Europe and Asia
+        > .plate
+          > .surface
+            // animation: rotate-asia-offset $earth-rotation-speed linear infinite
 
 .planet--clouds
   animation: elevate-cloud $cloud-rotation-speed steps(2,start) infinite
@@ -154,6 +217,7 @@ $cloud-fin-scale-factor: 0.05
             &:after
               // translate from center to apex by the appropriate amount, accounting for scale factor.
               transform: translate(map-get($cloud, "center-to-apex") * $scale * 1px, math.div($cloud-fin-scale-factor, 2) * 100% ) rotateY(90deg) scale($scale) 
+
 @keyframes elevate-flag
   0%
     z-index: 2

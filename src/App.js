@@ -16,17 +16,17 @@ function App() {
           </div>
           Austin-Forbes
         </h1>
+        <div>
+          <h3 className="introduction">
+            I am a fullstack engineer with a focus on{" "}
+            <Popup
+              content={<h4>(M)ongo (E)xpress (R)eact (N)ode</h4>}
+              trigger={<span>MERN</span>}
+            />{" "}
+            stacks
+          </h3>
+        </div>
       </header>
-      <div>
-        <h3 className="introduction">
-          I am a fullstack engineer with a focus on{" "}
-          <Popup
-            content={<h4>(M)ongo (E)xpress (R)eact (N)ode</h4>}
-            trigger={<span>MERN</span>}
-          />{" "}
-          stacks
-        </h3>
-      </div>
       <Earth />
       <section className="section section--pink">
         <img alt="section header" className="section__header" src={about} />

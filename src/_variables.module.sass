@@ -1,10 +1,13 @@
 @use "sass:math"
 
+$base-color:rgb(32,35,86)
+
 // Arbitrary values
 $total-possible-random-positions: 2560 // number of (x,y) positions to pick from when placing land
 $planet-diameter: 42
 $layer-offset-remainder: 0.6 // If you don't look directly down the axis at all times there is some offset.
 $cloud-layers: 10
+$number-of-stars: 36
 
 // Calculations
 $planet-radius: math.div($planet-diameter, 2)
