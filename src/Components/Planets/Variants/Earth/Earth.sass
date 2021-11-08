@@ -1,8 +1,8 @@
 @use "sass:math"
 @import 'src/variables.module.sass'
 @import 'src/Components/Planets/Planet.sass'
-@import './Components/Clouds.sass'
-@import './Components/Islands.sass'
+@import './Clouds.sass'
+@import './Islands.sass'
 
 $earth-rotation-speed: 24s
 $earth-rotation-speed: 12s
@@ -10,63 +10,77 @@ $earth-rotation-speed: 12s
 $cloud-scale-factor: 0.3
 // $cloud-rotation-speed: 38s
 $cloud-rotation-speed: 16s
-$cloud-layer-separation-distance: 0.1vmin
+$cloud-layer-separation-distance: 0.14vmin
 $cloud-total-depth: $cloud-layers * $cloud-layer-separation-distance
-$cloud-separation-from-earth: 2vmin
+$cloud-separation-from-earth: 1vmin
 $cloud-fin-scale-factor: 0.05
+
+.contain-flag 
+  position: absolute
+  height: auto
+  transform: translate(0, -100%)
+  .pole
+    background-color: gray
+    border: 0.1vmin solid #636262
+    border-radius: 1vmin
+    width: 1vmin
+    height: 20vmin
+  .pole::before
+    position: absolute
+    top: -1.4vmin
+    left: -.5vmin
+    display: block
+    background-color: gray
+    border-radius: 50%
+    border: .1vmin solid #636262
+    width: 2vmin
+    height: 2vmin
+    content:''
+  .flag 
+    position: absolute 
+    top: .8vmin
+    z-index: 10
+    width: 22vmin
+    height: 11vmin
 
 .planet--flag
   z-index: 1
   position: absolute
-  animation: elevate-flag $earth-rotation-speed math.div(44, 360) * -1 * $earth-rotation-speed steps(2,start) infinite
+  pointer-events: none
   .sphere
     animation: rotate-earth $earth-rotation-speed linear infinite
+  &--uk
+    $rotation: 32
+    // 90 - $rotation as the rotation is relative to the center of the face of the planet, not the edge
+    animation: elevate-flag $earth-rotation-speed math.div(90 - $rotation, 360) * -1 * $earth-rotation-speed steps(2,start) infinite
     .landmark
-      $translations: get-random-z-y(160, 2)
-      transform:  translateZ(#{map-get($translations, "trans-z")}vmin ) rotateZ(32deg) translateY(#{map-get($translations, "trans-y")}vmin)  rotateX(#{map-get($translations, "rot-x")})
-      width: 2vmin
-      height: 2vmin
+      $translations: get-random-z-y(160, 0)
+      transform:  translateZ(#{map-get($translations, "trans-z")}vmin ) rotateZ($rotation * 1deg) translateY(#{map-get($translations, "trans-y")}vmin)  rotateX(#{map-get($translations, "rot-x")})
       left: (math.div($planet-diameter - 2, 2)) * 1vmin
-      .contain-flag 
-        position: absolute
-        height: auto
-        transform: rotateX(22deg)
-        .pole
-          background-color: gray
-          border: 0.1vmin solid #636262
-          border-radius: 1vmin
-          width: 1vmin
-          height: 20vmin
-        .pole::before
-          position: absolute
-          top: -1.4vmin
-          left: -.5vmin
-          display: block
-          background-color: gray
-          border-radius: 50%
-          border: .1vmin solid #636262
-          width: 2vmin
-          height: 2vmin
-          content:''
-        .flag 
-          position: absolute 
-          top: .8vmin
-          z-index: 10
-          background-color: #eb573b
-          border: .1vmin solid #d64b38
-          width: 22vmin
-          height: 11vmin
+      > div
+        transform: rotateX(270deg) scale(0.2)
+        .flag
           background: linear-gradient(180deg, transparent, transparent 4.4vmin, #c8102e 4.4vmin, #c8102e 6.6vmin, transparent 6.6vmin, transparent 100%), linear-gradient(90deg, transparent, transparent 9.9vmin, #c8102e 9.9vmin, #c8102e 12.1vmin, transparent 12.1vmin, transparent 100%), linear-gradient(180deg, transparent, transparent 3.7vmin, #FFF 3.7vmin, #FFF 7.3vmin, transparent 7.3vmin, transparent 100%), linear-gradient(90deg, transparent, transparent 9.2vmin, #FFF 9.2vmin, #FFF 12.8vmin, transparent 12.8vmin, transparent 100%), linear-gradient(26.56505deg, transparent, transparent 9.1vmin, #c8102e 9.1vmin, #c8102e 9.8vmin, transparent 9.8vmin, transparent 100%) 0 0/11vmin 100% no-repeat, linear-gradient(-26.56505deg, transparent, transparent 9.8vmin, #c8102e 9.8vmin, #c8102e 10.6vmin, transparent 10.6vmin, transparent 100%) 11vmin 0/11vmin 100% no-repeat, linear-gradient(26.56505deg, transparent, transparent 9.8vmin, #c8102e 9.8vmin, #c8102e 10.6vmin, transparent 10.6vmin, transparent 100%) 11vmin 5.5vmin/11vmin 100% no-repeat, linear-gradient(-26.56505deg, transparent, transparent 9.1vmin, #c8102e 9.1vmin, #c8102e 9.8vmin, transparent 9.8vmin, transparent 100%) 0 5.5vmin/11vmin 100% no-repeat, linear-gradient(27deg, transparent, transparent 8.7vmin, #FFF 8.7vmin, #FFF 10.9vmin, transparent 10.9vmin, transparent 100%), linear-gradient(153deg, transparent, transparent 8.7vmin, #FFF 8.7vmin, #FFF 10.9vmin, transparent 10.9vmin, transparent 100%), #012169
-          
+  &--jp
+    $rotation: 278
+    animation: elevate-flag $earth-rotation-speed math.div(90 - $rotation, 360) * -1 * $earth-rotation-speed steps(2,start) infinite
+    .landmark
+      $translations: get-random-z-y(10, 0)
+      transform:  translateZ(#{map-get($translations, "trans-z")}vmin ) rotateZ($rotation * 1deg) translateY(#{map-get($translations, "trans-y")}vmin)  rotateX(#{map-get($translations, "rot-x")})
+      left: (math.div($planet-diameter - 2, 2)) * 1vmin
+      > div
+        transform: rotateX(312deg) scale(0.2)
+        .flag
+          background: radial-gradient(circle 4vmin, red 100%, white 100%)
 
 .earth-container
   position: relative
+  &:hover
+    .sphere, .island--asia .surface, ~ .planet--flag, ~ .planet--flag .sphere
+      animation-play-state: paused
   z-index: 2
   clip-path: circle(math.div($planet-diameter, 2) - math.div($layer-offset-remainder, 2) * 1vmin)
   .planet
-    &:hover
-      .sphere, .island--asia .surface
-        animation-play-state: paused
     &::before
       background: rgb(91, 161, 214)
       content: ''
@@ -82,7 +96,7 @@ $cloud-fin-scale-factor: 0.05
     .island--asia // fix bad cut on Europe and Asia
       > .plate
         > .surface
-          animation: rotate-asia-offset $earth-rotation-speed linear infinite
+          // animation: rotate-asia-offset $earth-rotation-speed linear infinite
 
 .planet--clouds
   animation: elevate-cloud $cloud-rotation-speed steps(2,start) infinite
@@ -92,6 +106,7 @@ $cloud-fin-scale-factor: 0.05
   width: ($planet-diameter * 1vmin) + $cloud-total-depth + $cloud-separation-from-earth
   height: ($planet-diameter * 1vmin) + $cloud-total-depth + $cloud-separation-from-earth
   perspective: none // If there is a perspective, the cloud may not turn around quickly enough around the side
+  pointer-events: none
   @for $i from 1 through 36
     $rotation: $i * 10
     &--y-rotation--#{$rotation}
