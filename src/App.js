@@ -20,92 +20,23 @@ function App() {
           <h3 className="introduction">
             I am a fullstack engineer with a focus on{" "}
             <Popup
+              basic
               content={<h4>(M)ongo (E)xpress (R)eact (N)ode</h4>}
+              inverted
+              on="click"
+              style={{
+                backgroundColor: "rgba(0,0,0,0.2)"
+              }}
               trigger={<span>MERN</span>}
+              position="right center"
+              offset={[20, 60]}
             />{" "}
             stacks
           </h3>
         </div>
       </header>
       <Earth />
-      <section className="section section--pink">
-        <img alt="section header" className="section__header" src={about} />
-        <Card.Group centered>
-          <Card
-            image={
-              <Card.Content>
-                <Card.Header>
-                  Learner
-                  <Card.Header />
-                </Card.Header>
-                <Card.Meta>Life</Card.Meta>
-                <Icon color="purple" name="book" size="huge" />
-              </Card.Content>
-            }
-            description={
-              <List bulleted>
-                <List.Item>
-                  Eliot was born to David Forbes and Mary Austin at a modest
-                  property in London in 1993.
-                </List.Item>
-                <List.Item>
-                  He then studied at a highschool in Cambridge, before
-                  completing a master's degree
-                </List.Item>
-              </List>
-            }
-          />
-          <Card
-            image={
-              <Card.Content>
-                <Card.Header>
-                  Learner
-                  <Card.Header />
-                </Card.Header>
-                <Card.Meta>Life</Card.Meta>
-                <Icon color="purple" name="book" size="huge" />
-              </Card.Content>
-            }
-            description={
-              <List bulleted>
-                <List.Item>
-                  Eliot was born to David Forbes and Mary Austin at a modest
-                  property in London in 1993.
-                </List.Item>
-                <List.Item>
-                  He then studied at a highschool in Cambridge, before
-                  completing a master's degree
-                </List.Item>
-              </List>
-            }
-          />
-          <Card
-            image={
-              <Card.Content>
-                <Card.Header>
-                  Learner
-                  <Card.Header />
-                </Card.Header>
-                <Card.Meta>Life</Card.Meta>
-                <Icon color="purple" name="book" size="huge" />
-              </Card.Content>
-            }
-            description={
-              <List bulleted>
-                <List.Item>
-                  Eliot was born to David Forbes and Mary Austin at a modest
-                  property in London in 1993.
-                </List.Item>
-                <List.Item>
-                  He then studied at a highschool in Cambridge, before
-                  completing a master's degree
-                </List.Item>
-              </List>
-            }
-          />
-        </Card.Group>
-      </section>
-      <section className="section section--white"></section>
+      {/* <section className="section section--white"></section> */}
     </div>
   );
 }
