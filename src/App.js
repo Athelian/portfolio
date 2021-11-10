@@ -5,21 +5,33 @@ import { Image, Popup } from "semantic-ui-react";
 import "./App.sass";
 import flaskBook from "Images/flask-book.png";
 import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function App() {
-
-  const titleRef = useRef(null)
+  const titleRef = useRef(null);
+  const [titleInView, setTitleInView] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(() => console.log(1))
-    titleRef.current && observer.observe(titleRef.current)
-
-    return () => titleRef.current && observer.unobserve(titleRef.current)
-  }, [titleRef])
+    const options = {
+      root: document.querySelector("#scrollArea"),
+      rootMargin: "0px",
+      threshold: 0.2
+    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries
+        if (entry.isIntersecting) setTitleInView(true)
+        else setTitleInView(false)
+      },
+      options
+    );
+    titleRef.current && observer.observe(titleRef.current);
+    return () => titleRef.current && observer.unobserve(titleRef.current);
+  }, [titleRef]);
 
   return (
     <div className="Portfolio-Site">
-            <div className="stars">
+      <div className="stars">
         {Array(64)
           .fill("")
           .map(() => (
@@ -31,10 +43,10 @@ function App() {
       </div>
       <header>
         <h1>
-          <div>
+          <h1>
             Eliot
             <Image alt="bitmoji" circular src={bitmoji} />
-          </div>
+          </h1>
           Austin-Forbes
         </h1>
         <div>
@@ -58,7 +70,9 @@ function App() {
       </header>
       <Earth />
       <section className="section section--light">
-        <h2 ref={titleRef}>About</h2>
+        <h2 className={titleInView ? "slide-out-shadow" : ""} ref={titleRef}>
+          About
+        </h2>
         <div className="side-container side-container--left-dominant">
           <div className="left text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet arcu lacus. Sed enim augue, maximus in tristique vitae, venenatis non orci. Donec tortor sem, maximus scelerisque nulla sed, tristique ultrices justo. Aenean faucibus tempus ex sit amet finibus. Donec mattis viverra nunc vel commodo. Integer ornare felis sed neque ullamcorper, sed scelerisque magna sodales. Maecenas arcu nunc, dapibus ut eleifend et, aliquam ac lacus. Fusce ultrices consequat odio, vitae faucibus arcu volutpat id. Phasellus venenatis venenatis sapien, in rhoncus odio semper at. Curabitur id mauris quis nunc imperdiet bibendum lobortis ac mi.</div>
           <div className="right"><img src={flaskBook}/></div>
