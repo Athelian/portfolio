@@ -1,4 +1,29 @@
 @import 'src/variables.module.sass'
+@keyframes text-shadow
+  // 0%
+  //   text-shadow: -16px 0 black // x = -4
+  // x^2 + y^2 = 16^2
+  @for $frame from 14 through 85
+    $x: 0
+    @if $frame < 51
+      $x: -36 + math.div(36, 100) * $frame * 4
+    @else
+      $i: $frame - 50
+      $x: 36 - (math.div(36, 100) * ($i) * 4)
+    $y: math.sqrt(math.pow(16,2) - math.pow($x, 2) * 0.2)
+    @if $frame < 50
+      $y: -$y
+    @debug $frame
+    @debug $x
+    @debug $y
+    #{$frame * math.div(1, 1) * 1%}
+      @debug $frame * math.div(1, 0.78) * 1%
+      @debug " "
+      text-shadow: $x * 1px $y * 1px black
+
+  // 100%
+    // text-shadow: -16px 20px black
+
 
 body
   background-color: $base-color
