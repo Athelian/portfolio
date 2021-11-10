@@ -3,37 +3,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap')
 
 h2
-  color: #c915e7
-  font-family: 'Bungee Shade', cursive
-  font-size: xxx-large
-  transform: rotate(-3deg)
-  text-align: center
-  animation: text-shadow 2s cubic-bezier(1, -0.05, 0, 1.01) infinite forwards
+
+.slide-out-shadow
+  animation: text-shadow 0.4s ease-in forwards
+
 @keyframes text-shadow
-  // 0%
-  //   text-shadow: -16px 0 black // x = -4
-  // x^2 + y^2 = 16^2
-  @for $frame from 14 through 85
-    $x: 0
-    @if $frame < 51
-      $x: -36 + math.div(36, 100) * $frame * 4
-    @else
-      $i: $frame - 50
-      $x: 36 - (math.div(36, 100) * ($i) * 4)
-    $y: math.sqrt(math.pow(16,2) - math.pow($x, 2) * 0.2)
-    @if $frame < 50
-      $y: -$y
-    @debug $frame
-    @debug $x
-    @debug $y
-    #{$frame * math.div(1, 1) * 1%}
-      @debug $frame * math.div(1, 0.78) * 1%
-      @debug " "
-      text-shadow: $x * 1px $y * 1px black
-
-  // 100%
-    // text-shadow: -16px 20px black
-
+  0%
+    text-shadow: 0px 0px black
+  100%
+    text-shadow: -16px 14px black
 
 .side-container
   display: flex
@@ -41,13 +19,15 @@ h2
   gap: 2rem
   align-items: center
   *
-    text-align: center
     max-width: 100%
+  > *
     border-radius: 8px
+    padding: 2rem
+    width: 50%
   .left
-    background-color: rgb(56,71,156)
   &--left-dominant
     .left
+      background-color: rgb(56,71,156)
       width: 60%
     .right
       width: 40%
@@ -57,9 +37,6 @@ h2
 
 .root, .Portfolio-Site
   height: 100%
-
-.text
-  padding: 2rem
 
 body
   background-color: $base-color
@@ -102,6 +79,7 @@ header
   font-size: medium
   span
     cursor: pointer
+    font-size: medium
 
 div.ui.card
   padding: 2rem
@@ -113,6 +91,22 @@ div.ui.card
     i
       margin-top: 1rem
 
+@mixin flag-jp($width)
+  background: radial-gradient(circle $width * 0.175, red 100%, white 100%)
+@mixin flag-uk($width)
+  $factor: math.div($width, 22)
+  background: linear-gradient(180deg, transparent, transparent $factor * 4.4, #c8102e $factor * 4.4, #c8102e $factor * 6.6, transparent $factor * 6.6, transparent 100%), linear-gradient(90deg, transparent, transparent $factor * 9.9, #c8102e $factor * 9.9, #c8102e $factor * 12.1, transparent $factor * 12.1, transparent 100%), linear-gradient(180deg, transparent, transparent $factor * 3.7, #FFF $factor * 3.7, #FFF $factor * 7.3, transparent $factor * 7.3, transparent 100%), linear-gradient(90deg, transparent, transparent $factor * 9.2, #FFF $factor * 9.2, #FFF $factor * 12.8, transparent $factor * 12.8, transparent 100%), linear-gradient(26.56505deg, transparent, transparent $factor * 9.1, #c8102e $factor * 9.1, #c8102e $factor * 9.8, transparent $factor * 9.8, transparent 100%) 0 0/#{$factor * 11} 100% no-repeat, linear-gradient(-26.56505deg, transparent, transparent $factor * 9.8, #c8102e $factor * 9.8, #c8102e $factor * 10.6, transparent $factor * 10.6, transparent 100%) $factor * 11 #{0}/#{$factor * 11} 100% no-repeat, linear-gradient(26.56505deg, transparent, transparent $factor * 9.8, #c8102e $factor * 9.8, #c8102e $factor * 10.6, transparent $factor * 10.6, transparent 100%) $factor * 11 $factor * 5.5#{"/"}$factor * 11 100% no-repeat, linear-gradient(-26.56505deg, transparent, transparent $factor * 9.1, #c8102e $factor * 9.1, #c8102e $factor * 9.8, transparent $factor * 9.8, transparent 100%) 0 $factor * 5.5#{"/"}$factor * 11 100% no-repeat, linear-gradient(27deg, transparent, transparent $factor * 8.7, #FFF $factor * 8.7, #FFF $factor * 10.9, transparent $factor * 10.9, transparent 100%), linear-gradient(153deg, transparent, transparent $factor * 8.7, #FFF $factor * 8.7, #FFF $factor * 10.9, transparent $factor * 10.9, transparent 100%), #012169
+
+.flag
+  $width: 8rem
+  height: 4rem
+  width: $width
+  border-radius: 4px
+  &--JP
+    @include flag-jp($width)
+  &--UK
+    @include flag-uk($width)
+
 .section
   padding: 2rem 0
   margin: 0 2rem
@@ -121,7 +115,20 @@ div.ui.card
   z-index: 1 // for above stars
   border-radius: 20px
   &--light
-    background-color: rgb(42,43,101)
+    background-color: rgba(42,43,101, 0.95)
+  *
+    text-align: center
+    max-width: 100%
+    font-size: x-large
+    color: white
+    line-height: normal
+    font-family: cursive
+  h2
+    color: #c915e7
+    font-family: 'Bungee Shade', cursive
+    font-size: xxx-large
+    transform: rotate(-3deg)
+    text-align: center
 
 .section__header
   width: 7rem

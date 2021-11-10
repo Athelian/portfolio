@@ -4,7 +4,6 @@ import "semantic-ui-css/semantic.min.css";
 import { Image, Popup } from "semantic-ui-react";
 import "./App.sass";
 import flaskBook from "Images/flask-book.png";
-import { useEffect, useRef } from "react";
 import { useEffect, useRef, useState } from "react";
 
 function App() {
@@ -74,8 +73,23 @@ function App() {
           About
         </h2>
         <div className="side-container side-container--left-dominant">
-          <div className="left text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet arcu lacus. Sed enim augue, maximus in tristique vitae, venenatis non orci. Donec tortor sem, maximus scelerisque nulla sed, tristique ultrices justo. Aenean faucibus tempus ex sit amet finibus. Donec mattis viverra nunc vel commodo. Integer ornare felis sed neque ullamcorper, sed scelerisque magna sodales. Maecenas arcu nunc, dapibus ut eleifend et, aliquam ac lacus. Fusce ultrices consequat odio, vitae faucibus arcu volutpat id. Phasellus venenatis venenatis sapien, in rhoncus odio semper at. Curabitur id mauris quis nunc imperdiet bibendum lobortis ac mi.</div>
-          <div className="right"><img src={flaskBook}/></div>
+          <div className="left">
+            <div className="flag flag--UK"/>
+            <div className="flag flag--JP"/>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+            sit amet arcu lacus. Sed enim augue, maximus in tristique vitae,
+            venenatis non orci. Donec tortor sem, maximus scelerisque nulla sed,
+            tristique ultrices justo. Aenean faucibus tempus ex sit amet
+            finibus. Donec mattis viverra nunc vel commodo. Integer ornare felis
+            sed neque ullamcorper, sed scelerisque magna sodales. Maecenas arcu
+            nunc, dapibus ut eleifend et, aliquam ac lacus. Fusce ultrices
+            consequat odio, vitae faucibus arcu volutpat id. Phasellus venenatis
+            venenatis sapien, in rhoncus odio semper at. Curabitur id mauris
+            quis nunc imperdiet bibendum lobortis ac mi.
+          </div>
+          <div className="right">
+            <img src={flaskBook} />
+          </div>
         </div>
       </section>
     </div>
