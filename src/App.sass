@@ -2,10 +2,11 @@
 @import 'src/variables.module.sass'
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap')
 
-h2
-
 .slide-out-shadow
   animation: text-shadow 0.4s ease-in forwards
+
+p
+  padding: 1rem
 
 @keyframes text-shadow
   0%
@@ -14,23 +15,28 @@ h2
     text-shadow: -16px 14px black
 
 .side-container
+  $columns: left, right
   display: flex
   margin: 3rem
   gap: 2rem
   align-items: center
+  .left, .right
+    width: 40%
   *
     max-width: 100%
   > *
     border-radius: 8px
-    padding: 2rem
     width: 50%
-  .left
-  &--left-dominant
-    .left
-      background-color: rgb(56,71,156)
-      width: 60%
-    .right
-      width: 40%
+    > *
+      margin: 1rem 0
+  @each $column in $columns
+    &--#{$column}-dominant
+      .#{$column}
+        width: 60%
+        padding: 2rem
+        > *
+          display: flex
+          align-items: center
 
 .earth
   height: 100vh
@@ -99,8 +105,11 @@ div.ui.card
 
 .flag
   $width: 8rem
-  height: 4rem
   width: $width
+  min-width: $width
+  height: 4rem
+  min-height: 4rem
+  margin: 1rem
   border-radius: 4px
   &--JP
     @include flag-jp($width)
@@ -109,17 +118,30 @@ div.ui.card
 
 .section
   padding: 2rem 0
-  margin: 0 2rem
+  margin: 2rem 8rem
   max-width: 1380px
   position: relative
   z-index: 1 // for above stars
   border-radius: 20px
   &--light
     background-color: rgba(42,43,101, 0.95)
+    .side-container--right-dominant
+      .right
+        background-color: rgb(56,71,156)
+    .side-container--left-dominant
+      .left
+        background-color: rgb(56,71,156)
+  &--dark
+    background-color: rgba(56, 71, 156, 0.85)
+    .side-container--right-dominant
+      .right
+        background-color: $base-color
+    .side-container--left-dominant
+      .left
+        background-color: $base-color
   *
     text-align: center
-    max-width: 100%
-    font-size: x-large
+    font-size: large
     color: white
     line-height: normal
     font-family: cursive
@@ -128,7 +150,7 @@ div.ui.card
     font-family: 'Bungee Shade', cursive
     font-size: xxx-large
     transform: rotate(-3deg)
-    text-align: center
+    text-align: center      
 
 .section__header
   width: 7rem

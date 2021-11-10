@@ -8,7 +8,7 @@ $total-possible-random-positions: 2560 // number of (x,y) positions to pick from
 $planet-diameter: 42
 $layer-offset-remainder: 0.6 // If you don't look directly down the axis at all times there is some offset.
 $cloud-layers: 10
-$number-of-stars: 36
+$number-of-stars: 64
 
 // Calculations
 $planet-radius: math.div($planet-diameter, 2)
@@ -53,3 +53,4 @@ $earth: (continents: $continents, clouds: $clouds)
   @include map-map-to-string($continents, "planet-earth-continents")
   @include list-map-to-string($clouds, "planet-earth-clouds")
   cloud-layers: $cloud-layers
+  number-of-stars: $number-of-stars
