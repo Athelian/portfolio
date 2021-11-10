@@ -7,6 +7,14 @@ import flaskBook from "Images/flask-book.png";
 import computerHappyFace from "Images/computer-happy-face.png";
 import { useEffect, useRef, useState } from "react";
 import VARIABLES from "./_variables.module.sass";
+import {
+  CarouselProvider,
+  Slider,
+  Slide,
+  ButtonBack,
+  ButtonNext
+} from "pure-react-carousel";
+import "pure-react-carousel/dist/react-carousel.es.css";
 
 function App() {
   const titleRef = useRef(null);
@@ -83,23 +91,15 @@ function App() {
             <div>
               <div className="flag flag--UK" />
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Curabitur sit amet arcu lacus. Sed enim augue, maximus in
-                tristique vitae, venenatis non orci. Donec tortor sem, maximus
-                scelerisque nulla sed, tristique ultrices justo. Aenean faucibus
-                tempus ex sit amet finibus. Donec mattis viverra nunc vel
-                commodo.
+                <span>🏠 London</span>
+                <span>🎓 St Andrews</span>
               </p>
             </div>
             <div>
               <div className="flag flag--JP" />
               <p>
-                Integer ornare felis sed neque ullamcorper, sed scelerisque
-                magna sodales. Maecenas arcu nunc, dapibus ut eleifend et,
-                aliquam ac lacus. Fusce ultrices consequat odio, vitae faucibus
-                arcu volutpat id. Phasellus venenatis venenatis sapien, in
-                rhoncus odio semper at. Curabitur id mauris quis nunc imperdiet
-                bibendum lobortis ac mi.
+                <span>💼Software Engineer</span>
+                <span> 📍 関東 </span>
               </p>
             </div>
           </div>
@@ -109,34 +109,28 @@ function App() {
         </div>
       </section>
       <section className="section section--dark">
-        <h2 className={projectsInView ? "slide-out-shadow" : ""} ref={projectRef}>Projects</h2>
+        <h2
+          className={projectsInView ? "slide-out-shadow" : ""}
+          ref={projectRef}
+        >
+          Projects
+        </h2>
         <div className="side-container side-container--right-dominant">
           <div className="left">
             <img src={computerHappyFace} />
           </div>
           <div className="right">
-            <div>
-              <div className="flag flag--UK" />
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Curabitur sit amet arcu lacus. Sed enim augue, maximus in
-                tristique vitae, venenatis non orci. Donec tortor sem, maximus
-                scelerisque nulla sed, tristique ultrices justo. Aenean faucibus
-                tempus ex sit amet finibus. Donec mattis viverra nunc vel
-                commodo.
-              </p>
-            </div>
-            <div>
-              <div className="flag flag--JP" />
-              <p>
-                Integer ornare felis sed neque ullamcorper, sed scelerisque
-                magna sodales. Maecenas arcu nunc, dapibus ut eleifend et,
-                aliquam ac lacus. Fusce ultrices consequat odio, vitae faucibus
-                arcu volutpat id. Phasellus venenatis venenatis sapien, in
-                rhoncus odio semper at. Curabitur id mauris quis nunc imperdiet
-                bibendum lobortis ac mi.
-              </p>
-            </div>
+            <CarouselProvider
+              naturalSlideWidth={100}
+              naturalSlideHeight={125}
+              totalSlides={3}
+            >
+              <Slider>
+                <Slide index={0}>I am the first Slide.</Slide>
+                <Slide index={1}>I am the second Slide.</Slide>
+                <Slide index={2}>I am the third Slide.</Slide>
+              </Slider>
+            </CarouselProvider>
           </div>
         </div>
       </section>
