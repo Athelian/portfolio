@@ -17,8 +17,8 @@ $cloud-fin-scale-factor: 0.05
 .earth
   display: flex
   justify-content: center
-  position: relative
-  padding: 24rem 0 12rem 0
+  position: initial
+  padding-top: max(26vh, 26rem)
   .earth__components
     display: contents
 
@@ -136,7 +136,7 @@ $cloud-fin-scale-factor: 0.05
   .clouds,.flags
     display: contents
   .earth-container
-    position: relative
+    position: absolute
     &:hover
       .sphere, .island--asia .surface, ~ .flags > .planet--flag, ~ .flags > .planet--flag .sphere
         animation-play-state: paused

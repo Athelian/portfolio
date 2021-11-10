@@ -1,4 +1,14 @@
+@use "sass:math"
 @import 'src/variables.module.sass'
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap')
+
+h2
+  color: #c915e7
+  font-family: 'Bungee Shade', cursive
+  font-size: xxx-large
+  transform: rotate(-3deg)
+  text-align: center
+  animation: text-shadow 2s cubic-bezier(1, -0.05, 0, 1.01) infinite forwards
 @keyframes text-shadow
   // 0%
   //   text-shadow: -16px 0 black // x = -4
@@ -25,17 +35,42 @@
     // text-shadow: -16px 20px black
 
 
+.side-container
+  display: flex
+  margin: 3rem
+  gap: 2rem
+  align-items: center
+  *
+    text-align: center
+    max-width: 100%
+    border-radius: 8px
+  .left
+    background-color: rgb(56,71,156)
+  &--left-dominant
+    .left
+      width: 60%
+    .right
+      width: 40%
+
+.earth
+  height: 100vh
+
+.root, .Portfolio-Site
+  height: 100%
+
+.text
+  padding: 2rem
+
 body
   background-color: $base-color
 
 .Portfolio-Site
   margin: 0 auto
   position: relative
-  > *
-    // display: flex
-    // justify-content: center
-    // align-items: center
-    // margin: 0 0 3rem 0
+  padding-bottom: 2rem
+  display: flex
+  align-items: center
+  flex-direction: column
 
 header
   position: absolute
@@ -45,7 +80,6 @@ header
   margin-right: auto
   width: 22rem
   margin-top: 5rem
-  display: in
   z-index: 2
   h1
     font-size: 48px
@@ -80,15 +114,14 @@ div.ui.card
       margin-top: 1rem
 
 .section
-  padding: 3rem
+  padding: 2rem 0
+  margin: 0 2rem
+  max-width: 1380px
   position: relative
-  margin-top: 6rem
-  &--pink
-    background: url("Images/bg.jpeg")
-    background-size: cover
-  > *
-    display: flex
-    justify-content: center
+  z-index: 1 // for above stars
+  border-radius: 20px
+  &--light
+    background-color: rgb(42,43,101)
 
 .section__header
   width: 7rem

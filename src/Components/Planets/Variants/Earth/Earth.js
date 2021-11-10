@@ -31,16 +31,6 @@ const Earth = () => {
 
   return (
     <div className="earth">
-      <div className="stars">
-        {Array(36)
-          .fill("")
-          .map(() => (
-            <div className="star">
-              <div className="star-top"></div>
-              <div className="star-bottom"></div>
-            </div>
-          ))}
-      </div>
       <div className="earth__components">
         <div className="earth-container">
           <Planet planetClassname="planet--earth">
