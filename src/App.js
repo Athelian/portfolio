@@ -5,16 +5,14 @@ import { Image, Popup } from "semantic-ui-react";
 import "./App.sass";
 import flaskBook from "Images/flask-book.png";
 import computerHappyFace from "Images/computer-happy-face.png";
+import computerNoFace from "Images/computer-no-face.png";
+import liberty from "Images/liberty.png";
+import logo__ubuntu from "Images/logo__ubuntu.png";
+import logo__mongo from "Images/logo__mongo.png";
 import { useEffect, useRef, useState } from "react";
 import VARIABLES from "./_variables.module.sass";
-import {
-  CarouselProvider,
-  Slider,
-  Slide,
-  ButtonBack,
-  ButtonNext
-} from "pure-react-carousel";
-import "pure-react-carousel/dist/react-carousel.es.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
 
 function App() {
   const titleRef = useRef(null);
@@ -88,19 +86,21 @@ function App() {
         </h2>
         <div className="side-container side-container--left-dominant">
           <div className="left">
-            <div>
-              <div className="flag flag--UK" />
-              <p>
-                <span>🏠 London</span>
-                <span>🎓 St Andrews</span>
-              </p>
-            </div>
-            <div>
-              <div className="flag flag--JP" />
-              <p>
-                <span>💼Software Engineer</span>
-                <span> 📍 関東 </span>
-              </p>
+            <div className="side-container__about">
+              <div>
+                <div className="flag flag--UK" />
+                <p>
+                  <span>🏠 London</span>
+                  <span>🎓 St Andrews</span>
+                </p>
+              </div>
+              <div>
+                <div className="flag flag--JP" />
+                <p>
+                  <span>💼Software Engineer</span>
+                  <span> 📍 関東 </span>
+                </p>
+              </div>
             </div>
           </div>
           <div className="right">
@@ -117,20 +117,80 @@ function App() {
         </h2>
         <div className="side-container side-container--right-dominant">
           <div className="left">
-            <img src={computerHappyFace} />
+            <img className="computer" src={computerNoFace} />
+            <div className="computer__projects">
+              <Carousel className="carousel--projects--blurb">
+                <img className="computer__project" src={liberty} />
+                <img className="computer__project" src={liberty} />
+                {/* <div className="carousel__project">
+                  <h1>Liberty</h1>
+                </div> */}
+              </Carousel>
+            </div>
           </div>
           <div className="right">
-            <CarouselProvider
-              naturalSlideWidth={100}
-              naturalSlideHeight={125}
-              totalSlides={3}
-            >
-              <Slider>
-                <Slide index={0}>I am the first Slide.</Slide>
-                <Slide index={1}>I am the second Slide.</Slide>
-                <Slide index={2}>I am the third Slide.</Slide>
-              </Slider>
-            </CarouselProvider>
+            <Carousel className="carousel--projects--blurb">
+              <div className="carousel__project">
+                <h1>Liberty</h1>
+                <div className="carousel__project__technologies">
+                  <img src={logo__ubuntu} />
+                  <img src={logo__mongo} />
+                  <img src={logo__ubuntu} />
+                  <img src={logo__ubuntu} />
+                </div>
+                <p>
+                  A website serving as a portal to a business-facing online 3D
+                  exhibition MMO game, complete with various social media
+                  capabilities, customer service integration, game file editor,
+                  and more. Sole responsibility for the entire site/stack.
+                  Technologies Used: javascript, react, node, html, css, jest,
+                  joi, linux (ubuntu dist), ssh (key management), mongo, ssl,
+                  git, npm. Highlights include: A chat system with email
+                  notifications and file embedding. A dynamic svg editor for
+                  game admins to manipulate an in-game map in real-time. A news
+                  feed with a WYSIWYG text editor including locale support etc.
+                </p>
+                <p>
+                  A website serving as a portal to a business-facing online 3D
+                  exhibition MMO game, complete with various social media
+                  capabilities, customer service integration, game file editor,
+                  and more. Sole responsibility for the entire site/stack.
+                  Technologies Used: javascript, react, node, html, css, jest,
+                  joi, linux (ubuntu dist), ssh (key management), mongo, ssl,
+                  git, npm. Highlights include: A chat system with email
+                  notifications and file embedding. A dynamic svg editor for
+                  game admins to manipulate an in-game map in real-time. A news
+                  feed with a WYSIWYG text editor including locale support etc.
+                </p>
+              </div>
+              <div className="carousel__project">
+                <h1>SkillTrain</h1>
+                <div className="carousel__project__technologies">
+                  <img src={logo__ubuntu} />
+                  <img src={logo__mongo} />
+                  <img src={logo__ubuntu} />
+                  <img src={logo__ubuntu} />
+                </div>
+                <p>
+                  A mobile based full-stack application with an inhouse booking
+                  system alongside real time video and text chat for fitness
+                  In-depth authentication system in Dart with connection to AWS
+                  Cognito via Amplify. Completed integration of a payment API
+                  (Stripe) with full signups, payments, and payouts deployed to
+                  AWS. Payments through Android native pay, iOS native pay, or
+                  an in-app window. Demonstration (YouTube): Introduction Demo
+                </p>
+              </div>
+              <div className="carousel__project">
+                <div>Fruity</div>
+                <p>
+                  A browser based application where users can group up and import
+                  a large crate of an exotic food to split with other locals who
+                  want a piece of the action Solo project with Express server
+                  built and deployed on Heroku.
+                </p>
+              </div>
+            </Carousel>
           </div>
         </div>
       </section>
