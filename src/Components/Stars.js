@@ -1,4 +1,4 @@
-import VARIABLES from "./_variables.module.sass";
+import VARIABLES from "../_variables.module.sass";
 
 export default function () {return<div className="stars">
   {Array(parseInt(VARIABLES["number-of-stars"])).fill("").map(() =>
