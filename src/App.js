@@ -15,37 +15,33 @@ import { useEffect, useRef, useState } from "react";
 import VARIABLES from "./_variables.module.sass";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
+import useOnScreen from "Components/useOnScreen";
 
 function App() {
-  const titleAboutRef = useRef(null);
-  const [titleAboutInView, setTitleAboutInView] = useState(false);
-  const projectRef = useRef(null);
-  const [projectsInView, setProjectsInView] = useState(false);
+  const titleAboutRef = useRef();
+  const titleAboutOnScreen = useOnScreen(titleAboutRef);
+  const titleProjectsRef = useRef();
+  const titleProjectsOnScreen = useOnScreen(titleProjectsRef);
+  const imageProjectsComputerRef = useRef();
+  const imageProjectsComputerOnScreen = useOnScreen(imageProjectsComputerRef);
+  const [imageProjectsComputerSrc, setImageProjectsComputerSrc] =
+    useState(computerHappyFace);
+
+  useEffect(() => {
+    imageProjectsComputerOnScreen
+      ? setTimeout(() => {
+          setTransitioning(true);
+        }, 500)
+      : setImageProjectsComputerSrc(computerHappyFace);
+  }, [imageProjectsComputerOnScreen]);
+
   const [selectedProject, setSelectedProject] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      const [entry] = entries;
-      if (entry.isIntersecting) setTitleAboutInView(true);
-      else setTitleAboutInView(false);
-    });
-    titleAboutRef.current && observer.observe(titleAboutRef.current);
-    return () =>
-      titleAboutRef.current && observer.unobserve(titleAboutRef.current);
-  }, [titleAboutRef]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      const [entry] = entries;
-      if (entry.isIntersecting) setProjectsInView(true);
-      else setProjectsInView(false);
-    });
-    projectRef.current && observer.observe(projectRef.current);
-    return () => projectRef.current && observer.unobserve(projectRef.current);
-  }, [projectRef]);
-
-  useEffect(() => {
+    if (transitioning === false) return;
+    if (imageProjectsComputerSrc === computerHappyFace)
+      setImageProjectsComputerSrc(computerNoFace);
     setTimeout(() => setTransitioning(false), 600);
   }, [transitioning]);
 
@@ -89,7 +85,7 @@ function App() {
       <Earth />
       <section className="section section--light">
         <h2
-          className={titleAboutInView ? "slide-out-shadow" : ""}
+          className={titleAboutOnScreen ? "slide-out-shadow" : ""}
           ref={titleAboutRef}
         >
           About
@@ -120,14 +116,18 @@ function App() {
       </section>
       <section className="section section--dark">
         <h2
-          className={projectsInView ? "slide-out-shadow" : ""}
-          ref={projectRef}
+          className={titleProjectsOnScreen ? "slide-out-shadow" : ""}
+          ref={titleProjectsRef}
         >
           Projects
         </h2>
         <div className="side-container side-container--right-dominant">
           <div className="left">
-            <img className="computer" src={computerNoFace} />
+            <img
+              className="computer"
+              src={imageProjectsComputerSrc}
+              ref={imageProjectsComputerRef}
+            />
             <div className="computer__projects">
               <div className="noise">
                 <div
@@ -174,76 +174,79 @@ function App() {
           </div>
           <div className="right">
             <div>
-            <Carousel
-              onSwipeStart={() => console.log(1)}
-              className="carousel--projects--blurb"
-              onChange={(index) => {
-                setSelectedProject(index);
-                setTransitioning(true);
-              }}
-              transitionTime={600}
-            >
-              <div className="carousel__project">
-                <h1>Liberty</h1>
-                <div className="carousel__project__technologies">
-                  <img src={logo__ubuntu} />
-                  <img src={logo__mongo} />
-                  <img src={logo__ubuntu} />
-                  <img src={logo__ubuntu} />
+              <Carousel
+                onSwipeStart={() => console.log(1)}
+                className="carousel--projects--blurb"
+                onChange={(index) => {
+                  setSelectedProject(index);
+                  setTransitioning(true);
+                }}
+                transitionTime={600}
+              >
+                <div className="carousel__project">
+                  <h1>Liberty</h1>
+                  <div className="carousel__project__technologies">
+                    <img src={logo__ubuntu} />
+                    <img src={logo__mongo} />
+                    <img src={logo__ubuntu} />
+                    <img src={logo__ubuntu} />
+                  </div>
+                  <p>
+                    A website serving as a portal to a business-facing online 3D
+                    exhibition MMO game, complete with various social media
+                    capabilities, customer service integration, game file
+                    editor, and more. Sole responsibility for the entire
+                    site/stack. Technologies Used: javascript, react, node,
+                    html, css, jest, joi, linux (ubuntu dist), ssh (key
+                    management), mongo, ssl, git, npm. Highlights include: A
+                    chat system with email notifications and file embedding. A
+                    dynamic svg editor for game admins to manipulate an in-game
+                    map in real-time. A news feed with a WYSIWYG text editor
+                    including locale support etc.
+                  </p>
+                  <p>
+                    A website serving as a portal to a business-facing online 3D
+                    exhibition MMO game, complete with various social media
+                    capabilities, customer service integration, game file
+                    editor, and more. Sole responsibility for the entire
+                    site/stack. Technologies Used: javascript, react, node,
+                    html, css, jest, joi, linux (ubuntu dist), ssh (key
+                    management), mongo, ssl, git, npm. Highlights include: A
+                    chat system with email notifications and file embedding. A
+                    dynamic svg editor for game admins to manipulate an in-game
+                    map in real-time. A news feed with a WYSIWYG text editor
+                    including locale support etc.
+                  </p>
                 </div>
-                <p>
-                  A website serving as a portal to a business-facing online 3D
-                  exhibition MMO game, complete with various social media
-                  capabilities, customer service integration, game file editor,
-                  and more. Sole responsibility for the entire site/stack.
-                  Technologies Used: javascript, react, node, html, css, jest,
-                  joi, linux (ubuntu dist), ssh (key management), mongo, ssl,
-                  git, npm. Highlights include: A chat system with email
-                  notifications and file embedding. A dynamic svg editor for
-                  game admins to manipulate an in-game map in real-time. A news
-                  feed with a WYSIWYG text editor including locale support etc.
-                </p>
-                <p>
-                  A website serving as a portal to a business-facing online 3D
-                  exhibition MMO game, complete with various social media
-                  capabilities, customer service integration, game file editor,
-                  and more. Sole responsibility for the entire site/stack.
-                  Technologies Used: javascript, react, node, html, css, jest,
-                  joi, linux (ubuntu dist), ssh (key management), mongo, ssl,
-                  git, npm. Highlights include: A chat system with email
-                  notifications and file embedding. A dynamic svg editor for
-                  game admins to manipulate an in-game map in real-time. A news
-                  feed with a WYSIWYG text editor including locale support etc.
-                </p>
-              </div>
-              <div className="carousel__project">
-                <h1>SkillTrain</h1>
-                <div className="carousel__project__technologies">
-                  <img src={logo__ubuntu} />
-                  <img src={logo__mongo} />
-                  <img src={logo__ubuntu} />
-                  <img src={logo__ubuntu} />
+                <div className="carousel__project">
+                  <h1>SkillTrain</h1>
+                  <div className="carousel__project__technologies">
+                    <img src={logo__ubuntu} />
+                    <img src={logo__mongo} />
+                    <img src={logo__ubuntu} />
+                    <img src={logo__ubuntu} />
+                  </div>
+                  <p>
+                    A mobile based full-stack application with an inhouse
+                    booking system alongside real time video and text chat for
+                    fitness In-depth authentication system in Dart with
+                    connection to AWS Cognito via Amplify. Completed integration
+                    of a payment API (Stripe) with full signups, payments, and
+                    payouts deployed to AWS. Payments through Android native
+                    pay, iOS native pay, or an in-app window. Demonstration
+                    (YouTube): Introduction Demo
+                  </p>
                 </div>
-                <p>
-                  A mobile based full-stack application with an inhouse booking
-                  system alongside real time video and text chat for fitness
-                  In-depth authentication system in Dart with connection to AWS
-                  Cognito via Amplify. Completed integration of a payment API
-                  (Stripe) with full signups, payments, and payouts deployed to
-                  AWS. Payments through Android native pay, iOS native pay, or
-                  an in-app window. Demonstration (YouTube): Introduction Demo
-                </p>
-              </div>
-              <div className="carousel__project">
-                <div>Fruity</div>
-                <p>
-                  A browser based application where users can group up and
-                  import a large crate of an exotic food to split with other
-                  locals who want a piece of the action Solo project with
-                  Express server built and deployed on Heroku.
-                </p>
-              </div>
-            </Carousel>
+                <div className="carousel__project">
+                  <div>Fruity</div>
+                  <p>
+                    A browser based application where users can group up and
+                    import a large crate of an exotic food to split with other
+                    locals who want a piece of the action Solo project with
+                    Express server built and deployed on Heroku.
+                  </p>
+                </div>
+              </Carousel>
             </div>
           </div>
         </div>
