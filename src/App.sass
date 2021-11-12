@@ -40,6 +40,8 @@ p
     // max-height: 200px
     // max-width: 200px
     // max-height: 200px
+  .carousel
+    display: grid // unclear why but carousel seems unreponsive to flex shrink without this
   &--projects--logo
     display: flex
     align-items: center
@@ -168,10 +170,9 @@ div.ui.card
 
 .computer__projects
   position: absolute
-  width: 44%
+  width: 47%
   left: 22%
-  top: 7%
-  margin: 1rem
+  top: 6%
   height: 36%
   display: flex
   justify-content: center
@@ -179,7 +180,7 @@ div.ui.card
   overflow: hidden
 
 .section
-  padding: 2rem 0
+  padding: 4rem 0
   margin: 2rem 8rem
   max-width: 1200px
   position: relative

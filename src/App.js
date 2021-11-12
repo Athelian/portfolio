@@ -173,6 +173,7 @@ function App() {
             </div>
           </div>
           <div className="right">
+            <div>
             <Carousel
               onSwipeStart={() => console.log(1)}
               className="carousel--projects--blurb"
@@ -243,6 +244,7 @@ function App() {
                 </p>
               </div>
             </Carousel>
+            </div>
           </div>
         </div>
       </section>
