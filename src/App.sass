@@ -33,14 +33,14 @@ p
 .side-container
   $columns: left, right
   display: flex
+  flex-wrap: wrap
   margin: 3rem
   gap: 2rem
   align-items: center
   .left, .right
     width: 40%
+    flex: 1 1 300px
     position: relative
-  *
-    // max-width: 100%
   > *
     border-radius: 8px
     width: 50%
@@ -51,6 +51,7 @@ p
     &--#{$column}-dominant
       .#{$column}
         width: 60%
+        flex: 1 1 600px
         padding: 2rem
         .side-container__about
           display: flex
@@ -178,7 +179,7 @@ div.ui.card
     line-height: normal
     // font-family: cursive
   h2
-    color: #c915e7
+    color: yellow
     font-family: 'Bungee Shade', cursive
     font-size: xxx-large
     transform: rotate(-3deg)

@@ -140,10 +140,10 @@ function App() {
                 </div>
                 <p>
                   A website serving as a portal to a business-facing online 3D
-                  exhibition MMO game, complete with various social media
+                  exhibition MMO game, complete with various social media                          
                   capabilities, customer service integration, game file editor,
                   and more. Sole responsibility for the entire site/stack.
-                  Technologies Used: javascript, react, node, html, css, jest,
+                  Technologies Used: javascript, react, node, html, css, jest,               
                   joi, linux (ubuntu dist), ssh (key management), mongo, ssl,
                   git, npm. Highlights include: A chat system with email
                   notifications and file embedding. A dynamic svg editor for
