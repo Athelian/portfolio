@@ -10,12 +10,6 @@ p
   span
     display: block
 
-@keyframes text-shadow
-  0%
-    text-shadow: 0px 0px black
-  100%
-    text-shadow: -16px 14px black
-
 .noise
   position: absolute
   width: 100%
@@ -32,14 +26,6 @@ p
   filter: url(#noise)
 
 .carousel-root
-  // max-height: 100%
-  // max-width: 100%
-  img
-    // max-height: 120px
-    // max-width: 130px
-    // max-height: 200px
-    // max-width: 200px
-    // max-height: 200px
   .carousel
     display: grid // unclear why but carousel seems unreponsive to flex shrink without this
   &--projects--logo
@@ -186,6 +172,8 @@ div.ui.card
   position: relative
   z-index: 1 // for above stars
   border-radius: 20px
+  *
+    color: white
   &--light
     background-color: rgba(42,43,101, 0.95)
     .side-container--right-dominant
@@ -202,12 +190,6 @@ div.ui.card
     .side-container--left-dominant
       .left
         background-color: $base-color
-  *
-    // text-align: center
-    // font-size: large
-    color: white
-    line-height: normal
-    // font-family: cursive
   h2
     color: yellow
     font-family: 'Bungee Shade', cursive
@@ -215,13 +197,9 @@ div.ui.card
     transform: rotate(-3deg)
     text-align: center
 
-.section__header
-  width: 7rem
-  position: absolute
-  top: -4rem
-  left: 10%
-  margin-left: 3rem
+@keyframes text-shadow
+  0%
+    text-shadow: 0px 0px black
+  100%
+    text-shadow: -16px 14px black
 
-@media all and (min-width: 1470px)
-  .section__header
-    left: calc(50% - 37rem)

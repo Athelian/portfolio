@@ -1,21 +1,27 @@
 import Earth from "Components/Planets/Variants/Earth/Earth";
+import useOnScreen from "Utility/useOnScreen";
 import bitmoji from "Images/bitmoji.png";
+import computerHappyFace from "Images/computer-happy-face.png";
+import computerNoFace from "Images/computer-no-face.png";
+import flaskBook from "Images/flask-book.png";
+import logo__project__liberty from "Images/Logos/Projects/logo__project__liberty.png";
+import logo__project__skilltrain from "Images/Logos/Projects/logo__project__skilltrain.png";
+import logo__technology__aws from "Images/Logos/Technologies/logo__technology__aws.png";
+import logo__technology__express from "Images/Logos/Technologies/logo__technology__express.png";
+import logo__technology__mongo from "Images/Logos/Technologies/logo__technology__mongo.png";
+import logo__technology__react from "Images/Logos/Technologies/logo__technology__react.png";
+import logo__technology__ubuntu from "Images/Logos/Technologies/logo__technology__ubuntu.png";
+import logo__technology__flutter from "Images/Logos/Technologies/logo__technology__flutter.png";
+import logo__technology__node from "Images/Logos/Technologies/logo__technology__node.png";
+import logo__technology__dart from "Images/Logos/Technologies/logo__technology__dart.png";
+
+import { useEffect, useRef, useState } from "react";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import "semantic-ui-css/semantic.min.css";
 import { Image, Popup } from "semantic-ui-react";
 import "./App.sass";
-import flaskBook from "Images/flask-book.png";
-import computerHappyFace from "Images/computer-happy-face.png";
-import computerNoFace from "Images/computer-no-face.png";
-import liberty from "Images/liberty.png";
-import logo__ubuntu from "Images/logo__ubuntu.png";
-import logo__mongo from "Images/logo__mongo.png";
-import logo__skilltrain from "Images/logo__skilltrain.png";
-import logo__fruity from "Images/logo__fruity.png";
-import { useEffect, useRef, useState } from "react";
 import VARIABLES from "./_variables.module.sass";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
-import useOnScreen from "Components/useOnScreen";
 
 function App() {
   const titleAboutRef = useRef();
@@ -26,11 +32,15 @@ function App() {
   const imageProjectsComputerOnScreen = useOnScreen(imageProjectsComputerRef);
   const [imageProjectsComputerSrc, setImageProjectsComputerSrc] =
     useState(computerHappyFace);
+  const titleArticlesRef = useRef();
+  const titleArticlesOnScreen = useOnScreen(titleArticlesRef);
 
   useEffect(() => {
     imageProjectsComputerOnScreen
       ? setTimeout(() => {
           setTransitioning(true);
+          if (imageProjectsComputerSrc === computerHappyFace)
+            setImageProjectsComputerSrc(computerNoFace);
         }, 500)
       : setImageProjectsComputerSrc(computerHappyFace);
   }, [imageProjectsComputerOnScreen]);
@@ -39,10 +49,7 @@ function App() {
   const [transitioning, setTransitioning] = useState(false);
 
   useEffect(() => {
-    if (transitioning === false) return;
-    if (imageProjectsComputerSrc === computerHappyFace)
-      setImageProjectsComputerSrc(computerNoFace);
-    setTimeout(() => setTransitioning(false), 600);
+    if (transitioning) setTimeout(() => setTransitioning(false), 600);
   }, [transitioning]);
 
   return (
@@ -162,10 +169,16 @@ function App() {
                   transitionTime={600}
                 >
                   <div>
-                    <img className="computer__project" src={liberty} />
+                    <img
+                      className="computer__project"
+                      src={logo__project__liberty}
+                    />
                   </div>
                   <div>
-                    <img className="computer__project" src={logo__skilltrain} />
+                    <img
+                      className="computer__project"
+                      src={logo__project__skilltrain}
+                    />
                   </div>
                   <div>Fruity</div>
                 </Carousel>
@@ -175,7 +188,6 @@ function App() {
           <div className="right">
             <div>
               <Carousel
-                onSwipeStart={() => console.log(1)}
                 className="carousel--projects--blurb"
                 onChange={(index) => {
                   setSelectedProject(index);
@@ -186,24 +198,12 @@ function App() {
                 <div className="carousel__project">
                   <h1>Liberty</h1>
                   <div className="carousel__project__technologies">
-                    <img src={logo__ubuntu} />
-                    <img src={logo__mongo} />
-                    <img src={logo__ubuntu} />
-                    <img src={logo__ubuntu} />
+                    <img src={logo__technology__ubuntu} />
+                    <img src={logo__technology__mongo} />
+                    <img src={logo__technology__node} />
+                    <img src={logo__technology__express} />
+                    <img src={logo__technology__react} />
                   </div>
-                  <p>
-                    A website serving as a portal to a business-facing online 3D
-                    exhibition MMO game, complete with various social media
-                    capabilities, customer service integration, game file
-                    editor, and more. Sole responsibility for the entire
-                    site/stack. Technologies Used: javascript, react, node,
-                    html, css, jest, joi, linux (ubuntu dist), ssh (key
-                    management), mongo, ssl, git, npm. Highlights include: A
-                    chat system with email notifications and file embedding. A
-                    dynamic svg editor for game admins to manipulate an in-game
-                    map in real-time. A news feed with a WYSIWYG text editor
-                    including locale support etc.
-                  </p>
                   <p>
                     A website serving as a portal to a business-facing online 3D
                     exhibition MMO game, complete with various social media
@@ -221,10 +221,10 @@ function App() {
                 <div className="carousel__project">
                   <h1>SkillTrain</h1>
                   <div className="carousel__project__technologies">
-                    <img src={logo__ubuntu} />
-                    <img src={logo__mongo} />
-                    <img src={logo__ubuntu} />
-                    <img src={logo__ubuntu} />
+                    <img src={logo__technology__aws} />
+                    <img src={logo__technology__mongo} />
+                    <img src={logo__technology__dart} />
+                    <img src={logo__technology__flutter} />
                   </div>
                   <p>
                     A mobile based full-stack application with an inhouse
@@ -238,6 +238,11 @@ function App() {
                   </p>
                 </div>
                 <div className="carousel__project">
+                  <div className="carousel__project__technologies">
+                    <img src={logo__technology__node} />
+                    <img src={logo__technology__express} />
+                    <img src={logo__technology__react} />
+                  </div>
                   <div>Fruity</div>
                   <p>
                     A browser based application where users can group up and
@@ -250,6 +255,15 @@ function App() {
             </div>
           </div>
         </div>
+      </section>
+      <section className="section section--light">
+        <h2
+          className={titleArticlesOnScreen ? "slide-out-shadow" : ""}
+          ref={titleArticlesRef}
+        >
+          Articles
+        </h2>
+        <div>{/* <Carousel src={}></Carousel> */}</div>
       </section>
     </div>
   );
