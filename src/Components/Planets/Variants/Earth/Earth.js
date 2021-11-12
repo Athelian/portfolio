@@ -30,6 +30,7 @@ const Earth = () => {
   if (scaleReduction < 0) scaleReduction = 0;
 
   return (
+    <div>
     <div className="earth">
       <div className="earth__components">
         <div className="earth-container">
@@ -104,6 +105,7 @@ const Earth = () => {
           ))}
         </div>
       </div>
+    </div>
     </div>
   );
 };
