@@ -36,7 +36,7 @@ const Earth = () => {
   const scrollRotate = () => {
     if (extraterrestrialRef.current)
       extraterrestrialRef.current.style.transform =
-        "rotateY(" + -window.scrollY / 2 + "deg)";
+        "rotateY(" + -window.scrollY + "deg)";
   };
 
   return (
@@ -118,16 +118,22 @@ const Earth = () => {
           sphereProps={{ ref: extraterrestrialRef }}
         >
           <div className="island island--rocket">
-            <div className="rocket">
-              <div className="rocket-body">
-                <div className="body"></div>
-                <div className="fin fin-left"></div>
-                <div className="fin fin-right"></div>
-                <div className="window window--major"></div>
-                <div className="window window--minor"></div>                
-                <div className="exhaust-flame"></div>
+            <div className="rocket__container" style={{transformStyle: "preserve-3d"}}>
+            {Array(3)
+              .fill("")
+              .map((_, i) => (
+                <div className="rocket">
+                  <div className="rocket-body">
+                      <div className="body" />
+                      <div className="fin fin-left" />
+                      <div className="fin fin-right" />
+                      <div className="window window--major" />
+                      <div className="window window--minor" />
+                      {i === 0 && <div className="exhaust-flame" />}
+                  </div>
+                </div>
+              ))}
               </div>
-            </div>
           </div>
         </Planet>
       </div>

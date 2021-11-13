@@ -17,10 +17,13 @@ $darkred: #d463bc
     width: 120vmin * $rocket-scale
     height: 280vmin * $rocket-scale
     transform: rotateY(90deg) translate(0, -50%) translateZ(math.div(80vmin * $rocket-scale, 2) * -1)
+    &:nth-child(2)
+      // Eliot, when you see this comment, tomorrow, in the morning... well.. you know (heh), you must try very hard
+      //  and think "hmmm why did I write this?" and then, you must remember that it is to translate the rockets by z respectively. 
     .rocket-body
       width: 120vmin * $rocket-scale
-      position: absolute
       animation: shake 20s cubic-bezier(.36,.07,.19,.97) both infinite
+      position: absolute
       .body
         background-color: $lightgrey
         height: 280vmin * $rocket-scale
