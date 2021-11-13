@@ -3,7 +3,8 @@
 @import 'src/Components/Planets/Planet.sass'
 @import './Clouds.sass'
 @import './Islands.sass'
- 
+@import "./rocket.sass"
+
 $earth-rotation-speed: 18s
 // $earth-rotation-speed: 12s
 
@@ -21,7 +22,7 @@ $cloud-fin-scale-factor: 0.05
   // // padding-top: max(32vmin, 26rem)
   // .earth__components
   //   display: contents
-  
+
 .star
   // display: block
   position: absolute
@@ -152,6 +153,17 @@ $cloud-fin-scale-factor: 0.05
         > .plate
           > .surface
             // animation: rotate-asia-offset $earth-rotation-speed linear infinite
+
+.extraterrestrials
+  display: contents
+  .planet--extraterrestrial
+    position: absolute
+    z-index: 2
+    width: 80vmin
+    height: 80vmin
+    .sphere
+      animation: none
+      transform: rotateY(-260deg)
 
 .planet--clouds
   animation: elevate-cloud $cloud-rotation-speed steps(2,start) infinite

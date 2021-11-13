@@ -1,5 +1,5 @@
 import Planet from "Components/Planets/Planet";
-import React from "react";
+import React, { useRef } from "react";
 import PlanetProperties from "../../PlanetProperties";
 import "./Earth.sass";
 import useWindowDimensions from "Utility/useWindowDimensions";
@@ -28,6 +28,16 @@ const Earth = () => {
   let scaleReduction = Math.floor((scale - (scale % 10)) / 20);
   if (scaleReduction > 20) scaleReduction = 20;
   if (scaleReduction < 0) scaleReduction = 0;
+
+  const extraterrestrialRef = useRef();
+
+  window.onscroll = () => scrollRotate();
+
+  const scrollRotate = () => {
+    if (extraterrestrialRef.current)
+      extraterrestrialRef.current.style.transform =
+        "rotateY(" + -window.scrollY / 2 + "deg)";
+  };
 
   return (
     <div className="earth">
@@ -101,6 +111,25 @@ const Earth = () => {
             </div>
           </Planet>
         ))}
+      </div>
+      <div className="extraterrestrials">
+        <Planet
+          planetClassname={`planet planet--extraterrestrial`}
+          sphereProps={{ ref: extraterrestrialRef }}
+        >
+          <div className="island island--rocket">
+            <div className="rocket">
+              <div className="rocket-body">
+                <div className="body"></div>
+                <div className="fin fin-left"></div>
+                <div className="fin fin-right"></div>
+                <div className="window window--major"></div>
+                <div className="window window--minor"></div>                
+                <div className="exhaust-flame"></div>
+              </div>
+            </div>
+          </div>
+        </Planet>
       </div>
     </div>
   );
