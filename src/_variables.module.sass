@@ -5,7 +5,7 @@ $light-color: rgba(42,43,101)
 
 // Arbitrary values
 $total-possible-random-positions: 2560 // number of (x,y) positions to pick from when placing land
-$planet-diameter: 42
+$planet-diameter: 40
 $layer-offset-remainder: 0.6 // If you don't look directly down the axis at all times there is some offset.
 $cloud-layers: 10
 $number-of-stars: 64
@@ -19,11 +19,11 @@ $first-quadrant-limit: $quadrant-boundary * 1
 $second-quadrant-limit: $quadrant-boundary * 2
 $third-quadrant-limit: $quadrant-boundary * 3
 
-$africa: (layers: 20, diameter: 26, rotation: -8, z-rotation: 14, position: 10)
-$asia: (layers: 20, diameter: 38, rotation: -4, z-rotation: -45, position: 1919, components: 7)
-$europe: (layers: 10, diameter: 21, rotation: 0, z-rotation: 10, position: 520, components: 8, landmark: true)
-$america: (layers: 20, diameter: 41, rotation: 20, z-rotation: 140, position: 560, components: 4)
-$aus: (layers: 20, diameter: 24, rotation: -10, z-rotation: -89, position: 1, components: 24)
+$africa: (layers: 20, diameter: 26 * math.div($planet-diameter, 42), rotation: -8, z-rotation: 14, position: 10)
+$asia: (layers: 20, diameter: 38 * math.div($planet-diameter, 42), rotation: -4, z-rotation: -45, position: 1919, components: 7)
+$europe: (layers: 10, diameter: 21 * math.div($planet-diameter, 42), rotation: 0, z-rotation: 10, position: 520, components: 8, landmark: true)
+$america: (layers: 20, diameter: 41 * math.div($planet-diameter, 42), rotation: 20, z-rotation: 140, position: 560, components: 4)
+$aus: (layers: 20, diameter: 24 * math.div($planet-diameter, 42), rotation: -10, z-rotation: -89, position: 1, components: 24)
 
 $cloud--a: (center-to-apex: -95, label: a, width: 632.15px, height: 271.38px)
 $cloud--b: (center-to-apex: 0, label: b, width: 762.01px, height: 301.12px)

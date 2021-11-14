@@ -94,7 +94,9 @@ $cloud-fin-scale-factor: 0.05
     top: .8vmin
     z-index: 10
     width: 22vmin
+    min-width: 22vmin
     height: 11vmin
+    min-height: 11vmin
 
 .planet--flag
   z-index: 1
@@ -130,7 +132,6 @@ $cloud-fin-scale-factor: 0.05
   .clouds,.flags
     display: contents
   .earth-container
-    position: absolute
     &:hover
       .sphere, .island--asia .surface, ~ .flags > .planet--flag, ~ .flags > .planet--flag .sphere
         animation-play-state: paused

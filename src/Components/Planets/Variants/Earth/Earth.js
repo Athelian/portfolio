@@ -118,22 +118,31 @@ const Earth = () => {
           sphereProps={{ ref: extraterrestrialRef }}
         >
           <div className="island island--rocket">
-            <div className="rocket__container" style={{transformStyle: "preserve-3d"}}>
-            {Array(3)
+            {Array(9)
               .fill("")
               .map((_, i) => (
                 <div className="rocket">
                   <div className="rocket-body">
-                      <div className="body" />
-                      <div className="fin fin-left" />
-                      <div className="fin fin-right" />
-                      <div className="window window--major" />
-                      <div className="window window--minor" />
-                      {i === 0 && <div className="exhaust-flame" />}
+                    <div className="body">
+                      {i === 4 && <div className="body__sail" />}
+                    </div>
+                    <div className="fin fin-left">
+                      {i === 4 && <div className="fin__sail" />}
+                    </div>
+                    <div className="fin fin-right">
+                      {i === 4 && <div className="fin__sail" />}
+                    </div>
+                    <div className="window window--major" />
+                    <div className="window window--minor" />
+                    {i === 4 && (
+                      <>
+                        <div className="exhaust-flame" />
+                        <div className="sail" />
+                      </>
+                    )}
                   </div>
                 </div>
               ))}
-              </div>
           </div>
         </Planet>
       </div>

@@ -12,18 +12,23 @@ $red: #f01a19
 $darkred: #d463bc
 
 .island--rocket
+  &:after
+    content: ""
   .rocket
     position: absolute
     width: 120vmin * $rocket-scale
     height: 280vmin * $rocket-scale
     transform: rotateY(90deg) translate(0, -50%) translateZ(math.div(80vmin * $rocket-scale, 2) * -1)
-    &:nth-child(2)
-      // Eliot, when you see this comment, tomorrow, in the morning... well.. you know (heh), you must try very hard
-      //  and think "hmmm why did I write this?" and then, you must remember that it is to translate the rockets by z respectively. 
+    transform-style: preserve-3d
+    @for $i from 1 through 9
+      &:nth-child(#{$i})
+        $i: $i - 4
+        transform: rotateY(90deg) translate(0, -50%) translateZ(math.div(80vmin * $rocket-scale, 2) * -1 + ($i * 0.1vmin))
     .rocket-body
       width: 120vmin * $rocket-scale
       animation: shake 20s cubic-bezier(.36,.07,.19,.97) both infinite
       position: absolute
+      transform-style: preserve-3d
       .body
         background-color: $lightgrey
         height: 280vmin * $rocket-scale
@@ -32,6 +37,15 @@ $darkred: #d463bc
         border-top-left-radius: 100%
         border-bottom-left-radius: 50%
         border-bottom-right-radius: 50%
+        transform-style: preserve-3d
+        &__sail
+          width: 5vmin
+          height: 0.8vmin
+          background-color: $lightgrey
+          position: absolute
+          transform: rotateX(90deg)
+          top: 50%
+          right: 10%
       &:after
         content: "about"
         transform: rotate(270deg) rotateY(180deg)
@@ -76,6 +90,15 @@ $darkred: #d463bc
       height: 135vmin * $rocket-scale
       width: 50vmin * $rocket-scale
       background-color: $darkred
+      transform-style: preserve-3d
+      &__sail
+        position: absolute
+        background-color: $darkred
+        width: 2vmin
+        height: 0.8vmin
+        transform: rotateX(90deg)
+        top: 60%
+        left: 20%
 
     .fin-left
       left: -30vmin * $rocket-scale

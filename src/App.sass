@@ -12,9 +12,6 @@
   display: flex
   justify-content: center
   align-items: center
-  top: 50%
-  position: absolute
-  left: 30%
 
 p
   padding: 1rem
@@ -91,10 +88,6 @@ p
   width: 100%
   z-index: 0
 
-.earth
-  position: fixed
-  z-index: 1
-
 .root 
   height: 100%
 
@@ -103,24 +96,22 @@ body
 
 .Portfolio-Site
   height: 300%
-  // margin: 0 auto
-  // position: relative
-  // display: flex
-  // align-items: center
-  // height: 100%
-  // flex-direction: column
+  &__Left
+    height: 100%
+    width: 55%
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    align-items: center
+    position: fixed
+
+.Header--Hidden
+  visibility: hidden
 
 header
-  position: absolute
-  left: 0
-  right: 0
-  margin-left: auto
-  margin-right: auto
-  width: 22rem
-  margin-top: 5rem
-  z-index: 2
+  max-width: 90%
   h1
-    font-size: 48px
+    font-size: 4vmin
     color: #d463bc
     font-family: fantasy
     margin-bottom: 3rem
@@ -128,19 +119,35 @@ header
       display: flex
       align-items: center
   img.ui.image
-    border: 2px solid black
+    border: 0.5vmin solid black
     border-radius: 50%
-    height: 48px
+    height: 5vmin
     display: inline
-    margin-left: 1.3rem
+    margin-left: 1vmin
+  .Header
+    &__Name
+      display: flex
+      justify-content: center
+    &__Introduction
+      text-align: center
+      color: white
+      font-size: 1.5vh
+      line-height: 1rem
+      margin-top: 1vmin
+      width: 100%
+      span
+        cursor: pointer
+        font-size: inherit
 
-.introduction
-  text-align: center
-  color: white
-  font-size: medium
-  span
-    cursor: pointer
-    font-size: medium
+
+footer
+  position: absolute
+  bottom: 9vmin
+  display: flex
+  justify-self: center
+  gap: 4vmin
+  img
+    width: 6vmin
 
 div.ui.card
   padding: 2rem

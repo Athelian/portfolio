@@ -1,4 +1,4 @@
-import "./Universe.sass"
+import "./Universe.sass";
 import Earth from "Components/Planets/Variants/Earth/Earth";
 import Project from "Components/Project";
 import Stars from "Components/Stars";
@@ -8,6 +8,10 @@ import computerNoFace from "Images/computer-no-face.png";
 import flaskBook from "Images/flask-book.png";
 import logo__project__liberty from "Images/Logos/Projects/logo__project__liberty.png";
 import logo__project__skilltrain from "Images/Logos/Projects/logo__project__skilltrain.png";
+import linkedin from "Images/linkedin.png"
+import mediumWhite from "Images/medium-white.png";
+import mediumBlack from "Images/medium-black.png";
+import github from "Images/github.png";
 import { useEffect, useRef, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
@@ -15,6 +19,7 @@ import "semantic-ui-css/semantic.min.css";
 import { Image, Popup } from "semantic-ui-react";
 import useOnScreen from "Utility/useOnScreen";
 import "./App.sass";
+import Slides from "Components/Slides";
 
 function App() {
   // const titleAboutRef = useRef();
@@ -24,7 +29,7 @@ function App() {
   // const imageProjectsComputerRef = useRef();
   // const imageProjectsComputerOnScreen = useOnScreen(imageProjectsComputerRef);
   // const [imageProjectsComputerSrc, setImageProjectsComputerSrc] =
-    // useState(computerHappyFace);
+  // useState(computerHappyFace);
   // const titleArticlesRef = useRef();
   // const titleArticlesOnScreen = useOnScreen(titleArticlesRef);
 
@@ -49,29 +54,70 @@ function App() {
   //   if (transitioning) setTimeout(() => setTransitioning(false), 600);
   // }, [transitioning]);
 
-  return <div className="Portfolio-Site">
-      {/* <header>
-        <h1>
-          <h1>
-            Eliot
-            <Image alt="bitmoji" circular src={bitmoji} />
-          </h1>
-          Austin-Forbes
-        </h1>
-        <div>
-          <h3 className="introduction">
-            I am a fullstack engineer with a focus on <Popup basic content={<h4
-                >
-                  (M)ongo (E)xpress (R)eact (N)ode
-                </h4>} inverted on="click" style={{ backgroundColor: "rgba(0,0,0,0.2)" }} trigger={<span
-                >
-                  MERN
-                </span>} position="right center" offset={[20, 60]} /> stacks
+  return (
+    <div className="Portfolio-Site">
+      <Stars />
+      <div className="Portfolio-Site__Left">
+        <header>
+          <div className="Header__Name">
+            <h1>
+              <h1>
+                Eliot
+                <Image alt="bitmoji" circular src={bitmoji} />
+              </h1>
+              Austin-Forbes
+            </h1>
+          </div>
+          <h3 className="Header__Introduction">
+            I am a fullstack engineer with a focus on{" "}
+            <Popup
+              basic
+              content={<h4>(M)ongo (E)xpress (R)eact (N)ode</h4>}
+              inverted
+              on="click"
+              style={{ backgroundColor: "rgba(0,0,0,0.2)" }}
+              trigger={<span>MERN</span>}
+              position="right center"
+              offset={[20, 60]}
+            />{" "}
+            stacks
           </h3>
-        </div>
-      </header> */}
+        </header>
         <Earth />
-        <Stars />
+        <footer>
+          <img src={github} />
+          <img src={linkedin} />
+          <img src={mediumBlack} />
+        </footer>
+        <header className="Header--Hidden">
+          <div className="Header__Name">
+            <h1>
+              <h1>
+                Eliot
+                <Image alt="bitmoji" circular src={bitmoji} />
+              </h1>
+              Austin-Forbes
+            </h1>
+          </div>
+          <h3 className="Header__Introduction">
+            I am a fullstack engineer with a focus on{" "}
+            <Popup
+              basic
+              content={<h4>(M)ongo (E)xpress (R)eact (N)ode</h4>}
+              inverted
+              on="click"
+              style={{ backgroundColor: "rgba(0,0,0,0.2)" }}
+              trigger={<span>MERN</span>}
+              position="right center"
+              offset={[20, 60]}
+            />{" "}
+            stacks
+          </h3>
+        </header>
+      </div>
+      <div className="Portfolio-Site__Right">
+        <Slides />
+      </div>
 
       {/* <section className="section section--light">
         <div>
@@ -187,7 +233,8 @@ function App() {
           </div>
         </div>
       </section> */}
-    </div>;
+    </div>
+  );
 }
 
 export default App;
