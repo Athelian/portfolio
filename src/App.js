@@ -8,8 +8,7 @@ import computerNoFace from "Images/computer-no-face.png";
 import flaskBook from "Images/flask-book.png";
 import logo__project__liberty from "Images/Logos/Projects/logo__project__liberty.png";
 import logo__project__skilltrain from "Images/Logos/Projects/logo__project__skilltrain.png";
-import linkedin from "Images/linkedin.png"
-import mediumWhite from "Images/medium-white.png";
+import linkedin from "Images/linkedin.png";
 import mediumBlack from "Images/medium-black.png";
 import github from "Images/github.png";
 import { useEffect, useRef, useState } from "react";
@@ -20,6 +19,7 @@ import { Image, Popup } from "semantic-ui-react";
 import useOnScreen from "Utility/useOnScreen";
 import "./App.sass";
 import Slides from "Components/Slides";
+import "./Effects.css";
 
 function App() {
   // const titleAboutRef = useRef();
@@ -85,9 +85,15 @@ function App() {
         </header>
         <Earth />
         <footer>
-          <img src={github} />
-          <img src={linkedin} />
-          <img src={mediumBlack} />
+          {[
+            [github, "https://www.github.com/athelian"],
+            [linkedin, "https://www.linkedin.com/in/eaustinforbes/"],
+            [mediumBlack, "https://medium.com/@ejaustinforbes"]
+          ].map((_) => (
+            <a href={_[1]} rel="noopener noreferrer" target="_blank">
+              <img className="hvr-bob" src={_[0]} />
+            </a>
+          ))}
         </footer>
         <header className="Header--Hidden">
           <div className="Header__Name">
