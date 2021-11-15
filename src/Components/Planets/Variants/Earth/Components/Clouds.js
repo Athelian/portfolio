@@ -1,9 +1,10 @@
 import Planet from "Components/Planets/Planet";
 import useWindowDimensions from "Utility/useWindowDimensions";
-import randomNumber from "Utility/randomNumber"
+import randomNumber from "Utility/randomNumber";
 import PlanetProperties from "../../../../../Utility/PlanetProperties";
 import VARIABLES from "../../../../../_variables.module.sass";
-import "./Clouds.sass"
+import "./Clouds.sass";
+import { useEffect, useState } from "react";
 
 const clouds = Array(randomNumber({ min: 10, max: 20 }))
   .fill("")
@@ -21,12 +22,23 @@ const clouds = Array(randomNumber({ min: 10, max: 20 }))
 
 const Clouds = () => {
   const { vmin } = useWindowDimensions();
+  const [zoomLevel, setZoomLevel] = useState(100)
   const scale = 720 - vmin;
   let scaleReduction = Math.floor((scale - (scale % 10)) / 20);
   if (scaleReduction > 20) scaleReduction = 20;
   if (scaleReduction < 0) scaleReduction = 0;
+
+  useEffect(() => {
+    const handleResize = () => {
+      const browserZoomLevel = Math.round(window.devicePixelRatio * 100);
+      setZoomLevel(browserZoomLevel)
+    };
+    window.addEventListener("resize", () => handleResize());
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <div className="Earth__Clouds">
+    <div className="Earth__Clouds" style={zoomLevel > 175 ? {display: "none"} : {}}>
       {clouds.map((cloud) => (
         <Planet
           planetClassname={`Planet--Clouds Planet--Clouds--y-rotation--${cloud.randomY}`}

@@ -9,7 +9,7 @@ const ExtraTerrestrials = () => {
   const scrollRotate = () => {
     if (extraTerrestrialsRef.current)
       extraTerrestrialsRef.current.style.transform =
-        "rotateY(" + -window.scrollY + "deg)";
+        "rotateY(" + -window.scrollY / 2 + "deg)";
   };
 
   return (

@@ -12,10 +12,10 @@ $rocket-fin-color: #d463bc
 
 .Earth__Extra-Terrestrials
   .Planet--Extra-Terrestrials
-    position: absolute
     z-index: 2
-    width: 80vmin
-    height: 80vmin
+    width: $rocket-orbit-diameter
+    height: $rocket-orbit-diameter
+    perspective: 150vmin
     .Sphere
       animation: none
       transform: rotateY(-260deg)
@@ -143,3 +143,7 @@ $rocket-fin-color: #d463bc
   @for $i from 0 through 10
     #{$i * 10 * 1%}
       transform: rotate((math.random(6) - 3) * 1deg)
+
+@media (max-width: 400px), (max-height: 400px) 
+  .Earth__Extra-Terrestrials .Planet--Extra-Terrestrials .Sphere .Rocket .Rocket__Inner:after
+    display: none
