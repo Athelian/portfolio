@@ -1,4 +1,4 @@
-import VARIABLES from "../../_variables.module.sass";
+import VARIABLES from "../_variables.module.sass";
 
 // Not so elegant way of processing exported nested maps from sass
 const mapPlanets = (map) =>

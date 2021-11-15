@@ -24,7 +24,7 @@ $africa: (layers: 20, diameter: 26 * math.div($planet-diameter, 42), rotation: -
 $asia: (layers: 20, diameter: 38 * math.div($planet-diameter, 42), rotation: -4, z-rotation: -45, position: 1919, components: 7)
 $europe: (layers: 10, diameter: 21 * math.div($planet-diameter, 42), rotation: 0, z-rotation: 10, position: 520, components: 8, landmark: true)
 $america: (layers: 20, diameter: 41 * math.div($planet-diameter, 42), rotation: 20, z-rotation: 140, position: 560, components: 4)
-$AUS: (layers: 20, diameter: 24 * math.div($planet-diameter, 42), rotation: -10, z-rotation: -89, position: 1, components: 24)
+$australasia: (layers: 20, diameter: 24 * math.div($planet-diameter, 42), rotation: -10, z-rotation: -89, position: 1, components: 24)
 // Clouds
 $cloud-layers: 10
 $cloud-scale-factor: 0.3
@@ -39,14 +39,12 @@ $cloud--c: (center-to-apex: 0, label: c, width: 737.64px, height: 409.58px)
 $cloud--d: (center-to-apex: 0, label: d, width: 778.11px, height: 406.46px)
 $cloud--e: (center-to-apex: 130, label: e, width: 750.41px, height: 391.78px)
 $clouds: $cloud--a, $cloud--b, $cloud--c, $cloud--d, $cloud--e
-$continents: (africa: $africa, europe: $europe, asia: $asia, america: $america, AUS: $AUS)
+$continents: (Africa: $africa, Europe: $europe, Asia: $asia, America: $america, Australasia: $australasia)
 $earth: (continents: $continents, clouds: $clouds)
 // Extra-Terrestrials
   // Rockets
 $rocket-scale: 0.05
 $rocket-layers: 9
-
-
   
 // EXPORTS
 @mixin rule($key, $value, $prefix)

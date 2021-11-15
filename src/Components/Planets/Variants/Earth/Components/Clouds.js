@@ -1,7 +1,7 @@
 import Planet from "Components/Planets/Planet";
 import useWindowDimensions from "Utility/useWindowDimensions";
 import randomNumber from "Utility/randomNumber"
-import PlanetProperties from "../../../PlanetProperties";
+import PlanetProperties from "../../../../../Utility/PlanetProperties";
 import VARIABLES from "../../../../../_variables.module.sass";
 import "./Clouds.sass"
 

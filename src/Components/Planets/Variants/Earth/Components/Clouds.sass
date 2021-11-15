@@ -1,60 +1,61 @@
 @use "sass:math"
 @import 'src/variables.module.sass'
 
-.Planet--Clouds
-  animation: elevate-cloud $cloud-rotation-speed steps(2,start) infinite
-  will-change: transform // as we are elevating
-  position: absolute
-  width: ($planet-diameter * 1vmin) + $cloud-total-depth + $cloud-separation-from-earth
-  height: ($planet-diameter * 1vmin) + $cloud-total-depth + $cloud-separation-from-earth
-  perspective: none // If there is a perspective, the cloud may not turn around quickly enough around the side
-  @for $i from 1 through 36
-    $rotation: $i * 10
-    &--y-rotation--#{$rotation}
-      animation: elevate-cloud $cloud-rotation-speed math.div($rotation, 360) * -1 * $cloud-rotation-speed steps(2,start) infinite
-  .Sphere
-    animation: rotate-earth $cloud-rotation-speed linear infinite
-    .Hemisphere
-      transform: none
-      .Cloud
-        > div, &:after
-          background-color: white
-          position: absolute
-        &:after
-          content: ""
-      @each $cloud in $clouds
-        $center-to-apex: map-get($cloud, "center-to-apex")
-        .Cloud--#{map-get($cloud, "label")}
-          height: map-get($cloud, "height")
-          width: map-get($cloud, "width")
-          transform: rotateY(90deg) translate(0, -50%) translateZ(math.div(map-get($cloud, "width"), 2) * -1)
-          > div
-            clip-path: map-get($cloud, "path")
-            height: 100%
-            width: 100%
+.Earth__Clouds
+  .Planet--Clouds
+    animation: elevate-cloud $cloud-rotation-speed steps(2,start) infinite
+    will-change: transform // as we are elevating
+    position: absolute
+    width: ($planet-diameter * 1vmin) + $cloud-total-depth + $cloud-separation-from-earth
+    height: ($planet-diameter * 1vmin) + $cloud-total-depth + $cloud-separation-from-earth
+    perspective: none // If there is a perspective, the cloud may not turn around quickly enough around the side
+    @for $i from 1 through 36
+      $rotation: $i * 10
+      &--y-rotation--#{$rotation}
+        animation: elevate-cloud $cloud-rotation-speed math.div($rotation, 360) * -1 * $cloud-rotation-speed steps(2,start) infinite
+    .Sphere
+      animation: rotate-earth $cloud-rotation-speed linear infinite
+      .Hemisphere
+        transform: none
+        .Cloud
+          > div, &:after
+            background-color: white
+            position: absolute
           &:after
-            height: map-get($cloud, "height") * (1 - $cloud-fin-scale-factor) // Remove 5% height to ensure no overscaling
-      @for $scale-factor from 1 through 30
-        $scale: math.div(math.div($scale-factor, 10), 20) // Arbitrary division value
-        .Cloud--scale-#{$scale-factor}
-          &:after
-            width: math.div($cloud-total-depth, $scale)
-            left: calc(50% - math.div(math.div($cloud-total-depth, $scale), 2))
+            content: ""
         @each $cloud in $clouds
-          .Cloud--#{map-get($cloud, "label")}.Cloud--scale-#{$scale-factor}
+          $center-to-apex: map-get($cloud, "center-to-apex")
+          .Cloud--#{map-get($cloud, "label")}
+            height: map-get($cloud, "height")
+            width: map-get($cloud, "width")
+            transform: rotateY(90deg) translate(0, -50%) translateZ(math.div(map-get($cloud, "width"), 2) * -1)
             > div
-              transform: scale($scale)
-            @for $i from 1 through $cloud-layers
-              $direction: 1
-              $factor: $i
-              @if $i > math.div($cloud-layers, 2)
-                $direction: -1
-                $factor: $factor - math.div($cloud-layers, 2)
-              div:nth-child(#{$i})
-                transform: translateZ($cloud-layer-separation-distance * $direction * $factor) scale($scale)
+              clip-path: map-get($cloud, "path")
+              height: 100%
+              width: 100%
             &:after
-              // translate from center to apex by the appropriate amount, accounting for scale factor.
-              transform: translate(map-get($cloud, "center-to-apex") * $scale * 1px, math.div($cloud-fin-scale-factor, 2) * 100% ) rotateY(90deg) scale($scale)
+              height: map-get($cloud, "height") * (1 - $cloud-fin-scale-factor) // Remove 5% height to ensure no overscaling
+        @for $scale-factor from 1 through 30
+          $scale: math.div(math.div($scale-factor, 10), 20) // Arbitrary division value
+          .Cloud--scale-#{$scale-factor}
+            &:after
+              width: math.div($cloud-total-depth, $scale)
+              left: calc(50% - math.div(math.div($cloud-total-depth, $scale), 2))
+          @each $cloud in $clouds
+            .Cloud--#{map-get($cloud, "label")}.Cloud--scale-#{$scale-factor}
+              > div
+                transform: scale($scale)
+              @for $i from 1 through $cloud-layers
+                $direction: 1
+                $factor: $i
+                @if $i > math.div($cloud-layers, 2)
+                  $direction: -1
+                  $factor: $factor - math.div($cloud-layers, 2)
+                div:nth-child(#{$i})
+                  transform: translateZ($cloud-layer-separation-distance * $direction * $factor) scale($scale)
+              &:after
+                // translate from center to apex by the appropriate amount, accounting for scale factor.
+                transform: translate(map-get($cloud, "center-to-apex") * $scale * 1px, math.div($cloud-fin-scale-factor, 2) * 100% ) rotateY(90deg) scale($scale)
 
 @keyframes elevate-cloud
   0%

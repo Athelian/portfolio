@@ -1,13 +1,13 @@
 @use "sass:math"
 @import 'src/variables.module.sass'
 
+// Base values, no nesting to maintain low specificity
 .Planet
   perspective: $planet-radius * 10 * 1vmin
   perspective-origin: 50% 50%
   transform-style: preserve-3d
   width: $planet-diameter * 1vmin
   height: $planet-diameter * 1vmin
-
 .Sphere
   position: absolute
   transform-style: preserve-3d
@@ -15,7 +15,6 @@
   will-change: transform
   width: 100%
   height: 100%
-
 .Hemisphere
   position: absolute
   top: 0
@@ -25,13 +24,11 @@
   transform-style: preserve-3d
   transform-origin: 50% 50%
   transform: rotateX(90deg)
-
 .Island
   position: absolute
   transform-style: preserve-3d
   transform-origin: 50% 0
   top: 50%
-
 .Plate
   position: absolute
   left: 50%
@@ -43,15 +40,6 @@
     height: 100%
     position: absolute
     transform: rotateY(0deg)
-
-.land__window
-  position: absolute
-  left: 50%
-  top: 0%
-  height: 100%
-  width: 100%
-  transform: translate(-50%, 0%)
-
 .Land
   position: absolute
   left: 50%
@@ -61,7 +49,7 @@
     transform: rotateZ(0deg) rotateX(0deg) rotateY(0deg)
   100%
     transform: rotateZ(0deg) rotateX(0deg) rotateY(360deg)
-
+    
 @mixin gen-island($name, $island-layers, $island-diameter, $rotation, $z-rotation, $position)
   $island-radius: math.div($island-diameter, 2)
   $translations: get-random-z-y($position, $island-radius)

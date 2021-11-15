@@ -1,7 +1,7 @@
 import "./Slides.sass"
 
 const Slides = (props) => (
-  <div className="slides">
+  <div className="Slides">
   </div>
 );
 
