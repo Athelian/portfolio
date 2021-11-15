@@ -117,32 +117,35 @@ const Earth = () => {
           planetClassname="Planet Planet--Extra-Terrestrials"
           sphereProps={{ ref: extraTerrestrialsRef }}
         >
-          <div className="Island Island--rocket">
-            {Array(9)
+          <div className="Island Island--Rocket">
+            {Array(parseInt(VARIABLES["rocket-layers"]))
               .fill("")
-              .map((_, i) => (
-                <div className="rocket">
-                  <div className="rocket-body">
-                    <div className="body">
-                      {i === 4 && <div className="body__sail" />}
+              .map((_, i) => {
+                const middle = i === Math.ceil(parseInt(VARIABLES["rocket-layers"]) / 2)
+                return (
+                  <div className="Rocket">
+                    <div className="Rocket__Inner">
+                      <div className="Rocket__Body">
+                        {middle && <div className="Rocket__Sail" />}
+                      </div>
+                      <div className="Rocket__Fin Rocket__Fin--Left">
+                        {middle && <div className="Rocket__Fin__Sail" />}
+                      </div>
+                      <div className="Rocket__Fin Rocket__Fin--Right">
+                        {middle && <div className="Rocket__Fin__Sail" />}
+                      </div>
+                      <div className="Rocket__Window Rocket__Window--Major" />
+                      <div className="Rocket__Window Rocket__Window--Minor" />
+                      {middle && (
+                        <>
+                          <div className="Rocket__Exhaust-Flame" />
+                          <div className="Rocket__3D-Sail" />
+                        </>
+                      )}
                     </div>
-                    <div className="fin fin-left">
-                      {i === 4 && <div className="fin__sail" />}
-                    </div>
-                    <div className="fin fin-right">
-                      {i === 4 && <div className="fin__sail" />}
-                    </div>
-                    <div className="window window--major" />
-                    <div className="window window--minor" />
-                    {i === 4 && (
-                      <>
-                        <div className="exhaust-flame" />
-                        <div className="sail" />
-                      </>
-                    )}
                   </div>
-                </div>
-              ))}
+                );
+              })}
           </div>
         </Planet>
       </div>

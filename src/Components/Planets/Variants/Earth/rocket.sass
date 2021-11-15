@@ -1,20 +1,16 @@
 @use "sass:math"
   
-//4 vmin
 $rocket-scale: 0.05
 
-$orange: orange
-$white: yellow
-$lightgrey: cornsilk
-$midgrey: #fab34a
-$darkgrey: #cb20a7
-$red: #f01a19
-$darkred: #d463bc
+$rocket-body-color: cornsilk
+$rocket-window-border-color: #fab34a
+$rocket-exhaust-pipe-color: #cb20a7
+$rocket-fin-color: #d463bc
 
-.Island--rocket
+.Island--Rocket
   &:after
     content: ""
-  .rocket
+  .Rocket
     position: absolute
     width: 120vmin * $rocket-scale
     height: 280vmin * $rocket-scale
@@ -24,28 +20,90 @@ $darkred: #d463bc
       &:nth-child(#{$i})
         $i: $i - 4
         transform: rotateY(90deg) translate(0, -50%) translateZ(math.div(80vmin * $rocket-scale, 2) * -1 + ($i * 0.1vmin))
-    .rocket-body
+    &__Inner
       width: 120vmin * $rocket-scale
       animation: shake 20s cubic-bezier(.36,.07,.19,.97) both infinite
       position: absolute
       transform-style: preserve-3d
-      .body
-        background-color: $lightgrey
+      .Rocket__Body
+        background-color: $rocket-body-color
         height: 280vmin * $rocket-scale
         left: calc(50% - 50vmin * $rocket-scale)
         border-top-right-radius: 100%
         border-top-left-radius: 100%
         border-bottom-left-radius: 50%
         border-bottom-right-radius: 50%
-        transform-style: preserve-3d
-        &__sail
+        transform-style: preserve-3d  
+        .Rocket__Sail
           width: 5vmin
           height: 0.8vmin
-          background-color: $lightgrey
+          background-color: $rocket-body-color
           position: absolute
           transform: rotateX(90deg)
           top: 50%
           right: 10%
+      .Rocket__Fin
+        position: absolute
+        z-index: -1
+        height: 135vmin * $rocket-scale
+        width: 50vmin * $rocket-scale
+        background-color: $rocket-fin-color
+        transform-style: preserve-3d
+        &__Sail
+          position: absolute
+          background-color: $rocket-fin-color
+          width: 2vmin
+          height: 0.8vmin
+          transform: rotateX(90deg)
+          top: 60%
+          left: 20%
+        &--Left
+          left: -30vmin * $rocket-scale
+          top: calc(100% - 155vmin * $rocket-scale)
+          border-top-left-radius: 80%
+          border-bottom-left-radius: 20%
+        &--Right
+          right: -30vmin * $rocket-scale
+          top: calc(100% - 155vmin * $rocket-scale)
+          border-top-right-radius: 80%
+          border-bottom-right-radius: 20%
+      .Rocket__Exhaust-Flame
+        position: absolute
+        top: calc(100% + 13vmin * $rocket-scale + 6vmin * $rocket-scale)
+        width: 88vmin * $rocket-scale
+        height: 180vmin * $rocket-scale
+        background: linear-gradient(to bottom, #f96079 33%, #edd237 65%, #f1fa8700 89%)      
+        left: calc(50% - 44vmin * $rocket-scale)
+        border-radius: 50% 50% 1vmin 1vmin
+        animation: flame-wobble--harsh 1.5s steps(1, end) infinite
+        transform-origin: top
+        &::after
+          content: ""
+          width: 40vmin * $rocket-scale
+          height: 80vmin * $rocket-scale
+          position: absolute
+          left: 22vmin * $rocket-scale
+          border-radius: 50% 50% 50% 50%
+          top: 6vmin * $rocket-scale
+          background-color: #ffffffb0
+          transform-origin: top
+          animation: flame-wobble--soft 1.5s steps(1, end) infinite
+      .Rocket__Window
+        position: absolute
+        border-radius: 100%
+        background-color: $rocket-fin-color
+        &--Major
+          width: 50vmin * $rocket-scale
+          height: 50vmin * $rocket-scale
+          left: calc(50% - 25vmin * $rocket-scale)
+          top: 20vmin * $rocket-scale
+          border: 5vmin * $rocket-scale solid $rocket-window-border-color
+        &--Minor
+          width: 30vmin * $rocket-scale
+          height: 30vmin * $rocket-scale
+          left: calc(50% - -15vmin * $rocket-scale)
+          top: 60vmin * $rocket-scale
+          border: 5vmin * $rocket-scale solid $rocket-window-border-color
       &:after
         content: "about"
         transform: rotate(270deg) rotateY(180deg)
@@ -62,129 +120,24 @@ $darkred: #d463bc
         left: calc(50% - 24vmin * $rocket-scale)
         width: 48vmin * $rocket-scale
         height: 13vmin * $rocket-scale
-        background-color: $darkgrey
+        background-color: $rocket-exhaust-pipe-color
         bottom: -13vmin * $rocket-scale
         border-bottom-right-radius: 60%
         border-bottom-left-radius: 60%
 
-    .window
-      position: absolute
-      border-radius: 100%
-      background-color: $darkred
-      &--major
-        width: 50vmin * $rocket-scale
-        height: 50vmin * $rocket-scale
-        left: calc(50% - 25vmin * $rocket-scale)
-        top: 20vmin * $rocket-scale
-        border: 5vmin * $rocket-scale solid $midgrey
-      &--minor
-        width: 30vmin * $rocket-scale
-        height: 30vmin * $rocket-scale
-        left: calc(50% - -15vmin * $rocket-scale)
-        top: 60vmin * $rocket-scale
-        border: 5vmin * $rocket-scale solid $midgrey
-
-    .fin
-      position: absolute
-      z-index: -1
-      height: 135vmin * $rocket-scale
-      width: 50vmin * $rocket-scale
-      background-color: $darkred
-      transform-style: preserve-3d
-      &__sail
-        position: absolute
-        background-color: $darkred
-        width: 2vmin
-        height: 0.8vmin
-        transform: rotateX(90deg)
-        top: 60%
-        left: 20%
-
-    .fin-left
-      left: -30vmin * $rocket-scale
-      top: calc(100% - 155vmin * $rocket-scale)
-      border-top-left-radius: 80%
-      border-bottom-left-radius: 20%
-
-    .fin-right
-      right: -30vmin * $rocket-scale
-      top: calc(100% - 155vmin * $rocket-scale)
-      border-top-right-radius: 80%
-      border-bottom-right-radius: 20%
-
-    .exhaust-flame
-      position: absolute
-      top: calc(100% + 13vmin * $rocket-scale + 6vmin * $rocket-scale)
-      width: 88vmin * $rocket-scale
-      height: 180vmin * $rocket-scale
-      background: linear-gradient(to bottom, #f96079 33%, #edd237 65%, #f1fa8700 89%)      
-      left: calc(50% - 44vmin * $rocket-scale)
-      border-radius: 50% 50% 1vmin 1vmin
-      animation: flame-wobble--harsh 1.5s steps(1, end) infinite
-      transform-origin: top
-      &::after
-        content: ""
-        width: 40vmin * $rocket-scale
-        height: 80vmin * $rocket-scale
-        position: absolute
-        left: 22vmin * $rocket-scale
-        border-radius: 50% 50% 50% 50%
-        top: 6vmin * $rocket-scale
-        background-color: #ffffffb0
-        transform-origin: top
-        animation: flame-wobble--soft 1.5s steps(1, end) infinite
-
-    .exhaust-fumes li
-      width: 60vmin * $rocket-scale
-      height: 60vmin * $rocket-scale
-      background-color: $orange
-      list-style: none
-      position: absolute
-      border-radius: 100%
-      animation: shake 30s cubic-bezier(.36,.07,.19,.97) both infinite
-      &:first-child
-        width: 200vmin * $rocket-scale
-        height: 200vmin * $rocket-scale
-        left: -150vmin * $rocket-scale
-        top: 400vmin * $rocket-scale
-
-      &:nth-child(2)
-        width: 150vmin * $rocket-scale
-        height: 150vmin * $rocket-scale
-        left: -120vmin * $rocket-scale
-        top: 320vmin * $rocket-scale
-
-      &:nth-child(3)
-        width: 120vmin * $rocket-scale
-        height: 120vmin * $rocket-scale
-        left: -40vmin * $rocket-scale
-        top: 460vmin * $rocket-scale
-
-      &:nth-child(4)
-        width: 100vmin * $rocket-scale
-        height: 100vmin * $rocket-scale
-        left: -170vmin * $rocket-scale
-        top: 560vmin * $rocket-scale
-
 @keyframes shake
   10%, 90%
     transform: translate3d(-1px, 0, 0)
-
   20%, 80%
     transform: translate3d(2px, 0, 0)
-
   30%, 50%, 70%
     transform: translate3d(-4px, 0, 0)
-
   40%, 60%
     transform: translate3d(4px, 0, 0)
-
-
 @keyframes flame-wobble--harsh
   @for $i from 0 through 10
     #{$i * 10 * 1%}
       transform: rotate((math.random(9) - 4.5) * 1deg)
-
 @keyframes flame-wobble--soft
   @for $i from 0 through 10
     #{$i * 10 * 1%}

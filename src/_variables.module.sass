@@ -18,6 +18,7 @@ $cloud-layer-separation-distance: 0.14vmin
 $cloud-total-depth: $cloud-layers * $cloud-layer-separation-distance
 $cloud-separation-from-earth: 1vmin
 $cloud-fin-scale-factor: 0.05
+$rocket-layers: 9
 // Calculations
 $planet-radius: math.div($planet-diameter, 2)
 $planet-radius-squared: math.pow($planet-radius, 2)
@@ -41,7 +42,6 @@ $clouds: $cloud--a, $cloud--b, $cloud--c, $cloud--d, $cloud--e
 $continents: (africa: $africa, europe: $europe, asia: $asia, america: $america, AUS: $AUS)
 $earth: (continents: $continents, clouds: $clouds)
 
-
 // Exports
 @mixin rule($key, $value, $prefix)
   #{$prefix}-#{$key}: $value
@@ -62,4 +62,5 @@ $earth: (continents: $continents, clouds: $clouds)
   @include map-map-to-string($continents, "planet-earth-continents")
   @include list-map-to-string($clouds, "planet-earth-clouds")
   cloud-layers: $cloud-layers
+  rocket-layers: $rocket-layers
   number-of-stars: $number-of-stars
