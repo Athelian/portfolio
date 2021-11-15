@@ -1,0 +1,67 @@
+@use "sass:math"
+@import 'src/variables.module.sass'
+@import "src/Components/Planets/Planet.sass"
+
+.Earth__Flags
+  .Planet--Flag
+    z-index: 1
+    .Sphere
+      animation: rotate-earth $earth-rotation-speed linear infinite
+    &--UK
+      $rotation: 28
+      // 90 - $rotation as the rotation is relative to the center of the face of the planet, not the edge
+      animation: elevate-flag $earth-rotation-speed math.div(90 - $rotation, 360) * -1 * $earth-rotation-speed steps(2,start) infinite
+      .landmark
+        $translations: get-random-z-y(120, 0)
+        transform:  translateZ(#{map-get($translations, "trans-z")}vmin ) rotateZ($rotation * 1deg) translateY(#{map-get($translations, "trans-y")}vmin)  rotateX(#{map-get($translations, "rot-x")})
+        left: (math.div($planet-diameter - 2, 2)) * 1vmin
+        > div
+          transform: rotateX(270deg) scale(0.2)
+          .Flag
+            background: linear-gradient(180deg, transparent, transparent 4.4vmin, #c8102e 4.4vmin, #c8102e 6.6vmin, transparent 6.6vmin, transparent 100%), linear-gradient(90deg, transparent, transparent 9.9vmin, #c8102e 9.9vmin, #c8102e 12.1vmin, transparent 12.1vmin, transparent 100%), linear-gradient(180deg, transparent, transparent 3.7vmin, #FFF 3.7vmin, #FFF 7.3vmin, transparent 7.3vmin, transparent 100%), linear-gradient(90deg, transparent, transparent 9.2vmin, #FFF 9.2vmin, #FFF 12.8vmin, transparent 12.8vmin, transparent 100%), linear-gradient(26.56505deg, transparent, transparent 9.1vmin, #c8102e 9.1vmin, #c8102e 9.8vmin, transparent 9.8vmin, transparent 100%) 0 0/11vmin 100% no-repeat, linear-gradient(-26.56505deg, transparent, transparent 9.8vmin, #c8102e 9.8vmin, #c8102e 10.6vmin, transparent 10.6vmin, transparent 100%) 11vmin 0/11vmin 100% no-repeat, linear-gradient(26.56505deg, transparent, transparent 9.8vmin, #c8102e 9.8vmin, #c8102e 10.6vmin, transparent 10.6vmin, transparent 100%) 11vmin 5.5vmin/11vmin 100% no-repeat, linear-gradient(-26.56505deg, transparent, transparent 9.1vmin, #c8102e 9.1vmin, #c8102e 9.8vmin, transparent 9.8vmin, transparent 100%) 0 5.5vmin/11vmin 100% no-repeat, linear-gradient(27deg, transparent, transparent 8.7vmin, #FFF 8.7vmin, #FFF 10.9vmin, transparent 10.9vmin, transparent 100%), linear-gradient(153deg, transparent, transparent 8.7vmin, #FFF 8.7vmin, #FFF 10.9vmin, transparent 10.9vmin, transparent 100%), #012169
+    &--JP
+      $rotation: 278
+      animation: elevate-flag $earth-rotation-speed math.div(90 - $rotation, 360) * -1 * $earth-rotation-speed steps(2,start) infinite
+      .landmark
+        $translations: get-random-z-y(10, 0)
+        transform:  translateZ(#{map-get($translations, "trans-z")}vmin ) rotateZ($rotation * 1deg) translateY(#{map-get($translations, "trans-y")}vmin)  rotateX(#{map-get($translations, "rot-x")})
+        left: (math.div($planet-diameter - 2, 2)) * 1vmin
+        > div
+          transform: rotateX(312deg) scale(0.2)
+          .Flag
+            background: radial-gradient(circle 4vmin, red 100%, white 100%)
+
+.Flag__Container 
+  position: absolute
+  transform: translate(0, -100%)
+  .Flag__Pole
+    background-color: gray
+    border: 0.1vmin solid #636262
+    border-radius: 1vmin
+    width: 1vmin
+    height: 20vmin
+  .Flag__Pole::before
+    position: absolute
+    top: -1.4vmin
+    left: -.5vmin
+    display: block
+    background-color: gray
+    border-radius: 50%
+    border: .1vmin solid #636262
+    width: 2vmin
+    height: 2vmin
+    content:''
+  .Flag
+    position: absolute 
+    top: .8vmin
+    z-index: 10
+    width: 22vmin
+    min-width: 22vmin
+    height: 11vmin
+    min-height: 11vmin
+  
+@keyframes elevate-flag
+  0%
+    z-index: 2
+  100%
+    z-index: 1
