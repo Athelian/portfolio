@@ -63,7 +63,7 @@ function App() {
             <div className="left">
               <div className="side-container__about">
                 <div>
-                  <div className="flag flag--UK" />
+                  <div className="flag Flag--UK" />
                   <p>
                     <span>🏠 London</span>
                     <span>🎓 St Andrews</span>

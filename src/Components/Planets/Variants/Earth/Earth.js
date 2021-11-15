@@ -20,7 +20,7 @@ const clouds = Array(randomNumber({ min: 10, max: 20 }))
     const randomScale = randomNumber({ min: 21, max: 30 });
     return { randomZ, randomY, randomCloud, randomScale };
   });
-const flags = ["uk", "jp"];
+const flags = ["UK", "JP"];
 
 const Earth = () => {
   const { vmin } = useWindowDimensions();
@@ -74,14 +74,14 @@ const Earth = () => {
           )}
         </Planet>
       </div>
-      <div className="flags">
+      <div className="Earth__Flags">
         {flags.map((flag) => (
-          <Planet planetClassname={`Planet--flag Planet--flag--${flag}`}>
+          <Planet planetClassname={"Planet--Flag" + " Planet--Flag--" + flag}>
             <div className="island landmark">
               <div>
-                <div className="contain-flag">
-                  <div className="pole" />
-                  <div className="flag flag--uk" />
+                <div className="Flag__Container">
+                  <div className="Flag__Pole" />
+                  <div className="Flag Flag--UK" />
                 </div>
               </div>
             </div>

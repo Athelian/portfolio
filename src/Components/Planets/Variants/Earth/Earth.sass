@@ -6,11 +6,11 @@
 @import "./rocket.sass"
 @import "./Flags.sass"
 
-.Earth  
+.Earth
   display: flex
   justify-content: center
   align-items: center
-  .clouds,.flags
+  .clouds, &__Flags
     display: contents
   &__Earth-Container
     z-index: 2 // Above all
@@ -99,7 +99,7 @@
                 transform: translateZ($cloud-layer-separation-distance * $direction * $factor) scale($scale)
             &:after
               // translate from center to apex by the appropriate amount, accounting for scale factor.
-              transform: translate(map-get($cloud, "center-to-apex") * $scale * 1px, math.div($cloud-fin-scale-factor, 2) * 100% ) rotateY(90deg) scale($scale) 
+              transform: translate(map-get($cloud, "center-to-apex") * $scale * 1px, math.div($cloud-fin-scale-factor, 2) * 100% ) rotateY(90deg) scale($scale)
 
 @keyframes elevate-flag
   0%
