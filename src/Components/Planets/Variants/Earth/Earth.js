@@ -40,9 +40,9 @@ const Earth = () => {
   };
 
   return (
-    <div className="earth">
-      <div className="earth-container">
-        <Planet planetClassname="planet--earth">
+    <div className="Earth">
+      <div className="Earth__Earth-Container">
+        <Planet planetClassname="Planet--Earth">
           {Object.keys(PlanetProperties["earth"]["continents"]).map(
             (island) => (
               <div className={"island" + ` island--${island}`} key={island}>
@@ -76,7 +76,7 @@ const Earth = () => {
       </div>
       <div className="flags">
         {flags.map((flag) => (
-          <Planet planetClassname={`planet--flag planet--flag--${flag}`}>
+          <Planet planetClassname={`Planet--flag Planet--flag--${flag}`}>
             <div className="island landmark">
               <div>
                 <div className="contain-flag">
@@ -91,7 +91,7 @@ const Earth = () => {
       <div className="clouds">
         {clouds.map((cloud) => (
           <Planet
-            planetClassname={`planet--clouds planet--clouds--y-rotation--${cloud.randomY}`}
+            planetClassname={`Planet--clouds Planet--clouds--y-rotation--${cloud.randomY}`}
             hemisphereProps={{
               style: {
                 transform: `rotateY(${cloud.randomY}deg) rotateZ(${cloud.randomZ}deg)`
@@ -114,7 +114,7 @@ const Earth = () => {
       </div>
       <div className="extraterrestrials">
         <Planet
-          planetClassname={`planet planet--extraterrestrial`}
+          planetClassname="Planet Planet--extraterrestrial"
           sphereProps={{ ref: extraterrestrialRef }}
         >
           <div className="island island--rocket">

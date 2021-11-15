@@ -3,7 +3,7 @@ import "./Stars.sass";
 
 export default function () {
   return (
-    <div className="stars">
+    <div className="Stars">
       {Array(parseInt(VARIABLES["number-of-stars"]))
         .fill("")
         .map(() => (

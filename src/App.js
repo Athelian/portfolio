@@ -7,7 +7,6 @@ import "semantic-ui-css/semantic.min.css";
 import "./App.sass";
 import Header from "./Components/Header";
 import "./Effects.css";
-import "./Universe.sass";
 
 function App() {
   // const titleAboutRef = useRef();
