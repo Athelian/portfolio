@@ -29,13 +29,13 @@ const Earth = () => {
   if (scaleReduction > 20) scaleReduction = 20;
   if (scaleReduction < 0) scaleReduction = 0;
 
-  const extraterrestrialRef = useRef();
+  const extraTerrestrialsRef = useRef();
 
   window.onscroll = () => scrollRotate();
 
   const scrollRotate = () => {
-    if (extraterrestrialRef.current)
-      extraterrestrialRef.current.style.transform =
+    if (extraTerrestrialsRef.current)
+      extraTerrestrialsRef.current.style.transform =
         "rotateY(" + -window.scrollY + "deg)";
   };
 
@@ -45,7 +45,7 @@ const Earth = () => {
         <Planet planetClassname="Planet--Earth">
           {Object.keys(PlanetProperties["earth"]["continents"]).map(
             (island) => (
-              <div className={"island" + ` island--${island}`} key={island}>
+              <div className={"Island" + ` Island--${island}`} key={island}>
                 {Array(
                   parseInt(
                     PlanetProperties["earth"]["continents"][island]["layers"]
@@ -53,7 +53,7 @@ const Earth = () => {
                 ) // -1 as the final layer has no width or height
                   .fill("")
                   .map((_, i) => (
-                    <div className="plate" key={i}>
+                    <div className="Plate" key={i}>
                       <div className="surface">
                         {Array(
                           parseInt(
@@ -64,7 +64,7 @@ const Earth = () => {
                         )
                           .fill("")
                           .map((_, i) => (
-                            <div className="land" key={i} />
+                            <div className="Land" key={i} />
                           ))}
                       </div>
                     </div>
@@ -77,7 +77,7 @@ const Earth = () => {
       <div className="Earth__Flags">
         {flags.map((flag) => (
           <Planet planetClassname={"Planet--Flag" + " Planet--Flag--" + flag}>
-            <div className="island landmark">
+            <div className="Island landmark">
               <div>
                 <div className="Flag__Container">
                   <div className="Flag__Pole" />
@@ -88,10 +88,10 @@ const Earth = () => {
           </Planet>
         ))}
       </div>
-      <div className="clouds">
+      <div className="Earth__Clouds">
         {clouds.map((cloud) => (
           <Planet
-            planetClassname={`Planet--clouds Planet--clouds--y-rotation--${cloud.randomY}`}
+            planetClassname={`Planet--Clouds Planet--Clouds--y-rotation--${cloud.randomY}`}
             hemisphereProps={{
               style: {
                 transform: `rotateY(${cloud.randomY}deg) rotateZ(${cloud.randomZ}deg)`
@@ -99,9 +99,9 @@ const Earth = () => {
             }}
           >
             <div
-              className={`island cloud cloud--${
+              className={`Island Cloud Cloud--${
                 cloud.randomCloud
-              } cloud--scale-${cloud.randomScale - scaleReduction}`}
+              } Cloud--scale-${cloud.randomScale - scaleReduction}`}
             >
               {Array(parseInt(VARIABLES["cloud-layers"]) + 1) // Plus one for final layer to be centered
                 .fill("")
@@ -112,12 +112,12 @@ const Earth = () => {
           </Planet>
         ))}
       </div>
-      <div className="extraterrestrials">
+      <div className="Earth__Extra-Terrestrials">
         <Planet
-          planetClassname="Planet Planet--extraterrestrial"
-          sphereProps={{ ref: extraterrestrialRef }}
+          planetClassname="Planet Planet--Extra-Terrestrials"
+          sphereProps={{ ref: extraTerrestrialsRef }}
         >
-          <div className="island island--rocket">
+          <div className="Island Island--rocket">
             {Array(9)
               .fill("")
               .map((_, i) => (
