@@ -5,7 +5,7 @@ import "./Links.sass"
 
 const Links = () => {
   return (
-    <footer>
+    <footer className="Links">
       {[
         [github, "https://www.github.com/athelian"],
         [linkedin, "https://www.linkedin.com/in/eaustinforbes/"],

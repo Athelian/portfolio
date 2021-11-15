@@ -1,9 +1,7 @@
 @use "sass:math"
+@import "src/Effects.sass"
 @import 'src/variables.module.sass'
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap')
-
-.slide-out-shadow
-  animation: text-shadow 0.3s linear forwards
 
 #root
   height: 100%
@@ -106,16 +104,6 @@ body
     align-items: center
     position: fixed
 
-div.ui.card
-  padding: 2rem
-  border-radius: 40px
-  > .content
-    align-items: center
-    display: flex
-    flex-direction: column
-    i
-      margin-top: 1rem
-
 @mixin flag-jp($width)
   background: radial-gradient(circle $width * 0.175, red 100%, white 100%)
 @mixin flag-uk($width)
@@ -187,10 +175,4 @@ div.ui.card
       font-size: xxx-large
       transform: rotate(-3deg)
       text-align: center
-
-@keyframes text-shadow
-  0%
-    text-shadow: 0px 0px black
-  100%
-    text-shadow: -16px 14px black
 

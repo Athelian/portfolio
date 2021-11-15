@@ -1,0 +1,54 @@
+@use "sass:math"
+@import 'src/variables.module.sass'
+
+.Star
+  position: absolute
+  background: #f6f6f6
+  overflow: hidden
+  z-index: 1
+  background-color: yellow
+  @for $i from 1 through $number-of-stars
+    &:nth-child(#{$i})
+      $size: (math.random() + 1) * 1vmin
+      $half-size: math.div($size, 2)
+      width: $size
+      height: $size
+      top: math.random(95) * 1%
+      left: math.random(95) * 1%
+      animation: flickerAnimation math.random(7) + 3 * 1s cubic-bezier(0.72, 0.01, 0.74, 0.05) infinite
+      .Star-Top,
+      .Star-Bottom
+        position: relative
+        display: block
+        margin: 0
+      .Star-Top:before, 
+      .Star-Top:after, 
+      .Star-Bottom:before, 
+      .Star-Bottom:after
+        content: ''
+        width: $size
+        height: $size
+        background: $base-color
+        border-radius: 50%
+        position: absolute
+      /*CSS3 pseudo class for positioning curves*/
+      .Star-Top:before 
+        top: -$half-size
+        left: -$half-size
+      .Star-Top:after 
+        bottom: -$half-size
+        left: $half-size
+      .Star-Bottom:before 
+        top: $half-size
+        left: -$half-size
+      .Star-Bottom:after 
+        top: $half-size
+        left: $half-size
+
+@keyframes flickerAnimation 
+  0%  
+    opacity:0
+  50%  
+    opacity:1
+  100% 
+    opacity:0

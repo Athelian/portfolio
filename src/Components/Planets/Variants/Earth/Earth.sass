@@ -5,69 +5,6 @@
 @import './Islands.sass'
 @import "./rocket.sass"
 
-$earth-rotation-speed: 18s
-// $earth-rotation-speed: 12s
-
-$cloud-scale-factor: 0.3
-$cloud-rotation-speed: 26s
-$cloud-layer-separation-distance: 0.14vmin
-$cloud-total-depth: $cloud-layers * $cloud-layer-separation-distance
-$cloud-separation-from-earth: 1vmin
-$cloud-fin-scale-factor: 0.05
-
-.earth
-  // display: flex
-  // justify-content: center
-  // position: initial
-  // // padding-top: max(32vmin, 26rem)
-  // .earth__components
-  //   display: contents
-
-.star
-  // display: block
-  position: absolute
-  background: #f6f6f6
-  overflow: hidden
-  z-index: 1
-  background-color: yellow
-  @for $i from 1 through $number-of-stars
-    &:nth-child(#{$i})
-      $size: (math.random() + 1) * 1vmin
-      $half-size: math.div($size, 2)
-      width: $size
-      height: $size
-      top: math.random(95) * 1%
-      left: math.random(95) * 1%
-      animation: flickerAnimation math.random(7) + 3 * 1s cubic-bezier(0.72, 0.01, 0.74, 0.05) infinite
-      .star-top,
-      .star-bottom
-        position: relative
-        display: block
-        margin: 0
-      .star-top:before, 
-      .star-top:after, 
-      .star-bottom:before, 
-      .star-bottom:after
-        content: ''
-        width: $size
-        height: $size
-        background: $base-color
-        border-radius: 50%
-        position: absolute
-      /*CSS3 pseudo class for positioning curves*/
-      .star-top:before 
-        top: -$half-size
-        left: -$half-size
-      .star-top:after 
-        bottom: -$half-size
-        left: $half-size
-      .star-bottom:before 
-        top: $half-size
-        left: -$half-size
-      .star-bottom:after 
-        top: $half-size
-        left: $half-size
-
 .contain-flag 
   position: absolute
   height: auto
@@ -253,11 +190,3 @@ $islands: map-keys($continents)
 @each $island in $islands
   $props: map-get($continents, $island)
   @include gen-island($name: $island, $island-layers: map-get($props, "layers"), $island-diameter: map-get($props, "diameter"), $rotation: map-get($props, "rotation"), $z-rotation: map-get($props, "z-rotation"), $position: map-get($props, "position"))
-
-@keyframes flickerAnimation 
-  0%  
-    opacity:0
-  50%  
-    opacity:1
-  100% 
-    opacity:0
