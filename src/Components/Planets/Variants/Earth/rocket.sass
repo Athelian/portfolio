@@ -1,6 +1,9 @@
 @use "sass:math"
-  
-$rocket-scale: 0.05
+@import 'src/variables.module.sass'
+
+// It may be possible to scale the entire rocket at a high level element
+  // without having to rewrite the scale over and over again, however
+    // this causes some strange css glitches and extra load on the client
 
 $rocket-body-color: cornsilk
 $rocket-window-border-color: #fab34a
@@ -8,17 +11,15 @@ $rocket-exhaust-pipe-color: #cb20a7
 $rocket-fin-color: #d463bc
 
 .Island--Rocket
-  &:after
-    content: ""
   .Rocket
     position: absolute
     width: 120vmin * $rocket-scale
     height: 280vmin * $rocket-scale
     transform: rotateY(90deg) translate(0, -50%) translateZ(math.div(80vmin * $rocket-scale, 2) * -1)
     transform-style: preserve-3d
-    @for $i from 1 through 9
+    @for $i from 1 through $rocket-layers
       &:nth-child(#{$i})
-        $i: $i - 4
+        $i: $i - math.floor(math.div($rocket-layers, 2))
         transform: rotateY(90deg) translate(0, -50%) translateZ(math.div(80vmin * $rocket-scale, 2) * -1 + ($i * 0.1vmin))
     &__Inner
       width: 120vmin * $rocket-scale
@@ -125,15 +126,6 @@ $rocket-fin-color: #d463bc
         border-bottom-right-radius: 60%
         border-bottom-left-radius: 60%
 
-@keyframes shake
-  10%, 90%
-    transform: translate3d(-1px, 0, 0)
-  20%, 80%
-    transform: translate3d(2px, 0, 0)
-  30%, 50%, 70%
-    transform: translate3d(-4px, 0, 0)
-  40%, 60%
-    transform: translate3d(4px, 0, 0)
 @keyframes flame-wobble--harsh
   @for $i from 0 through 10
     #{$i * 10 * 1%}
