@@ -1,25 +1,13 @@
-import "./Universe.sass";
+import Links from "Components/Links";
 import Earth from "Components/Planets/Variants/Earth/Earth";
-import Project from "Components/Project";
+import Slides from "Components/Slides";
 import Stars from "Components/Stars";
-import bitmoji from "Images/bitmoji.png";
-import computerHappyFace from "Images/computer-happy-face.png";
-import computerNoFace from "Images/computer-no-face.png";
-import flaskBook from "Images/flask-book.png";
-import logo__project__liberty from "Images/Logos/Projects/logo__project__liberty.png";
-import logo__project__skilltrain from "Images/Logos/Projects/logo__project__skilltrain.png";
-import linkedin from "Images/linkedin.png";
-import mediumBlack from "Images/medium-black.png";
-import github from "Images/github.png";
-import { useEffect, useRef, useState } from "react";
-import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import "semantic-ui-css/semantic.min.css";
-import { Image, Popup } from "semantic-ui-react";
-import useOnScreen from "Utility/useOnScreen";
 import "./App.sass";
-import Slides from "Components/Slides";
+import Header from "./Components/Header";
 import "./Effects.css";
+import "./Universe.sass";
 
 function App() {
   // const titleAboutRef = useRef();
@@ -58,68 +46,10 @@ function App() {
     <div className="Portfolio-Site">
       <Stars />
       <div className="Portfolio-Site__Left">
-        <header>
-          <div className="Header__Name">
-            <h1>
-              <h1>
-                Eliot
-                <Image alt="bitmoji" circular src={bitmoji} />
-              </h1>
-              Austin-Forbes
-            </h1>
-          </div>
-          <h3 className="Header__Introduction">
-            I am a fullstack engineer with a focus on{" "}
-            <Popup
-              basic
-              content={<h4>(M)ongo (E)xpress (R)eact (N)ode</h4>}
-              inverted
-              on="click"
-              style={{ backgroundColor: "rgba(0,0,0,0.2)" }}
-              trigger={<span>MERN</span>}
-              position="right center"
-              offset={[20, 60]}
-            />{" "}
-            stacks
-          </h3>
-        </header>
+        <Header visible />
         <Earth />
-        <footer>
-          {[
-            [github, "https://www.github.com/athelian"],
-            [linkedin, "https://www.linkedin.com/in/eaustinforbes/"],
-            [mediumBlack, "https://medium.com/@ejaustinforbes"]
-          ].map((_) => (
-            <a href={_[1]} rel="noopener noreferrer" target="_blank">
-              <img className="hvr-bob" src={_[0]} />
-            </a>
-          ))}
-        </footer>
-        <header className="Header--Hidden">
-          <div className="Header__Name">
-            <h1>
-              <h1>
-                Eliot
-                <Image alt="bitmoji" circular src={bitmoji} />
-              </h1>
-              Austin-Forbes
-            </h1>
-          </div>
-          <h3 className="Header__Introduction">
-            I am a fullstack engineer with a focus on{" "}
-            <Popup
-              basic
-              content={<h4>(M)ongo (E)xpress (R)eact (N)ode</h4>}
-              inverted
-              on="click"
-              style={{ backgroundColor: "rgba(0,0,0,0.2)" }}
-              trigger={<span>MERN</span>}
-              position="right center"
-              offset={[20, 60]}
-            />{" "}
-            stacks
-          </h3>
-        </header>
+          <Links />
+        <Header visible={false} />
       </div>
       <div className="Portfolio-Site__Right">
         <Slides />
