@@ -26,14 +26,25 @@ p
   background-size: 5px 5px
   filter: url(#noise)
 
+.carousel--projects--blurb
+  position: absolute
+
 .carousel-root
+  height: 100%
   .carousel
     display: grid // unclear why but carousel seems unreponsive to flex shrink without this
   &--projects--logo
     display: flex
     align-items: center
+    p
+      color: white
+      font-size: 2vmin
+  .slider-wrapper
+    // height: 100%
   .carousel__project
     padding: 2rem
+    h1
+      margin-bottom: 35%
     .carousel__project__technologies
       display: flex
       justify-content: center
@@ -42,6 +53,9 @@ p
       > img
         max-width: 60px
         max-height: 60px
+  .carousel__projects--blurb
+    .carousel
+      height: 100%
 
 .computer__container
   max-height: 400px
@@ -49,28 +63,24 @@ p
 .side-container
   $columns: left, right
   display: flex
-  flex-wrap: wrap
-  margin: 3rem
-  gap: 2rem
+  flex-direction: column
+  position: absolute
+  height: 100%
+  // gap: 2rem
+  padding: 2rem
   align-items: center
   .left, .right
-    width: 40%
-    flex: 1 1 230px
+    height: 40%
+    max-width: 100%
     position: relative
     display: flex
     justify-content: center
   > *
     border-radius: 8px
-    width: 50%
-    > *
-      margin: 1rem 0
-      max-width: 100%
   @each $column in $columns
     &--#{$column}-dominant
       .#{$column}
-        width: 60%
-        flex: 1 1 600px
-        padding: 2rem
+        height: 60%
         .side-container__about
           display: flex
           align-items: center
@@ -86,11 +96,19 @@ body
   &__Left
     height: 100%
     width: 55%
+    float: left
     display: flex
     flex-direction: column
     justify-content: space-around
     align-items: center
-    position: fixed
+    position: relative
+  &__Right
+    display: flex
+    align-items: center
+    width: 45%
+    position: relative
+    height: 100%
+    float: left
 
 @mixin flag-jp($width)
   background: radial-gradient(circle $width * 0.175, red 100%, white 100%)
@@ -113,20 +131,23 @@ body
 
 .computer
   z-index: 1
-  position: relative
+  position: absolute
+  max-height: 30%
+  bottom: 53%
 
 .items
   display: inherit
 
 .computer__projects
+  z-index: 0
   position: absolute
-  width: 47%
-  left: 22%
-  top: 6%
-  height: 36%
+  width: 21%
+  left: 39%
+  top: 21%
+  height: 19%
   display: flex
   justify-content: center
-  background-color: $base-color
+  background-color: #202356
   overflow: hidden
 
 .section

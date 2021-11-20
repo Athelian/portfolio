@@ -44,6 +44,7 @@ function App() {
   return (
     <div className="Portfolio-Site">
       <Stars />
+      <div style={{width: "100%", height: "100%", position: "fixed"}}>
       <div className="Portfolio-Site__Left">
         <Header visible />
         <Earth />
@@ -52,6 +53,7 @@ function App() {
       </div>
       <div className="Portfolio-Site__Right">
         <Slides />
+      </div>
       </div>
 
       {/* <section className="section section--light">

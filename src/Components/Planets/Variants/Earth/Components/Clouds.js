@@ -22,7 +22,7 @@ const clouds = Array(randomNumber({ min: 10, max: 20 }))
 
 const Clouds = () => {
   const { vmin } = useWindowDimensions();
-  const [zoomLevel, setZoomLevel] = useState(100)
+  const [zoomLevel, setZoomLevel] = useState(100);
   const scale = 720 - vmin;
   let scaleReduction = Math.floor((scale - (scale % 10)) / 20);
   if (scaleReduction > 20) scaleReduction = 20;
@@ -31,14 +31,17 @@ const Clouds = () => {
   useEffect(() => {
     const handleResize = () => {
       const browserZoomLevel = Math.round(window.devicePixelRatio * 100);
-      setZoomLevel(browserZoomLevel)
+      setZoomLevel(browserZoomLevel);
     };
     window.addEventListener("resize", () => handleResize());
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
-    <div className="Earth__Clouds" style={zoomLevel > 175 ? {display: "none"} : {}}>
+    <div
+      className="Earth__Clouds"
+      style={zoomLevel > 175 ? { display: "none" } : {}}
+    >
       {clouds.map((cloud) => (
         <Planet
           planetClassname={`Planet--Clouds Planet--Clouds--y-rotation--${cloud.randomY}`}
