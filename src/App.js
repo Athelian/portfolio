@@ -44,17 +44,16 @@ function App() {
   return (
     <div className="Portfolio-Site">
       <Stars />
-      <div style={{ width: "100%", height: "100%", position: "fixed" }}>
-        <Header visible />
+      <Header visible />
+      <div className="Portfolio-Site__Wrappable-Container" style={{ width: "100%", height: "100%", position: "fixed" }}>
         <div className="Portfolio-Site__Left">
           <Earth />
         </div>
         <div className="Portfolio-Site__Right">
           <Slides />
         </div>
-        <Links />
       </div>
-
+      <Links />
       {/* <section className="section section--light">
         <div>
           <h2 className={titleAboutOnScreen ? "slide-out-shadow" : ""} ref={titleAboutRef}>

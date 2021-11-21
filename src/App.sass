@@ -94,22 +94,31 @@ body
 
 .Portfolio-Site
   height: 600%
-  &__Left
+  &__Wrappable-Container
+    width: 100%
     height: 100%
-    width: 55%
-    float: left
+    position: fixed
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+  &__Left
+    // height: 100%
+    // width: 55%
+    // float: left
     display: flex
     flex-direction: column
     justify-content: space-around
     align-items: center
-    position: relative
+    flex: 1 1 500px
+    // position: relative
   &__Right
     display: flex
     align-items: center
-    width: 45%
-    position: relative
-    height: 100%
-    float: left
+    flex: 1 1 550px
+    // width: 45%
+    // position: relative
+    // height: 100%
+    // float: left
 
 @mixin flag-jp($width)
   background: radial-gradient(circle $width * 0.175, red 100%, white 100%)
@@ -185,3 +194,7 @@ body
       font-size: xxx-large
       transform: rotate(-3deg)
       text-align: center
+
+@media (max-width: 1065px)
+  .Earth
+    transform: scale(0.7)
