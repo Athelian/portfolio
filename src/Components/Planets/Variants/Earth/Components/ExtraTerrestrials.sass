@@ -43,7 +43,7 @@ $rocket-fin-color: #d463bc
               border-top-left-radius: 100%
               border-bottom-left-radius: 50%
               border-bottom-right-radius: 50%
-              transform-style: preserve-3d  
+              transform-style: preserve-3d
               .Rocket__Sail
                 width: 5vmin
                 height: 0.8vmin
@@ -82,7 +82,7 @@ $rocket-fin-color: #d463bc
               top: calc(100% + 13vmin * $rocket-scale + 6vmin * $rocket-scale)
               width: 88vmin * $rocket-scale
               height: 180vmin * $rocket-scale
-              background: linear-gradient(to bottom, #f96079 33%, #edd237 65%, #f1fa8700 89%)      
+              background: linear-gradient(to bottom, #f96079 33%, #edd237 65%, #f1fa8700 89%)
               left: calc(50% - 44vmin * $rocket-scale)
               border-radius: 50% 50% 1vmin 1vmin
               animation: flame-wobble--harsh 1.5s steps(1, end) infinite
@@ -119,9 +119,9 @@ $rocket-fin-color: #d463bc
               transform: rotate(270deg) rotateY(180deg)
               position: absolute
               top: 37%
-              left: -12%
+              left: 0%
               font-family: fantasy
-              font-size: 3vmin
+              font-size: 2.4vmin
               line-height: 6vmin
               color: rgb(92 93 156)
             &:before
@@ -144,6 +144,6 @@ $rocket-fin-color: #d463bc
     #{$i * 10 * 1%}
       transform: rotate((math.random(6) - 3) * 1deg)
 
-@media (max-width: 400px), (max-height: 400px) 
+@media (max-width: 340px), (max-height: 340px)
   .Earth__Extra-Terrestrials .Planet--Extra-Terrestrials .Sphere .Rocket .Rocket__Inner:after
     display: none

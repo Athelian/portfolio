@@ -1,7 +1,7 @@
 @use "sass:math"
 @import 'src/variables.module.sass'
-  
-$slides-diameter: 90vw
+
+$slides-diameter: 80vw
 $slides-radius: math.div($slides-diameter, 2)
 $interval: math.div(360deg, 5)
 
@@ -11,13 +11,13 @@ $interval: math.div(360deg, 5)
   position: absolute // without this, there is some locking to the viewport and distortion of the vmin values along different axes
   // transform: rotate(math.abs($interval - 180deg))
   transform: rotate(35deg)
-  left: 18vw
+  left: 24.5vw
   @for $i from 1 through 5
     .Slide:nth-child(#{$i})
       $hypoteneuse: $slides-radius
       $x: $slides-radius * math.cos($i * $interval)
       $y: $slides-radius * math.sin($i * $interval)
-      transform:  translate(calc(-50% + $x), calc(-50% + $y)) rotate($i * $interval - 180deg) scale(0.49)
+      transform: translate(calc(-50% + $x), calc(-50% + $y)) rotate($i * $interval - 180deg) scale(0.49)
 
 $slide-scale: 0.4
 .Slide
@@ -26,15 +26,16 @@ $slide-scale: 0.4
   left: 50%
   top: 50%
   padding-bottom: 75%
-  background-color: $light-color
-  h2
-    font-size: 6vmin
-    position: absolute
+  background-color: rgba(42,43,101, 0.9)
+  h1
+    font-size: 4vw
+    color: #efef8d
+    font-weight: 100
   > *
+    overflow: hidden
     position: absolute
     height: 100%
     width: 100%
     display: flex
     justify-content: center
     align-items: center
-

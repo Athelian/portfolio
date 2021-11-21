@@ -27,6 +27,11 @@ const Slides = (props) => {
               setSelectedProject(index);
               setTransitioning(true);
             }}
+            selectedItem={selectedProject}
+            showThumbs={false}
+            showArrows={false}
+            showStatus={false}
+            showIndicators={false}
             transitionTime={600}
           >
             <Project

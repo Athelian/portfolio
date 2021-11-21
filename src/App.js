@@ -44,16 +44,15 @@ function App() {
   return (
     <div className="Portfolio-Site">
       <Stars />
-      <div style={{width: "100%", height: "100%", position: "fixed"}}>
-      <div className="Portfolio-Site__Left">
+      <div style={{ width: "100%", height: "100%", position: "fixed" }}>
         <Header visible />
-        <Earth />
-          <Links />
-        <Header visible={false} />
-      </div>
-      <div className="Portfolio-Site__Right">
-        <Slides />
-      </div>
+        <div className="Portfolio-Site__Left">
+          <Earth />
+        </div>
+        <div className="Portfolio-Site__Right">
+          <Slides />
+        </div>
+        <Links />
       </div>
 
       {/* <section className="section section--light">
