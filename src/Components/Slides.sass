@@ -4,21 +4,18 @@
 
 $slides-diameter: 100vmin
 $slides-radius: math.div($slides-diameter, 2)
-$interval: math.div(360deg, 5)
 
 .Slides
   height: $slides-diameter
   width: $slides-diameter
   position: absolute // without this, there is some locking to the viewport and distortion of the vmin values along different axes
-  transform: rotate(math.abs($interval - 180deg))
-  // transform: rotate(37deg)
   left: 50%
   @for $i from 1 through 5
     .Slide:nth-child(#{$i})
       $hypoteneuse: $slides-radius
-      $x: $slides-radius * math.cos($i * $interval)
-      $y: $slides-radius * math.sin($i * $interval)
-      transform: translate(calc(-50% + $x), calc(-50% + $y)) rotate($i * $interval - 180deg) scale(1.04)
+      $x: $slides-radius * math.cos($i * $slide-rotation-interval)
+      $y: $slides-radius * math.sin($i * $slide-rotation-interval)
+      transform: translate(calc(-50% + $x), calc(-50% + $y)) rotate($i * $slide-rotation-interval - 180deg) scale(1.04)
   .Slide
     width: 50%
     position: absolute
@@ -32,7 +29,7 @@ $interval: math.div(360deg, 5)
       color: #efef8d
       font-weight: 100
     > div
-      overflow: scroll
+      overflow-y: scroll
       position: absolute
       height: 100%
       width: 100%

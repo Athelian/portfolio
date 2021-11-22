@@ -1,23 +1,39 @@
-import "./Slides.sass";
 import Project from "Components/Project.js";
-import { useState, useEffect } from "react";
-import { Carousel } from "react-responsive-carousel";
 import computer from "Images/computer.png";
 import logo__project__liberty from "Images/Logos/Projects/logo__project__liberty.png";
 import logo__project__skilltrain from "Images/Logos/Projects/logo__project__skilltrain.png";
+import { useEffect, useState } from "react";
+import { Carousel } from "react-responsive-carousel";
+import VARIABLES from "../_variables.module.sass";
+import "./Slides.sass";
+
+const slideRotationInterval = parseInt(VARIABLES["slide-rotation-interval"])
 
 const Slides = (props) => {
+  const { scrollY } = props;
   const [selectedProject, setSelectedProject] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
+  const initialRotation = parseInt(VARIABLES["starting-rotation"])
 
   useEffect(() => {
     if (transitioning) setTimeout(() => setTransitioning(false), 600);
   }, [transitioning]);
 
+  let rotation = initialRotation - scrollY / 8
+  if (rotation < 36 && rotation > -36) { // Two slides worth
+    if (rotation > 18 && rotation < 36 && selectedProject !== 0) setSelectedProject(0)
+    else if (rotation > 0 && rotation < 18 && selectedProject !== 1) setSelectedProject(1)
+    else if (rotation > -18 && rotation < 0 && selectedProject !== 2) setSelectedProject(2)
+    else if (rotation > -36 && rotation < -18 && selectedProject !== 3) setSelectedProject(3)
+    rotation = 36
+  }
+  if (rotation < -36) rotation = rotation + 72
+
   return (
-    <div className="Slides">
+    <div className="Slides" style={{transform: `rotate(${rotation}deg)`}}>
       <div className="Slide">
-        <div> {/* Creates a div with real dimensions within the padded container */}
+        <div>
+          {/* Creates a div with real dimensions within the padded container */}
           <h2>About</h2>
         </div>
       </div>
@@ -25,10 +41,6 @@ const Slides = (props) => {
         <div>
           <Carousel
             className="carousel-root--projects carousel-root--projects--blurb"
-            onChange={(index) => {
-              setSelectedProject(index);
-              setTransitioning(true);
-            }}
             selectedItem={selectedProject}
             showThumbs={false}
             showArrows={false}
@@ -36,6 +48,11 @@ const Slides = (props) => {
             showIndicators={false}
             transitionTime={600}
           >
+            <Project
+              description="The website you are looking at"
+              technologies={["react", "sass"]}
+              title="This Site"
+            />
             <Project
               description="A website serving as a portal to a business-facing online 3D
                     exhibition MMO game, complete with various social media

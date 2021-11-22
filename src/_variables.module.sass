@@ -4,6 +4,11 @@
 $base-color: rgb(32,35,86)
 $light-color: rgb(42,43,101)
 
+// Wheel
+$number-of-slides: 5
+$slide-rotation-interval: math.div(360deg, $number-of-slides)
+$starting-rotation: math.abs($slide-rotation-interval - 180deg)
+
 // EARTH
 // Arbitrary values
 $total-possible-random-positions: 2560 // number of (x,y) positions to pick from when placing Land
@@ -64,3 +69,5 @@ $rocket-orbit-diameter: 80vmin
   cloud-layers: $cloud-layers
   rocket-layers: $rocket-layers
   number-of-stars: $number-of-stars
+  slide-rotation-interval: $slide-rotation-interval
+  starting-rotation: $starting-rotation

@@ -3,14 +3,14 @@ import { useRef } from "react";
 import VARIABLES from "../../../../../_variables.module.sass";
 import "./ExtraTerrestrials.sass";
 
-const ExtraTerrestrials = () => {
+const ExtraTerrestrials = (props) => {
+  const { scrollY } = props;
+
   const extraTerrestrialsRef = useRef();
-  window.onscroll = () => scrollRotate();
-  const scrollRotate = () => {
-    if (extraTerrestrialsRef.current)
-      extraTerrestrialsRef.current.style.transform =
-        "rotateY(" + -window.scrollY / 2 + "deg)";
-  };
+
+  if (extraTerrestrialsRef.current)
+    extraTerrestrialsRef.current.style.transform =
+      "rotateY(" + -scrollY / 2 + "deg)";
 
   return (
     <div className="Earth__Extra-Terrestrials">
