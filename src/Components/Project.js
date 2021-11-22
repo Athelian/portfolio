@@ -1,3 +1,4 @@
+import "./Project.sass"
 import logo__technology__aws from "Images/Logos/Technologies/logo__technology__aws.png";
 import logo__technology__dart from "Images/Logos/Technologies/logo__technology__dart.png";
 import logo__technology__express from "Images/Logos/Technologies/logo__technology__express.png";

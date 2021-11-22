@@ -13,7 +13,7 @@
       animation: elevate-flag $earth-rotation-speed math.div(90 - $rotation, 360) * -1 * $earth-rotation-speed steps(2,start) infinite
       .landmark
         $translations: get-random-z-y(120, 0)
-        transform:  translateZ(#{map-get($translations, "trans-z")}vmin ) rotateZ($rotation * 1deg) translateY(#{map-get($translations, "trans-y")}vmin)  rotateX(#{map-get($translations, "rot-x")})
+        transform: translateZ(#{map-get($translations, "trans-z")}vmin ) rotateZ($rotation * 1deg) translateY(#{map-get($translations, "trans-y")}vmin) rotateX(#{map-get($translations, "rot-x")})
         left: (math.div($planet-diameter - 2, 2)) * 1vmin
         > div
           transform: rotateX(270deg) scale(0.2)
@@ -24,14 +24,14 @@
       animation: elevate-flag $earth-rotation-speed math.div(90 - $rotation, 360) * -1 * $earth-rotation-speed steps(2,start) infinite
       .landmark
         $translations: get-random-z-y(10, 0)
-        transform:  translateZ(#{map-get($translations, "trans-z")}vmin ) rotateZ($rotation * 1deg) translateY(#{map-get($translations, "trans-y")}vmin)  rotateX(#{map-get($translations, "rot-x")})
+        transform: translateZ(#{map-get($translations, "trans-z")}vmin ) rotateZ($rotation * 1deg) translateY(#{map-get($translations, "trans-y")}vmin) rotateX(#{map-get($translations, "rot-x")})
         left: (math.div($planet-diameter - 2, 2)) * 1vmin
         > div
           transform: rotateX(312deg) scale(0.2)
           .Flag
             background: radial-gradient(circle 4vmin, red 100%, white 100%)
 
-.Flag__Container 
+.Flag__Container
   position: absolute
   transform: translate(0, -100%)
   .Flag__Pole
@@ -50,16 +50,22 @@
     border: .1vmin solid #636262
     width: 2vmin
     height: 2vmin
-    content:''
+    content: ''
   .Flag
-    position: absolute 
+    position: absolute
     top: .8vmin
     z-index: 10
     width: 22vmin
     min-width: 22vmin
     height: 11vmin
     min-height: 11vmin
-  
+
+@mixin flag-jp($width)
+  background: radial-gradient(circle $width * 0.175, red 100%, white 100%)
+@mixin flag-uk($width)
+  $factor: math.div($width, 22)
+  background: linear-gradient(180deg, transparent, transparent $factor * 4.4, #c8102e $factor * 4.4, #c8102e $factor * 6.6, transparent $factor * 6.6, transparent 100%), linear-gradient(90deg, transparent, transparent $factor * 9.9, #c8102e $factor * 9.9, #c8102e $factor * 12.1, transparent $factor * 12.1, transparent 100%), linear-gradient(180deg, transparent, transparent $factor * 3.7, #FFF $factor * 3.7, #FFF $factor * 7.3, transparent $factor * 7.3, transparent 100%), linear-gradient(90deg, transparent, transparent $factor * 9.2, #FFF $factor * 9.2, #FFF $factor * 12.8, transparent $factor * 12.8, transparent 100%), linear-gradient(26.56505deg, transparent, transparent $factor * 9.1, #c8102e $factor * 9.1, #c8102e $factor * 9.8, transparent $factor * 9.8, transparent 100%) 0 0/#{$factor * 11} 100% no-repeat, linear-gradient(-26.56505deg, transparent, transparent $factor * 9.8, #c8102e $factor * 9.8, #c8102e $factor * 10.6, transparent $factor * 10.6, transparent 100%) $factor * 11 #{0}/#{$factor * 11} 100% no-repeat, linear-gradient(26.56505deg, transparent, transparent $factor * 9.8, #c8102e $factor * 9.8, #c8102e $factor * 10.6, transparent $factor * 10.6, transparent 100%) $factor * 11 $factor * 5.5#{"/"}$factor * 11 100% no-repeat, linear-gradient(-26.56505deg, transparent, transparent $factor * 9.1, #c8102e $factor * 9.1, #c8102e $factor * 9.8, transparent $factor * 9.8, transparent 100%) 0 $factor * 5.5#{"/"}$factor * 11 100% no-repeat, linear-gradient(27deg, transparent, transparent $factor * 8.7, #FFF $factor * 8.7, #FFF $factor * 10.9, transparent $factor * 10.9, transparent 100%), linear-gradient(153deg, transparent, transparent $factor * 8.7, #FFF $factor * 8.7, #FFF $factor * 10.9, transparent $factor * 10.9, transparent 100%), #012169
+
 @keyframes elevate-flag
   0%
     z-index: 2

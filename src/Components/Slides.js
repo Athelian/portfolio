@@ -17,12 +17,14 @@ const Slides = (props) => {
   return (
     <div className="Slides">
       <div className="Slide">
-        <h2>About</h2>
+        <div> {/* Creates a div with real dimensions within the padded container */}
+          <h2>About</h2>
+        </div>
       </div>
       <div className="Slide">
         <div>
           <Carousel
-            className="carousel--projects--blurb"
+            className="carousel-root--projects carousel-root--projects--blurb"
             onChange={(index) => {
               setSelectedProject(index);
               setTransitioning(true);
@@ -103,7 +105,7 @@ const Slides = (props) => {
               style={transitioning ? { display: "none" } : {}}
             >
               <Carousel
-                className="carousel-root--projects--logo"
+                className="carousel-root--projects carousel-root--projects--logo"
                 selectedItem={selectedProject}
                 showThumbs={false}
                 showArrows={false}
@@ -112,8 +114,10 @@ const Slides = (props) => {
                 transitionTime={600}
               >
                 <div>
-
-                  <img className="computer__project" src={logo__project__liberty}/>
+                  <img
+                    className="computer__project"
+                    src={logo__project__liberty}
+                  />
                 </div>
                 <div>
                   <img

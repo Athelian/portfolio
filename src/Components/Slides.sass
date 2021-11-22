@@ -1,5 +1,6 @@
 @use "sass:math"
 @import 'src/variables.module.sass'
+@import 'src/Effects.sass'
 
 $slides-diameter: 100vmin
 $slides-radius: math.div($slides-diameter, 2)
@@ -8,11 +9,9 @@ $interval: math.div(360deg, 5)
 .Slides
   height: $slides-diameter
   width: $slides-diameter
-  // max-width: 100vmin
-  // max-height: 100vmin
   position: absolute // without this, there is some locking to the viewport and distortion of the vmin values along different axes
-  // transform: rotate(math.abs($interval - 180deg))
-  transform: rotate(35deg)
+  transform: rotate(math.abs($interval - 180deg))
+  // transform: rotate(37deg)
   left: 50%
   @for $i from 1 through 5
     .Slide:nth-child(#{$i})
@@ -20,24 +19,49 @@ $interval: math.div(360deg, 5)
       $x: $slides-radius * math.cos($i * $interval)
       $y: $slides-radius * math.sin($i * $interval)
       transform: translate(calc(-50% + $x), calc(-50% + $y)) rotate($i * $interval - 180deg) scale(1.04)
-
-.Slide
-  width: 50%
-  position: absolute
-  left: 50%
-  top: 50%
-  padding-bottom: math.div(66.66%, 2)
-  background-color: rgba(42,43,101, 0.7)
-  border-radius: 20px
-  h1
-    font-size: 4vmin
-    color: #efef8d
-    font-weight: 100
-  > *
-    overflow: scroll
+  .Slide
+    width: 50%
     position: absolute
-    height: 100%
-    width: 100%
-    display: flex
-    justify-content: center
-    align-items: center
+    left: 50%
+    top: 50%
+    padding-bottom: math.div(66.66%, 2)
+    background-color: rgba(42,43,101, 0.7)
+    border-radius: 20px
+    h1
+      font-size: 4vmin
+      color: #efef8d
+      font-weight: 100
+    > div
+      overflow: scroll
+      position: absolute
+      height: 100%
+      width: 100%
+      display: flex
+      justify-content: center
+      align-items: center
+      > .computer
+        z-index: 1
+        position: absolute
+        max-height: 30%
+        top: 8vmin
+      > .computer__projects
+        z-index: 0
+        position: absolute
+        width: 22%
+        left: 39%
+        top: calc(8vmin + 5%)
+        height: 19%
+        display: flex
+        justify-content: center
+        background-color: #202356
+        overflow: hidden
+      $carousel-classname: carousel-root
+      .#{$carousel-classname}
+        height: 100%
+        > .carousel
+          display: grid // unclear why but carousel seems unreponsive to flex shrink without this
+      .#{$carousel-classname}--projects--blurb
+        position: absolute
+      .#{$carousel-classname}--projects--logo
+        display: flex
+        align-items: center
