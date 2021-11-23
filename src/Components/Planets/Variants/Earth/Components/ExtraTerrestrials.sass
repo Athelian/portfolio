@@ -18,7 +18,6 @@ $rocket-fin-color: #d463bc
     perspective: 150vmin
     .Sphere
       animation: none
-      transform: rotateY(-260deg)
       .Island--Rocket
         .Rocket
           position: absolute
@@ -115,17 +114,17 @@ $rocket-fin-color: #d463bc
                 top: 60vmin * $rocket-scale
                 border: 5vmin * $rocket-scale solid $rocket-window-border-color
             &:after
-              content: "about"
+              content: var(--title)
               transform: rotate(270deg) rotateY(180deg)
               position: absolute
-              top: 37%
-              left: 0%
+              width: 6vmin
+              top: 50%
               font-family: fantasy
-              font-size: 2.4vmin
-              line-height: 6vmin
+              font-size: 2vmin
               color: rgb(92 93 156)
+              text-align: center
             &:before
-              content: ''
+              content: ""
               position: absolute
               left: calc(50% - 24vmin * $rocket-scale)
               width: 48vmin * $rocket-scale
