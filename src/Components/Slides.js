@@ -9,9 +9,7 @@ import "./Slides.sass";
 
 const slideRotationInterval = parseInt(VARIABLES["slide-rotation-interval"]);
 const numberOfProjects = 4;
-const projectRotationIntervalFactor = 4; // Arbitrary value to increase/decrease the amount of scrolling required per project
-const projectRotationInterval =
-  (projectRotationIntervalFactor * slideRotationInterval) / numberOfProjects;
+const projectRotationInterval = slideRotationInterval; // Requires an equal amount of time to slide a project/slide
 const initialRotation = parseInt(VARIABLES["starting-rotation"]);
 
 const Slides = (props) => {
@@ -37,7 +35,10 @@ const Slides = (props) => {
       const limit =
         projectSlideStart - (projectIndex + 1) * projectRotationInterval;
       if (rotation > limit) {
-        if (selectedProject !== projectIndex) setSelectedProject(projectIndex);
+        if (selectedProject !== projectIndex) {
+          setSelectedProject(projectIndex);
+          setTransitioning(true);
+        }
         break;
       }
       i--;
