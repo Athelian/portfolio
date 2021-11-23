@@ -7,30 +7,56 @@ import { Carousel } from "react-responsive-carousel";
 import VARIABLES from "../_variables.module.sass";
 import "./Slides.sass";
 
-const slideRotationInterval = parseInt(VARIABLES["slide-rotation-interval"])
+const slideRotationInterval = parseInt(VARIABLES["slide-rotation-interval"]);
+const numberOfProjects = 4;
+const projectRotationInterval = slideRotationInterval / numberOfProjects;
+const initialRotation = parseInt(VARIABLES["starting-rotation"]);
+console.log("slideRotationInterval", slideRotationInterval);
+console.log("projectRotationInterval", projectRotationInterval);
+console.log("initialRotation", initialRotation);
 
 const Slides = (props) => {
   const { scrollY } = props;
   const [selectedProject, setSelectedProject] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
-  const initialRotation = parseInt(VARIABLES["starting-rotation"])
 
   useEffect(() => {
     if (transitioning) setTimeout(() => setTransitioning(false), 600);
   }, [transitioning]);
 
-  let rotation = initialRotation - scrollY / 8
-  if (rotation < 36 && rotation > -36) { // Two slides worth
-    if (rotation > 18 && rotation < 36 && selectedProject !== 0) setSelectedProject(0)
-    else if (rotation > 0 && rotation < 18 && selectedProject !== 1) setSelectedProject(1)
-    else if (rotation > -18 && rotation < 0 && selectedProject !== 2) setSelectedProject(2)
-    else if (rotation > -36 && rotation < -18 && selectedProject !== 3) setSelectedProject(3)
-    rotation = 36
-  }
-  if (rotation < -36) rotation = rotation + 72
+  let rotation = initialRotation - scrollY / 8;
+  const projectSlideStart = initialRotation - slideRotationInterval;
+  const projectSlideEnd = initialRotation - 2 * slideRotationInterval;
+  if (rotation > projectSlideEnd && rotation < projectSlideStart) {
+    // Two slides worth
+    if (
+      rotation > projectSlideStart - 1 * projectRotationInterval &&
+      selectedProject !== 0
+    )
+      setSelectedProject(0);
+    else if (
+      rotation > projectSlideStart - 2 * projectRotationInterval &&
+      rotation < projectSlideStart - 1 * projectRotationInterval &&
+      selectedProject !== 1
+    )
+      setSelectedProject(1);
+    else if (
+      rotation > projectSlideStart - 3 * projectRotationInterval &&
+      rotation < projectSlideStart - 2 * projectRotationInterval &&
+      selectedProject !== 2
+    )
+      setSelectedProject(2);
+    else if (
+      rotation > projectSlideStart - 4 * projectRotationInterval &&
+      rotation < projectSlideStart - 3 * projectRotationInterval &&
+      selectedProject !== 3
+    )
+      setSelectedProject(3);
+    rotation = initialRotation - slideRotationInterval
+  } else if (rotation < projectSlideEnd) rotation = rotation + slideRotationInterval;
 
   return (
-    <div className="Slides" style={{transform: `rotate(${rotation}deg)`}}>
+    <div className="Slides" style={{ transform: `rotate(${rotation}deg)` }}>
       <div className="Slide">
         <div>
           {/* Creates a div with real dimensions within the padded container */}
