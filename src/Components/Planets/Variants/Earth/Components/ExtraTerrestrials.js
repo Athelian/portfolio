@@ -14,42 +14,37 @@ const getRocketTitle = () =>
   getComputedStyle(document.documentElement).getPropertyValue("--title");
 const setRocketTitle = (title) =>
   document.documentElement.style.setProperty("--title", `"${title}"`);
+const scrollYProjectStart = 8 * slideRotationInterval;
+const scrollYProjectEnd =
+  scrollYProjectStart + 8 * (numberOfProjects * projectRotationInterval);
+const addedScroll = scrollYProjectEnd - scrollYProjectStart;
 
 const ExtraTerrestrials = (props) => {
   const { scrollY } = props;
   const rocketRef = useRef();
-  let slideRotation = initialRotation - scrollY / 8;
   const projectSlideStart = initialRotation - slideRotationInterval;
   const projectSlideEnd =
     initialRotation -
     slideRotationInterval -
     numberOfProjects * projectRotationInterval;
-  let rotation = initialRotation - scrollY / 1.59;
+  let rotation = scrollY / 1.59;
+  let slideRotation = initialRotation - scrollY / 8;
 
-  console.log("scrolly", scrollY)
+  if (slideRotation > projectSlideStart) {
+    rotation = initialRotation - rotation;
+  } else if (slideRotation > projectSlideEnd) {
+    rotation = initialRotation - 360;
+  } else if (slideRotation < projectSlideEnd) {
+    rotation = initialRotation - (scrollY - addedScroll) / 1.59;
+  }
 
   if (rotation > 0) getRocketTitle() !== "About" && setRocketTitle("About");
-  else if (rotation < 0)
+  else if (rotation > -360)
     getRocketTitle() !== "Projects" && setRocketTitle("Projects");
-  // else if (rotation < 108 + 360) null
+  else if (rotation > -720)
+    getRocketTitle() !== "Test" && setRocketTitle("Test");
 
-  if (slideRotation < projectSlideStart && slideRotation > projectSlideEnd) {
-    rotation = initialRotation - 360;
-  }
-  else if (slideRotation < projectSlideEnd) {
-    // When at the end of the projects
-    // The rotation should be zeroed at that point
-    // Calculate the rotation of this element at projectSlideEnd
-    // when (initialRotation - scrollY / 8) < initialRotation - slideRotationInterval - numberOfProjects * projectRotationInterval
-    // i want cheesecake:) okay<3
-    const scrollYProjectStart = 8 * slideRotationInterval
-    const scrollYProjectEnd = scrollYProjectStart + 8 *(numberOfProjects * projectRotationInterval)
-    const addedScroll = scrollYProjectEnd - scrollYProjectStart
-
-    rotation = initialRotation - (scrollY - addedScroll) / 1.59
-  }
-
-  // console.log(rotation)
+  console.log(rotation)
 
   return (
     <div className="Earth__Extra-Terrestrials">
