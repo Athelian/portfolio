@@ -9,11 +9,10 @@ import "./Slides.sass";
 
 const slideRotationInterval = parseInt(VARIABLES["slide-rotation-interval"]);
 const numberOfProjects = 4;
-const projectRotationInterval = slideRotationInterval / numberOfProjects;
+const projectRotationIntervalFactor = 4; // Arbitrary value to increase/decrease the amount of scrolling required per project
+const projectRotationInterval =
+  (projectRotationIntervalFactor * slideRotationInterval) / numberOfProjects;
 const initialRotation = parseInt(VARIABLES["starting-rotation"]);
-console.log("slideRotationInterval", slideRotationInterval);
-console.log("projectRotationInterval", projectRotationInterval);
-console.log("initialRotation", initialRotation);
 
 const Slides = (props) => {
   const { scrollY } = props;
@@ -26,34 +25,26 @@ const Slides = (props) => {
 
   let rotation = initialRotation - scrollY / 8;
   const projectSlideStart = initialRotation - slideRotationInterval;
-  const projectSlideEnd = initialRotation - 2 * slideRotationInterval;
+  const projectSlideEnd =
+    initialRotation -
+    slideRotationInterval -
+    numberOfProjects * projectRotationInterval;
   if (rotation > projectSlideEnd && rotation < projectSlideStart) {
     // Two slides worth
-    if (
-      rotation > projectSlideStart - 1 * projectRotationInterval &&
-      selectedProject !== 0
-    )
-      setSelectedProject(0);
-    else if (
-      rotation > projectSlideStart - 2 * projectRotationInterval &&
-      rotation < projectSlideStart - 1 * projectRotationInterval &&
-      selectedProject !== 1
-    )
-      setSelectedProject(1);
-    else if (
-      rotation > projectSlideStart - 3 * projectRotationInterval &&
-      rotation < projectSlideStart - 2 * projectRotationInterval &&
-      selectedProject !== 2
-    )
-      setSelectedProject(2);
-    else if (
-      rotation > projectSlideStart - 4 * projectRotationInterval &&
-      rotation < projectSlideStart - 3 * projectRotationInterval &&
-      selectedProject !== 3
-    )
-      setSelectedProject(3);
-    rotation = initialRotation - slideRotationInterval
-  } else if (rotation < projectSlideEnd) rotation = rotation + slideRotationInterval;
+    let i = numberOfProjects;
+    while (i) {
+      const projectIndex = numberOfProjects - i;
+      const limit =
+        projectSlideStart - (projectIndex + 1) * projectRotationInterval;
+      if (rotation > limit) {
+        if (selectedProject !== projectIndex) setSelectedProject(projectIndex);
+        break;
+      }
+      i--;
+    }
+    rotation = initialRotation - slideRotationInterval;
+  } else if (rotation < projectSlideEnd)
+    rotation = rotation + numberOfProjects * projectRotationInterval;
 
   return (
     <div className="Slides" style={{ transform: `rotate(${rotation}deg)` }}>

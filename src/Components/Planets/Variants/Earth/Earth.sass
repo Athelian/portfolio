@@ -37,7 +37,6 @@ $continents: map-get($earth, "continents")
 $islands: map-keys($continents)
 @each $island in $islands
   $props: map-get($continents, $island)
-  @debug $island
   @include gen-island($name: $island, $island-layers: map-get($props, "layers"), $island-diameter: map-get($props, "diameter"), $rotation: map-get($props, "rotation"), $z-rotation: map-get($props, "z-rotation"), $position: map-get($props, "position"))
 
 .Island--Australasia
