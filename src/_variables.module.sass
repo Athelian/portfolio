@@ -5,6 +5,7 @@ $base-color: rgb(32,35,86)
 $light-color: rgb(42,43,101)
 
 // Wheel
+$number-of-projects: 4
 $number-of-slides: 5
 $slide-rotation-interval: math.div(360deg, $number-of-slides)
 $starting-rotation: math.abs($slide-rotation-interval - 180deg)
@@ -68,6 +69,8 @@ $rocket-orbit-diameter: 80vmin
   @include list-map-to-string($clouds, "planet-earth-clouds")
   cloud-layers: $cloud-layers
   rocket-layers: $rocket-layers
+  number-of-projects: $number-of-projects
   number-of-stars: $number-of-stars
+  number-of-slides: $number-of-slides
   slide-rotation-interval: $slide-rotation-interval
   starting-rotation: $starting-rotation

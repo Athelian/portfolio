@@ -30,6 +30,8 @@ const ExtraTerrestrials = (props) => {
   let rotation = scrollY / 1.59;
   let slideRotation = initialRotation - scrollY / 8;
 
+  console.log(scrollY)
+
   if (slideRotation > projectSlideStart) {
     rotation = initialRotation - rotation;
   } else if (slideRotation > projectSlideEnd) {

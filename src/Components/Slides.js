@@ -4,13 +4,17 @@ import logo__project__liberty from "Images/Logos/Projects/logo__project__liberty
 import logo__project__skilltrain from "Images/Logos/Projects/logo__project__skilltrain.png";
 import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
+import getRotation from "Utility/getRotation";
 import VARIABLES from "../_variables.module.sass";
 import "./Slides.sass";
 
 const slideRotationInterval = parseInt(VARIABLES["slide-rotation-interval"]);
 const numberOfProjects = 4;
 const projectRotationInterval = slideRotationInterval; // Requires an equal amount of time to slide a project/slide
-const initialRotation = parseInt(VARIABLES["starting-rotation"]);
+
+const scrollYProjectStart = process.env.REACT_APP_SCROLL_Y_SCALE * slideRotationInterval; // Work backwards to find scrollY of start of project
+const scrollYProjectEnd =
+  scrollYProjectStart + 8 * (numberOfProjects * projectRotationInterval); // Likewise
 
 const Slides = (props) => {
   const { scrollY } = props;
@@ -21,20 +25,12 @@ const Slides = (props) => {
     if (transitioning) setTimeout(() => setTransitioning(false), 600);
   }, [transitioning]);
 
-  let rotation = initialRotation - scrollY / 8;
-  const projectSlideStart = initialRotation - slideRotationInterval;
-  const projectSlideEnd =
-    initialRotation -
-    slideRotationInterval -
-    numberOfProjects * projectRotationInterval;
-  if (rotation > projectSlideEnd && rotation < projectSlideStart) {
-    // Two slides worth
+  if (scrollY > scrollYProjectStart && scrollY < scrollYProjectEnd) {
     let i = numberOfProjects;
     while (i) {
       const projectIndex = numberOfProjects - i;
-      const limit =
-        projectSlideStart - (projectIndex + 1) * projectRotationInterval;
-      if (rotation > limit) {
+      const limit = scrollYProjectStart + (projectIndex + 1) * projectRotationInterval * 8;
+      if (scrollY < limit) {
         if (selectedProject !== projectIndex) {
           setSelectedProject(projectIndex);
           setTransitioning(true);
@@ -43,9 +39,9 @@ const Slides = (props) => {
       }
       i--;
     }
-    rotation = initialRotation - slideRotationInterval;
-  } else if (rotation < projectSlideEnd)
-    rotation = rotation + numberOfProjects * projectRotationInterval;
+  }
+
+  const rotation = getRotation({scrollY, slidesOrPlanet: "slides"})
 
   return (
     <div className="Slides" style={{ transform: `rotate(${rotation}deg)` }}>
