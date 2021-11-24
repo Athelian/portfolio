@@ -1,52 +1,24 @@
 import Planet from "Components/Planets/Planet";
 import { useRef } from "react";
+import getRotation from "Utility/getRotation";
 import VARIABLES from "../../../../../_variables.module.sass";
 import "./ExtraTerrestrials.sass";
-
-const initialRotation = parseInt(VARIABLES["starting-rotation"]);
-const slideRotationInterval = parseInt(VARIABLES["slide-rotation-interval"]);
-const numberOfProjects = 4;
-const projectRotationIntervalFactor = 4; // Arbitrary value to increase/decrease the amount of scrolling required per project
-const projectRotationInterval =
-  (projectRotationIntervalFactor * slideRotationInterval) / numberOfProjects;
 
 const getRocketTitle = () =>
   getComputedStyle(document.documentElement).getPropertyValue("--title");
 const setRocketTitle = (title) =>
   document.documentElement.style.setProperty("--title", `"${title}"`);
-const scrollYProjectStart = 8 * slideRotationInterval;
-const scrollYProjectEnd =
-  scrollYProjectStart + 8 * (numberOfProjects * projectRotationInterval);
-const addedScroll = scrollYProjectEnd - scrollYProjectStart;
 
 const ExtraTerrestrials = (props) => {
   const { scrollY } = props;
   const rocketRef = useRef();
-  const projectSlideStart = initialRotation - slideRotationInterval;
-  const projectSlideEnd =
-    initialRotation -
-    slideRotationInterval -
-    numberOfProjects * projectRotationInterval;
-  let rotation = scrollY / 1.59;
-  let slideRotation = initialRotation - scrollY / 8;
-
-  console.log(scrollY)
-
-  if (slideRotation > projectSlideStart) {
-    rotation = initialRotation - rotation;
-  } else if (slideRotation > projectSlideEnd) {
-    rotation = initialRotation - 360;
-  } else if (slideRotation < projectSlideEnd) {
-    rotation = initialRotation - (scrollY - addedScroll) / 1.59;
-  }
+  const rotation = getRotation({scrollY, slidesOrPlanet: "planet"})
 
   if (rotation > 0) getRocketTitle() !== "About" && setRocketTitle("About");
   else if (rotation > -360)
     getRocketTitle() !== "Projects" && setRocketTitle("Projects");
   else if (rotation > -720)
     getRocketTitle() !== "Test" && setRocketTitle("Test");
-
-  console.log(rotation)
 
   return (
     <div className="Earth__Extra-Terrestrials">

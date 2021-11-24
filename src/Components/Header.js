@@ -25,8 +25,7 @@ const Header = (props) => {
           on="click"
           style={{ backgroundColor: "rgba(0,0,0,0.2)" }}
           trigger={<span>MERN</span>}
-          position="right center"
-          offset={[20, 60]}
+          position="bottom right"
         />{" "}
         stacks
       </h3>

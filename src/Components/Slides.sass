@@ -10,7 +10,7 @@ $slides-radius: math.div($slides-diameter, 2)
   width: $slides-diameter
   position: absolute // without this, there is some locking to the viewport and distortion of the vmin values along different axes
   left: 50%
-  @for $i from 1 through 5
+  @for $i from 1 through $number-of-slides
     .Slide:nth-child(#{$i})
       $hypoteneuse: $slides-radius
       $x: $slides-radius * math.cos($i * $slide-rotation-interval)
