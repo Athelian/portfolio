@@ -23,7 +23,7 @@ const ExtraTerrestrials = (props) => {
   return (
     <div className="Earth__Extra-Terrestrials">
       <Planet
-        planetClassname="Planet--Extra-Terrestrials"
+        planetClassname={"Planet--Extra-Terrestrials" + (Math.abs(Math.floor(rotation / 180)) % 2 === 1 ? " Planet--Extra-Terrestrials--Dropped" : "")}
         sphereProps={{ style: { transform: `rotateY(${rotation}deg)` } }}
       >
         <div className="Island Island--Rocket">

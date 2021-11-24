@@ -55,12 +55,17 @@ const Slides = (props) => {
         .map((_, i) => (
           <div className="Slide">
             {i === 0 ? (
-              <div>
-                {/* Creates a div with real dimensions within the padded container */}
-                <h2>About</h2>
+              <div className="Slide__Inner Slide__Inner--About">
+                {/* Creates a div with real dimensions within the padded container (but will always overflow) */}
+                <div>
+                  <h2>Home</h2>
+                </div>
+                <div>
+                  <h2>Work</h2>
+                </div>
               </div>
             ) : i === 1 ? (
-              <div>
+              <div className="Slide__Inner" style={{ overflowY: "scroll" }}>
                 <Carousel
                   className="carousel-root--projects carousel-root--projects--blurb"
                   selectedItem={selectedProject}

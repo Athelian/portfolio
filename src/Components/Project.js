@@ -35,9 +35,9 @@ const findLogo = (name) => {
 const Project = (props) => {
   const { description, title, technologies } = props;
   return (
-    <div className="carousel__project">
-      <h1>{title}</h1>
-      <div className="carousel__project__technologies">
+    <div className="Carousel__Project">
+      <h2>{title}</h2>
+      <div className="Carousel__Project__Technologies">
         {technologies.map((technology) => (
           <img src={findLogo(technology)} />
         ))}
