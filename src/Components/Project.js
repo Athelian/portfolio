@@ -6,6 +6,7 @@ import logo__technology__flutter from "Images/Logos/Technologies/logo__technolog
 import logo__technology__mongo from "Images/Logos/Technologies/logo__technology__mongo.png";
 import logo__technology__node from "Images/Logos/Technologies/logo__technology__node.png";
 import logo__technology__react from "Images/Logos/Technologies/logo__technology__react.png";
+import logo__technology__sass from "Images/Logos/Technologies/logo__technology__sass.png";
 import logo__technology__ubuntu from "Images/Logos/Technologies/logo__technology__ubuntu.png";
 
 const findLogo = (name) => {
@@ -24,6 +25,8 @@ const findLogo = (name) => {
       return logo__technology__node;
     case "react":
       return logo__technology__react;
+    case "sass":
+      return logo__technology__sass;
     case "ubuntu":
       return logo__technology__ubuntu;
   }

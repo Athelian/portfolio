@@ -1,7 +1,9 @@
 import Project from "Components/Project.js";
 import computer from "Images/computer.png";
+import logo__project__portfolioSite from "Images/Logos/Projects/logo__project__portfolio-site.png";
 import logo__project__liberty from "Images/Logos/Projects/logo__project__liberty.png";
 import logo__project__skilltrain from "Images/Logos/Projects/logo__project__skilltrain.png";
+import logo__project__fruity from "Images/Logos/Projects/logo__project__fruity.png";
 import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import getRotation from "Utility/getRotation";
@@ -107,17 +109,7 @@ const Slides = (props) => {
                     title="SkillTrain"
                   />
                   <Project
-                    description="A website serving as a portal to a business-facing online 3D
-                    exhibition MMO game, complete with various social media
-                    capabilities, customer service integration, game file
-                    editor, and more. Sole responsibility for the entire
-                    site/stack. Technologies Used: javascript, react, node,
-                    html, css, jest, joi, linux (ubuntu dist), ssh (key
-                    management), mongo, ssl, git, npm. Highlights include: A
-                    chat system with email notifications and file embedding. A
-                    dynamic svg editor for game admins to manipulate an in-game
-                    map in real-time. A news feed with a WYSIWYG text editor
-                    including locale support etc."
+                    description="A browser based application where users can group up and import a large crate of exotic food to split with other locals who want a piece of the action."
                     technologies={["node", "express", "react"]}
                     title="Fruity"
                   />
@@ -159,6 +151,12 @@ const Slides = (props) => {
                       <div>
                         <img
                           className="computer__project"
+                          src={logo__project__portfolioSite}
+                        />
+                      </div>
+                      <div>
+                        <img
+                          className="computer__project"
                           src={logo__project__liberty}
                         />
                       </div>
@@ -168,12 +166,19 @@ const Slides = (props) => {
                           src={logo__project__skilltrain}
                         />
                       </div>
-                      <div>Fruity</div>
+                      <div>
+                        <img
+                          className="computer__project"
+                          src={logo__project__fruity}
+                        />
+                      </div>
                     </Carousel>
                   </div>
                 </div>
               </div>
-            ) : <></>}
+            ) : (
+              <></>
+            )}
           </div>
         ))}
     </div>
