@@ -57,7 +57,7 @@ const Slides = (props) => {
           <div className="Slide">
             {i === 0 ? (
               <div className="Slide__Inner Slide__Inner--About">
-                <h3>
+                <h4>
                   Hi, I'm Eliot,
                   <span>
                     a fullstack engineer with a focus on{" "}
@@ -67,16 +67,17 @@ const Slides = (props) => {
                       inverted
                       on="click"
                       style={{ backgroundColor: "rgba(0,0,0,0.2)" }}
-                      trigger={<span>MERN</span>}
+                      trigger={<span className="MERN">MERN</span>}
                       position="bottom right"
+                      offset={[300, -10]}
                     />{" "}
                     stacks and the latest trends in tech.
                   </span>
                   <span>
-                  You can read my musings at Medium or check out my most recent
+                  You can read about my work on Medium or check out my most recent
                   projects on Github.
                 </span>
-                </h3>                
+                </h4>                
               </div>
             ) : i === 1 ? (
               <div className="Slide__Inner" style={{ overflowY: "scroll" }}>
@@ -90,7 +91,7 @@ const Slides = (props) => {
                   transitionTime={600}
                 >
                   <Project
-                    description="The website you are looking at"
+                    description="The website you are looking at, created with 3d CSS powered by SASS"
                     technologies={["react", "sass"]}
                     title="This Site"
                   />
