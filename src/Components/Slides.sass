@@ -34,11 +34,18 @@ $slides-radius: math.div($slides-diameter, 2)
       width: 100%
       display: flex
       justify-content: center
-      align-items: center
       &--About
-        justify-content: space-evenly
-        h2
-          margin: 0
+        flex-direction: column
+        h3
+          padding: 1vmin 5vmin
+          color: white
+          > span::before
+            content: "\A"
+            white-space: pre
+          > span
+            float: right
+            text-align: right
+
       > .computer
         z-index: 1
         position: absolute

@@ -9,6 +9,7 @@ import { Carousel } from "react-responsive-carousel";
 import getRotation from "Utility/getRotation";
 import VARIABLES from "../_variables.module.sass";
 import "./Slides.sass";
+import { Popup } from "semantic-ui-react";
 
 const slideRotationInterval = parseInt(VARIABLES["slide-rotation-interval"]);
 const numberOfProjects = parseInt(VARIABLES["number-of-projects"]);
@@ -56,13 +57,26 @@ const Slides = (props) => {
           <div className="Slide">
             {i === 0 ? (
               <div className="Slide__Inner Slide__Inner--About">
-                {/* Creates a div with real dimensions within the padded container (but will always overflow) */}
-                <div>
-                  <h2>Home</h2>
-                </div>
-                <div>
-                  <h2>Work</h2>
-                </div>
+                <h3>
+                  Hi, I'm Eliot,
+                  <span>
+                    a fullstack engineer with a focus on{" "}
+                    <Popup
+                      basic
+                      content={<h4>(M)ongo (E)xpress (R)eact (N)ode</h4>}
+                      inverted
+                      on="click"
+                      style={{ backgroundColor: "rgba(0,0,0,0.2)" }}
+                      trigger={<span>MERN</span>}
+                      position="bottom right"
+                    />{" "}
+                    stacks and the latest trends in tech.
+                  </span>
+                  <span>
+                  You can read my musings at Medium or check out my most recent
+                  projects on Github.
+                </span>
+                </h3>                
               </div>
             ) : i === 1 ? (
               <div className="Slide__Inner" style={{ overflowY: "scroll" }}>

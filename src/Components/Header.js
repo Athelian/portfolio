@@ -17,17 +17,7 @@ const Header = (props) => {
         </h1>
       </div>
       <h3 className="Header__Introduction">
-        I am a fullstack engineer with a focus on{" "}
-        <Popup
-          basic
-          content={<h4>(M)ongo (E)xpress (R)eact (N)ode</h4>}
-          inverted
-          on="click"
-          style={{ backgroundColor: "rgba(0,0,0,0.2)" }}
-          trigger={<span>MERN</span>}
-          position="bottom right"
-        />{" "}
-        stacks
+        Fullstack Engineer 
       </h3>
     </header>
   );

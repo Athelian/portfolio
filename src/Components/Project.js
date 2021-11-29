@@ -1,4 +1,3 @@
-import "./Project.sass"
 import logo__technology__aws from "Images/Logos/Technologies/logo__technology__aws.png";
 import logo__technology__dart from "Images/Logos/Technologies/logo__technology__dart.png";
 import logo__technology__express from "Images/Logos/Technologies/logo__technology__express.png";
@@ -8,6 +7,7 @@ import logo__technology__node from "Images/Logos/Technologies/logo__technology__
 import logo__technology__react from "Images/Logos/Technologies/logo__technology__react.png";
 import logo__technology__sass from "Images/Logos/Technologies/logo__technology__sass.png";
 import logo__technology__ubuntu from "Images/Logos/Technologies/logo__technology__ubuntu.png";
+import "./Project.sass";
 
 const findLogo = (name) => {
   switch (name) {
