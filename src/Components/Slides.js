@@ -20,7 +20,7 @@ const scrollYProjectStart =
 const scrollYProjectEnd =
   scrollYProjectStart +
   process.env.REACT_APP_SCROLL_Y_SCALE *
-    (numberOfProjects * slideRotationInterval); // Likewise
+  (numberOfProjects * slideRotationInterval); // Likewise
 
 const Slides = (props) => {
   const { scrollY } = props;
@@ -58,9 +58,9 @@ const Slides = (props) => {
             {i === 0 ? (
               <div className="Slide__Inner Slide__Inner--About">
                 <h4>
-                  Hi, I'm Eliot,
+                  Hi, I'm Eliot
                   <span>
-                    a fullstack engineer with a focus on{" "}
+                    I'm a fullstack engineer with a focus on{" "}
                     <Popup
                       basic
                       content={<h4>(M)ongo (E)xpress (R)eact (N)ode</h4>}
@@ -69,15 +69,15 @@ const Slides = (props) => {
                       style={{ backgroundColor: "rgba(0,0,0,0.2)" }}
                       trigger={<span className="MERN">MERN</span>}
                       position="bottom right"
-                      offset={[300, -10]}
+                      offset={[600, -10]}
                     />{" "}
                     stacks and the latest trends in tech.
                   </span>
                   <span>
-                  You can read about my work on Medium or check out my most recent
-                  projects on Github.
-                </span>
-                </h4>                
+                    You can read about my work on Medium or check out my most recent
+                    projects on Github.
+                  </span>
+                </h4>
               </div>
             ) : i === 1 ? (
               <div className="Slide__Inner" style={{ overflowY: "scroll" }}>
@@ -96,17 +96,17 @@ const Slides = (props) => {
                     title="This Site"
                   />
                   <Project
-                    description="A website serving as a portal to a business-facing online 3D
-                    exhibition MMO game, complete with various social media
-                    capabilities, customer service integration, game file
-                    editor, and more. Sole responsibility for the entire
-                    site/stack. Technologies Used: javascript, react, node,
-                    html, css, jest, joi, linux (ubuntu dist), ssh (key
-                    management), mongo, ssl, git, npm. Highlights include: A
-                    chat system with email notifications and file embedding. A
-                    dynamic svg editor for game admins to manipulate an in-game
-                    map in real-time. A news feed with a WYSIWYG text editor
-                    including locale support etc."
+                    description={<><div>A website serving as a portal to a business-facing online 3D
+                      exhibition MMO game, complete with various social media
+                      capabilities, customer service integration, game file
+                      editor, and more. Sole responsibility for the entire
+                      site/stack. Technologies Used: javascript, react, node,
+                      html, css, jest, joi, linux (ubuntu dist), ssh (key
+                      management), mongo, ssl, git, npm. Highlights include: A
+                      chat system with email notifications and file embedding. A
+                      dynamic svg editor for game admins to manipulate an in-game
+                      map in real-time. A news feed with a WYSIWYG text editor
+                      including locale support etc.</div><br/><a href="https://www.liberty-hjc.com/" target="_blank">https://www.liberty-hjc.com/</a></>}
                     technologies={[
                       "ubuntu",
                       "mongo",
