@@ -1,5 +1,6 @@
 import Project from "Components/Project.js";
 import computer from "Images/computer.png";
+import mail from "Images/mail.png"
 import logo__project__fruity from "Images/Logos/Projects/logo__project__fruity.png";
 import logo__project__liberty from "Images/Logos/Projects/logo__project__liberty.png";
 import logo__project__portfolioSite from "Images/Logos/Projects/logo__project__portfolio-site.png";
@@ -319,7 +320,7 @@ const Slides = (props) => {
               </div>
             ) : (
               <div className="Slide__Inner Slide__Inner--Contact">
-                <Icon name="mail outline" />
+                <img src={mail}/>
                 <a href="mailto:ejaustinforbes@gmail.com">
                   ejaustinforbes@gmail.com
                 </a>
