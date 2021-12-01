@@ -24,6 +24,8 @@ $slides-radius: math.div($slides-diameter, 2)
     padding-bottom: math.div(66.66%, 2)
     background-color: rgba(42,43,101, 0.7)
     border-radius: 20px
+    *
+      color: white
     h2
       font-size: 4vmin
       color: #efef8d
@@ -34,11 +36,13 @@ $slides-radius: math.div($slides-diameter, 2)
       width: 100%
       display: flex
       justify-content: center
+      align-items: center
       &--About
         flex-direction: column
         h4
           padding: 1vmin 5vmin
           color: white
+          font-size: 2.5vmin
           > span::before
             content: "\A"
             white-space: pre
@@ -47,6 +51,14 @@ $slides-radius: math.div($slides-diameter, 2)
             margin-left: 1rem
         .MERN
           cursor: pointer
+      &--Skills
+        flex-direction: column
+        align-items: Left
+        .ui.grid>.row
+          padding-bottom: 0.5vmin
+          padding-top: 0.5vmin
+          > .column:first-child
+            text-align: center
       > .computer
         z-index: 1
         position: absolute

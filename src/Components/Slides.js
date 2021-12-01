@@ -9,7 +9,7 @@ import { Carousel } from "react-responsive-carousel";
 import getRotation from "Utility/getRotation";
 import VARIABLES from "../_variables.module.sass";
 import "./Slides.sass";
-import { Popup } from "semantic-ui-react";
+import { Grid, Popup, Rating, Table } from "semantic-ui-react";
 
 const slideRotationInterval = parseInt(VARIABLES["slide-rotation-interval"]);
 const numberOfProjects = parseInt(VARIABLES["number-of-projects"]);
@@ -74,7 +74,7 @@ const Slides = (props) => {
                     stacks and the latest trends in tech.
                   </span>
                   <span>
-                    You can read about my work on Medium or check out my most recent
+                    You can read about my work on Medium, or check out my most recent
                     projects on Github.
                   </span>
                 </h4>
@@ -91,11 +91,6 @@ const Slides = (props) => {
                   transitionTime={600}
                 >
                   <Project
-                    description="The website you are looking at, created with 3d CSS powered by SASS"
-                    technologies={["react", "sass"]}
-                    title="This Site"
-                  />
-                  <Project
                     description={<><div>A website serving as a portal to a business-facing online 3D
                       exhibition MMO game, complete with various social media
                       capabilities, customer service integration, game file
@@ -106,7 +101,7 @@ const Slides = (props) => {
                       chat system with email notifications and file embedding. A
                       dynamic svg editor for game admins to manipulate an in-game
                       map in real-time. A news feed with a WYSIWYG text editor
-                      including locale support etc.</div><br/><a href="https://www.liberty-hjc.com/" target="_blank">https://www.liberty-hjc.com/</a></>}
+                      including locale support etc.</div><br /><a href="https://www.liberty-hjc.com/" target="_blank">https://www.liberty-hjc.com/</a></>}
                     technologies={[
                       "ubuntu",
                       "mongo",
@@ -132,6 +127,11 @@ const Slides = (props) => {
                     description="A browser based application where users can group up and import a large crate of exotic food to split with other locals who want a piece of the action."
                     technologies={["node", "express", "react"]}
                     title="Fruity"
+                  />
+                  <Project
+                    description="The website you are looking at, created with 3d CSS powered by SASS"
+                    technologies={["react", "sass"]}
+                    title="This Site"
                   />
                 </Carousel>
                 <img className="computer" src={computer} />
@@ -171,12 +171,6 @@ const Slides = (props) => {
                       <div>
                         <img
                           className="computer__project"
-                          src={logo__project__portfolioSite}
-                        />
-                      </div>
-                      <div>
-                        <img
-                          className="computer__project"
                           src={logo__project__liberty}
                         />
                       </div>
@@ -192,13 +186,86 @@ const Slides = (props) => {
                           src={logo__project__fruity}
                         />
                       </div>
+                      <div>
+                        <img
+                          className="computer__project"
+                          src={logo__project__portfolioSite}
+                        />
+                      </div>
                     </Carousel>
                   </div>
                 </div>
               </div>
-            ) : (
-              <></>
-            )}
+            ) :
+              i == 2 ?
+                <div className="Slide__Inner Slide__Inner--Skills">
+                  {/* <div></div>
+                  <div>CSS <Rating disabled={true} defaultRating={3} maxRating={5} icon={"star"} /></div>
+                  <div>SASS <Rating disabled={true} defaultRating={4} maxRating={5} icon={"star"} /></div>
+                  <div>JavaScript <Rating disabled={true} defaultRating={5} maxRating={5} icon={"star"} /></div>
+                  <div>Linux <Rating disabled={true} defaultRating={2} maxRating={5} icon={"star"} /></div>
+                  <div>Mongo <Rating disabled={true} defaultRating={3} maxRating={5} icon={"star"} /></div> */}
+                    <Grid columns={2}>
+                      <Grid.Row>
+                        <Grid.Column>
+                          HTML
+                        </Grid.Column>
+                        <Grid.Column>
+                          <Rating disabled={true} defaultRating={5} maxRating={5} icon={"star"} />
+                        </Grid.Column>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <Grid.Column>
+                          CSS
+                        </Grid.Column>
+                        <Grid.Column>
+                          <Rating disabled={true} defaultRating={5} maxRating={5} icon={"star"} />
+                        </Grid.Column>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <Grid.Column>
+                          SASS
+                        </Grid.Column>
+                        <Grid.Column>
+                          <Rating disabled={true} defaultRating={3} maxRating={5} icon={"star"} />
+                        </Grid.Column>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <Grid.Column>
+                          JavaScript
+                        </Grid.Column>
+                        <Grid.Column>
+                          <Rating disabled={true} defaultRating={5} maxRating={5} icon={"star"} />
+                        </Grid.Column>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <Grid.Column>
+                          React
+                        </Grid.Column>
+                        <Grid.Column>
+                          <Rating disabled={true} defaultRating={4} maxRating={5} icon={"star"} />
+                        </Grid.Column>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <Grid.Column>
+                          Linux
+                        </Grid.Column>
+                        <Grid.Column>
+                          <Rating disabled={true} defaultRating={3} maxRating={5} icon={"star"} />
+                        </Grid.Column>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <Grid.Column>
+                          Mongo
+                        </Grid.Column>
+                        <Grid.Column>
+                          <Rating disabled={true} defaultRating={3} maxRating={5} icon={"star"} />
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid>
+                </div> : (
+                  <></>
+                )}
           </div>
         ))}
     </div>
