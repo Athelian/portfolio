@@ -1,15 +1,15 @@
 import Project from "Components/Project.js";
 import computer from "Images/computer.png";
-import logo__project__portfolioSite from "Images/Logos/Projects/logo__project__portfolio-site.png";
-import logo__project__liberty from "Images/Logos/Projects/logo__project__liberty.png";
-import logo__project__skilltrain from "Images/Logos/Projects/logo__project__skilltrain.png";
 import logo__project__fruity from "Images/Logos/Projects/logo__project__fruity.png";
+import logo__project__liberty from "Images/Logos/Projects/logo__project__liberty.png";
+import logo__project__portfolioSite from "Images/Logos/Projects/logo__project__portfolio-site.png";
+import logo__project__skilltrain from "Images/Logos/Projects/logo__project__skilltrain.png";
 import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
+import { Grid, Icon, Popup, Rating } from "semantic-ui-react";
 import getRotation from "Utility/getRotation";
 import VARIABLES from "../_variables.module.sass";
 import "./Slides.sass";
-import { Grid, Popup, Rating, Table } from "semantic-ui-react";
 
 const slideRotationInterval = parseInt(VARIABLES["slide-rotation-interval"]);
 const numberOfProjects = parseInt(VARIABLES["number-of-projects"]);
@@ -58,7 +58,7 @@ const Slides = (props) => {
             {i === 0 ? (
               <div className="Slide__Inner Slide__Inner--About">
                 <h4>
-                  Hi, I'm Eliot
+                  Hi, I'm Eliot.
                   <span>
                     I'm a fullstack engineer with a focus on{" "}
                     <Popup
@@ -98,10 +98,10 @@ const Slides = (props) => {
                           online 3D exhibition MMO game, complete with various
                           social media capabilities, customer service
                           integration, game file editor, and more. Sole
-                          responsibility for the entire site/stack. Technologies
-                          Used: javascript, react, node, html, css, jest, joi,
-                          linux (ubuntu dist), ssh (key management), mongo, ssl,
-                          git, npm. Highlights include: A chat system with email
+                          responsibility for the entire site/stack. Javascript,
+                          react, node, html, css, jest, joi, linux (ubuntu
+                          dist), ssh (key management), mongo, ssl, git, npm.
+                          Highlights include: A chat system with email
                           notifications and file embedding. A dynamic svg editor
                           for game admins to manipulate an in-game map in
                           real-time. A news feed with a WYSIWYG text editor
@@ -123,24 +123,52 @@ const Slides = (props) => {
                     title="Liberty"
                   />
                   <Project
-                    description="A mobile based full-stack application with an inhouse
-                    booking system alongside real time video and text chat for
-                    fitness In-depth authentication system in Dart with
-                    connection to AWS Cognito via Amplify. Completed
-                    integration of a payment API (Stripe) with full signups,
-                    payments, and payouts deployed to AWS. Payments through
-                    Android native pay, iOS native pay, or an in-app window.
-                    Demonstration (YouTube): Introduction Demo"
+                    description={
+                      <>
+                        <div>
+                          A mobile based full-stack application with an inhouse
+                          booking system alongside real time video and text chat
+                          for fitness. In-depth authentication system in Dart
+                          with connection to AWS Cognito via Amplify. Completed
+                          integration of a payment API (Stripe) with full
+                          signups, payments, and payouts deployed to AWS.
+                          Payments through Android native pay, iOS native pay,
+                          or an in-app window.
+                        </div>
+                        <br />
+                        <a
+                          href="https://github.com/skilltrain/skilltrain-app"
+                          target="_blank"
+                        >
+                          github.com/skilltrain/skilltrain-app
+                        </a>
+                      </>
+                    }
                     technologies={["aws", "mongo", "dart", "flutter", "react"]}
                     title="SkillTrain"
                   />
                   <Project
-                    description="A browser based application where users can group up and import a large crate of exotic food to split with other locals who want a piece of the action."
+                    description={
+                      <>
+                        <div>
+                          A browser based application where users can group up
+                          and import a large crate of exotic food to split with
+                          other locals who want a piece of the action.
+                        </div>
+                        <br />
+                        <a
+                          href="https://github.com/Athelian/fruity"
+                          target="_blank"
+                        >
+                          github.com/athelian/fruity
+                        </a>
+                      </>
+                    }
                     technologies={["node", "express", "react"]}
                     title="Fruity"
                   />
                   <Project
-                    description="The website you are looking at, created with 3d CSS powered by SASS"
+                    description="The website you are looking at, created with 3d CSS and powered by SASS"
                     technologies={["react", "sass"]}
                     title="This Site"
                   />
@@ -291,7 +319,10 @@ const Slides = (props) => {
               </div>
             ) : (
               <div className="Slide__Inner Slide__Inner--Contact">
-                email icon ejaustinforbes@gmail
+                <Icon name="mail outline" />
+                <a href="mailto:ejaustinforbes@gmail.com">
+                  ejaustinforbes@gmail.com
+                </a>
               </div>
             )}
           </div>

@@ -12,7 +12,7 @@ const setRocketTitle = (title) =>
 const ExtraTerrestrials = (props) => {
   const { scrollY } = props;
   const rocketRef = useRef();
-  const rotation = getRotation({scrollY, slidesOrPlanet: "planet"})
+  const rotation = getRotation({scrollY, slidesOrPlanet: "planet"}) + 10
 
   if (rotation > 0) getRocketTitle() !== "About" && setRocketTitle("About");
   else if (rotation > -360)
