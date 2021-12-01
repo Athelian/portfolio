@@ -20,7 +20,7 @@ const scrollYProjectStart =
 const scrollYProjectEnd =
   scrollYProjectStart +
   process.env.REACT_APP_SCROLL_Y_SCALE *
-  (numberOfProjects * slideRotationInterval); // Likewise
+    (numberOfProjects * slideRotationInterval); // Likewise
 
 const Slides = (props) => {
   const { scrollY } = props;
@@ -74,8 +74,8 @@ const Slides = (props) => {
                     stacks and the latest trends in tech.
                   </span>
                   <span>
-                    You can read about my work on Medium, or check out my most recent
-                    projects on Github.
+                    You can read about my work on Medium, or check out my most
+                    recent projects on Github.
                   </span>
                 </h4>
               </div>
@@ -91,17 +91,28 @@ const Slides = (props) => {
                   transitionTime={600}
                 >
                   <Project
-                    description={<><div>A website serving as a portal to a business-facing online 3D
-                      exhibition MMO game, complete with various social media
-                      capabilities, customer service integration, game file
-                      editor, and more. Sole responsibility for the entire
-                      site/stack. Technologies Used: javascript, react, node,
-                      html, css, jest, joi, linux (ubuntu dist), ssh (key
-                      management), mongo, ssl, git, npm. Highlights include: A
-                      chat system with email notifications and file embedding. A
-                      dynamic svg editor for game admins to manipulate an in-game
-                      map in real-time. A news feed with a WYSIWYG text editor
-                      including locale support etc.</div><br /><a href="https://www.liberty-hjc.com/" target="_blank">https://www.liberty-hjc.com/</a></>}
+                    description={
+                      <>
+                        <div>
+                          A website serving as a portal to a business-facing
+                          online 3D exhibition MMO game, complete with various
+                          social media capabilities, customer service
+                          integration, game file editor, and more. Sole
+                          responsibility for the entire site/stack. Technologies
+                          Used: javascript, react, node, html, css, jest, joi,
+                          linux (ubuntu dist), ssh (key management), mongo, ssl,
+                          git, npm. Highlights include: A chat system with email
+                          notifications and file embedding. A dynamic svg editor
+                          for game admins to manipulate an in-game map in
+                          real-time. A news feed with a WYSIWYG text editor
+                          including locale support etc.
+                        </div>
+                        <br />
+                        <a href="https://www.liberty-hjc.com/" target="_blank">
+                          liberty-hjc.com
+                        </a>
+                      </>
+                    }
                     technologies={[
                       "ubuntu",
                       "mongo",
@@ -196,76 +207,93 @@ const Slides = (props) => {
                   </div>
                 </div>
               </div>
-            ) :
-              i == 2 ?
-                <div className="Slide__Inner Slide__Inner--Skills">
-                  {/* <div></div>
-                  <div>CSS <Rating disabled={true} defaultRating={3} maxRating={5} icon={"star"} /></div>
-                  <div>SASS <Rating disabled={true} defaultRating={4} maxRating={5} icon={"star"} /></div>
-                  <div>JavaScript <Rating disabled={true} defaultRating={5} maxRating={5} icon={"star"} /></div>
-                  <div>Linux <Rating disabled={true} defaultRating={2} maxRating={5} icon={"star"} /></div>
-                  <div>Mongo <Rating disabled={true} defaultRating={3} maxRating={5} icon={"star"} /></div> */}
-                    <Grid columns={2}>
-                      <Grid.Row>
-                        <Grid.Column>
-                          HTML
-                        </Grid.Column>
-                        <Grid.Column>
-                          <Rating disabled={true} defaultRating={5} maxRating={5} icon={"star"} />
-                        </Grid.Column>
-                      </Grid.Row>
-                      <Grid.Row>
-                        <Grid.Column>
-                          CSS
-                        </Grid.Column>
-                        <Grid.Column>
-                          <Rating disabled={true} defaultRating={5} maxRating={5} icon={"star"} />
-                        </Grid.Column>
-                      </Grid.Row>
-                      <Grid.Row>
-                        <Grid.Column>
-                          SASS
-                        </Grid.Column>
-                        <Grid.Column>
-                          <Rating disabled={true} defaultRating={3} maxRating={5} icon={"star"} />
-                        </Grid.Column>
-                      </Grid.Row>
-                      <Grid.Row>
-                        <Grid.Column>
-                          JavaScript
-                        </Grid.Column>
-                        <Grid.Column>
-                          <Rating disabled={true} defaultRating={5} maxRating={5} icon={"star"} />
-                        </Grid.Column>
-                      </Grid.Row>
-                      <Grid.Row>
-                        <Grid.Column>
-                          React
-                        </Grid.Column>
-                        <Grid.Column>
-                          <Rating disabled={true} defaultRating={4} maxRating={5} icon={"star"} />
-                        </Grid.Column>
-                      </Grid.Row>
-                      <Grid.Row>
-                        <Grid.Column>
-                          Linux
-                        </Grid.Column>
-                        <Grid.Column>
-                          <Rating disabled={true} defaultRating={3} maxRating={5} icon={"star"} />
-                        </Grid.Column>
-                      </Grid.Row>
-                      <Grid.Row>
-                        <Grid.Column>
-                          Mongo
-                        </Grid.Column>
-                        <Grid.Column>
-                          <Rating disabled={true} defaultRating={3} maxRating={5} icon={"star"} />
-                        </Grid.Column>
-                      </Grid.Row>
-                    </Grid>
-                </div> : (
-                  <></>
-                )}
+            ) : i == 2 ? (
+              <div className="Slide__Inner Slide__Inner--Skills">
+                <Grid columns={2}>
+                  <Grid.Row>
+                    <Grid.Column>HTML</Grid.Column>
+                    <Grid.Column>
+                      <Rating
+                        disabled={true}
+                        defaultRating={5}
+                        maxRating={5}
+                        icon={"star"}
+                      />
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column>CSS</Grid.Column>
+                    <Grid.Column>
+                      <Rating
+                        disabled={true}
+                        defaultRating={5}
+                        maxRating={5}
+                        icon={"star"}
+                      />
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column>SASS</Grid.Column>
+                    <Grid.Column>
+                      <Rating
+                        disabled={true}
+                        defaultRating={3}
+                        maxRating={5}
+                        icon={"star"}
+                      />
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column>JavaScript</Grid.Column>
+                    <Grid.Column>
+                      <Rating
+                        disabled={true}
+                        defaultRating={5}
+                        maxRating={5}
+                        icon={"star"}
+                      />
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column>React</Grid.Column>
+                    <Grid.Column>
+                      <Rating
+                        disabled={true}
+                        defaultRating={4}
+                        maxRating={5}
+                        icon={"star"}
+                      />
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column>Linux</Grid.Column>
+                    <Grid.Column>
+                      <Rating
+                        disabled={true}
+                        defaultRating={3}
+                        maxRating={5}
+                        icon={"star"}
+                      />
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column>Mongo</Grid.Column>
+                    <Grid.Column>
+                      <Rating
+                        disabled={true}
+                        defaultRating={3}
+                        maxRating={5}
+                        icon={"star"}
+                      />
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid>
+              </div>
+            ) : (
+              <div className="Slide__Inner Slide__Inner--Contact">
+                email icon ejaustinforbes@gmail
+              </div>
+            )}
           </div>
         ))}
     </div>

@@ -15,7 +15,7 @@ $slides-radius: math.div($slides-diameter, 2)
       $hypoteneuse: $slides-radius
       $x: $slides-radius * math.cos($i * $slide-rotation-interval)
       $y: $slides-radius * math.sin($i * $slide-rotation-interval)
-      transform: translate(calc(-50% + $x), calc(-50% + $y)) rotate($i * $slide-rotation-interval - 180deg) scale(1.04)
+      transform: translate(calc(-50% + $x), calc(-50% + $y)) rotate($i * $slide-rotation-interval - 180deg) scale(1.1)
   .Slide
     width: 50%
     position: absolute
@@ -37,6 +37,8 @@ $slides-radius: math.div($slides-diameter, 2)
       display: flex
       justify-content: center
       align-items: center
+      a
+        color: gray
       &--About
         flex-direction: column
         h4
