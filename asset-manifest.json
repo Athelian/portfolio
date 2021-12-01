@@ -1,0 +1,42 @@
+{
+  "files": {
+    "main.css": "/portfolio/static/css/main.96e51a7a.chunk.css",
+    "main.js": "/portfolio/static/js/main.3969a214.chunk.js",
+    "main.js.map": "/portfolio/static/js/main.3969a214.chunk.js.map",
+    "runtime-main.js": "/portfolio/static/js/runtime-main.7f492d92.js",
+    "runtime-main.js.map": "/portfolio/static/js/runtime-main.7f492d92.js.map",
+    "static/css/2.dbe982d2.chunk.css": "/portfolio/static/css/2.dbe982d2.chunk.css",
+    "static/js/2.f6acdf04.chunk.js": "/portfolio/static/js/2.f6acdf04.chunk.js",
+    "static/js/2.f6acdf04.chunk.js.map": "/portfolio/static/js/2.f6acdf04.chunk.js.map",
+    "index.html": "/portfolio/index.html",
+    "static/css/2.dbe982d2.chunk.css.map": "/portfolio/static/css/2.dbe982d2.chunk.css.map",
+    "static/css/main.96e51a7a.chunk.css.map": "/portfolio/static/css/main.96e51a7a.chunk.css.map",
+    "static/js/2.f6acdf04.chunk.js.LICENSE.txt": "/portfolio/static/js/2.f6acdf04.chunk.js.LICENSE.txt",
+    "static/media/Resume.5dc29b96.pdf": "/portfolio/static/media/Resume.5dc29b96.pdf",
+    "static/media/bitmoji.0f436a9e.png": "/portfolio/static/media/bitmoji.0f436a9e.png",
+    "static/media/semantic.min.css": "/portfolio/static/media/outline-icons.ddae9b1b.woff",
+    "static/media/computer.47df44d0.png": "/portfolio/static/media/computer.47df44d0.png",
+    "static/media/github.bcd9bda4.png": "/portfolio/static/media/github.bcd9bda4.png",
+    "static/media/linkedin.69f2aa5b.png": "/portfolio/static/media/linkedin.69f2aa5b.png",
+    "static/media/logo__project__fruity.55b85e6e.png": "/portfolio/static/media/logo__project__fruity.55b85e6e.png",
+    "static/media/logo__project__liberty.a947ed7d.png": "/portfolio/static/media/logo__project__liberty.a947ed7d.png",
+    "static/media/logo__project__portfolio-site.775287c5.png": "/portfolio/static/media/logo__project__portfolio-site.775287c5.png",
+    "static/media/logo__technology__aws.425a4b10.png": "/portfolio/static/media/logo__technology__aws.425a4b10.png",
+    "static/media/logo__technology__dart.f00251a3.png": "/portfolio/static/media/logo__technology__dart.f00251a3.png",
+    "static/media/logo__technology__express.910adc86.png": "/portfolio/static/media/logo__technology__express.910adc86.png",
+    "static/media/logo__technology__flutter.9478f9e3.png": "/portfolio/static/media/logo__technology__flutter.9478f9e3.png",
+    "static/media/logo__technology__mongo.31728036.png": "/portfolio/static/media/logo__technology__mongo.31728036.png",
+    "static/media/logo__technology__node.4260b94a.png": "/portfolio/static/media/logo__technology__node.4260b94a.png",
+    "static/media/logo__technology__react.f64a6ebf.png": "/portfolio/static/media/logo__technology__react.f64a6ebf.png",
+    "static/media/logo__technology__sass.6251c408.png": "/portfolio/static/media/logo__technology__sass.6251c408.png",
+    "static/media/logo__technology__ubuntu.f13062e5.png": "/portfolio/static/media/logo__technology__ubuntu.f13062e5.png",
+    "static/media/medium-black.d4869399.png": "/portfolio/static/media/medium-black.d4869399.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7f492d92.js",
+    "static/css/2.dbe982d2.chunk.css",
+    "static/js/2.f6acdf04.chunk.js",
+    "static/css/main.96e51a7a.chunk.css",
+    "static/js/main.3969a214.chunk.js"
+  ]
+}
