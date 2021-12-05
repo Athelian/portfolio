@@ -7,7 +7,7 @@ import Flags from "./Components/Flags";
 import "./Earth.sass";
 
 const Earth = (props) => {
-  const { scrollY } = props;
+  const { scrollYPercentage } = props;
 
   return (
     <div className="Earth">
@@ -46,7 +46,7 @@ const Earth = (props) => {
       </div>
       <Flags />
       <Clouds />
-      <ExtraTerrestrials scrollY={scrollY} />
+      <ExtraTerrestrials scrollYPercentage={scrollYPercentage} />
     </div>
   );
 };

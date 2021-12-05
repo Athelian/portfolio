@@ -1,6 +1,6 @@
 import Project from "Components/Project.js";
 import computer from "Images/computer.png";
-import mail from "Images/mail.png"
+import mail from "Images/mail.png";
 import logo__project__fruity from "Images/Logos/Projects/logo__project__fruity.png";
 import logo__project__liberty from "Images/Logos/Projects/logo__project__liberty.png";
 import logo__project__portfolioSite from "Images/Logos/Projects/logo__project__portfolio-site.png";
@@ -13,19 +13,17 @@ import VARIABLES from "../_variables.module.sass";
 import "./Slides.sass";
 
 const slideRotationInterval = parseInt(VARIABLES["slide-rotation-interval"]);
+const slideRotationIntervalPercentage = parseInt(VARIABLES["slide-rotation-interval-percentage"]);
 const numberOfProjects = parseInt(VARIABLES["number-of-projects"]);
 const numberOfSlides = parseInt(VARIABLES["number-of-slides"]);
 
-const scrollYProjectStart =
-  process.env.REACT_APP_SCROLL_Y_SCALE * slideRotationInterval; // Work backwards to find scrollY of start of project
+const scrollYProjectStart = slideRotationIntervalPercentage; // Work backwards to find scrollYPercentage of start of project
 const scrollYProjectEnd =
-  scrollYProjectStart +
-  process.env.REACT_APP_SCROLL_Y_SCALE *
-    (numberOfProjects * slideRotationInterval); // Likewise
+  scrollYProjectStart + (numberOfProjects * slideRotationIntervalPercentage); // Likewise
 
 const Slides = (props) => {
-  const { scrollY } = props;
-  const rotation = getRotation({ scrollY, slidesOrPlanet: "slides" });
+  const { scrollYPercentage } = props;
+  const rotation = getRotation({ scrollYPercentage, slidesOrPlanet: "slides" });
   const [selectedProject, setSelectedProject] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
 
@@ -33,13 +31,12 @@ const Slides = (props) => {
     if (transitioning) setTimeout(() => setTransitioning(false), 600);
   }, [transitioning]);
 
-  if (scrollY > scrollYProjectStart && scrollY < scrollYProjectEnd) {
+  if (scrollYPercentage > scrollYProjectStart && scrollYPercentage < scrollYProjectEnd) {
     let i = numberOfProjects;
     while (i) {
       const projectIndex = numberOfProjects - i;
-      const limit =
-        scrollYProjectStart + (projectIndex + 1) * slideRotationInterval * 8;
-      if (scrollY < limit) {
+      const limit = scrollYProjectStart + (projectIndex + 1) * 9;
+      if (scrollYPercentage < limit) {
         if (selectedProject !== projectIndex) {
           setSelectedProject(projectIndex);
           setTransitioning(true);
@@ -320,7 +317,7 @@ const Slides = (props) => {
               </div>
             ) : (
               <div className="Slide__Inner Slide__Inner--Contact">
-                <img src={mail}/>
+                <img src={mail} />
                 <a href="mailto:ejaustinforbes@gmail.com">
                   ejaustinforbes@gmail.com
                 </a>

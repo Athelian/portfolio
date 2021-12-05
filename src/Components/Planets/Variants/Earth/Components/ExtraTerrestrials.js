@@ -10,9 +10,9 @@ const setRocketTitle = (title) =>
   document.documentElement.style.setProperty("--title", `"${title}"`);
 
 const ExtraTerrestrials = (props) => {
-  const { scrollY } = props;
+  const { scrollYPercentage } = props;
   const rocketRef = useRef();
-  const rotation = getRotation({scrollY, slidesOrPlanet: "planet"}) + 10
+  const rotation = getRotation({scrollYPercentage, slidesOrPlanet: "planet"}) + 10
 
   if (rotation > 0) getRocketTitle() !== "About" && setRocketTitle("About");
   else if (rotation > -360)

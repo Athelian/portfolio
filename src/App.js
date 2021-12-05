@@ -10,8 +10,14 @@ import Header from "./Components/Header";
 import "./Effects.css";
 
 function App() {
-  const [scrollY, setScrollY] = useState(0)
-  window.onscroll = () => setScrollY(window.scrollY);
+  const [scrollYPercentage, setScrollYPercentage] = useState(0);
+  const h = document.documentElement,
+    b = document.body,
+    st = "scrollTop",
+    sh = "scrollHeight";
+  const percent = ((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight)) * 100;
+  window.onscroll = () => setScrollYPercentage(percent);
+  console.log("percent", percent);
 
   return (
     <div className="Portfolio-Site">
@@ -19,10 +25,10 @@ function App() {
       <div className="Portfolio-Site__Layout">
         <Header visible />
         <div className="Portfolio-Site__Left">
-          <Earth scrollY={scrollY}/>
+          {/* <Earth scrollYPercentage={scrollYPercentage} /> */}
         </div>
         <div className="Portfolio-Site__Right">
-          <Slides scrollY={scrollY}/>
+          <Slides scrollYPercentage={scrollYPercentage} />
         </div>
         <Links />
       </div>
