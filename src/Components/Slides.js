@@ -1,25 +1,26 @@
 import Project from "Components/Project.js";
 import computer from "Images/computer.png";
-import mail from "Images/mail.png";
 import logo__project__fruity from "Images/Logos/Projects/logo__project__fruity.png";
 import logo__project__liberty from "Images/Logos/Projects/logo__project__liberty.png";
 import logo__project__portfolioSite from "Images/Logos/Projects/logo__project__portfolio-site.png";
 import logo__project__skilltrain from "Images/Logos/Projects/logo__project__skilltrain.png";
+import mail from "Images/mail.png";
 import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
-import { Grid, Icon, Popup, Rating } from "semantic-ui-react";
+import { Grid, Popup, Rating } from "semantic-ui-react";
 import getRotation from "Utility/getRotation";
 import VARIABLES from "../_variables.module.sass";
 import "./Slides.sass";
 
-const slideRotationInterval = parseInt(VARIABLES["slide-rotation-interval"]);
-const slideRotationIntervalPercentage = parseInt(VARIABLES["slide-rotation-interval-percentage"]);
 const numberOfProjects = parseInt(VARIABLES["number-of-projects"]);
 const numberOfSlides = parseInt(VARIABLES["number-of-slides"]);
+const totalRotationIntervalPercentage = parseFloat(
+  VARIABLES["total-rotation-interval-percentage"]
+);
 
-const scrollYProjectStart = slideRotationIntervalPercentage; // Work backwards to find scrollYPercentage of start of project
+const scrollYProjectStart = totalRotationIntervalPercentage;
 const scrollYProjectEnd =
-  scrollYProjectStart + (numberOfProjects * slideRotationIntervalPercentage); // Likewise
+  scrollYProjectStart + numberOfProjects * totalRotationIntervalPercentage;
 
 const Slides = (props) => {
   const { scrollYPercentage } = props;
@@ -35,7 +36,8 @@ const Slides = (props) => {
     let i = numberOfProjects;
     while (i) {
       const projectIndex = numberOfProjects - i;
-      const limit = scrollYProjectStart + (projectIndex + 1) * 9;
+      // * totalRotationIntervalPercentage as this is the percentage rotation required for all slides/projects
+      const limit = scrollYProjectStart + (projectIndex + 1) * totalRotationIntervalPercentage;
       if (scrollYPercentage < limit) {
         if (selectedProject !== projectIndex) {
           setSelectedProject(projectIndex);
@@ -78,7 +80,7 @@ const Slides = (props) => {
                 </h4>
               </div>
             ) : i === 1 ? (
-              <div className="Slide__Inner" style={{ overflowY: "scroll" }}>
+              <div className="Slide__Inner Slide__Inner--Projects">
                 <Carousel
                   className="carousel-root--projects carousel-root--projects--blurb"
                   selectedItem={selectedProject}
