@@ -6,12 +6,12 @@ const scrollYScale = 0.1
 const numberOfProjects = parseInt(VARIABLES["number-of-projects"]); // Number of projects currently on site
 const numberOfSlides = parseInt(VARIABLES["number-of-slides"]);
 const initialRotation = parseInt(VARIABLES["starting-rotation"]);
-const slideRotationInterval = parseInt(VARIABLES["slide-rotation-interval"]);
-const slideRotationIntervalPercentage = parseInt(VARIABLES["slide-rotation-interval-percentage"]);
+const slideRotationInterval = parseFloat(VARIABLES["slide-rotation-interval"]);
+const slideRotationIntervalPercentage = parseFloat(VARIABLES["slide-rotation-interval-percentage"]);
 const totalRotationInterval = parseInt(VARIABLES["total-rotation-interval"]);
 
 const totalRotations = parseInt(VARIABLES["total-rotations"]);
-const totalRotationIntervalPercentage = parseInt(VARIABLES["total-rotation-interval-percentage"]);
+const totalRotationIntervalPercentage = parseFloat(VARIABLES["total-rotation-interval-percentage"]);
 
 const scrollYProjectStart = totalRotationIntervalPercentage; // starts at like 25%
 const scrollYProjectEnd =
@@ -32,8 +32,8 @@ const getRotation = ({ scrollYPercentage, slidesOrPlanet }) => {
   } else if (scrollYPercentage > scrollYProjectEnd) {
     const addedDeadScrollDeg = (addedDeadScroll / 100) * 360
     const degDeadScrollAdjusted = scrollYDeg - addedDeadScrollDeg;
-    const c = (a * (totalRotations / numberOfSlides))
-    return initialRotation - c
+    const finalRotation = (degDeadScrollAdjusted * (totalRotations / numberOfSlides))
+    return initialRotation - finalRotation
     // return initialRotation - (scrollYPercentage - addedDeadScroll) / (scrollYScale / (isSlides ? 1 : numberOfSlides));
   }
 };
