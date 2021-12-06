@@ -1,12 +1,11 @@
 import bitmoji from "Images/bitmoji.png";
-import { Image, Popup } from "semantic-ui-react";
-import "./Header.sass"
+import { Image } from "semantic-ui-react";
+import "./Header.sass";
 
 const Header = (props) => {
-  const {visible} = props
 
   return (
-    <header className={visible ? "" : "Header--Hidden"}>
+    <header>
       <div className="Header__Name">
         <h1>
           <h1>
