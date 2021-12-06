@@ -79,7 +79,7 @@ const Slides = (props) => {
                   </span>
                 </h4>
               </div>
-            ) : i === 1 ? (
+            ) : i === 2 ? (
               <div className="Slide__Inner Slide__Inner--Projects">
                 <Carousel
                   className="carousel-root--projects carousel-root--projects--blurb"
@@ -235,7 +235,7 @@ const Slides = (props) => {
                   </div>
                 </div>
               </div>
-            ) : i == 2 ? (
+            ) : i == 1 ? (
               <div className="Slide__Inner Slide__Inner--Skills">
                 <Grid columns={2}>
                   <Grid.Row>
