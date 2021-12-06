@@ -3,9 +3,15 @@
 @import 'src/variables.module.sass'
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap')
 
+h1, h2
+  font-size: 5vmin
+  color: #d463bc
+  font-family: fantasy
+  margin-bottom: 3rem
+
 body
   background-color: $base-color
-  #root
+  #root, .Portfolio
     height: 100%
-    .Portfolio
-      height: 100%
+    width: 100%
+    float: left // disable margin collapse

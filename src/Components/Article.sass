@@ -1,8 +1,44 @@
+@import 'src/variables.module.sass'
+
 .Article
-  height: auto
-  width: 80%
-  display: flex
-  justify-content: center
-  align-items: center
-  color: white
-  margin: 20% auto 0 auto
+  header
+    position: unset
+    margin-top: 5rem
+    h1
+      font-size: 3rem
+      div
+        display: flex
+        align-items: center
+    img.ui.image
+      border: 0.5rem solid black
+      border-radius: 50%
+      height: 4rem
+      display: inline
+      margin-left: 1rem
+    .Header
+      &__Introduction
+        font-size: 1rem
+        line-height: 1rem
+        margin-top: 1rem
+        width: 100%
+        span
+          cursor: pointer
+          font-size: inherit
+  footer.Links
+    position: unset
+    margin-top: 5rem
+    grid-gap: 3rem
+    gap: 3rem
+    img
+      width: 3rem
+  &__Body
+    height: auto
+    width: 80%
+    max-width: 900px
+    color: white
+    margin: 5rem auto 0 auto
+    padding: 2rem
+    font-size: 1rem
+    background-color: $light-color
+    h2
+      font-size: 4rem
