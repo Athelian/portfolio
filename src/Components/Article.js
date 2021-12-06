@@ -3,9 +3,9 @@ import Header from "Components/Header"
 import Links from "./Links";
 
 const Article = (props) => {
-  const { children } = props;
+  const { children, className } = props;
   return (
-    <div className="Article">
+    <div className={`Article Article__${className}`}>
       <Header />
       <div className="Article__Body">{children}</div>
       <Links/>

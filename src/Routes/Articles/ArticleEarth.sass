@@ -1,0 +1,25 @@
+.Article__Earth
+  .Earth
+    margin: 2rem
+  .Earth--Base
+    height: 15rem
+    width: 15rem
+    position: relative
+    &::before
+      content: ''
+      background: rgb(91, 161, 214)
+      width: 100%
+      height: 100%
+      border-radius: 50%
+      position: absolute
+    .Spherex
+      width: 100%
+      height: 100%
+      background: rgba(1,1,1, 0.6)
+      animation: rotate-sphere 15s linear infinite
+
+@keyframes rotate-sphere
+  0%
+    transform: rotateZ(0deg) rotateX(0deg) rotateY(0deg)
+  100%
+    transform: rotateZ(0deg) rotateX(0deg) rotateY(360deg)

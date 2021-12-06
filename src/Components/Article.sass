@@ -6,27 +6,19 @@
     margin-top: 5rem
     h1
       font-size: 3rem
-      div
-        display: flex
-        align-items: center
     img.ui.image
       border: 0.5rem solid black
       border-radius: 50%
       height: 4rem
-      display: inline
       margin-left: 1rem
     .Header
       &__Introduction
         font-size: 1rem
         line-height: 1rem
         margin-top: 1rem
-        width: 100%
-        span
-          cursor: pointer
-          font-size: inherit
   footer.Links
     position: unset
-    margin-top: 5rem
+    margin: 5rem auto
     grid-gap: 3rem
     gap: 3rem
     img
@@ -40,5 +32,11 @@
     padding: 2rem
     font-size: 1rem
     background-color: $light-color
+    > *
+      margin-top: 1rem
     h2
       font-size: 4rem
+    h3
+      margin-top: 2rem
+  &__Figure
+    // align
