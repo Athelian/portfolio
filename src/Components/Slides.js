@@ -18,7 +18,7 @@ const totalRotationIntervalPercentage = parseFloat(
   VARIABLES["total-rotation-interval-percentage"]
 );
 
-const scrollYProjectStart = totalRotationIntervalPercentage;
+const scrollYProjectStart = totalRotationIntervalPercentage * 2;
 const scrollYProjectEnd =
   scrollYProjectStart + numberOfProjects * totalRotationIntervalPercentage;
 

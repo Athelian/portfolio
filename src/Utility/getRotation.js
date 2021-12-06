@@ -9,7 +9,7 @@ const totalRotationIntervalPercentage = parseFloat(
   VARIABLES["total-rotation-interval-percentage"]
 );
 
-const scrollYProjectStart = totalRotationIntervalPercentage;
+const scrollYProjectStart = totalRotationIntervalPercentage * 2;
 const scrollYProjectEnd =
   scrollYProjectStart + numberOfProjects * totalRotationIntervalPercentage;
 const addedDeadScroll = scrollYProjectEnd - scrollYProjectStart; // Nothing has moved but yScroll has increased
@@ -34,7 +34,7 @@ const getRotation = ({ scrollYPercentage, slidesOrPlanet }) => {
     scrollYPercentage < scrollYProjectEnd
   ) {
     // Halt at one full rotation
-    return initialRotation - (isSlides ? slideRotationInterval : 360);
+    return initialRotation - (isSlides ? slideRotationInterval * 2 : 720);
   } else if (scrollYPercentage > scrollYProjectEnd) {
     const addedDeadScrollDeg =
       ((addedDeadScroll * (isSlides ? 1 : numberOfSlides)) / 100) * 360;

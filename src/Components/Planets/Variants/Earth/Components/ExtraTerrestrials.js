@@ -16,9 +16,9 @@ const ExtraTerrestrials = (props) => {
 
   if (rotation > 0) getRocketTitle() !== "About" && setRocketTitle("About");
   else if (rotation > -360)
-    getRocketTitle() !== "Projects" && setRocketTitle("Projects");
-  else if (rotation > -720)
     getRocketTitle() !== "Skills" && setRocketTitle("Skills");
+  else if (rotation > -720)
+    getRocketTitle() !== "Projects" && setRocketTitle("Projects");
   else if (rotation > -1080)
     getRocketTitle() !== "Contact" && setRocketTitle("Contact");
 
