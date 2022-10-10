@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/portfolio/static/css/main.2385a944.chunk.css",
-    "main.js": "/portfolio/static/js/main.f498aa0f.chunk.js",
-    "main.js.map": "/portfolio/static/js/main.f498aa0f.chunk.js.map",
+    "main.css": "/portfolio/static/css/main.32854bff.chunk.css",
+    "main.js": "/portfolio/static/js/main.e023b34c.chunk.js",
+    "main.js.map": "/portfolio/static/js/main.e023b34c.chunk.js.map",
     "runtime-main.js": "/portfolio/static/js/runtime-main.7f492d92.js",
     "runtime-main.js.map": "/portfolio/static/js/runtime-main.7f492d92.js.map",
     "static/css/2.dbe982d2.chunk.css": "/portfolio/static/css/2.dbe982d2.chunk.css",
@@ -10,9 +10,9 @@
     "static/js/2.4b9f06f6.chunk.js.map": "/portfolio/static/js/2.4b9f06f6.chunk.js.map",
     "index.html": "/portfolio/index.html",
     "static/css/2.dbe982d2.chunk.css.map": "/portfolio/static/css/2.dbe982d2.chunk.css.map",
-    "static/css/main.2385a944.chunk.css.map": "/portfolio/static/css/main.2385a944.chunk.css.map",
+    "static/css/main.32854bff.chunk.css.map": "/portfolio/static/css/main.32854bff.chunk.css.map",
     "static/js/2.4b9f06f6.chunk.js.LICENSE.txt": "/portfolio/static/js/2.4b9f06f6.chunk.js.LICENSE.txt",
-    "static/media/Resume.019d79e5.pdf": "/portfolio/static/media/Resume.019d79e5.pdf",
+    "static/media/Resume.b9dd11a7.pdf": "/portfolio/static/media/Resume.b9dd11a7.pdf",
     "static/media/bitmoji.0f436a9e.png": "/portfolio/static/media/bitmoji.0f436a9e.png",
     "static/media/semantic.min.css": "/portfolio/static/media/outline-icons.ddae9b1b.woff",
     "static/media/computer.47df44d0.png": "/portfolio/static/media/computer.47df44d0.png",
@@ -21,14 +21,19 @@
     "static/media/logo__project__fruity.55b85e6e.png": "/portfolio/static/media/logo__project__fruity.55b85e6e.png",
     "static/media/logo__project__liberty.a947ed7d.png": "/portfolio/static/media/logo__project__liberty.a947ed7d.png",
     "static/media/logo__project__portfolio-site.775287c5.png": "/portfolio/static/media/logo__project__portfolio-site.775287c5.png",
+    "static/media/logo__project__zenport.3d9974e1.png": "/portfolio/static/media/logo__project__zenport.3d9974e1.png",
+    "static/media/logo__technology__apollo.be781d5e.png": "/portfolio/static/media/logo__technology__apollo.be781d5e.png",
     "static/media/logo__technology__aws.03e5ca21.png": "/portfolio/static/media/logo__technology__aws.03e5ca21.png",
     "static/media/logo__technology__dart.f00251a3.png": "/portfolio/static/media/logo__technology__dart.f00251a3.png",
     "static/media/logo__technology__express.910adc86.png": "/portfolio/static/media/logo__technology__express.910adc86.png",
+    "static/media/logo__technology__flowtype.9847281b.png": "/portfolio/static/media/logo__technology__flowtype.9847281b.png",
     "static/media/logo__technology__flutter.9478f9e3.png": "/portfolio/static/media/logo__technology__flutter.9478f9e3.png",
+    "static/media/logo__technology__graphql.8171c4e3.svg": "/portfolio/static/media/logo__technology__graphql.8171c4e3.svg",
     "static/media/logo__technology__mongo.31728036.png": "/portfolio/static/media/logo__technology__mongo.31728036.png",
     "static/media/logo__technology__node.654603e9.png": "/portfolio/static/media/logo__technology__node.654603e9.png",
     "static/media/logo__technology__react.f64a6ebf.png": "/portfolio/static/media/logo__technology__react.f64a6ebf.png",
     "static/media/logo__technology__sass.6251c408.png": "/portfolio/static/media/logo__technology__sass.6251c408.png",
+    "static/media/logo__technology__typescript.0ab70beb.png": "/portfolio/static/media/logo__technology__typescript.0ab70beb.png",
     "static/media/logo__technology__ubuntu.6756ad2d.png": "/portfolio/static/media/logo__technology__ubuntu.6756ad2d.png",
     "static/media/mail.52b1590f.png": "/portfolio/static/media/mail.52b1590f.png",
     "static/media/medium-black.d4869399.png": "/portfolio/static/media/medium-black.d4869399.png",
@@ -38,7 +43,7 @@
     "static/js/runtime-main.7f492d92.js",
     "static/css/2.dbe982d2.chunk.css",
     "static/js/2.4b9f06f6.chunk.js",
-    "static/css/main.2385a944.chunk.css",
-    "static/js/main.f498aa0f.chunk.js"
+    "static/css/main.32854bff.chunk.css",
+    "static/js/main.e023b34c.chunk.js"
   ]
 }
