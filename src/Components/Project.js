@@ -7,6 +7,10 @@ import logo__technology__node from "Images/Logos/Technologies/logo__technology__
 import logo__technology__react from "Images/Logos/Technologies/logo__technology__react.png";
 import logo__technology__sass from "Images/Logos/Technologies/logo__technology__sass.png";
 import logo__technology__ubuntu from "Images/Logos/Technologies/logo__technology__ubuntu.png";
+import logo__technology__graphql from "Images/Logos/Technologies/logo__technology__graphql.svg";
+import logo__technology__typescript from "Images/Logos/Technologies/logo__technology__typescript.png";
+import logo__technology__flowtype from "Images/Logos/Technologies/logo__technology__flowtype.png";
+import logo__technology__apollo from "Images/Logos/Technologies/logo__technology__apollo.png";
 import "./Project.sass";
 
 const findLogo = (name) => {
@@ -29,6 +33,14 @@ const findLogo = (name) => {
       return logo__technology__sass;
     case "ubuntu":
       return logo__technology__ubuntu;
+    case "graphql":
+      return logo__technology__graphql;
+    case "typescript":
+      return logo__technology__typescript;
+    case "flowtype":
+      return logo__technology__flowtype;
+    case "apollo":
+      return logo__technology__apollo;
   }
 };
 
@@ -42,9 +54,7 @@ const Project = (props) => {
           <img src={findLogo(technology)} />
         ))}
       </div>
-      <p>
-        {description}
-      </p>
+      <p>{description}</p>
     </div>
   );
 };

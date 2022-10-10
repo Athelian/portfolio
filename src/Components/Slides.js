@@ -4,6 +4,7 @@ import logo__project__fruity from "Images/Logos/Projects/logo__project__fruity.p
 import logo__project__liberty from "Images/Logos/Projects/logo__project__liberty.png";
 import logo__project__portfolioSite from "Images/Logos/Projects/logo__project__portfolio-site.png";
 import logo__project__skilltrain from "Images/Logos/Projects/logo__project__skilltrain.png";
+import logo__project__zenport from "Images/Logos/Projects/logo__project__zenport.png";
 import mail from "Images/mail.png";
 import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
@@ -32,12 +33,17 @@ const Slides = (props) => {
     if (transitioning) setTimeout(() => setTransitioning(false), 600);
   }, [transitioning]);
 
-  if (scrollYPercentage > scrollYProjectStart && scrollYPercentage < scrollYProjectEnd) {
+  if (
+    scrollYPercentage > scrollYProjectStart &&
+    scrollYPercentage < scrollYProjectEnd
+  ) {
     let i = numberOfProjects;
     while (i) {
       const projectIndex = numberOfProjects - i;
       // * totalRotationIntervalPercentage as this is the percentage rotation required for all slides/projects
-      const limit = scrollYProjectStart + (projectIndex + 1) * totalRotationIntervalPercentage;
+      const limit =
+        scrollYProjectStart +
+        (projectIndex + 1) * totalRotationIntervalPercentage;
       if (scrollYPercentage < limit) {
         if (selectedProject !== projectIndex) {
           setSelectedProject(projectIndex);
@@ -60,7 +66,7 @@ const Slides = (props) => {
                 <h4>
                   Hi, I'm Eliot.
                   <span>
-                    I'm a fullstack engineer with a focus on{" "}
+                    I'm a frontend engineer with a focus on{" "}
                     <Popup
                       basic
                       content={<h4>(M)ongo (E)xpress (R)eact (N)ode</h4>}
@@ -94,6 +100,30 @@ const Slides = (props) => {
                     description={
                       <>
                         <div>
+                          A SAAS web application serving industry leaders
+                          bespoke supply chain management solutions. Pioneered
+                          large-scale code migration and shifts to stable
+                          frontend archiecture as frontend lead.
+                        </div>
+                        <br />
+                        <a href="https://www.zenport.io/" target="_blank">
+                          zenport.io
+                        </a>
+                      </>
+                    }
+                    technologies={[
+                      "typescript",
+                      "flowtype",
+                      "apollo",
+                      "graphql",
+                      "react"
+                    ]}
+                    title="Zenport"
+                  />
+                  <Project
+                    description={
+                      <>
+                        <div>
                           A website serving as a portal to a business-facing
                           online 3D exhibition MMO game, complete with various
                           social media capabilities, customer service
@@ -113,13 +143,7 @@ const Slides = (props) => {
                         </a>
                       </>
                     }
-                    technologies={[
-                      "ubuntu",
-                      "mongo",
-                      "node",
-                      "express",
-                      "react"
-                    ]}
+                    technologies={["mongo", "node", "express", "react"]}
                     title="Liberty"
                   />
                   <Project
@@ -210,6 +234,12 @@ const Slides = (props) => {
                       <div>
                         <img
                           className="computer__project"
+                          src={logo__project__zenport}
+                        />
+                      </div>
+                      <div>
+                        <img
+                          className="computer__project"
                           src={logo__project__liberty}
                         />
                       </div>
@@ -265,18 +295,7 @@ const Slides = (props) => {
                     <Grid.Column>
                       <Rating
                         disabled={true}
-                        defaultRating={3}
-                        maxRating={5}
-                        icon={"star"}
-                      />
-                    </Grid.Column>
-                  </Grid.Row>
-                  <Grid.Row>
-                    <Grid.Column>JavaScript</Grid.Column>
-                    <Grid.Column>
-                      <Rating
-                        disabled={true}
-                        defaultRating={5}
+                        defaultRating={4}
                         maxRating={5}
                         icon={"star"}
                       />
@@ -287,6 +306,17 @@ const Slides = (props) => {
                     <Grid.Column>
                       <Rating
                         disabled={true}
+                        defaultRating={5}
+                        maxRating={5}
+                        icon={"star"}
+                      />
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column>TypeScript</Grid.Column>
+                    <Grid.Column>
+                      <Rating
+                        disabled={true}
                         defaultRating={4}
                         maxRating={5}
                         icon={"star"}
@@ -294,11 +324,22 @@ const Slides = (props) => {
                     </Grid.Column>
                   </Grid.Row>
                   <Grid.Row>
-                    <Grid.Column>Linux</Grid.Column>
+                    <Grid.Column>Flow</Grid.Column>
                     <Grid.Column>
                       <Rating
                         disabled={true}
-                        defaultRating={3}
+                        defaultRating={5}
+                        maxRating={5}
+                        icon={"star"}
+                      />
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column>GraphQL</Grid.Column>
+                    <Grid.Column>
+                      <Rating
+                        disabled={true}
+                        defaultRating={4}
                         maxRating={5}
                         icon={"star"}
                       />
