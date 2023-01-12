@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/portfolio/static/css/main.32854bff.chunk.css",
-    "main.js": "/portfolio/static/js/main.e023b34c.chunk.js",
-    "main.js.map": "/portfolio/static/js/main.e023b34c.chunk.js.map",
+    "main.css": "/portfolio/static/css/main.7065a869.chunk.css",
+    "main.js": "/portfolio/static/js/main.6361af22.chunk.js",
+    "main.js.map": "/portfolio/static/js/main.6361af22.chunk.js.map",
     "runtime-main.js": "/portfolio/static/js/runtime-main.7f492d92.js",
     "runtime-main.js.map": "/portfolio/static/js/runtime-main.7f492d92.js.map",
     "static/css/2.dbe982d2.chunk.css": "/portfolio/static/css/2.dbe982d2.chunk.css",
@@ -10,7 +10,7 @@
     "static/js/2.4b9f06f6.chunk.js.map": "/portfolio/static/js/2.4b9f06f6.chunk.js.map",
     "index.html": "/portfolio/index.html",
     "static/css/2.dbe982d2.chunk.css.map": "/portfolio/static/css/2.dbe982d2.chunk.css.map",
-    "static/css/main.32854bff.chunk.css.map": "/portfolio/static/css/main.32854bff.chunk.css.map",
+    "static/css/main.7065a869.chunk.css.map": "/portfolio/static/css/main.7065a869.chunk.css.map",
     "static/js/2.4b9f06f6.chunk.js.LICENSE.txt": "/portfolio/static/js/2.4b9f06f6.chunk.js.LICENSE.txt",
     "static/media/Resume.b9dd11a7.pdf": "/portfolio/static/media/Resume.b9dd11a7.pdf",
     "static/media/bitmoji.0f436a9e.png": "/portfolio/static/media/bitmoji.0f436a9e.png",
@@ -28,7 +28,7 @@
     "static/media/logo__technology__express.910adc86.png": "/portfolio/static/media/logo__technology__express.910adc86.png",
     "static/media/logo__technology__flowtype.9847281b.png": "/portfolio/static/media/logo__technology__flowtype.9847281b.png",
     "static/media/logo__technology__flutter.9478f9e3.png": "/portfolio/static/media/logo__technology__flutter.9478f9e3.png",
-    "static/media/logo__technology__graphql.8171c4e3.svg": "/portfolio/static/media/logo__technology__graphql.8171c4e3.svg",
+    "static/media/logo__technology__graphql.c88bf378.svg": "/portfolio/static/media/logo__technology__graphql.c88bf378.svg",
     "static/media/logo__technology__mongo.31728036.png": "/portfolio/static/media/logo__technology__mongo.31728036.png",
     "static/media/logo__technology__node.654603e9.png": "/portfolio/static/media/logo__technology__node.654603e9.png",
     "static/media/logo__technology__react.f64a6ebf.png": "/portfolio/static/media/logo__technology__react.f64a6ebf.png",
@@ -43,7 +43,7 @@
     "static/js/runtime-main.7f492d92.js",
     "static/css/2.dbe982d2.chunk.css",
     "static/js/2.4b9f06f6.chunk.js",
-    "static/css/main.32854bff.chunk.css",
-    "static/js/main.e023b34c.chunk.js"
+    "static/css/main.7065a869.chunk.css",
+    "static/js/main.6361af22.chunk.js"
   ]
 }
