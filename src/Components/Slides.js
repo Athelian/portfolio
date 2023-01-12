@@ -103,7 +103,7 @@ const Slides = (props) => {
                           A SAAS web application serving industry leaders
                           bespoke supply chain management solutions. Pioneered
                           large-scale code migration and shifts to stable
-                          frontend archiecture as frontend lead.
+                          frontend architecture as frontend lead.
                         </div>
                         <br />
                         <a href="https://www.zenport.io/" target="_blank">
