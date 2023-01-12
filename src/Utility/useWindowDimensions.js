@@ -4,7 +4,7 @@ function getVmin() {
   const { innerWidth: width, innerHeight: height } = window;
   const vmin = Math.min(width, height);
   return {
-    vmin
+    vmin,
   };
 }
 

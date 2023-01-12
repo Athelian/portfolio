@@ -47,8 +47,8 @@ const Clouds = () => {
           planetClassname={`Planet--Clouds Planet--Clouds--y-rotation--${cloud.randomY}`}
           hemisphereProps={{
             style: {
-              transform: `rotateY(${cloud.randomY}deg) rotateZ(${cloud.randomZ}deg)`
-            }
+              transform: `rotateY(${cloud.randomY}deg) rotateZ(${cloud.randomZ}deg)`,
+            },
           }}
         >
           <div

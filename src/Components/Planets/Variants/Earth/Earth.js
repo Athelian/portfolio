@@ -2,13 +2,9 @@ import Planet from "Components/Planets/Planet";
 import React from "react";
 import PlanetProperties from "../../../../Utility/PlanetProperties";
 import Clouds from "./Components/Clouds";
-import ExtraTerrestrials from "./Components/ExtraTerrestrials";
-import Flags from "./Components/Flags";
 import "./Earth.sass";
 
 const Earth = (props) => {
-  const { scrollYPercentage } = props;
-
   return (
     <div className="Earth">
       <div className="Earth__Earth-Container">
@@ -44,9 +40,7 @@ const Earth = (props) => {
           )}
         </Planet>
       </div>
-      <Flags />
       <Clouds />
-      <ExtraTerrestrials scrollYPercentage={scrollYPercentage} />
     </div>
   );
 };
