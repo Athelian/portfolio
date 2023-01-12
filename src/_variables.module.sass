@@ -2,24 +2,12 @@
 
 // STYLING
 $base-color: rgb(32,35,86)
-$light-color: rgb(42,43,101)
-
-// Wheel
-$number-of-projects: 5
-$number-of-slides: 4
-$total-rotations: $number-of-projects + $number-of-slides - 1 // -1 as we do not want to reach the beginning slide again
-$slide-rotation-interval: math.div(360deg, $number-of-slides)
-$slide-rotation-interval-percentage: math.div($slide-rotation-interval, 360deg) * 100
-$total-rotation-interval: math.div(360deg, $total-rotations)
-$total-rotation-interval-percentage: math.div($total-rotation-interval, 360deg) * 100
-$starting-rotation: math.abs($slide-rotation-interval - 180deg)
 
 // EARTH
 // Arbitrary values
 $total-possible-random-positions: 2560 // number of (x,y) positions to pick from when placing Land
-$planet-diameter: 40
+$planet-diameter: 50
 $layer-offset-remainder: 0.6 // If you don't look directly down the axis at all times there is some offset.
-$number-of-stars: 64
 $earth-rotation-speed: 18s
 // Calculations
 $planet-radius: math.div($planet-diameter, 2)
@@ -29,11 +17,11 @@ $first-quadrant-limit: $quadrant-boundary * 1
 $second-quadrant-limit: $quadrant-boundary * 2
 $third-quadrant-limit: $quadrant-boundary * 3
 // Islands
-$africa: (layers: 10, diameter: 26 * math.div($planet-diameter, 42), rotation: -8, z-rotation: 14, position: 10)
-$asia: (layers: 10, diameter: 38 * math.div($planet-diameter, 42), rotation: -4, z-rotation: -45, position: 1919, components: 7)
-$europe: (layers: 10, diameter: 21 * math.div($planet-diameter, 42), rotation: 0, z-rotation: 10, position: 520, components: 8, landmark: true)
-$america: (layers: 10, diameter: 41 * math.div($planet-diameter, 42), rotation: 20, z-rotation: 140, position: 560, components: 4)
-$australasia: (layers: 10, diameter: 24 * math.div($planet-diameter, 42), rotation: -10, z-rotation: -89, position: 1, components: 24)
+$africa: (layers: 20, diameter: 26 * math.div($planet-diameter, 42), rotation: -8, z-rotation: 14, position: 10)
+$asia: (layers: 20, diameter: 38 * math.div($planet-diameter, 42), rotation: -4, z-rotation: -45, position: 1919, components: 7)
+$europe: (layers: 20, diameter: 21 * math.div($planet-diameter, 42), rotation: 0, z-rotation: 10, position: 520, components: 8, landmark: true)
+$america: (layers: 20, diameter: 41 * math.div($planet-diameter, 42), rotation: 20, z-rotation: 140, position: 560, components: 4)
+$australasia: (layers: 20, diameter: 24 * math.div($planet-diameter, 42), rotation: -10, z-rotation: -89, position: 1, components: 24)
 // Clouds
 $cloud-layers: 3
 $cloud-scale-factor: 0.3
@@ -50,11 +38,6 @@ $cloud--e: (center-to-apex: 130, label: e, width: 750.41px, height: 391.78px)
 $clouds: $cloud--a, $cloud--b, $cloud--c, $cloud--d, $cloud--e
 $continents: (Africa: $africa, Europe: $europe, Asia: $asia, America: $america, Australasia: $australasia)
 $earth: (continents: $continents, clouds: $clouds)
-// Extra-Terrestrials
-  // Rockets
-$rocket-scale: 0.05
-$rocket-layers: 8
-$rocket-orbit-diameter: 80vmin
 
 // EXPORTS
 @mixin rule($key, $value, $prefix)
@@ -72,13 +55,3 @@ $rocket-orbit-diameter: 80vmin
   @include map-map-to-string($continents, "planet-earth-continents")
   @include list-map-to-string($clouds, "planet-earth-clouds")
   cloud-layers: $cloud-layers
-  rocket-layers: $rocket-layers
-  number-of-projects: $number-of-projects
-  number-of-stars: $number-of-stars
-  number-of-slides: $number-of-slides
-  total-rotations: $total-rotations
-  slide-rotation-interval: $slide-rotation-interval
-  slide-rotation-interval-percentage: $slide-rotation-interval-percentage
-  total-rotation-interval: $total-rotation-interval
-  total-rotation-interval-percentage: $total-rotation-interval-percentage
-  starting-rotation: $starting-rotation
