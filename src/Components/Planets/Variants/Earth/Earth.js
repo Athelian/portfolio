@@ -1,5 +1,6 @@
 import Planet from "Components/Planets/Planet";
 import React from "react";
+
 import PlanetProperties from "../../../../Utility/PlanetProperties";
 import Clouds from "./Components/Clouds";
 import "./Earth.sass";
