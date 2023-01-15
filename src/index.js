@@ -1,10 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+const pug = require('pug');
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// Compile template.pug, and render a set of data
+console.log(pug.renderFile('template.pug', {
+  name: 'Timothy'
+}));
+// "<p>Timothy's Pug source code!</p>"
+;
