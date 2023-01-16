@@ -4,30 +4,23 @@ var sass = require("sass");
 const pug = require("pug");
 
 const PORT = 8080;
-const html = pug.renderFile("template.pug");
-var result = sass.renderSync({
-  file: "App.sass",
-});
 
 http
   .createServer(function (request, response) {
     switch (request.url) {
-      case "/index.css":
+      case "/app.sass":
         response.writeHead(200, { "Content-type": "text/css" });
-        var fileContents = fs.readFileSync("indexy.css", {
-          encoding: "utf8",
+        const sassResult = sass.renderSync({
+          file: "src/app.sass",
         });
-        response.write(fileContents);
-        return response.end();
-      case "/App.sass":
-        response.writeHead(200, { "Content-type": "text/css" });
-        response.write(result.css);
+        response.write(sassResult.css);
         return response.end();
       case "/favicon.ico":
         response.statusCode = 204;
         return response.end();
       default:
         response.writeHead(200, { "Content-Type": "text/html" });
+        const html = pug.renderFile("src/template.pug");
         response.write(html);
         return response.end();
     }
