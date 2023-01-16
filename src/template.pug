@@ -1,23 +1,18 @@
-<head>
 <link rel="stylesheet" type="text/css" href="app.sass" />
-</head>
-<div class="Earth">
-  <div class="Earth__Earth-Container">
-    <div class="Planet--Earth">
-      .island
-    </div>
-  </div>
-</div>
 
-
-//- - var n = 1;
-//- .scene
-//-   .sphere
-//-     .hemisphere
-//-       while n < 11
-//-         .face
-//-         - n++
-//-     .hemisphere
-//-       while n < 21
-//-         .face
-//-         - n++
+.Earth
+  .Earth__Earth-Container
+    .Planet--Earth
+      - var planetDiameter = 42;
+      - var earth = [{name: "africa", "layers": 20, "diameter": 26 * (50 / 42), "rotation": -8, "z-rotation": 14, "position": 10, components: 1}];
+      .Island
+        each continent in earth
+          - var layers = continent.layers - 1;
+          while layers > 0
+            - layers--
+            .Plate
+              .surface
+                - var components = continent.components;
+                while components > 0
+                  - components--
+                    .Land
