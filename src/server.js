@@ -8,7 +8,7 @@ const PORT = 8080;
 const sassResult = sass.renderSync({
   file: "src/app.sass",
 });
-const html = pug.renderFile("src/template.pug");
+const html = pug.renderFile("src/app.pug");
 
 http
   .createServer(function (request, response) {

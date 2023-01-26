@@ -183,6 +183,8 @@ $earth: (continents: $continents, clouds: $clouds)
 
 body
   background-color: $base-color
+  width: 100vw
+  height: 100vh
 
 // Base values, no nesting to maintain low specificity
 .Planet
@@ -263,7 +265,7 @@ body
         width: #{$island-layer-diameter * 1vmin}
         transform: translate(-50%, -50%) translateZ(#{$i * $shrink-factor * 1vmin}) rotate($rotation * 1deg)
         > div
-          mask: radial-gradient(circle #{($hole-size * 1vmin)},transparent 100%,#fff 100%)
+          -webkit-mask: radial-gradient(circle #{($hole-size * 1vmin)},transparent 100%,#fff 100%)
         .Land
           transform: translate(-50%, #{(($island-diameter - $island-layer-diameter) / 2) * -1vmin})
 

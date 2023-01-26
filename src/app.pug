@@ -1,0 +1,21 @@
+<link rel="stylesheet" type="text/css" href="app.sass" />
+
+- var planetDiameter = 50;
+- var earth = [{"name": "Africa", "layers": 20, "diameter": 26 * (50 / 42), "rotation": -8, "z-rotation": 14, "position": 10, "components": 1},{"name": "Asia", "layers": 20, "diameter": 38 * (50 / 42), "rotation": -4, "z-rotation": -45, "position": 1919, "components": 7},{"name": "Europe", "layers": 20, "diameter": 21 * (50/42), "rotation": 0, "z-rotation": 10, "position": 520, "components": 8},{"name": "America", "layers": 20, "diameter": 41 * (50/42), "rotation": 20, "z-rotation": 140, "position": 560, "components": 4},{"name": "Australasia", "layers": 20, "diameter": 24 * (50 / 42), "rotation": -10, "z-rotation": -89, "position": 1, "components": 24}];
+
+.Earth
+  .Earth__Earth-Container
+    .Planet.Planet--Earth
+      .Sphere
+        .Hemisphere
+          each continent in earth
+            div(class=`Island Island--${continent.name}`)
+              - var layers = continent.layers - 1;
+              while layers > 0
+                - layers--
+                .Plate
+                  .surface
+                    - var components = continent.components;
+                    while components > 0
+                      - components--
+                        .Land
