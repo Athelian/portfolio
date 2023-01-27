@@ -5,7 +5,7 @@
 - const planetDiameter = 50;
 - const cloudLayers = 3;
 - const earth = [{"label": "Africa", "layers": 20, "diameter": 26 * (50 / 42), "rotation": -8, "z-rotation": 14, "position": 10, "components": 1},{"label": "Asia", "layers": 20, "diameter": 38 * (50 / 42), "rotation": -4, "z-rotation": -45, "position": 1919, "components": 7},{"label": "Europe", "layers": 20, "diameter": 21 * (50/42), "rotation": 0, "z-rotation": 10, "position": 520, "components": 8},{"label": "America", "layers": 20, "diameter": 41 * (50/42), "rotation": 20, "z-rotation": 140, "position": 560, "components": 4},{"label": "Australasia", "layers": 20, "diameter": 24 * (50 / 42), "rotation": -10, "z-rotation": -89, "position": 1, "components": 24}];
-- const clouds = [{"label": "a", "randomY": randomNumber({min: 0, max: 36}) * 10, "randomZ": randomNumber({min: -50, max: 50}), "center-to-apex": -95, "width": "632.15px", "height": "271.38px"}, {"label": "b", "randomY": randomNumber({min: 0, max: 36}) * 10, "randomZ": randomNumber({min: -50, max: 50}), "center-to-apex": 0, "width": "762.01px", "height": "301.12px"}, { "label": "c","randomY": randomNumber({min: 0, max: 36}) * 10, "randomZ": randomNumber({min: -50, max: 50}), "center-to-apex": 0, "width": "737.64px", "height": "409.58px"}, {"label": "d", "randomY": randomNumber({min: 0, max: 36}) * 10, "randomZ": randomNumber({min: -50, max: 50}), "center-to-apex": 0, "width": "778.11px", "height": "406.46px"}, {"label": "e", "randomY": randomNumber({min: 0, max: 36}) * 10, "randomZ": randomNumber({min: -50, max: 50}), "center-to-apex": 130, "width": "750.41px", "height": "391.78px"}];
+- const clouds = [{"label": "A", "randomY": randomNumber({min: 0, max: 36}) * 10, "randomZ": randomNumber({min: -50, max: 50}), "center-to-apex": -95, "width": "632.15px", "height": "271.38px"}, {"label": "B", "randomY": randomNumber({min: 0, max: 36}) * 10, "randomZ": randomNumber({min: -50, max: 50}), "center-to-apex": 0, "width": "762.01px", "height": "301.12px"}, { "label": "C","randomY": randomNumber({min: 0, max: 36}) * 10, "randomZ": randomNumber({min: -50, max: 50}), "center-to-apex": 0, "width": "737.64px", "height": "409.58px"}, {"label": "D", "randomY": randomNumber({min: 0, max: 36}) * 10, "randomZ": randomNumber({min: -50, max: 50}), "center-to-apex": 0, "width": "778.11px", "height": "406.46px"}, {"label": "E", "randomY": randomNumber({min: 0, max: 36}) * 10, "randomZ": randomNumber({min: -50, max: 50}), "center-to-apex": 130, "width": "750.41px", "height": "391.78px"}];
 - const cloudsComputed = Array(randomNumber({ min: 10, max: 20 })).fill("").map(() => { const randomZ = randomNumber({ min: -50, max: 50 }); const randomY = randomNumber({ min: 0, max: 36 }) * 10; const randomCloud = clouds[randomNumber({ min: 0, max: clouds.length - 1 })].label; const randomScale = randomNumber({ min: 21, max: 30 }); return { randomZ, randomY, randomCloud, randomScale };});
 
 .Earth
@@ -19,7 +19,7 @@
               while layers > 0
                 - layers--
                 .Plate
-                  .surface
+                  div
                     - var components = continent.components;
                     while components > 0
                       - components--
