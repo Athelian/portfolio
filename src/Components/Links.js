@@ -2,7 +2,7 @@ import github from "Images/Logos/Links/github.png";
 import linkedin from "Images/Logos/Links/linkedin.png";
 import resumeImg from "Images/resume.png";
 import mediumBlack from "Images/Logos/Links/medium-black.png";
-import resume from "Assets/Resume.pdf";
+import resume from "Assets/Resume, Eliot Austin-Forbes.pdf";
 import "./Links.sass"
 
 const Links = () => {
