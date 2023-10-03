@@ -49,11 +49,11 @@ const Project = (props) => {
   return (
     <div className="Carousel__Project">
       <h2>{title}</h2>
-      <div className="Carousel__Project__Technologies">
+      {/* <div className="Carousel__Project__Technologies">
         {technologies.map((technology) => (
           <img src={findLogo(technology)} />
         ))}
-      </div>
+      </div> */}
       <p>{description}</p>
     </div>
   );

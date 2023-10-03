@@ -66,18 +66,8 @@ const Slides = (props) => {
                 <h4>
                   Hi, I'm Eliot.
                   <span>
-                    I'm a frontend engineer with a focus on{" "}
-                    <Popup
-                      basic
-                      content={<h4>(M)ongo (E)xpress (R)eact (N)ode</h4>}
-                      inverted
-                      on="click"
-                      style={{ backgroundColor: "rgba(0,0,0,0.2)" }}
-                      trigger={<span className="MERN">MERN</span>}
-                      position="bottom right"
-                      offset={[600, -10]}
-                    />{" "}
-                    stacks and the latest trends in tech.
+                    I'm a fullstack engineer with a focus on JavaScript and the
+                    latest trends in tech.
                   </span>
                   <span>
                     You can read about my work on Medium, or check out my most
@@ -101,12 +91,10 @@ const Slides = (props) => {
                       <>
                         <div>
                           A SAAS web application serving industry leaders
-                          bespoke supply chain management solutions. Pioneered
-                          large-scale code migration and shifts to stable
-                          frontend architecture as frontend lead.
+                          bespoke supply chain management solutions.
                         </div>
                         <br />
-                        <a href="https://www.zenport.io/" target="_blank">
+                        <a href="https://zenport.io/" target="_blank">
                           zenport.io
                         </a>
                       </>
@@ -125,17 +113,7 @@ const Slides = (props) => {
                       <>
                         <div>
                           A website serving as a portal to a business-facing
-                          online 3D exhibition MMO game, complete with various
-                          social media capabilities, customer service
-                          integration, game file editor, and more. Sole
-                          responsibility for the entire site/stack. Javascript,
-                          react, node, html, css, jest, joi, linux (ubuntu
-                          dist), ssh (key management), mongo, ssl, git, npm.
-                          Highlights include: A chat system with email
-                          notifications and file embedding. A dynamic svg editor
-                          for game admins to manipulate an in-game map in
-                          real-time. A news feed with a WYSIWYG text editor
-                          including locale support etc.
+                          online 3D exhibition MMO game.
                         </div>
                         <br />
                         <a href="https://www.liberty-hjc.com/" target="_blank">
@@ -150,14 +128,25 @@ const Slides = (props) => {
                     description={
                       <>
                         <div>
+                          An intelligent assistant for managing your social
+                          media presence.
+                        </div>
+                        <br />
+                        <a href="https://snai.site/" target="_blank">
+                          snai.site
+                        </a>
+                      </>
+                    }
+                    technologies={["t3"]}
+                    title="Snai"
+                  />
+                  <Project
+                    description={
+                      <>
+                        <div>
                           A mobile based full-stack application with an inhouse
                           booking system alongside real time video and text chat
-                          for fitness. In-depth authentication system in Dart
-                          with connection to AWS Cognito via Amplify. Completed
-                          integration of a payment API (Stripe) with full
-                          signups, payments, and payouts deployed to AWS.
-                          Payments through Android native pay, iOS native pay,
-                          or an in-app window.
+                          for fitness.
                         </div>
                         <br />
                         <a
@@ -269,65 +258,10 @@ const Slides = (props) => {
               <div className="Slide__Inner Slide__Inner--Skills">
                 <Grid columns={2}>
                   <Grid.Row>
-                    <Grid.Column>HTML</Grid.Column>
-                    <Grid.Column>
-                      <Rating
-                        disabled={true}
-                        defaultRating={5}
-                        maxRating={5}
-                        icon={"star"}
-                      />
-                    </Grid.Column>
-                  </Grid.Row>
-                  <Grid.Row>
-                    <Grid.Column>CSS</Grid.Column>
-                    <Grid.Column>
-                      <Rating
-                        disabled={true}
-                        defaultRating={5}
-                        maxRating={5}
-                        icon={"star"}
-                      />
-                    </Grid.Column>
-                  </Grid.Row>
-                  <Grid.Row>
-                    <Grid.Column>SASS</Grid.Column>
-                    <Grid.Column>
-                      <Rating
-                        disabled={true}
-                        defaultRating={4}
-                        maxRating={5}
-                        icon={"star"}
-                      />
-                    </Grid.Column>
-                  </Grid.Row>
-                  <Grid.Row>
-                    <Grid.Column>React</Grid.Column>
-                    <Grid.Column>
-                      <Rating
-                        disabled={true}
-                        defaultRating={5}
-                        maxRating={5}
-                        icon={"star"}
-                      />
-                    </Grid.Column>
-                  </Grid.Row>
-                  <Grid.Row>
                     <Grid.Column>TypeScript</Grid.Column>
                     <Grid.Column>
                       <Rating
                         disabled={true}
-                        defaultRating={4}
-                        maxRating={5}
-                        icon={"star"}
-                      />
-                    </Grid.Column>
-                  </Grid.Row>
-                  <Grid.Row>
-                    <Grid.Column>Flow</Grid.Column>
-                    <Grid.Column>
-                      <Rating
-                        disabled={true}
                         defaultRating={5}
                         maxRating={5}
                         icon={"star"}
@@ -335,22 +269,33 @@ const Slides = (props) => {
                     </Grid.Column>
                   </Grid.Row>
                   <Grid.Row>
-                    <Grid.Column>GraphQL</Grid.Column>
+                    <Grid.Column>Golang</Grid.Column>
                     <Grid.Column>
                       <Rating
                         disabled={true}
-                        defaultRating={4}
+                        defaultRating={3}
                         maxRating={5}
                         icon={"star"}
                       />
                     </Grid.Column>
                   </Grid.Row>
                   <Grid.Row>
-                    <Grid.Column>Mongo</Grid.Column>
+                    <Grid.Column>PHP</Grid.Column>
                     <Grid.Column>
                       <Rating
                         disabled={true}
                         defaultRating={3}
+                        maxRating={5}
+                        icon={"star"}
+                      />
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column>Scala</Grid.Column>
+                    <Grid.Column>
+                      <Rating
+                        disabled={true}
+                        defaultRating={2}
                         maxRating={5}
                         icon={"star"}
                       />
