@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/portfolio/static/css/main.f36eb7f2.chunk.css",
-    "main.js": "/portfolio/static/js/main.99c6b807.chunk.js",
-    "main.js.map": "/portfolio/static/js/main.99c6b807.chunk.js.map",
+    "main.css": "/portfolio/static/css/main.38a75ed3.chunk.css",
+    "main.js": "/portfolio/static/js/main.1c6e7c18.chunk.js",
+    "main.js.map": "/portfolio/static/js/main.1c6e7c18.chunk.js.map",
     "runtime-main.js": "/portfolio/static/js/runtime-main.7f492d92.js",
     "runtime-main.js.map": "/portfolio/static/js/runtime-main.7f492d92.js.map",
     "static/css/2.dbe982d2.chunk.css": "/portfolio/static/css/2.dbe982d2.chunk.css",
@@ -10,7 +10,7 @@
     "static/js/2.ed92b865.chunk.js.map": "/portfolio/static/js/2.ed92b865.chunk.js.map",
     "index.html": "/portfolio/index.html",
     "static/css/2.dbe982d2.chunk.css.map": "/portfolio/static/css/2.dbe982d2.chunk.css.map",
-    "static/css/main.f36eb7f2.chunk.css.map": "/portfolio/static/css/main.f36eb7f2.chunk.css.map",
+    "static/css/main.38a75ed3.chunk.css.map": "/portfolio/static/css/main.38a75ed3.chunk.css.map",
     "static/js/2.ed92b865.chunk.js.LICENSE.txt": "/portfolio/static/js/2.ed92b865.chunk.js.LICENSE.txt",
     "static/media/Resume, Eliot Austin-Forbes.41f22e34.pdf": "/portfolio/static/media/Resume, Eliot Austin-Forbes.41f22e34.pdf",
     "static/media/bitmoji.0f436a9e.png": "/portfolio/static/media/bitmoji.0f436a9e.png",
@@ -18,9 +18,9 @@
     "static/media/computer.47df44d0.png": "/portfolio/static/media/computer.47df44d0.png",
     "static/media/github.bcd9bda4.png": "/portfolio/static/media/github.bcd9bda4.png",
     "static/media/linkedin.69f2aa5b.png": "/portfolio/static/media/linkedin.69f2aa5b.png",
-    "static/media/logo__project__fruity.55b85e6e.png": "/portfolio/static/media/logo__project__fruity.55b85e6e.png",
-    "static/media/logo__project__liberty.a947ed7d.png": "/portfolio/static/media/logo__project__liberty.a947ed7d.png",
+    "static/media/logo__project__goblin.3705214a.png": "/portfolio/static/media/logo__project__goblin.3705214a.png",
     "static/media/logo__project__portfolio-site.775287c5.png": "/portfolio/static/media/logo__project__portfolio-site.775287c5.png",
+    "static/media/logo__project__snai.bcf7e323.png": "/portfolio/static/media/logo__project__snai.bcf7e323.png",
     "static/media/logo__project__zenport.3d9974e1.png": "/portfolio/static/media/logo__project__zenport.3d9974e1.png",
     "static/media/logo__technology__apollo.be781d5e.png": "/portfolio/static/media/logo__technology__apollo.be781d5e.png",
     "static/media/logo__technology__aws.03e5ca21.png": "/portfolio/static/media/logo__technology__aws.03e5ca21.png",
@@ -43,7 +43,7 @@
     "static/js/runtime-main.7f492d92.js",
     "static/css/2.dbe982d2.chunk.css",
     "static/js/2.ed92b865.chunk.js",
-    "static/css/main.f36eb7f2.chunk.css",
-    "static/js/main.99c6b807.chunk.js"
+    "static/css/main.38a75ed3.chunk.css",
+    "static/js/main.1c6e7c18.chunk.js"
   ]
 }
